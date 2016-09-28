@@ -22,6 +22,8 @@ banner div {
     background: rgba(133, 133, 133, 0.95);
     margin: 0;
     border: 1px black solid;
+    display: flex;
+    align-items: center;
 }
 nav ul{
     height: 20px;
@@ -29,8 +31,9 @@ nav ul{
     background: rgba(182, 182, 182, 0.95);
     margin: 0px;
     padding: 0px;
-    border: 1px black solid;
-}
+    display: flex;
+    align-items: center;
+    border: 1px black solid;}
 * ul li {
     display: inline-block;
 }
@@ -39,18 +42,59 @@ nav ul{
     padding: 8px;
 }
 .date {
-    float: left;
-    transform: translateX(4px);
+    margin: auto;
+    width: 50%;
+    padding: 1px;
 }
 .greeting {
-    float: right;
-    transform: translateX(-4px);
+    position: absolute;
+    right: 0px;
+    width: 200px;
+    padding: 1px;
 }
 .option {
-    transform: translateY(-8px);
     float: left;
 }
 .logout {
-    transform: translateY(-8px);
-    float: right;
+    position: absolute;
+    right: 0px;
+    width: 100px;
+    padding: 1px;
+}
+article {
+    padding: 16px;
+}
+#SchoolPic {
+    height: 250px;
+    width: 250px;
+    max-width: 100%;
+    max-height: 100%;
+    padding: 10px;
+    border: thin solid black;
+    float: left;
+    overflow: auto;
+}
+article ul li {
+    display: block;
+}
+.SchoolName{
+    font-size: xx-large;
+    margin: 0px;
+}
+.LabelText {
+    float: left;
+    width: 100px;
+    font-weight: bold;
+}
+.SchoolStats {
+    list-style-type: none;
+    float:left;
+    display: list-item;
+    padding: 0;
+    margin: 0;
+}
+.SchoolStats ul {
+    list-style-type: none;
+    padding: 0 0 0 10px;
+    margin: 0;
 }
