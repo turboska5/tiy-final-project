@@ -16,14 +16,11 @@ header {
     justify-content: center;
     align-items: center;
 }
-banner ul {
+banner div {
     height: 20px;
     text-align: center;
     background: rgba(133, 133, 133, 0.95);
     margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     border: 1px black solid;
 }
 nav ul{
@@ -32,8 +29,6 @@ nav ul{
     background: rgba(182, 182, 182, 0.95);
     margin: 0px;
     padding: 0px;
-    display: flex;
-    align-items: center;
     border: 1px black solid;
 }
 * ul li {
@@ -44,14 +39,18 @@ nav ul{
     padding: 8px;
 }
 .date {
-    text-align: center;
+    float: left;
+    transform: translateX(4px);
 }
 .greeting {
-    /*float: right;*/
+    float: right;
+    transform: translateX(-4px);
 }
 .option {
+    transform: translateY(-8px);
     float: left;
 }
 .logout {
+    transform: translateY(-8px);
     float: right;
 }
