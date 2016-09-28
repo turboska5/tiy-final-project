@@ -1,7 +1,7 @@
 header {
     height: 64px;
     margin: 0 auto;
-    border-width: 0;
+    border: 1px black solid;
     background: url("../images/bricktile.jpg") repeat;
 }
 .HeaderText{
