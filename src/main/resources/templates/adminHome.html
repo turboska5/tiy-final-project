@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Objective Grader: Login</title>
+    <link th:href="@{css/theme.css}" href="../static/css/theme.css" rel="stylesheet" type="text/css"/>
+    <link th:href="@{images/icon.png}" href="../static/images/icon.png" rel="icon"/>
+    <header>
+        <div class="HeaderText">
+            <h1>Objective Grader</h1>
+        </div>
+    </header>
+
+
+    <nav>
+        <ul>
+            <li class="date" th:text="${java.time.LocalDate.now()">September 26, 2016</li>
+        </ul>
+        <ul>
+            <li class="option"><a th:href="" href="/objectivegrader/templates/Login.html">Home</a></li>
+            <li class="option"><a th:href="" href="/objectivegrader/templates/Login.html">Manage Classes</a></li>
+            <li class="option"><a th:href="" href="/objectivegrader/templates/Login.html">Manage Users</a></li>
+            <li class="greeting">Good Morning, Admin!</li>
+            <li class="logout"><a th:href="@{/logout}" href="/objectivegrader/templates/login.html">Logout</a></li>
+        </ul>
+    </nav>
+
+</head>
+<body>
+
+</body>
+</html>
