@@ -16,13 +16,22 @@ header {
     justify-content: center;
     align-items: center;
 }
-
-nav {
+banner ul {
+    height: 20px;
     text-align: center;
-    background: rgba(182, 182, 182, 0.76);
-}
-* ul {
+    background: rgba(133, 133, 133, 0.95);
     margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+nav ul{
+    height: 20px;
+    text-align: center;
+    background: rgba(182, 182, 182, 0.95);
+    margin: 0;
+    display: flex;
+    align-items: center;
 }
 * ul li {
     display: inline-block;
@@ -34,10 +43,11 @@ nav {
 .date {
     text-align: center;
 }
+.greeting {
+    /*float: right;*/
+}
 .option {
     float: left;
-}
-.greeting {
 }
 .logout {
     float: right;
