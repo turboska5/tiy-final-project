@@ -1,4 +1,4 @@
-package com.andrewrnagel.entity;
+package com.andrewrnagel.objgrader.entity;
 
 import javax.persistence.*;
 

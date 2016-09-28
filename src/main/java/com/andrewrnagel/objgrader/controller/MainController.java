@@ -1,4 +1,4 @@
-package com.andrewrnagel.controller;
+package com.andrewrnagel.objgrader.controller;
 
 import org.springframework.stereotype.Controller;
 

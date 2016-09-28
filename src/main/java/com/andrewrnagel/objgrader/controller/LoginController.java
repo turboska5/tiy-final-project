@@ -1,8 +1,8 @@
-package com.andrewrnagel.controller;
+package com.andrewrnagel.objgrader.controller;
 
-import com.andrewrnagel.entity.User;
-import com.andrewrnagel.misc.PasswordStorage;
-import com.andrewrnagel.repository.UserRepository;
+import com.andrewrnagel.objgrader.entity.User;
+import com.andrewrnagel.objgrader.misc.PasswordStorage;
+import com.andrewrnagel.objgrader.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

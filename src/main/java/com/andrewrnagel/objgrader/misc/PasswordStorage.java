@@ -1,4 +1,4 @@
-package com.andrewrnagel.misc;
+package com.andrewrnagel.objgrader.misc;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;

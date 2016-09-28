@@ -1,6 +1,6 @@
-package com.andrewrnagel.repository;
+package com.andrewrnagel.objgrader.repository;
 
-import com.andrewrnagel.entity.AcademicClass;
+import com.andrewrnagel.objgrader.entity.AcademicClass;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

@@ -1,6 +1,6 @@
-package com.andrewrnagel.repository;
+package com.andrewrnagel.objgrader.repository;
 
-import com.andrewrnagel.entity.User;
+import com.andrewrnagel.objgrader.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

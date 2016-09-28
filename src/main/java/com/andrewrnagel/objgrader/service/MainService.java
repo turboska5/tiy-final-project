@@ -1,6 +1,6 @@
-package com.andrewrnagel.service;
+package com.andrewrnagel.objgrader.service;
 
-import com.andrewrnagel.repository.ClassRepo;
+import com.andrewrnagel.objgrader.repository.ClassRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
