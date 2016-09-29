@@ -45,7 +45,7 @@ public class LoginController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(String userName, String password, HttpSession session, Model model) throws PasswordStorage.InvalidHashException, PasswordStorage.CannotPerformOperationException {
-        User user = userRepository.getByName(userName);
+        User user = userRepository.getByUsername(userName);
         if(user != null && PasswordStorage.verifyPassword(password, user.getPassword())){
             session.setAttribute("userId", user.getId());
             return "redirect:/adminHome";

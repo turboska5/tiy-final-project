@@ -1,6 +1,9 @@
 package com.andrewrnagel.objgrader.entity;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "users")
@@ -9,19 +12,28 @@ public class User {
     @Id
     @GeneratedValue
     private int id;
-
-    private String name;
-
+    @NotBlank
+    @NotNull
+    @Column(unique = true)
+    private String username;
+    @NotBlank
+    @NotNull
     @Column(unique = true)
     private String email;
-
+    @NotBlank
+    @NotNull
     private String password;
+
+    //Added from Admin controls
+    private String firstName;
+    private String lastName;
+    private int role;
 
     public User() {
     }
 
-    public User(String name, String email, String password) {
-        this.name = name;
+    public User(String username, String email, String password) {
+        this.username = username;
         this.email = email;
         this.password = password;
     }
@@ -34,12 +46,12 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
