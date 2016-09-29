@@ -25,22 +25,49 @@ banner div {
     display: flex;
     align-items: center;
 }
-nav ul{
-    height: 20px;
-    text-align: center;
-    background: rgba(182, 182, 182, 0.95);
-    margin: 0px;
-    padding: 0px;
-    display: flex;
-    align-items: center;
-    border: 1px black solid;}
-* ul li {
-    display: inline-block;
+/*nav ul{*/
+    /*height: 20px;*/
+    /*text-align: center;*/
+    /*background: rgba(182, 182, 182, 0.95);*/
+    /*margin: 0px;*/
+    /*padding: 0px;*/
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*border: 1px black solid;}*/
+/** ul li {*/
+    /*display: inline-block;*/
+/*}*/
+/** ul li a {*/
+    /*display: block;*/
+    /*padding: 8px;*/
+/*}*/
+
+.nav-links ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: slategray;
 }
-* ul li a {
+
+.nav-links li {
+    float: left;
+    border-right: 1px solid #bbb;
+}
+
+.nav-links li a {
     display: block;
-    padding: 8px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
 }
+
+/* Change the link color to #111 (black) on hover */
+.nav-links li a:hover {
+    background-color: #111;
+}
+
 .date {
     margin: auto;
     width: 50%;
