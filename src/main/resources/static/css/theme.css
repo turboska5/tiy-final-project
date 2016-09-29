@@ -40,7 +40,7 @@ banner div {
 }
 /*Second banner: navigation*/
 .nav-links ul {
-    height: 30px;
+    height: 20px;
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -58,36 +58,19 @@ banner div {
 }
 .nav-links li a {
     display: block;
-    color: black;
+    color: white;
     text-align: center;
-    padding: 9px 11px;
+    padding: 10px;
     text-decoration: none;
 }
 .nav-links li a:hover {
     background-color: slategray;
     color: #560023;
 }
-.option {
-    float: left;
-}
-.logout {
-    position: absolute;
-    right: 0px;
-    width: 100px;
-    padding: 0px;
-    overflow: hidden;
-}
-
-.logout a:hover{
-    background-color: lavenderblush;
-    color: #560023;
-}
-
 /*Body settings*/
 article {
-    padding: 16px;
+    padding: 10px;
 }
-
 #SchoolPic {
     height: 200px;
     width: 200px;
