@@ -1,14 +1,14 @@
 /*Title Header*/
 header {
     height: 64px;
-    margin: 0 auto;
+    margin: 0px auto;
     border: 1px black solid;
     background: url("../images/bricktile.jpg") repeat;
 }
 .HeaderText{
-    background: rgba(255, 64, 64, 0.3);
     color: white;
     text-shadow: 5px 0px black;
+    background: rgba(255, 64, 64, 0.3);
     height: 100%;
     text-align: center;
     font-family: "Courier New", sans-serif;
@@ -21,14 +21,15 @@ header {
 banner div {
     height: 20px;
     text-align: center;
-    background: rgba(133, 133, 133, 0.95);
-    margin: 0;
-    border: 1px black solid;
     color: #560023;
+    background: rgba(133, 133, 133, 0.95);
+    border: 1px black solid;
+    margin: 0px;
     display: flex;
     align-items: center;
 }
 .date {
+    font-weight: bold;
     margin: auto;
     width: 50%;
     padding: 1px;
@@ -99,15 +100,59 @@ article ul li {
     list-style-type: none;
     float:left;
     display: list-item;
-    padding: 0;
-    margin: 0;
+    padding: 0px;
+    margin: 0px;
 }
 .SchoolStats ul {
     list-style-type: none;
-    padding: 0 0 0 10px;
-    margin: 0;
+    padding: 0px 0px 0px 10px;
+    margin: 0px;
 }
 .divider {
-    padding: 10px;
+    padding: 5px 5px 0px;
     clear: both;
+}
+legend {
+    font-family: "Comic Sans MS", sans-serif;
+    font-size: small;
+}
+.SearchField {
+    margin: 3px;
+}
+.SearchParams {
+    margin: 0px;
+    padding: 0px;
+    text-align: left;
+}
+.InputField {
+    width: 10%;
+}
+#AddClassButton {
+    float: right;
+}
+.SearchResults {
+    margin: 10px 0px 0px;
+    border: 1px black solid;
+}
+table {
+    font-family: Arial, sans-serif;
+    font-size: small;
+    text-align: left;
+    border-collapse: collapse;
+    border: none;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+}
+th  {
+    font-weight: bold;
+    text-decoration: underline;
+    width: 100px;
+}
+table tr:nth-child(2n) {
+    color: #560023;
+    background: rgba(133, 133, 133, 0.95);
+}table tr:nth-child(2n+1) {
+    color: white;
+    background-color: #737373;
 }
