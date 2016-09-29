@@ -64,7 +64,7 @@ banner div {
     padding: 10px;
     text-decoration: none;
 }
-.nav-links li a:hover {
+.nav-links li a:hover, .current {
     background-color: slategray;
     color: #560023;
 }
