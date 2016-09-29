@@ -25,6 +25,17 @@ banner div {
     display: flex;
     align-items: center;
 }
+.date {
+    margin: auto;
+    width: 50%;
+    padding: 1px;
+}
+.greeting {
+    position: absolute;
+    right: 0px;
+    width: 200px;
+    padding: 1px;
+}
 /*nav ul{*/
     /*height: 20px;*/
     /*text-align: center;*/
@@ -41,7 +52,6 @@ banner div {
     /*display: block;*/
     /*padding: 8px;*/
 /*}*/
-
 .nav-links ul {
     height: 20px;
     list-style-type: none;
@@ -53,12 +63,10 @@ banner div {
     align-items: center;
     border: 1px black solid;
 }
-
 .nav-links li {
     float: left;
     border-right: 1px solid #bbb;
 }
-
 .nav-links li a {
     display: block;
     color: white;
@@ -66,31 +74,14 @@ banner div {
     padding: 14px 16px;
     text-decoration: none;
 }
-
 /* Change the link color to #111 (black) on hover */
 .nav-links li a:hover {
     background-color: #111;
-}
-
-.date {
-    margin: auto;
-    width: 50%;
-    padding: 1px;
-}
-.greeting {
-    position: absolute;
-    right: 0px;
-    width: 200px;
-    padding: 1px;
 }
 .option {
     float: left;
 }
 .logout {
-    position: absolute;
-    right: 0px;
-    width: 100px;
-    padding: 1px;
 }
 
 article {
