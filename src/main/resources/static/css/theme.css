@@ -156,6 +156,9 @@ th  {
     text-decoration: underline;
     width: 100px;
 }
+table tr th:first-child, table tr td:first-child{
+    width: 20px;
+}
 table tr:nth-child(2n) {
     color: #560023;
     background: rgba(133, 133, 133, 0.95);
