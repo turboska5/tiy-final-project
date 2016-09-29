@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Objective Grader: Login</title>
+    <link th:href="@{css/theme.css}" href="../static/css/theme.css" rel="stylesheet" type="text/css"/>
+    <link th:href="@{css/forms.css}" href="../static/css/forms.css" rel="stylesheet" type="text/css"/>
+    <link th:href="@{images/icon.png}" href="../static/images/icon.png" rel="icon"/>
+    <header>
+        <div class="HeaderText">
+            <h1>Objective Grader</h1>
+        </div>
+    </header>
+    <banner>
+        <div>
+            <span class="date" th:text="${java.time.LocalDate.now()">September 26, 2016</span>
+            <span class="greeting">Good Morning, Admin!</span>
+        </div>
+    </banner>
+    <nav class="nav-links">
+        <ul>
+            <li class="option"><a th:href="" href="../templates/adminHome.html">Home</a></li>
+            <li class="current"><a th:href="" href="../templates/adminClasses.html">Manage Classes</a></li>
+            <li class="option"><a th:href="" href="../templates/adminUsers.html">Manage Users</a></li>
+            <li class="logout"><a th:href="@{/logout}" href="../templates/login.html">Logout</a></li>
+        </ul>
+    </nav>
+</head>
+<body>
+<section>
+    <!--Student manager-->
+    <article>
+        <fieldset>
+            <legend>Manage Student</legend>
+                <form class="ManageForm" th:action="ManageStudent" action="../templates/adminUsers.html" method="post">
+                    <label>First Name</label>
+                    <input type="text" placeholder="First Name"/>
+                    <br/>
+                    <label>Last Name</label>
+                    <input type="text" placeholder="Last Name"/>
+                    <br/>
+                    <label>Email Address</label>
+                    <input type="text" placeholder="Email"/>
+                    <br/>
+                    <label>ID#</label>
+                    <input type="text" placeholder="Class ID#"/>
+                    <br/>
+                    <label>Grade</label>
+                    <select>
+                        <option value="" disabled="true" selected="true">Grade</option>
+                    </select>
+                    <br/>
+                    <button>Save</button>
+                </form>
+        </fieldset>
+    </article>
+</section>
+</body>

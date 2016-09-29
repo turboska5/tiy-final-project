@@ -1,0 +1,12 @@
+.ManageForm {
+    border-width: 0;
+    padding: 1px 8px 10px;
+    margin: 0 auto;
+    font-size: large;
+}
+
+.ManageForm label {
+    float: left;
+    width: 120px;
+    font-size: medium;
+}
