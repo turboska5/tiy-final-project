@@ -92,7 +92,7 @@ article ul li {
 }
 .LabelText {
     float: left;
-    width: 100px;
+    width: 120px;
     font-weight: bold;
     white-space: nowrap;
 }
@@ -107,4 +107,8 @@ article ul li {
     list-style-type: none;
     padding: 0 0 0 10px;
     margin: 0;
+}
+.divider {
+    padding: 10px;
+    clear: both;
 }
