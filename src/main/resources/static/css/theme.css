@@ -137,9 +137,8 @@ legend {
 table {
     font-family: Arial, sans-serif;
     font-size: small;
-    text-align: left;
+    text-align: center;
     border-collapse: collapse;
-    border: none;
     margin: 0px;
     padding: 0px;
     width: 100%;
