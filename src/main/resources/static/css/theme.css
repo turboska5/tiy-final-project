@@ -112,6 +112,9 @@ article ul li {
     padding: 5px 5px 0px;
     clear: both;
 }
+fieldset {
+    border-radius: 10px;
+}
 legend {
     font-family: "Comic Sans MS", sans-serif;
     font-size: small;
@@ -132,13 +135,18 @@ legend {
 }
 .SearchResults {
     margin: 10px 0px 0px;
-    border: 1px black solid;
 }
 table {
     font-family: Arial, sans-serif;
     font-size: small;
     text-align: center;
-    border-collapse: collapse;
+    border-collapse: separate;
+    overflow: hidden;
+    border: solid black 1px;
+    border-spacing: 0px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
     margin: 0px;
     padding: 0px;
     width: 100%;
