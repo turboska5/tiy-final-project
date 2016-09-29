@@ -43,11 +43,15 @@ banner div {
 /*}*/
 
 .nav-links ul {
+    height: 20px;
     list-style-type: none;
     margin: 0;
     padding: 0;
+    display: flex;
     overflow: hidden;
-    background-color: slategray;
+    background-color: #737373;
+    align-items: center;
+    border: 1px black solid;
 }
 
 .nav-links li {
@@ -88,6 +92,7 @@ banner div {
     width: 100px;
     padding: 1px;
 }
+
 article {
     padding: 16px;
 }
