@@ -221,6 +221,14 @@ table tr:nth-child(2n) {
     color: white;
     background-color: #737373;
 }
+#AttendanceTable td{
+    padding: 0px 20px 0px;
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 75px;
+}
 .largefield {
     width: 200px;
 }
