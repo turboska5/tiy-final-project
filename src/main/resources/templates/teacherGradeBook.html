@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Objective Grader: Login</title>
+    <link th:href="@{css/theme.css}" href="../static/css/theme.css" rel="stylesheet" type="text/css"/>
+    <link th:href="@{images/icon.png}" href="../static/images/icon.png" rel="icon"/>
+    <header>
+        <div class="HeaderText">
+            <h1>Objective Grader</h1>
+        </div>
+    </header>
+    <banner>
+        <div>
+            <span class="date" th:text="${java.time.LocalDate.now()">September 26, 2016</span>
+            <span class="greeting">Good Morning, Teacher!</span>
+        </div>
+    </banner>
+    <nav class="nav-links">
+        <ul>
+            <li class="option"><a th:href="" href="../templates/teacherHome.html">Home</a></li>
+            <li class="option"><a th:href="" href="../templates/teacherAttendance.html">Attendance</a></li>
+            <li class="current"><a th:href="" href="../templates/teacherGradeBook.html">Grade Book</a></li>
+            <li class="logout"><a th:href="@{/logout}" href="../templates/login.html">Logout</a></li>
+        </ul>
+    </nav>
+</head>
+<body>
+    <section>
+        <fieldset class="SearchField">
+            <legend>Classes</legend>
+            <!--class manager search engine-->
+            <article class="SearchParams">
+                <div id="ClassSearchParams">
+                    <form>
+                        <input class="InputField" type="text" placeholder="Class Name"/>
+                        <input class="InputField" placeholder="Class ID#"/>
+                        <input class="InputField" placeholder="Department"/>
+                        <input class="InputField" placeholder="Teacher"/>
+                        <input class="InputField" placeholder="Period"/>
+                        <button class="SearchButton">Search</button>
+                    </form>
+                    <button id="AddClassButton" class="addnewuser"><a href="../templates/adminManageClass.html"></a></button>
+                </div>
+                <br/>
+            </article>
+            <!--class manager results-->
+            <div class="SearchResults">
+                <!--<legend>Results</legend>-->
+                <div id="ClassResults">
+                    <table class="ResultsTable">
+                        <tr>
+                            <th></th>
+                            <th>Class Name</th>
+                            <th>Class ID#</th>
+                            <th>Department</th>
+                            <th>Teacher</th>
+                            <th>Period</th>
+                            <th>Enrolled</th>
+                            <th>Capacity</th>
+                        </tr>
+                        <tr>
+                            <td><button class="editicon"><a></a></button></td>
+                            <td>PHYSICS 101</td>
+                            <td>SCIPHY101A</td>
+                            <td>Science</td>
+                            <td>MR. NAGEL</td>
+                            <td>1</td>
+                            <td>11</td>
+                            <td>30</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="SearchField">
+            <legend>Classes</legend>
+            <!--class manager search engine-->
+            <article class="SearchParams">
+                <div id="ClassSearchParams">
+                    <form>
+                        <input class="InputField" type="text" placeholder="Class Name"/>
+                        <input class="InputField" placeholder="Class ID#"/>
+                        <input class="InputField" placeholder="Department"/>
+                        <input class="InputField" placeholder="Teacher"/>
+                        <input class="InputField" placeholder="Period"/>
+                        <button class="SearchButton">Search</button>
+                    </form>
+                </div>
+                <br/>
+            </article>
+            <!--class manager results-->
+            <div class="SearchResults">
+                <!--<legend>Results</legend>-->
+                <div id="ClassResults">
+                    <table class="ResultsTable">
+                        <tr>
+                            <th>Class Name</th>
+                            <th>Class ID#</th>
+                            <th>Department</th>
+                            <th>Teacher</th>
+                            <th>Period</th>
+                            <th>Enrolled</th>
+                            <th>Capacity</th>
+                        </tr>
+                        <tr>
+                            <td>PHYSICS 101</td>
+                            <td>SCIPHY101A</td>
+                            <td>Science</td>
+                            <td>MR. NAGEL</td>
+                            <td>1</td>
+                            <td>11</td>
+                            <td>30</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </fieldset>
+        <div class="divider">
+            <hr/>
+        </div>
+        <!--class manager search engine-->
+        <fieldset class="SearchField">
+            <legend>Students</legend>
+            <article class="SearchParams">
+                <div id="StudentSearchParams">
+                    <form>
+                        <input class="InputField" type="text" placeholder="Last Name"/>
+                        <input class="InputField" type="text" placeholder="First Name"/>
+                        <input class="InputField" type="text" placeholder="Student ID#"/>
+                        <input class="InputField" type="text" placeholder="Grade"/>
+                        <input class="InputField" type="text" placeholder="Period"/>
+                        <button class="SearchButton">Search</button>
+                    </form>
+                </div>
+                <br/>
+            </article>
+            <!--class manager results-->
+            <div class="SearchResults">
+                <!--<legend>Results</legend>-->
+                <div id="StudentResults">
+                    <table class="ResultsTable">
+                        <tr>
+                            <th>Last Name</th>
+                            <th>First Name</th>
+                            <th>Student ID#</th>
+                            <th>Grade</th>
+                            <th>Period</th>
+                            <th>Class Name</th>
+                            <th>Class ID#</th>
+                        </tr>
+                        <tr>
+                            <td>SMITH</td>
+                            <td>MATTHEW</td>
+                            <td>9824621</td>
+                            <td>12</td>
+                            <td>1</td>
+                            <td>PHYSICS 101</td>
+                            <td>SCIPHY101A</td>
+                        </tr>
+                        <tr>
+                            <td>ROJOS</td>
+                            <td>NADIA</td>
+                            <td>758432</td>
+                            <td>12</td>
+                            <td>1</td>
+                            <td>PHSYICS 101</td>
+                            <td>SCIPHY101A</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </fieldset>
+    </section>
+</body>
+</html>
