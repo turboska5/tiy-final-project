@@ -221,3 +221,9 @@ table tr:nth-child(2n) {
     color: white;
     background-color: #737373;
 }
+.largefield {
+    width: 200px;
+}
+.smallfield {
+    width: 50px;
+}
