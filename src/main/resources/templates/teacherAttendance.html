@@ -85,6 +85,7 @@
                         <input class="InputField" type="text" placeholder="Student ID#"/>
                         <input class="InputField" type="text" placeholder="Grade"/>
                         <input class="InputField" type="text" placeholder="Period"/>
+                        <input class="InputField" type="text" placeholder="Attendance"/>
                         <button class="SearchButton">Search</button>
                     </form>
                 </div>
@@ -94,30 +95,37 @@
             <div class="SearchResults">
                 <!--<legend>Results</legend>-->
                 <div id="StudentResults">
-                    <form class="StudentForm" method="post">
+                    <form class="StudentForm" action="teacherAttendance.html" method="post">
                         <table class="ResultsTable">
                             <tr>
+                                <th></th>
                                 <th>Last Name</th>
                                 <th>First Name</th>
                                 <th>Student ID#</th>
                                 <th>Grade</th>
                                 <th>Period</th>
                                 <th>Attendance Selector</th>
-                                <th>Class ID#</th>
+                                <th>Notes</th>
                             </tr>
 
                             <tr>
+                                <td></td>
                                 <td>SMITH</td>
                                 <td>MATTHEW</td>
                                 <td>9824621</td>
-                                <td>12</td>
-                                <td>1</td>
-                                <td>
+                                <td class="smallfield">12</td>
+                                <td class="smallfield">1</td>
+                                <td class="largefield">
                                     <input type="checkbox" name="attendance" value="Present" />P
+                                    <input type="checkbox" name="attendance" value="TardyExcused" />TE
+                                    <input type="checkbox" name="attendance" value="TardyUnexcused" />TU<br/>
                                     <input type="checkbox" name="attendance" value="Absent" />AB
                                     <input type="checkbox" name="attendance" value="Excused Absent" />AE
+                                    <input type="checkbox" name="attendance" value="ExcusedSchool" />ED
                                 </td>
-                                <td>SCIPHY101A</td>
+                                <td class="largefield">
+                                    <input type="text" placeholder="Notes" name="note" id="note">
+                                </td>
                             </tr>
                         </table>
                         <button>Save</button>
