@@ -26,16 +26,102 @@
     </nav>
 </head>
 <body>
-    <section>
-        <!--student manager-->
-        <article>
-
+<section>
+    <fieldset class="SearchField">
+        <legend>Teachers</legend>
+        <!--teacher manager search engine-->
+        <article class="SearchParams">
+            <div id="TeacherSearchParams">
+                <form>
+                    <input class="InputField" type="text" placeholder="Last Name"/>
+                    <input class="InputField" placeholder="First Name"/>
+                    <input class="InputField" placeholder="Email Address"/>
+                    <input class="InputField" placeholder="Department"/>
+                    <input class="InputField" placeholder="Tenure"/>
+                    <button class="SearchButton">Search</button>
+                </form>
+                <button id="AddTeacherButton"><a href="../templates/adminManageTeacher.html">Add</a></button>
+            </div>
+            <br/>
         </article>
-
-        <!--teacher manager-->
-        <article>
-
+        <!--teacher manager results-->
+        <div class="SearchResults">
+            <!--<legend>Results</legend>-->
+            <div id="ClassResults">
+                <table class="ResultsTable">
+                    <tr>
+                        <th></th>
+                        <th>Last Name</th>
+                        <th>First Name</th>
+                        <th>Email Address</th>
+                        <th>Department</th>
+                        <th>Tenure</th>
+                        <th>Last Login</th>
+                        <th>Disabled</th>
+                    </tr>
+                    <tr>
+                        <td>/</td>
+                        <td>Bush</td>
+                        <td>James</td>
+                        <td>jebush@gmail.com</td>
+                        <td>PHYSED</td>
+                        <td>43</td>
+                        <td>09/29/16</td>
+                        <td>No</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </fieldset>
+    <div class="divider">
+        <hr/>
+    </div>
+    <!--student manager search engine-->
+    <fieldset class="SearchField">
+        <legend>Students</legend>
+        <article class="SearchParams">
+            <div id="StudentSearchParams">
+                <form>
+                    <input class="InputField" type="text" placeholder="Last Name"/>
+                    <input class="InputField" type="text" placeholder="First Name"/>
+                    <input class="InputField" type="text" placeholder="Email Address"/>
+                    <input class="InputField" type="text" placeholder="Student ID#"/>
+                    <input class="InputField" type="text" placeholder="Grade"/>
+                    <button class="SearchButton">Search</button>
+                </form>
+                <button id="AddStudentButton"><a href="../templates/adminManageStudent.html">Add</a></button>
+            </div>
+            <br/>
         </article>
-    </section>
+        <!--class manager results-->
+        <div class="SearchResults">
+            <!--<legend>Results</legend>-->
+            <div id="StudentResults">
+                <table class="ResultsTable">
+                    <tr>
+                        <th></th>
+                        <th>Last Name</th>
+                        <th>First Name</th>
+                        <th>Email Address</th>
+                        <th>Student ID#</th>
+                        <th>Grade</th>
+                        <th>Last Login</th>
+                        <th>Disabled</th>
+                    </tr>
+                    <tr>
+                        <td>+</td>
+                        <td>SMITH</td>
+                        <td>MATTHEW</td>
+                        <td>msmith01@fakeschools.org</td>
+                        <td>9824621</td>
+                        <td>12</td>
+                        <td>N/A</td>
+                        <td>No</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </fieldset>
+</section>
 </body>
 </html>

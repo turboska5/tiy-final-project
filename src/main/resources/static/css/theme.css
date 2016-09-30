@@ -119,6 +119,10 @@ legend {
     font-family: "Comic Sans MS", sans-serif;
     font-size: small;
 }
+form {
+    float: left;
+}
+
 .SearchField {
     margin: 3px;
 }
@@ -130,8 +134,11 @@ legend {
 .InputField {
     width: 10%;
 }
-#AddClassButton {
+#AddClassButton, #AddTeacherButton, #AddStudentButton {
     float: right;
+}
+#AddClassButton a, #AddTeacherButton a, #AddStudentButton a {
+    text-decoration: none;
 }
 .SearchResults {
     margin: 10px 0px 0px;

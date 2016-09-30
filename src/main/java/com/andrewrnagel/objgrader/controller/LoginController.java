@@ -37,15 +37,15 @@ public class LoginController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginForm() throws PasswordStorage.CannotPerformOperationException {
         //create a sample user
-//        User user = new User("Jimmy", "jebush@gmail.com", "12345");
+//        User user = new User("jebush@gmail.com", "12345");
 //        user.setPassword(PasswordStorage.createHash(user.getPassword()));
 //        userRepository.save(user);
         return "login";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(String userName, String password, HttpSession session, Model model) throws PasswordStorage.InvalidHashException, PasswordStorage.CannotPerformOperationException {
-        User user = userRepository.getByUsername(userName);
+    public String login(String email, String password, HttpSession session, Model model) throws PasswordStorage.InvalidHashException, PasswordStorage.CannotPerformOperationException {
+        User user = userRepository.getByEmail(email);
         if(user != null && PasswordStorage.verifyPassword(password, user.getPassword())){
             session.setAttribute("userId", user.getId());
             return "redirect:/adminHome";

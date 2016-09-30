@@ -15,10 +15,6 @@ public class User {
     @NotBlank
     @NotNull
     @Column(unique = true)
-    private String username;
-    @NotBlank
-    @NotNull
-    @Column(unique = true)
     private String email;
     @NotBlank
     @NotNull
@@ -32,8 +28,7 @@ public class User {
     public User() {
     }
 
-    public User(String username, String email, String password) {
-        this.username = username;
+    public User(String email, String password) {
         this.email = email;
         this.password = password;
     }
@@ -44,14 +39,6 @@ public class User {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getEmail() {
