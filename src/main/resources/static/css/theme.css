@@ -148,24 +148,48 @@ Button.editicon {
     /*background: url("../static/images/editicon.png") no-repeat;*/
     background-size: 100%;
     border-radius: 50%;
-    width: 10px;
-    height: 10px;
+    width: 16px;
+    height: 16px;
     margin: 0;
     padding: 0;
     border: none;
     outline: none;
+}
+Button.editicon:active {
+    background-color: white;
+    transform: translateY(1px);
 }
 Button.addicon {
     background: url("../images/plus.png") no-repeat;
     /*background: url("../static/images/plus.png") no-repeat;*/
     background-size: 100%;
     border-radius: 50%;
-    width: 10px;
-    height: 10px;
+    width: 16px;
+    height: 16px;
     margin: 0;
     padding: 0;
     border: none;
     outline: none;
+}
+Button.addicon:active {
+    background-color: white;
+    transform: translateY(1px);
+}
+Button.addnewuser {
+    background: url("../images/add_user.png") no-repeat;
+    /*background: url("../static/images/add_user.png") no-repeat;*/
+    background-size: 100%;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+}
+Button.addnewuser:active {
+    background-color: white;
+    transform: translateY(1px);
 }
 table {
     font-family: Arial, sans-serif;
