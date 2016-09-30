@@ -11,6 +11,23 @@
     font-size: medium;
 }
 
+
 .StudentForm {
     width: 100%;
+}
+Button.minusicon {
+    background: url("../images/minus.png") no-repeat;
+    /*background: url("../static/images/minus.png") no-repeat;*/
+    background-size: 100%;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+}
+Button.minusicon:active {
+    background-color: white;
+    transform: translateY(1px);
 }
