@@ -144,12 +144,12 @@ form {
     margin: 10px 0px 0px;
 }
 Button.editicon {
-    background: url("../images/editicon.png") no-repeat;
+    background: url("../images/edit_pencil.png") no-repeat;
     /*background: url("../static/images/editicon.png") no-repeat;*/
     background-size: 100%;
     border-radius: 50%;
-    width: 10px;
-    height: 10px;
+    width: 20px;
+    height: 20px;
     margin: 0;
     padding: 0;
     border: none;
