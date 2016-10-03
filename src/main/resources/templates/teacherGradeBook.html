@@ -88,7 +88,10 @@
                         <input class="InputField" placeholder="Points"/>
                         <button class="SearchButton">Search</button>
                     </form>
-                    <button id="AddClassButton" class="addnewuser"><a href="../templates/adminManageClass.html"></a></button>
+                </div>
+                <div>
+                    <button id="AddAssignButton" class="addicon">
+                        <a th:href="@{/teacherManageAssign}" href="../templates/teacherManageAssign.html"/></button>
                 </div>
                 <br/>
             </article>
@@ -107,7 +110,9 @@
                             <th></th>
                         </tr>
                         <tr>
-                            <td><button class="editicon"><a></a></button></td>
+                            <td><button class="editicon">
+                                <a th:href="@{/teacherManageAssign}" href="../templates/teacherManageAssign.html"/>
+                            </button></td>
                             <td>1</td>
                             <td>Orientation Assignment</td>
                             <td>HW1</td>
