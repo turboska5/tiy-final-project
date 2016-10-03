@@ -134,10 +134,10 @@ form {
 .InputField {
     width: 10%;
 }
-#AddClassButton, #AddTeacherButton, #AddStudentButton {
+#AddClassButton, #AddAdminButton, #AddTeacherButton, #AddStudentButton {
     float: right;
 }
-#AddClassButton a, #AddTeacherButton a, #AddStudentButton a {
+#AddClassButton a, #AddAdminButton a, #AddTeacherButton a, #AddStudentButton a {
     text-decoration: none;
 }
 .SearchResults {

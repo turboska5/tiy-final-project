@@ -14,31 +14,33 @@
 <body>
     <div class="LoginForm">
         <h2>Credentials</h2><br/>
-        <div class="formArea">
-            <form class="UserDetails" th:action="@{/login}" action="../templates/adminHome.html" method="post">
-                <div class="LabelText">
-                    <label for="email">Email Address: </label>
-                </div>
-                <div>
-                    <input type="text" placeholder="Enter Email Address Here" id="email" name="email" value=""/><br/>
-                </div>
-                <div class="LabelText">
-                    <label for="password">Password: </label>
-                </div>
-                <div>
-                    <input type="password" placeholder="Enter Password Here" id="password" name="password" value=""/><br/>
-                </div>
-                <div class="LabelText">
-                    <label for="login"></label>
-                </div>
-                <div>
-                    <button id="login">Login</button>
-                </div>
-                <div class ="ResetPW">
-                    <a href="">Reset Password</a>
-                </div>
-            </form>
-        </div>
+        <fieldset>
+            <div class="formArea">
+                <form class="UserDetails" th:action="@{/login}" action="../templates/adminHome.html" method="post">
+                    <div class="LabelText">
+                        <label for="email">Email Address: </label>
+                    </div>
+                    <div>
+                        <input type="text" placeholder="Enter Email Address Here" id="email" name="email" value=""/><br/>
+                    </div>
+                    <div class="LabelText">
+                        <label for="password">Password: </label>
+                    </div>
+                    <div>
+                        <input type="password" placeholder="Enter Password Here" id="password" name="password" value=""/><br/>
+                    </div>
+                    <div class="LabelText">
+                        <label for="login"></label>
+                    </div>
+                    <div>
+                        <button id="login">Login</button>
+                    </div>
+                    <div class ="ResetPW">
+                        <a href="">Reset Password</a>
+                    </div>
+                </form>
+            </div>
+        </fieldset>
     </div>
 </body>
 </html>

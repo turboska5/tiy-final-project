@@ -29,6 +29,55 @@
 <body>
 <section>
     <fieldset class="SearchField">
+        <legend>Admins</legend>
+        <!--teacher manager search engine-->
+        <article class="SearchParams">
+            <div id="AdminSearchParams">
+                <form>
+                    <input class="InputField" type="text" placeholder="Last Name"/>
+                    <input class="InputField" placeholder="First Name"/>
+                    <input class="InputField" placeholder="Email Address"/>
+                    <input class="InputField" placeholder="Title"/>
+                    <input class="InputField" placeholder="Tenure"/>
+                    <button class="SearchButton">Search</button>
+                </form>
+                <a href="../templates/adminManageTeacher.html"><button id="AddAdminButton" class="addnewuser"></button></a>
+            </div>
+            <br/>
+        </article>
+        <!--teacher manager results-->
+        <div class="SearchResults">
+            <!--<legend>Results</legend>-->
+            <div id="AdminResults">
+                <table class="ResultsTable">
+                    <tr>
+                        <th></th>
+                        <th>Last Name</th>
+                        <th>First Name</th>
+                        <th class="largefield">Email Address</th>
+                        <th>Title</th>
+                        <th class="smallfield">Tenure</th>
+                        <th>Last Login</th>
+                        <th class="smallfield">Disabled</th>
+                    </tr>
+                    <tr>
+                        <td><a href="../templates/adminManageTeacher.html"><button class="editicon"></button></a></td>
+                        <td>ROOSEVELT</td>
+                        <td>THEODORE</td>
+                        <td>troosevelt@gmail.com</td>
+                        <td>A. PRINCIPAL</td>
+                        <td>12</td>
+                        <td>09/29/16</td>
+                        <td>NO</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </fieldset>
+    <div class="divider">
+        <hr/>
+    </div>
+    <fieldset class="SearchField">
         <legend>Teachers</legend>
         <!--teacher manager search engine-->
         <article class="SearchParams">
@@ -48,7 +97,7 @@
         <!--teacher manager results-->
         <div class="SearchResults">
             <!--<legend>Results</legend>-->
-            <div id="ClassResults">
+            <div id="TeacherResults">
                 <table class="ResultsTable">
                     <tr>
                         <th></th>
