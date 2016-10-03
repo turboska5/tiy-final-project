@@ -34,10 +34,11 @@ public class Teacher {
     public Teacher() {
     }
 
-    public Teacher(String firstName, String lastName, String emailAddress) {
+    public Teacher(String firstName, String lastName, String emailAddress, String department) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailAddress = emailAddress;
+        this.department = department;
         this.user = new User(this.emailAddress, 2);
     }
 
