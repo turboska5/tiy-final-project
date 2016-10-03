@@ -20,24 +20,41 @@ public class User {
     @NotBlank
     @NotNull
     private String password;
-    @NotBlank
     @NotNull
     private Integer role;
 
+    //constructors
+    //default constructor
     public User() {
     }
 
+    //auto assign password of 12345
+    public User(String email, Integer role) {
+        this.password = "12345";
+        this.role = role;
+    }
+
+    //assign specific password
     public User(String email, String password) {
         this.email = email;
         this.password = password;
     }
 
-    public int getId() {
+    //getters and setters
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getRole() {
+        return role;
+    }
+
+    public void setRole(Integer role) {
+        this.role = role;
     }
 
     public String getEmail() {

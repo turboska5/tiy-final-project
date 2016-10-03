@@ -3,6 +3,7 @@ package com.andrewrnagel.objgrader.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
@@ -21,6 +22,9 @@ public class Admin {
     private String emailAddress;
     private LocalDate hireDate;
     private String title;
+
+    @OneToOne
+    private User user = new User(emailAddress, 1);
 
     public Admin() {
     }

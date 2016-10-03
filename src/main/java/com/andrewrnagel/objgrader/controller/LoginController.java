@@ -1,7 +1,9 @@
 package com.andrewrnagel.objgrader.controller;
 
+import com.andrewrnagel.objgrader.entity.Teacher;
 import com.andrewrnagel.objgrader.entity.User;
 import com.andrewrnagel.objgrader.misc.PasswordStorage;
+import com.andrewrnagel.objgrader.repository.TeacherRepository;
 import com.andrewrnagel.objgrader.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +18,8 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class LoginController {
-
+    @Autowired
+    TeacherRepository teacherRepository;
     @Autowired
     UserRepository userRepository;
 
@@ -37,7 +40,11 @@ public class LoginController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginForm() throws PasswordStorage.CannotPerformOperationException {
         //create a sample user
-//        User user = new User("jebush@gmail.com", "12345");
+        Teacher teacher = new Teacher("Andrew", "Nagel", "arnagel@gmail.com");
+        teacher.getUser().setPassword(PasswordStorage.createHash("12345"));
+        teacherRepository.save(teacher);
+//        userRepository.save(user);
+//        User user = new User("arnagel@gmail.com", "12345");
 //        user.setPassword(PasswordStorage.createHash(user.getPassword()));
 //        userRepository.save(user);
         return "login";
@@ -48,7 +55,16 @@ public class LoginController {
         User user = userRepository.getByEmail(email);
         if(user != null && PasswordStorage.verifyPassword(password, user.getPassword())){
             session.setAttribute("userId", user.getId());
-            return "redirect:/adminHome";
+            //admin
+            if(user.getRole() == 1) {
+                return "redirect:/adminHome";
+            }
+            //teacher
+            if(user.getRole() == 2) {
+                return "redirect:/teacherHome";
+            }
+            //student
+            return "redirect:/studentHome";
         } else {
             model.addAttribute("loginFailed", true);
             return "login";

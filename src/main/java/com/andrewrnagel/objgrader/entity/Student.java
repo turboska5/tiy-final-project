@@ -21,6 +21,9 @@ public class Student {
     private String studentNumber;
     private Integer gradeLevel;
 
+    @OneToOne
+    private User user = new User(emailAddress, 3);
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "studentID")
     @OrderBy("lastName")

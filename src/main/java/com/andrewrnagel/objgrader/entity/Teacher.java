@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -18,9 +19,12 @@ public class Teacher {
 
     private String firstName;
     private String lastName;
-    private String emailAddress;
+    private String emailAddress = "default@test.com";
     private LocalDate hireDate;
     private String department;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private User user = new User(this.emailAddress, 2);
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "teacherID")
@@ -28,6 +32,22 @@ public class Teacher {
     List<AcademicClass> teacherClasses = new ArrayList<>();
 
     public Teacher() {
+    }
+
+    public Teacher(String firstName, String lastName, String emailAddress) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.emailAddress = emailAddress;
+        this.user = new User(this.emailAddress, 2);
+    }
+
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Integer getTeacherID() {

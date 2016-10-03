@@ -10,19 +10,29 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class MainController {
-    @RequestMapping(value = "/ManageClass", method = RequestMethod.POST)
-    public String classForm() {
-
-        return "adminUser";
+    @RequestMapping(value = "/adminHome", method = RequestMethod.GET)
+    public String adminHome() {
+        return "adminHome";
     }
-    @RequestMapping(value = "/ManageTeacher", method = RequestMethod.POST)
-    public String teacherForm() {
-
-        return "adminUser";
+    @RequestMapping(value = "/teacherHome", method = RequestMethod.GET)
+    public String teacherHome() {
+        return "teacherHome";
     }
-    @RequestMapping(value = "/ManageStudent", method = RequestMethod.POST)
-    public String studentForm() {
-
-        return "adminUser";
+    @RequestMapping(value = "/studentHome", method = RequestMethod.GET)
+    public String studentHome() {
+        return "studentHome";
     }
+
+//    @RequestMapping(value = "/ManageClass", method = RequestMethod.POST)
+//    public String classForm() {
+//        return "";
+//    }
+//    @RequestMapping(value = "/ManageTeacher", method = RequestMethod.POST)
+//    public String teacherForm() {
+//        return "";
+//    }
+//    @RequestMapping(value = "/ManageStudent", method = RequestMethod.POST)
+//    public String studentForm() {
+//        return "";
+//    }
 }
