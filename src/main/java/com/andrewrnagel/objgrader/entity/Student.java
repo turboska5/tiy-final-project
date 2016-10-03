@@ -21,7 +21,7 @@ public class Student {
     private String studentNumber;
     private Integer gradeLevel;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private User user = new User(emailAddress, 3);
 
     @ManyToMany(cascade = CascadeType.ALL)
@@ -30,6 +30,15 @@ public class Student {
     private List<AcademicClass> studentClasses = new ArrayList<>();
 
     public Student() {
+    }
+
+    public Student(String firstName, String lastName, String emailAddress, String studentNumber, Integer gradeLevel) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.emailAddress = emailAddress;
+        this.studentNumber = studentNumber;
+        this.gradeLevel = gradeLevel;
+        this.user = new User(this.emailAddress, 3);
     }
 
     public Integer getStudentID() {
@@ -78,5 +87,21 @@ public class Student {
 
     public void setGradeLevel(Integer gradeLevel) {
         this.gradeLevel = gradeLevel;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<AcademicClass> getStudentClasses() {
+        return studentClasses;
+    }
+
+    public void setStudentClasses(List<AcademicClass> studentClasses) {
+        this.studentClasses = studentClasses;
     }
 }

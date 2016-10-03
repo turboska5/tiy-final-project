@@ -1,8 +1,12 @@
 package com.andrewrnagel.objgrader.controller;
 
+import com.andrewrnagel.objgrader.entity.Admin;
+import com.andrewrnagel.objgrader.entity.Student;
 import com.andrewrnagel.objgrader.entity.Teacher;
 import com.andrewrnagel.objgrader.entity.User;
 import com.andrewrnagel.objgrader.misc.PasswordStorage;
+import com.andrewrnagel.objgrader.repository.AdminRepository;
+import com.andrewrnagel.objgrader.repository.StudentRepository;
 import com.andrewrnagel.objgrader.repository.TeacherRepository;
 import com.andrewrnagel.objgrader.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +23,11 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class LoginController {
     @Autowired
+    AdminRepository adminRepository;
+    @Autowired
     TeacherRepository teacherRepository;
+    @Autowired
+    StudentRepository studentRepository;
     @Autowired
     UserRepository userRepository;
 
@@ -39,15 +47,19 @@ public class LoginController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginForm() throws PasswordStorage.CannotPerformOperationException {
-        //create a sample user
-        Teacher teacher = new Teacher("Jimmy", "Bush", "jbone@gmail.com", "Math");
-        teacher.getUser().setEmail(teacher.getEmailAddress());
-        teacher.getUser().setPassword(PasswordStorage.createHash("12345"));
-        teacherRepository.save(teacher);
-//        userRepository.save(user);
-//        User user = new User("arnagel@gmail.com", "12345");
-//        user.setPassword(PasswordStorage.createHash(user.getPassword()));
-//        userRepository.save(user);
+        //create sample users
+//        Admin admin = new Admin("Andrew", "Nagel", "arnagel@gmail.com", "Principal");
+//        admin.getUser().setEmail(admin.getEmailAddress());
+//        admin.getUser().setPassword(PasswordStorage.createHash("12345"));
+//        adminRepository.save(admin);
+//        Teacher teacher = new Teacher("Jimmy", "Bush", "jbone@gmail.com", "Math");
+//        teacher.getUser().setEmail(teacher.getEmailAddress());
+//        teacher.getUser().setPassword(PasswordStorage.createHash("12345"));
+//        teacherRepository.save(teacher);
+//        Student student = new Student("Bob", "Jones", "bj@gmail.com", "BJ324123", 11);
+//        student.getUser().setEmail(student.getEmailAddress());
+//        student.getUser().setPassword(PasswordStorage.createHash("12345"));
+//        studentRepository.save(student);
         return "login";
     }
 

@@ -1,9 +1,6 @@
 package com.andrewrnagel.objgrader.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
@@ -23,10 +20,18 @@ public class Admin {
     private LocalDate hireDate;
     private String title;
 
-    @OneToOne
-    private User user = new User(emailAddress, 1);
+    @OneToOne(cascade = CascadeType.ALL)
+    private User user;
 
     public Admin() {
+    }
+
+    public Admin(String firstName, String lastName, String emailAddress, String title) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.emailAddress = emailAddress;
+        this.title = title;
+        this.user = new User(this.emailAddress, 1);
     }
 
     public Integer getAdminID() {
@@ -75,5 +80,13 @@ public class Admin {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

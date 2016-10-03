@@ -1,7 +1,6 @@
 package com.andrewrnagel.objgrader.entity;
 
 import org.hibernate.validator.constraints.NotBlank;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -28,16 +27,17 @@ public class User {
     public User() {
     }
 
-    //auto assign password of 12345
+    //assign specific email and password of 12345
     public User(String email, Integer role) {
         this.password = "12345";
         this.role = role;
     }
 
-    //assign specific password
-    public User(String email, String password) {
+    //assign specific email and password
+    public User(String email, String password, Integer role) {
         this.email = email;
         this.password = password;
+        this.role = role;
     }
 
     //getters and setters
