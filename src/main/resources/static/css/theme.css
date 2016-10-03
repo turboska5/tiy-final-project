@@ -229,9 +229,18 @@ table tr:nth-child(2n) {
     align-items: center;
     width: 75px;
 }
+#SaveAttendance {
+    clear: both;
+}
+.GradeInput {
+    width: 50%;
+}
+.iconfield {
+    width: 10%;
+}
 .largefield {
-    width: 200px;
+    width: 20%;
 }
 .smallfield {
-    width: 50px;
+    width: 10%;
 }
