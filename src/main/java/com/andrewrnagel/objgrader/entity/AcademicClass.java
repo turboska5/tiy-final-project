@@ -17,6 +17,16 @@ public class AcademicClass {
     @NotNull
     private Integer classID;
 
+    private String Name;
+    private String Identifier;
+    private String Department;
+    private Integer Period;
+
+    //teacher
+    //Teacher teacher;
+    //students
+    //List<Student> Students;
+
     public AcademicClass() {
     }
 
