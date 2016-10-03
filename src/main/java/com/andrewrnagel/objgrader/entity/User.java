@@ -11,7 +11,8 @@ public class User {
 
     @Id
     @GeneratedValue
-    private int id;
+    @NotNull
+    private Integer id;
     @NotBlank
     @NotNull
     @Column(unique = true)
@@ -23,7 +24,7 @@ public class User {
     //Added from Admin controls
     private String firstName;
     private String lastName;
-    private int role;
+    private Integer role;
 
     public User() {
     }
