@@ -19,8 +19,7 @@ public class Grade {
 
     @NotNull
     @ManyToOne(cascade = CascadeType.PERSIST)
-    private User student = new User();
-
+    private Student student = new Student();
 
     private Integer earnedPoints;
 

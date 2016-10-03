@@ -20,14 +20,6 @@ public class User {
     @NotBlank
     @NotNull
     private String password;
-
-    //Added from Admin controls
-    @NotBlank
-    @NotNull
-    private String firstName;
-    @NotBlank
-    @NotNull
-    private String lastName;
     @NotBlank
     @NotNull
     private Integer role;
