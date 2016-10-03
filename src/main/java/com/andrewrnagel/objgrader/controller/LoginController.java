@@ -68,6 +68,7 @@ public class LoginController {
         User user = userRepository.getByEmail(email);
         if(user != null && PasswordStorage.verifyPassword(password, user.getPassword())){
             session.setAttribute("userId", user.getId());
+            session.setAttribute("userRole", user.getRole());
             //admin
             if(user.getRole() == 1) {
                 return "redirect:/adminHome";
