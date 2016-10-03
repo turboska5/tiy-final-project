@@ -17,7 +17,7 @@ public class MainController {
     @RequestMapping(value = "/adminHome", method = RequestMethod.GET)
     public String adminHomePage(Model model, HttpSession session) {
 
-        if(session.getAttribute("userId") == null || ((Integer) session.getAttribute("userRole")) == 2) {
+        if(session.getAttribute("userId") == null || !(((Integer) session.getAttribute("userRole")).equals(1))) {
             return "redirect:/login";
         }
 
@@ -27,7 +27,7 @@ public class MainController {
     @RequestMapping(value = "/adminClasses", method = RequestMethod.GET)
     public String adminClassPage(Model model, HttpSession session) {
 
-        if(session.getAttribute("userId") == null || ((Integer) session.getAttribute("userRole")) == 2) {
+        if(session.getAttribute("userId") == null || !(((Integer) session.getAttribute("userRole")).equals(1))) {
             return "redirect:/login";
         }
 
@@ -37,7 +37,7 @@ public class MainController {
     @RequestMapping(value = "/adminManageClass", method = RequestMethod.GET)
     public String adminClassEditForm(Model model, HttpSession session) {
 
-        if(session.getAttribute("userId") == null || ((Integer) session.getAttribute("userRole")) == 2) {
+        if(session.getAttribute("userId") == null || !(((Integer) session.getAttribute("userRole")).equals(1))) {
             return "redirect:/login";
         }
 
@@ -47,7 +47,7 @@ public class MainController {
     @RequestMapping(value = "/adminUsers", method = RequestMethod.GET)
     public String adminUserPage(Model model, HttpSession session) {
 
-        if(session.getAttribute("userId") == null || ((Integer) session.getAttribute("userRole")) == 2) {
+        if(session.getAttribute("userId") == null || !(((Integer) session.getAttribute("userRole")).equals(1))) {
             return "redirect:/login";
         }
 
@@ -57,7 +57,7 @@ public class MainController {
     @RequestMapping(value = "/adminManageAdmin", method = RequestMethod.GET)
     public String adminUserAdminForm(Model model, HttpSession session) {
 
-        if(session.getAttribute("userId") == null || ((Integer) session.getAttribute("userRole")) == 2) {
+        if(session.getAttribute("userId") == null || !(((Integer) session.getAttribute("userRole")).equals(1))) {
             return "redirect:/login";
         }
 
@@ -67,7 +67,7 @@ public class MainController {
     @RequestMapping(value = "/adminManageTeacher", method = RequestMethod.GET)
     public String adminUserTeacherForm(Model model, HttpSession session) {
 
-        if(session.getAttribute("userId") == null || ((Integer) session.getAttribute("userRole")) == 2) {
+        if(session.getAttribute("userId") == null || !(((Integer) session.getAttribute("userRole")).equals(1))) {
             return "redirect:/login";
         }
 
@@ -77,7 +77,7 @@ public class MainController {
     @RequestMapping(value = "/adminManageStudent", method = RequestMethod.GET)
     public String adminUserStudentForm(Model model, HttpSession session) {
 
-        if(session.getAttribute("userId") == null || ((Integer) session.getAttribute("userRole")) == 2) {
+        if(session.getAttribute("userId") == null || !(((Integer) session.getAttribute("userRole")).equals(1))) {
             return "redirect:/login";
         }
 
@@ -89,7 +89,7 @@ public class MainController {
     @RequestMapping(value = "/teacherHome", method = RequestMethod.GET)
     public String teacherHomePage(Model model, HttpSession session) {
 
-        if(session.getAttribute("userId") == null || ((Integer) session.getAttribute("userRole")) == 1) {
+        if(session.getAttribute("userId") == null || !(((Integer) session.getAttribute("userRole")).equals(2))) {
             return "redirect:/login";
         }
 
@@ -99,7 +99,7 @@ public class MainController {
     @RequestMapping(value = "/teacherAttendance", method = RequestMethod.GET)
     public String teacherAttendancePage(Model model, HttpSession session) {
 
-        if(session.getAttribute("userId") == null || ((Integer) session.getAttribute("userRole")) == 1) {
+        if(session.getAttribute("userId") == null || !(((Integer) session.getAttribute("userRole")).equals(2))) {
             return "redirect:/login";
         }
 
@@ -109,7 +109,7 @@ public class MainController {
     @RequestMapping(value = "/teacherGradeBook", method = RequestMethod.GET)
     public String teacherGradeBookPage(Model model, HttpSession session) {
 
-        if(session.getAttribute("userId") == null || ((Integer) session.getAttribute("userRole")) == 1) {
+        if(session.getAttribute("userId") == null || !(((Integer) session.getAttribute("userRole")).equals(2))) {
             return "redirect:/login";
         }
 
@@ -121,7 +121,7 @@ public class MainController {
     @RequestMapping(value = "/studentHome", method = RequestMethod.GET)
     public String studentHomePage(Model model, HttpSession session) {
 
-        if(session.getAttribute("userId") == null) {
+        if(session.getAttribute("userId") == null || !(((Integer) session.getAttribute("userRole")).equals(3))) {
             return "redirect:/login";
         }
 
