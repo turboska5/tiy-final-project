@@ -46,18 +46,17 @@
             </article>
             <!--class manager results-->
             <div class="SearchResults">
-                <!--<legend>Results</legend>-->
                 <div id="ClassResults">
                     <table class="ResultsTable">
                         <tr>
-                            <th class="iconfield"></th>
-                            <th class="smallfield">Period</th>
+                            <th class="icon"></th>
+                            <th>Period</th>
                             <th>Class Name</th>
                             <th>Class ID#</th>
-                            <th class="smallfield">Department</th>
+                            <th>Department</th>
                             <th>Teacher</th>
-                            <th class="smallfield">Assignments</th>
-                            <th class="smallfield">Average</th>
+                            <th>Assignments</th>
+                            <th>Average</th>
                         </tr>
                         <tr>
                             <td></td>
@@ -83,8 +82,8 @@
                 <div id="AssigmentSearchParams">
                     <form>
                         <input class="InputField" placeholder="Period" Value="1"/>
-                        <input class="InputField" type="text" placeholder="Assignment Name"/>
-                        <input class="InputField" placeholder="Assignment ID#"/>
+                        <input class="InputField" type="text" placeholder="Name"/>
+                        <input class="InputField" placeholder="ID#"/>
                         <input class="InputField" placeholder="Date"/>
                         <input class="InputField" placeholder="Points"/>
                         <button class="SearchButton">Search</button>
@@ -98,13 +97,14 @@
                 <div id="AssignmentResults">
                     <table class="ResultsTable">
                         <tr>
-                            <th class="iconfield"></th>
-                            <th class="smallfield">Period</th>
-                            <th>Assignment Name</th>
-                            <th>Assignment ID#</th>
-                            <th class="smallfield">Date</th>
-                            <th class="smallfield">Pts Possible</th>
-                            <th class="smallfield">Class Avg</th>
+                            <th class="icon"></th>
+                            <th>Period</th>
+                            <th>Name</th>
+                            <th>ID#</th>
+                            <th>Date</th>
+                            <th>Pts Possible</th>
+                            <th>Class Avg</th>
+                            <th></th>
                         </tr>
                         <tr>
                             <td><button class="editicon"><a></a></button></td>
@@ -114,6 +114,7 @@
                             <td>09/25/2016</td>
                             <td>10</td>
                             <td>95.2</td>
+                            <td></td>
                         </tr>
                     </table>
                 </div>
@@ -131,8 +132,8 @@
                         <input class="InputField" type="text" placeholder="Period" value="1"/>
                         <input class="InputField" type="text" placeholder="Last Name"/>
                         <input class="InputField" type="text" placeholder="First Name"/>
-                        <input class="InputField" type="text" placeholder="Assingment Name" value="Orientation Assignment"/>
-                        <input class="InputField" type="text" placeholder="Assignment ID#"/>
+                        <input class="InputField" type="text" placeholder="Name" value="Orientation Assignment"/>
+                        <input class="InputField" type="text" placeholder="ID#"/>
                         <button class="SearchButton">Search</button>
                     </form>
                 </div>
@@ -140,19 +141,18 @@
             </article>
             <!--class manager results-->
             <div class="SearchResults">
-                <!--<legend>Results</legend>-->
                 <div id="StudentResults">
                     <!--This table only appears when assignment is specified-->
                     <table class="ResultsTable">
                         <tr>
-                            <th></th>
-                            <th class="smallfield">Period</th>
+                            <th class="icon"></th>
+                            <th>Period</th>
                             <th>Last Name</th>
                             <th>First Name</th>
-                            <th>Assignment Name</th>
-                            <th class="smallfield">Date</th>
-                            <th class="smallfield">Pts Earned</th>
-                            <th class="smallfield">Pts Possible</th>
+                            <th>Assignment</th>
+                            <th>Date</th>
+                            <th>Pts Earned</th>
+                            <th>Pts Possible</th>
                         </tr>
                         <tr>
                             <td></td>

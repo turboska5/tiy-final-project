@@ -46,28 +46,27 @@
             </article>
             <!--class manager results-->
             <div class="SearchResults">
-                <!--<legend>Results</legend>-->
                 <div id="ClassResults">
                     <table class="ResultsTable">
                         <tr>
-                            <!--<th></th>-->
-                            <th class="smallfield">Period</th>
+                            <th class="icon"></th>
+                            <th>Period</th>
                             <th>Class Name</th>
                             <th>Class ID#</th>
                             <th>Department</th>
                             <th>Teacher</th>
-                            <th class="smallfield">Enrolled</th>
-                            <th class="smallfield">Capacity</th>
+                            <th>Enrolled</th>
+                            <th>Capacity</th>
                         </tr>
                         <tr>
-                            <!--<td></td>-->
-                            <td class="smallfield">1</td>
+                            <td></td>
+                            <td>1</td>
                             <td>PHYSICS 101</td>
                             <td>SCIPHY101A</td>
                             <td>Science</td>
                             <td>MR. NAGEL</td>
-                            <td class="smallfield">11</td>
-                            <td class="smallfield">30</td>
+                            <td>11</td>
+                            <td>30</td>
                         </tr>
                     </table>
                 </div>
@@ -76,7 +75,7 @@
         <div class="divider">
             <hr/>
         </div>
-        <!--class manager search engine-->
+        <!--attendance manager search engine-->
         <fieldset class="SearchField">
             <legend>Students</legend>
             <article class="SearchParams">
@@ -94,31 +93,30 @@
                 </div>
                 <br/>
             </article>
-            <!--class manager results-->
+            <!--attendance manager results-->
             <div class="SearchResults">
-                <!--<legend>Results</legend>-->
                 <div id="StudentResults">
                     <form class="StudentForm" action="teacherAttendance.html" method="post">
                         <table class="ResultsTable">
                             <tr>
-                                <!--<th></th>-->
-                                <th class="smallfield">Period</th>
+                                <th class="icon"></th>
+                                <th>Period</th>
                                 <th>Last Name</th>
                                 <th>First Name</th>
                                 <th>Student ID#</th>
-                                <th class="smallfield">Grade</th>
-                                <th class="largefield">Attendance Selector</th>
+                                <th>Grade</th>
+                                <th>Attendance Selector</th>
                                 <th>Notes</th>
                             </tr>
 
                             <tr>
-                                <!--<td></td>-->
-                                <td class="smallfield">1</td>
+                                <td></td>
+                                <td>1</td>
                                 <td>SMITH</td>
                                 <td>MATTHEW</td>
                                 <td>9824621</td>
-                                <td class="smallfield">12</td>
-                                <td class="largefield">
+                                <td>12</td>
+                                <td>
                                     <input type="checkbox" name="attendance" value="Present" />P
                                     <input type="checkbox" name="attendance" value="TardyExcused" />TE
                                     <input type="checkbox" name="attendance" value="TardyUnexcused" />TU<br/>
@@ -131,7 +129,9 @@
                                 </td>
                             </tr>
                         </table>
-                        <button id="SaveAttendance">Save</button>
+                        <div id="SaveAttendance">
+                            <button >Save</button>
+                        </div>
                     </form>
 
                 </div>

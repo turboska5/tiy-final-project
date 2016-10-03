@@ -230,17 +230,13 @@ table tr:nth-child(2n) {
     width: 75px;
 }
 #SaveAttendance {
-    clear: both;
+    padding: 10px 0px 0px;
+    text-align:center;
+    margin:auto;
+}
+.icon {
+    max-width: 20px;
 }
 .GradeInput {
-    width: 50%;
-}
-.iconfield {
-    width: 10%;
-}
-.largefield {
-    width: 20%;
-}
-.smallfield {
-    width: 10%;
+    width: 25px;
 }
