@@ -122,7 +122,6 @@ legend {
 form {
     float: left;
 }
-
 .SearchField {
     margin: 3px;
 }
@@ -213,6 +212,7 @@ th  {
 }
 table tr th:first-child, table tr td:first-child{
     width: 20px;
+    /*border: 1px red solid;*/
 }
 table tr:nth-child(2n) {
     color: #560023;

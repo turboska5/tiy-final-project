@@ -34,11 +34,11 @@
             <article class="SearchParams">
                 <div id="ClassSearchParams">
                     <form>
+                        <input class="InputField" placeholder="Period"/>
                         <input class="InputField" type="text" placeholder="Class Name"/>
                         <input class="InputField" placeholder="Class ID#"/>
                         <input class="InputField" placeholder="Department"/>
-                        <input class="InputField" placeholder="Teacher"/>
-                        <input class="InputField" placeholder="Period"/>
+                        <input class="InputField" placeholder="Teacher" value="Nagel"/>
                         <button class="SearchButton">Search</button>
                     </form>
                 </div>
@@ -50,22 +50,24 @@
                 <div id="ClassResults">
                     <table class="ResultsTable">
                         <tr>
-                            <th>Period</th>
+                            <!--<th></th>-->
+                            <th class="smallfield">Period</th>
                             <th>Class Name</th>
                             <th>Class ID#</th>
                             <th>Department</th>
                             <th>Teacher</th>
-                            <th>Enrolled</th>
-                            <th>Capacity</th>
+                            <th class="smallfield">Enrolled</th>
+                            <th class="smallfield">Capacity</th>
                         </tr>
                         <tr>
-                            <td>1</td>
+                            <!--<td></td>-->
+                            <td class="smallfield">1</td>
                             <td>PHYSICS 101</td>
                             <td>SCIPHY101A</td>
                             <td>Science</td>
                             <td>MR. NAGEL</td>
-                            <td>11</td>
-                            <td>30</td>
+                            <td class="smallfield">11</td>
+                            <td class="smallfield">30</td>
                         </tr>
                     </table>
                 </div>
@@ -80,12 +82,13 @@
             <article class="SearchParams">
                 <div id="StudentSearchParams">
                     <form>
+                        <input class="InputField" type="text" placeholder="Period"/>
                         <input class="InputField" type="text" placeholder="Last Name"/>
                         <input class="InputField" type="text" placeholder="First Name"/>
                         <input class="InputField" type="text" placeholder="Student ID#"/>
                         <input class="InputField" type="text" placeholder="Grade"/>
-                        <input class="InputField" type="text" placeholder="Period"/>
                         <input class="InputField" type="text" placeholder="Attendance"/>
+                        <!--<input class="InputField" type="text" placeholder="Notes"/>-->
                         <button class="SearchButton">Search</button>
                     </form>
                 </div>
@@ -98,23 +101,23 @@
                     <form class="StudentForm" action="teacherAttendance.html" method="post">
                         <table class="ResultsTable">
                             <tr>
-                                <th></th>
+                                <!--<th></th>-->
+                                <th class="smallfield">Period</th>
                                 <th>Last Name</th>
                                 <th>First Name</th>
                                 <th>Student ID#</th>
-                                <th>Grade</th>
-                                <th>Period</th>
-                                <th>Attendance Selector</th>
+                                <th class="smallfield">Grade</th>
+                                <th class="largefield">Attendance Selector</th>
                                 <th>Notes</th>
                             </tr>
 
                             <tr>
-                                <td></td>
+                                <!--<td></td>-->
+                                <td class="smallfield">1</td>
                                 <td>SMITH</td>
                                 <td>MATTHEW</td>
                                 <td>9824621</td>
                                 <td class="smallfield">12</td>
-                                <td class="smallfield">1</td>
                                 <td class="largefield">
                                     <input type="checkbox" name="attendance" value="Present" />P
                                     <input type="checkbox" name="attendance" value="TardyExcused" />TE
@@ -123,7 +126,7 @@
                                     <input type="checkbox" name="attendance" value="Excused Absent" />AE
                                     <input type="checkbox" name="attendance" value="ExcusedSchool" />ED
                                 </td>
-                                <td class="largefield">
+                                <td>
                                     <input type="text" placeholder="Notes" name="note" id="note">
                                 </td>
                             </tr>
