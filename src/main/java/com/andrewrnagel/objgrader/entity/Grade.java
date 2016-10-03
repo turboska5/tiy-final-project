@@ -1,9 +1,6 @@
 package com.andrewrnagel.objgrader.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -15,6 +12,15 @@ public class Grade {
     @GeneratedValue
     @NotNull
     private Integer gradeID;
+
+    @NotNull
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private Assignment assignment = new Assignment();
+
+    @NotNull
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private User student = new User();
+
 
     private Integer earnedPoints;
 

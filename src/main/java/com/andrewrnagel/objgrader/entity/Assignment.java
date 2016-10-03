@@ -27,6 +27,9 @@ public class Assignment {
     @ManyToOne(cascade = CascadeType.PERSIST)
     private AcademicClass academicClass = new AcademicClass();
 
+    public Assignment() {
+    }
+
     public Assignment(String assignmentName, String assignmentIDNumber, LocalDate date, Integer possPoints) {
         this.assignmentName = assignmentName;
         this.assignmentIDNumber = assignmentIDNumber;
