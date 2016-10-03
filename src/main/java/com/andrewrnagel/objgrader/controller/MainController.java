@@ -132,6 +132,17 @@ public class MainController {
         model.addAttribute("date", date);
         return "teacherGradeBook";
     }
+    @RequestMapping(value = "/teacherManageAssign", method = RequestMethod.GET)
+    public String teacherGradeBookAssignForm(Model model, HttpSession session) {
+
+        if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
+            return "redirect:/logout";
+        }
+
+        model.addAttribute("userName", session.getAttribute("userName"));
+        model.addAttribute("date", date);
+        return "teacherManageAssign";
+    }
 
     //STUDENT ACCESS
     @RequestMapping(value = "/studentHome", method = RequestMethod.GET)

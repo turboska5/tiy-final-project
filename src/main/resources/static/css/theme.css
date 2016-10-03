@@ -133,10 +133,10 @@ form {
 .InputField {
     width: 10%;
 }
-#AddClassButton, #AddAdminButton, #AddTeacherButton, #AddStudentButton {
+#AddClassButton, #AddAdminButton, #AddTeacherButton, #AddStudentButton, #AddAssignButton {
     float: right;
 }
-#AddClassButton a, #AddAdminButton a, #AddTeacherButton a, #AddStudentButton a {
+#AddClassButton a, #AddAdminButton a, #AddTeacherButton a, #AddStudentButton a, #AddAssignButton a {
     text-decoration: none;
 }
 .SearchResults {
