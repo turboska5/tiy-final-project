@@ -41,7 +41,7 @@
                     <input class="InputField" placeholder="Tenure"/>
                     <button class="SearchButton">Search</button>
                 </form>
-                <a href="../templates/adminManageAdmin.html"><button id="AddAdminButton" class="addnewuser"></button></a>
+                <a th:href="@{/adminManageAdmin}" href="../templates/adminManageAdmin.html"><button id="AddAdminButton" class="addnewuser"></button></a>
             </div>
             <br/>
         </article>
@@ -60,7 +60,7 @@
                         <th>Disabled</th>
                     </tr>
                     <tr>
-                        <td><a href="../templates/adminManageAdmin.html"><button class="editicon"></button></a></td>
+                        <td><a th:href="@{/adminManageAdmin}" href="../templates/adminManageAdmin.html"><button class="editicon"></button></a></td>
                         <td>ROOSEVELT</td>
                         <td>THEODORE</td>
                         <td>troosevelt@gmail.com</td>
@@ -89,7 +89,7 @@
                     <input class="InputField" placeholder="Tenure"/>
                     <button class="SearchButton">Search</button>
                 </form>
-                <a href="../templates/adminManageTeacher.html"><button id="AddTeacherButton" class="addnewuser"></button></a>
+                <a th:href="@{/adminManageTeacher}" href="../templates/adminManageTeacher.html"><button id="AddTeacherButton" class="addnewuser"></button></a>
             </div>
             <br/>
         </article>
@@ -108,7 +108,7 @@
                         <th>Disabled</th>
                     </tr>
                     <tr>
-                        <td><a href="../templates/adminManageTeacher.html"><button class="editicon"></button></a></td>
+                        <td><a th:href="@{/adminManageTeacher}" href="../templates/adminManageTeacher.html"><button class="editicon"></button></a></td>
                         <td>BUSH</td>
                         <td>JAMES</td>
                         <td>jebush@gmail.com</td>
@@ -137,7 +137,7 @@
                     <input class="InputField" type="text" placeholder="Grade"/>
                     <button class="SearchButton">Search</button>
                 </form>
-                <a href="../templates/adminManageStudent.html"><button id="AddStudentButton" class="addnewuser"></button></a>
+                <a th:href="@{/adminManageStudent}" href="../templates/adminManageStudent.html"><button id="AddStudentButton" class="addnewuser"></button></a>
             </div>
             <br/>
         </article>
@@ -156,7 +156,7 @@
                         <th>Disabled</th>
                     </tr>
                     <tr>
-                        <td><a href="../templates/adminManageStudent.html"><button class="editicon"></button></a></td>
+                        <td><a th:href="@{/adminManageStudent}" href="../templates/adminManageStudent.html"><button class="editicon"></button></a></td>
                         <td>SMITH</td>
                         <td>MATTHEW</td>
                         <td>msmith01@fakeschools.org</td>
