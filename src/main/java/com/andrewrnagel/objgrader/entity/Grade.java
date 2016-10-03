@@ -4,7 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 /**
- * Created by rush on 10/3/16.
+ * Created by Jimmy on 10/3/16.
  */
 @Entity
 public class Grade {

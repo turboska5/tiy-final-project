@@ -1,9 +1,8 @@
 package com.andrewrnagel.objgrader.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 /**
  * Created by Andrew Nagel on 9/28/16 at 2:39 PM EST.
@@ -17,15 +16,15 @@ public class AcademicClass {
     @NotNull
     private Integer classID;
 
-    private String Name;
-    private String Identifier;
-    private String Department;
-    private Integer Period;
+    private String name;
+    private String identifier;
+    private String department;
+    private Integer period;
 
-    //teacher
-    //Teacher teacher;
-    //students
-    //List<Student> Students;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "studentID")
+    @OrderBy("lastName")
+    List<Student> students;
 
     public AcademicClass() {
     }
