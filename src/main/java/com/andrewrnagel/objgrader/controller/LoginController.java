@@ -71,15 +71,18 @@ public class LoginController {
             session.setAttribute("userRole", user.getRole());
             //admin
             if(user.getRole() == 1) {
+                session.setAttribute("userName", adminRepository.getByEmailAddress(user.getEmail()).getFirstName());
                 return "redirect:/adminHome";
             }
             //teacher
             if(user.getRole() == 2) {
+                session.setAttribute("userName", teacherRepository.getByEmailAddress(user.getEmail()).getFirstName());
                 return "redirect:/teacherHome";
             }
             //student
             return "redirect:/studentHome";
         } else {
+            session.setAttribute("userName", studentRepository.getByEmailAddress(user.getEmail()).getFirstName());
             model.addAttribute("loginFailed", true);
             return "login";
         }

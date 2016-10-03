@@ -27,6 +27,7 @@ public class MainController {
             return "redirect:/logout";
         }
 
+        model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", date);
         return "adminHome";
     }
@@ -37,6 +38,7 @@ public class MainController {
             return "redirect:/logout";
         }
 
+        model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", date);
         return "adminClasses";
     }
@@ -47,6 +49,7 @@ public class MainController {
             return "redirect:/logout";
         }
 
+        model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", date);
         return "adminManageClass";
     }
@@ -57,6 +60,7 @@ public class MainController {
             return "redirect:/logout";
         }
 
+        model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", date);
         return "adminUsers";
     }
@@ -67,6 +71,7 @@ public class MainController {
             return "redirect:/logout";
         }
 
+        model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", date);
         return "adminManageAdmin";
     }
@@ -77,6 +82,7 @@ public class MainController {
             return "redirect:/logout";
         }
 
+        model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", date);
         return "adminManageTeacher";
     }
@@ -87,6 +93,7 @@ public class MainController {
             return "redirect:/logout";
         }
 
+        model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", date);
         return "adminManageStudent";
     }
@@ -99,6 +106,7 @@ public class MainController {
             return "redirect:/logout";
         }
 
+        model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", date);
         return "teacherHome";
     }
@@ -109,6 +117,7 @@ public class MainController {
             return "redirect:/logout";
         }
 
+        model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", date);
         return "teacherAttendance";
     }
@@ -119,6 +128,7 @@ public class MainController {
             return "redirect:/logout";
         }
 
+        model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", date);
         return "teacherGradeBook";
     }
@@ -131,6 +141,7 @@ public class MainController {
             return "redirect:/logout";
         }
 
+        model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", date);
         return "studentHome";
     }

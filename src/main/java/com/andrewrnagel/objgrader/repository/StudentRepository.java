@@ -1,7 +1,6 @@
 package com.andrewrnagel.objgrader.repository;
 
 import com.andrewrnagel.objgrader.entity.Student;
-import com.andrewrnagel.objgrader.entity.Teacher;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -9,5 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 
 public interface StudentRepository extends JpaRepository<Student, Integer> {
-//    Teacher getByEmail(String email);
+    Student getByEmailAddress(String email);
 }
