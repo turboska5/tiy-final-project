@@ -41,6 +41,7 @@ public class LoginController {
     public String loginForm() throws PasswordStorage.CannotPerformOperationException {
         //create a sample user
         Teacher teacher = new Teacher("Andrew", "Nagel", "arnagel@gmail.com");
+        teacher.getUser().setEmail(teacher.getEmailAddress());
         teacher.getUser().setPassword(PasswordStorage.createHash("12345"));
         teacherRepository.save(teacher);
 //        userRepository.save(user);

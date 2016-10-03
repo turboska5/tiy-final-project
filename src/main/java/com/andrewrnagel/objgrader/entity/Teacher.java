@@ -19,12 +19,12 @@ public class Teacher {
 
     private String firstName;
     private String lastName;
-    private String emailAddress = "default@test.com";
+    private String emailAddress;
     private LocalDate hireDate;
     private String department;
 
     @OneToOne(cascade = CascadeType.ALL)
-    private User user = new User(this.emailAddress, 2);
+    private User user;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "teacherID")
@@ -40,7 +40,6 @@ public class Teacher {
         this.emailAddress = emailAddress;
         this.user = new User(this.emailAddress, 2);
     }
-
 
     public User getUser() {
         return user;
