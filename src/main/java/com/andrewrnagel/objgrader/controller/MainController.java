@@ -1,11 +1,18 @@
 package com.andrewrnagel.objgrader.controller;
 
+import com.andrewrnagel.objgrader.entity.Admin;
+import com.andrewrnagel.objgrader.misc.PasswordStorage;
+import com.andrewrnagel.objgrader.service.MainService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -15,6 +22,9 @@ import java.time.format.DateTimeFormatter;
 
 @Controller
 public class MainController {
+    @Autowired
+    private MainService mainService;
+    //local properties
     LocalDate today = LocalDate.now();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d, yyyy");
     String date = today.format(formatter);
@@ -74,6 +84,25 @@ public class MainController {
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", date);
         return "adminManageAdmin";
+    }
+    @RequestMapping(value = "/ManageAdmin", method = RequestMethod.POST)
+    public String adminUserAdminFormSubmit(@Valid Admin admin, BindingResult bindingResult, Model model, HttpSession session) throws SQLException, PasswordStorage.CannotPerformOperationException {
+
+        if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
+            return "redirect:/logout";
+        }
+
+        if(bindingResult.hasErrors()){
+            model.addAttribute("bindingResult", bindingResult);
+            model.addAttribute("admin", admin);
+            return "ManageAdmin";
+        } else {
+            mainService.saveAdmin(admin);
+        }
+
+        model.addAttribute("userName", session.getAttribute("userName"));
+        model.addAttribute("date", date);
+        return "redirect:/adminUsers";
     }
     @RequestMapping(value = "/adminManageTeacher", method = RequestMethod.GET)
     public String adminUserTeacherForm(Model model, HttpSession session) {
@@ -156,17 +185,4 @@ public class MainController {
         model.addAttribute("date", date);
         return "studentHome";
     }
-
-//    @RequestMapping(value = "/ManageClass", method = RequestMethod.POST)
-//    public String classForm() {
-//        return "";
-//    }
-//    @RequestMapping(value = "/ManageTeacher", method = RequestMethod.POST)
-//    public String teacherForm() {
-//        return "";
-//    }
-//    @RequestMapping(value = "/ManageStudent", method = RequestMethod.POST)
-//    public String studentForm() {
-//        return "";
-//    }
 }

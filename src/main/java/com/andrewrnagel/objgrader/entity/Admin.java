@@ -1,5 +1,7 @@
 package com.andrewrnagel.objgrader.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -13,16 +15,18 @@ public class Admin {
     @GeneratedValue
     @NotNull
     private Integer adminID;
-
     private String firstName;
     private String lastName;
     private String emailAddress;
+    @DateTimeFormat(pattern = "yyyy-dd-MM")
     private LocalDate hireDate;
     private String title;
-
     @OneToOne(cascade = CascadeType.ALL)
     private User user;
+    @Transient
+    private String password;
 
+    //constructors
     public Admin() {
     }
 
@@ -34,6 +38,7 @@ public class Admin {
         this.user = new User(this.emailAddress, 1);
     }
 
+    //getters and setters
     public Integer getAdminID() {
         return adminID;
     }
@@ -88,5 +93,13 @@ public class Admin {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
