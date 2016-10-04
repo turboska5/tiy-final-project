@@ -123,6 +123,8 @@ public class MainController {
             return "redirect:/logout";
         }
 
+        Teacher teacher = new Teacher("", "", "", "");
+        model.addAttribute(teacher);
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", date);
         return "adminManageTeacher";

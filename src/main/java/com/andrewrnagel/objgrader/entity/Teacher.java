@@ -1,5 +1,6 @@
 package com.andrewrnagel.objgrader.entity;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -18,11 +19,20 @@ public class Teacher {
     @Id
     @GeneratedValue
     private Integer teacherID;
+    @NotBlank
+    @NotNull
     private String firstName;
+    @NotBlank
+    @NotNull
     private String lastName;
+    @NotBlank
+    @NotNull
     private String emailAddress;
+    @NotNull
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate hireDate;
+    @NotBlank
+    @NotNull
     private String department;
     @OneToOne(cascade = CascadeType.ALL)
     private User user = new User();
@@ -31,6 +41,8 @@ public class Teacher {
     @OrderBy("period")
     List<AcademicClass> teacherClasses = new ArrayList<>();
     @Transient
+    @NotBlank
+    @NotNull
     private String password;
 
     public Teacher() {
