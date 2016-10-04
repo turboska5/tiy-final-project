@@ -162,6 +162,7 @@ public class MainController {
             Student student = mainService.getStudent(studentID);
             model.addAttribute("student", student);
         } else {
+            //TODO
             Student student = new Student("", "", "", 0);
             model.addAttribute("student", student);
         }
@@ -179,7 +180,6 @@ public class MainController {
             model.addAttribute("student", student);
             return "adminManageStudent";
         }
-        //TODO: email address unique
         if(student.getStudentID() > 0) {
             //bring over correct userID
             User user = mainService.getStudent(student.getStudentID()).getUser();

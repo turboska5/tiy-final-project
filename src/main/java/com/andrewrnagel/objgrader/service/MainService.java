@@ -27,7 +27,6 @@ public class MainService {
     private ClassRepo classRepo;
 
     //methods
-
     public void saveClass(AcademicClass academicClass) {
         this.classRepo.save(academicClass);
     }

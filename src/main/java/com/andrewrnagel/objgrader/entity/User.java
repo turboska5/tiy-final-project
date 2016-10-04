@@ -1,6 +1,7 @@
 package com.andrewrnagel.objgrader.entity;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -19,6 +20,7 @@ public class User {
     private String email;
     @NotBlank
     @NotNull
+    @NotEmpty
     private String password;
     @NotNull
     private Integer role;
