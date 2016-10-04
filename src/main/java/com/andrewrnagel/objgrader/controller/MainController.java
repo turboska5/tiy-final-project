@@ -181,8 +181,9 @@ public class MainController {
         }
         //TODO: email address unique
         if(student.getStudentID() > 0) {
-            //creating a new user despite already having one!
-            User user = student.getUser();
+            //bring over ID
+            User user = mainService.getUserByID(student.getStudentID());
+            student.setUser(user);
         }
         student.getUser().setPassword(PasswordStorage.createHash(student.getUser().getPassword()));
         student.getUser().setRole(3);

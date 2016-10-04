@@ -66,6 +66,10 @@ public class MainService {
         return this.studentRepository.findAll();
     }
 
+    public User getUserByID(Integer id) {
+        return userRepository.getByID(id);
+    }
+
     public User getUserByEmail(String email) {
         return userRepository.getByEmail(email);
     }
