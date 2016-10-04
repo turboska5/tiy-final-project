@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpSession;
+import java.time.LocalDate;
 
 /**
  * Created by doug on 9/20/16. Modified by Andrew and Jimmy on 9/27/16.
@@ -71,21 +72,32 @@ public class LoginController {
             session.setAttribute("userRole", user.getRole());
             //admin
             if(user.getRole() == 1) {
-                session.setAttribute("userName", adminRepository.getByEmailAddress(user.getEmail()).getFirstName());
+                Admin admin = adminRepository.getByEmailAddress(user.getEmail());
+                admin.getUser().setLastLogin();
+                adminRepository.save(admin);
+                session.setAttribute("userName", admin.getFirstName());
                 return "redirect:/adminHome";
             }
             //teacher
             if(user.getRole() == 2) {
-                session.setAttribute("userName", teacherRepository.getByEmailAddress(user.getEmail()).getFirstName());
+                Teacher teacher = teacherRepository.getByEmailAddress(user.getEmail());
+                teacher.getUser().setLastLogin();
+                teacherRepository.save(teacher);
+                session.setAttribute("userName", teacher.getFirstName());
                 return "redirect:/teacherHome";
             }
             //student
-            return "redirect:/studentHome";
-        } else {
-            session.setAttribute("userName", studentRepository.getByEmailAddress(user.getEmail()).getFirstName());
-            model.addAttribute("loginFailed", true);
-            return "login";
+            if(user.getRole() == 3) {
+                Student student = studentRepository.getByEmailAddress(user.getEmail());
+                student.getUser().setLastLogin();
+                studentRepository.save(student);
+                session.setAttribute("userName", student.getFirstName());
+                return "redirect:/studentHome";
+            }
         }
+        session.setAttribute("userName", studentRepository.getByEmailAddress(user.getEmail()).getFirstName());
+        model.addAttribute("loginFailed", true);
+        return "login";
     }
 
     @RequestMapping(path = "/logout")

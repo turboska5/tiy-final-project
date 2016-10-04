@@ -1,8 +1,12 @@
 package com.andrewrnagel.objgrader.entity;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "users")
@@ -22,6 +26,8 @@ public class User {
     @NotNull
     private Integer role;
     boolean disabled = false;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate lastLogin = null;
 
     //constructors
     //default constructor
@@ -83,5 +89,13 @@ public class User {
 
     public void setDisabled(boolean disabled) {
         this.disabled = disabled;
+    }
+
+    public LocalDate getLastLogin() {
+        return lastLogin;
+    }
+
+    public void setLastLogin() {
+        this.lastLogin = LocalDate.now();
     }
 }

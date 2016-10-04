@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 /**
  * Created by Andrew Nagel on 10/3/16 at 11:24 AM EST.
@@ -122,5 +123,11 @@ public class Admin {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getTenure() {
+        float tenure = (ChronoUnit.DAYS.between(hireDate, LocalDate.now()));
+        tenure = tenure/(float)365.25;
+        return String.format("%.2f", tenure);
     }
 }
