@@ -5,7 +5,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
 import java.time.LocalDate;
 
 @Entity
@@ -14,7 +13,6 @@ public class User {
 
     @Id
     @GeneratedValue
-    @NotNull
     private Integer id;
     @NotBlank
     @NotNull

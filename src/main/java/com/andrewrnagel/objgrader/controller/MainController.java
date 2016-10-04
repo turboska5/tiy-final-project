@@ -143,7 +143,7 @@ public class MainController {
             model.addAttribute("student", mainService.getStudent(studentID));
         } else {
             Student student = new Student("", "", "", "", 0);
-            model.addAttribute(student);
+            model.addAttribute("student", student);
         }
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", date);
@@ -154,22 +154,21 @@ public class MainController {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
             return "redirect:/logout";
         }
+        model.addAttribute("userName", session.getAttribute("userName"));
+        model.addAttribute("date", date);
         if(bindingResult.hasErrors()){
             model.addAttribute("bindingResult", bindingResult);
             model.addAttribute("student", student);
-            model.addAttribute("userName", session.getAttribute("userName"));
-            model.addAttribute("date", date);
             return "adminManageStudent";
         } else {
-            if(student.getStudentID() > 0) {
-                student.setUser(mainService.getUserByEmail(student.getEmailAddress()));
-                mainService.updateStudent(student);
-            } else {
-                mainService.saveNewStudent(student);
-            }
+//            if(student.getStudentID() > 0) {
+//                student.setUser(mainService.getUserByEmail(student.getEmailAddress()));
+//                mainService.updateStudent(student);
+//            } else {
+//                mainService.saveNewStudent(student);
+//            }
         }
-        model.addAttribute("userName", session.getAttribute("userName"));
-        model.addAttribute("date", date);
+        mainService.saveNewStudent(student);
         return "redirect:/adminUsers";
     }
 
