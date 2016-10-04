@@ -19,7 +19,7 @@ import java.util.List;
 public class Teacher {
     @Id
     @GeneratedValue
-    private Integer teacherID;
+    private Integer teacherID = 0;
     @NotBlank
     @NotNull
     private String firstName;

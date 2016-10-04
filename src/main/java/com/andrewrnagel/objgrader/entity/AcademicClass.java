@@ -12,7 +12,7 @@ public class AcademicClass {
 
     @Id
     @GeneratedValue
-    private Integer classID;
+    private Integer classID = 0;
     private String name;
     private String identifier;
     private String department;

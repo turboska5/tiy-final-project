@@ -16,7 +16,7 @@ import java.time.temporal.ChronoUnit;
 public class Admin {
     @Id
     @GeneratedValue
-    private Integer adminID;
+    private Integer adminID = 0;
     @NotNull
     @NotBlank
     private String firstName;

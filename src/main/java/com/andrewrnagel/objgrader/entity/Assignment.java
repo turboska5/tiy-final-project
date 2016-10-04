@@ -11,7 +11,7 @@ import java.time.LocalDate;
 public class Assignment {
     @Id
     @GeneratedValue
-    private Integer assignmentID;
+    private Integer assignmentID = 0;
 
     private String assignmentName;
 

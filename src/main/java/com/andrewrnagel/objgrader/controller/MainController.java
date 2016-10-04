@@ -179,15 +179,9 @@ public class MainController {
             model.addAttribute("student", student);
             return "adminManageStudent";
         }
-        //TODO
-        //hung up here - student id = null here (breaks for new student)
-        if(student.getStudentID() > 0) {
-//            student.setUser(mainService.getUserByEmail(student.getEmailAddress()));
-            //hung up here: rollback exception could not commit JPA transaction?
-            mainService.updateStudent(student);
-            return "redirect:/adminUsers";
-        }
-        mainService.saveNewStudent(student);
+        student.getUser().setPassword(PasswordStorage.createHash(student.getUser().getPassword()));
+        student.getUser().setRole(3);
+        mainService.saveStudent(student);
         return "redirect:/adminUsers";
     }
 

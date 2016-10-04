@@ -10,8 +10,7 @@ import javax.validation.constraints.NotNull;
 public class Grade {
     @Id
     @GeneratedValue
-    @NotNull
-    private Integer gradeID;
+    private Integer gradeID = 0;
 
     @NotNull
     @ManyToOne(cascade = CascadeType.PERSIST)
