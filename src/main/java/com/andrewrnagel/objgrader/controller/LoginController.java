@@ -15,7 +15,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpSession;
-import java.time.LocalDate;
 
 /**
  * Created by doug on 9/20/16. Modified by Andrew and Jimmy on 9/27/16.
@@ -32,7 +31,7 @@ public class LoginController {
     @Autowired
     UserRepository userRepository;
 
-    // requires user to be logged in
+    //Requires user to be logged in
     @RequestMapping(value = "/")
     public String home(HttpSession session, Model model){
         if(session.getAttribute("userId") == null){
@@ -45,7 +44,6 @@ public class LoginController {
             return "redirect:/adminHome";
         }
     }
-
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginForm() throws PasswordStorage.CannotPerformOperationException {
         //create sample users
@@ -63,7 +61,6 @@ public class LoginController {
 //        studentRepository.save(student);
         return "login";
     }
-
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(String email, String password, HttpSession session, Model model) throws PasswordStorage.InvalidHashException, PasswordStorage.CannotPerformOperationException {
         User user = userRepository.getByEmail(email);
@@ -72,7 +69,7 @@ public class LoginController {
             session.setAttribute("userRole", user.getRole());
             //admin
             if(user.getRole() == 1) {
-                Admin admin = adminRepository.getByEmailAddress(user.getEmail());
+                Admin admin = adminRepository.getByUserId(user.getId());
                 admin.getUser().setLastLogin();
                 adminRepository.save(admin);
                 session.setAttribute("userName", admin.getFirstName());
@@ -80,7 +77,7 @@ public class LoginController {
             }
             //teacher
             if(user.getRole() == 2) {
-                Teacher teacher = teacherRepository.getByEmailAddress(user.getEmail());
+                Teacher teacher = teacherRepository.getByUserId(user.getId());
                 teacher.getUser().setLastLogin();
                 teacherRepository.save(teacher);
                 session.setAttribute("userName", teacher.getFirstName());
@@ -88,18 +85,16 @@ public class LoginController {
             }
             //student
             if(user.getRole() == 3) {
-//                Student student = studentRepository.getByEmailAddress(user.getEmail());
-//                student.getUser().setLastLogin();
-//                studentRepository.save(student);
-//                session.setAttribute("userName", student.getFirstName());
-//                return "redirect:/studentHome";
+                Student student = studentRepository.getByUserId(user.getId());
+                student.getUser().setLastLogin();
+                studentRepository.save(student);
+                session.setAttribute("userName", student.getFirstName());
+                return "redirect:/studentHome";
             }
         }
-//        session.setAttribute("userName", studentRepository.getByEmailAddress(user.getEmail()).getFirstName());
         model.addAttribute("loginFailed", true);
         return "login";
     }
-
     @RequestMapping(path = "/logout")
     public String logout(HttpSession session){
         session.invalidate();
