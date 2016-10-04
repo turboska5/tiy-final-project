@@ -3,6 +3,7 @@ package com.andrewrnagel.objgrader.controller;
 import com.andrewrnagel.objgrader.entity.Admin;
 import com.andrewrnagel.objgrader.entity.Student;
 import com.andrewrnagel.objgrader.entity.Teacher;
+import com.andrewrnagel.objgrader.entity.User;
 import com.andrewrnagel.objgrader.misc.PasswordStorage;
 import com.andrewrnagel.objgrader.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -161,7 +162,8 @@ public class MainController {
             return "adminManageStudent";
         } else {
             if(student.getStudentID() > 0) {
-               mainService.updateStudent(student);
+                student.setUser(mainService.getUserByEmail(student.getEmailAddress()));
+                mainService.updateStudent(student);
             } else {
                 mainService.saveNewStudent(student);
             }

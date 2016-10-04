@@ -50,11 +50,12 @@ public class MainService {
         student.getUser().setRole(3);
         this.studentRepository.save(student);
     }
+
     //save admin user to admin table
     public void updateStudent(Student student) throws SQLException, PasswordStorage.CannotPerformOperationException {
         User user = student.getUser();
         user.setEmail(student.getEmailAddress());
-        if(!student.getPassword().isEmpty() || !(student.getPassword() == "")){
+        if(!student.getPassword().isEmpty() || !(student.getPassword().equals(""))){
             user.setPassword(PasswordStorage.createHash(student.getPassword()));
         }
         this.studentRepository.save(student);
@@ -74,6 +75,10 @@ public class MainService {
 
     public List<Student> getAllStudents() {
         return this.studentRepository.findAll();
+    }
+
+    public User getUserByEmail(String email) {
+        return userRepository.getByEmail(email);
     }
 
     public Student getStudent(Integer studentID) {
