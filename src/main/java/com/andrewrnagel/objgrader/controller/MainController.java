@@ -135,18 +135,24 @@ public class MainController {
         return "redirect:/adminUsers";
     }
     @RequestMapping(value = "/adminManageStudent", method = RequestMethod.GET)
-    public String adminUserStudentForm(Model model, HttpSession session, @RequestParam(defaultValue = "0") Integer studentID) {
+    public String adminUserStudentForm(Model model, HttpSession session,
+                                       @RequestParam(defaultValue = "0") Integer studentID) {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
             return "redirect:/logout";
         }
-        if(studentID > 0) {
-            model.addAttribute("student", mainService.getStudent(studentID));
-        } else {
-            Student student = new Student("", "", "", "", 0);
-            model.addAttribute("student", student);
-        }
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", date);
+        if(studentID > 0) {
+            Student student = mainService.getStudent(studentID);
+            User user = mainService.getUserByEmail(student.getEmailAddress());
+            model.addAttribute("student", student);
+            model.addAttribute("user", user);
+        } else {
+            Student student = new Student("", "", "", "", 0);
+            User user = new User();
+            model.addAttribute("student", student);
+            model.addAttribute("user", user);
+        }
         return "adminManageStudent";
     }
     @RequestMapping(value = "/adminManageStudent", method = RequestMethod.POST)
@@ -160,13 +166,13 @@ public class MainController {
             model.addAttribute("bindingResult", bindingResult);
             model.addAttribute("student", student);
             return "adminManageStudent";
-        } else {
-//            if(student.getStudentID() > 0) {
-//                student.setUser(mainService.getUserByEmail(student.getEmailAddress()));
-//                mainService.updateStudent(student);
-//            } else {
-//                mainService.saveNewStudent(student);
-//            }
+        }
+        //hung up here - student id = null here (breaks for new student)
+        if(student.getStudentID() > 0) {
+            student.setUser(mainService.getUserByEmail(student.getEmailAddress()));
+            //hung up here: rollback exception could not commit JPA transaction?
+            mainService.updateStudent(student);
+            return "redirect:/adminUsers";
         }
         mainService.saveNewStudent(student);
         return "redirect:/adminUsers";
