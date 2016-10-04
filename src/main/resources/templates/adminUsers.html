@@ -65,8 +65,8 @@
                         <td th:text="${admin.getFirstName()}">THEODORE</td>
                         <td th:text="${admin.getEmailAddress()}">troosevelt@gmail.com</td>
                         <td th:text="${admin.getTitle()}">A. PRINCIPAL</td>
-                        <td th:text="${admin.getHireDate()}">12</td>
-                        <td th:text="${'N/A'}">09/29/16</td>
+                        <td th:text="${admin.getTenure()}">12</td>
+                        <td th:text="${admin.getUser().getLastLogin()}">09/29/16</td>
                         <td th:text="${admin.getUser().isDisabled()}">NO</td>
                     </tr>
                 </table>
@@ -113,8 +113,8 @@
                         <td th:text="${teacher.getFirstName()}">JAMES</td>
                         <td th:text="${teacher.getEmailAddress()}">jebush@gmail.com</td>
                         <td th:text="${teacher.getDepartment()}">PHYSED</td>
-                        <td th:text="${teacher.getHireDate()}">43</td>
-                        <td th:text="${'N/A'}">09/29/16</td>
+                        <td th:text="${teacher.getTenure()}">43</td>
+                        <td th:text="${teacher.getUser().getLastLogin()}">09/29/16</td>
                         <td th:text="${teacher.getUser().isDisabled()}">NO</td>
                     </tr>
                 </table>
@@ -162,7 +162,7 @@
                         <td th:text="${student.getEmailAddress()}">msmith01@fakeschools.org</td>
                         <td th:text="${student.getStudentNumber()}">9824621</td>
                         <td th:text="${student.getGradeLevel()}">12</td>
-                        <td th:text="${'N/A'}">N/A</td>
+                        <td th:text="${student.getUser().getLastLogin()}">N/A</td>
                         <td th:text="${student.getUser().isDisabled()}">NO</td>
                     </tr>
                 </table>
