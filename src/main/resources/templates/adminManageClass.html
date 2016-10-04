@@ -34,24 +34,39 @@
             <legend>Manage Class</legend>
                 <form class="ManageForm" th:action="ManageClass" action="../templates/adminClasses.html" method="post">
                     <label>Class Name</label>
-                    <input type="text" placeholder="Class Name"/>
+                    <input name="name" type="text" placeholder="Class Name"/>
                     <br/>
                     <label>ID#</label>
-                    <input type="text" placeholder="Class ID#"/>
+                    <input name="identifier" type="text" placeholder="Class ID#"/>
                     <br/>
                     <label>Dept.</label>
-                    <select>
-                        <option value="" selected="true">Department</option>
+                    <select name="department">
+                        <option value="" select="true">Department</option>
+                        <option value="Agriculture" >Agriculture</option>
+                        <option value="Math" >Math</option>
+                        <option value="Physical Education" >Physical Education</option>
+                        <option value="Science" >Science</option>
+                        <option value="Social Studies" >Social Studies</option>
+                        <option value="Technology" >Technology</option>
                     </select>
                     <br/>
                     <label>Teacher</label>
-                    <select>
-                        <option value="" disabled="true" selected="true">Teacher</option>
+                    <select name="teacher">
+                        <option value="" selected="true">Teacher</option>
+                        <option th:each="teacher : ${teacherList}" th:value="${teacher.getTeacherID()}" value="" th:text="${teacher.getLastName() + ', ' + teacher.getFirstName()}"></option>
                     </select>
                     <br/>
                     <label>Period</label>
-                    <select>
-                        <option value="" disabled="true" selected="true">Period</option>
+                    <select name="period">
+                        <option value="" selected="true">Period</option>
+                        <option value="1" >1</option>
+                        <option value="2" >2</option>
+                        <option value="3" >3</option>
+                        <option value="4" >4</option>
+                        <option value="5" >5</option>
+                        <option value="6" >6</option>
+                        <option value="7" >7</option>
+                        <option value="8" >8</option>
                     </select>
                     <br/>
                     <button>Save</button>

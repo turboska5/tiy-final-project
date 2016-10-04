@@ -17,6 +17,10 @@ public class AcademicClass {
     private String identifier;
     private String department;
     private Integer period;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "teacherID")
+    @OrderBy("period")
+    private Teacher teacher;
 
     public AcademicClass() {
     }

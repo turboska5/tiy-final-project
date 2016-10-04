@@ -61,6 +61,7 @@ public class MainController {
         }
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", date);
+        model.addAttribute("teacherList", mainService.getAllTeachers());
         return "adminManageClass";
     }
     @RequestMapping(value = "/adminUsers", method = RequestMethod.GET)
