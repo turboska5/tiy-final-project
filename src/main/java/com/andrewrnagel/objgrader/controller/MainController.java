@@ -162,7 +162,7 @@ public class MainController {
             Student student = mainService.getStudent(studentID);
             model.addAttribute("student", student);
         } else {
-            //TODO
+            //TODO: validation fail on email/password
             Student student = new Student("", "", "", 0);
             model.addAttribute("student", student);
         }
