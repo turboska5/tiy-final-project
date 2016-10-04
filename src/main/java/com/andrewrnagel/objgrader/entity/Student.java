@@ -1,5 +1,7 @@
 package com.andrewrnagel.objgrader.entity;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -13,14 +15,25 @@ public class Student {
     @Id
     @GeneratedValue
     private Integer studentID;
+    @NotBlank
+    @NotNull
     private String firstName;
+    @NotBlank
+    @NotNull
     private String lastName;
+    @NotBlank
+    @NotNull
     private String emailAddress;
+    @NotBlank
+    @NotNull
     private String studentNumber;
+    @NotNull
     private Integer gradeLevel;
     @OneToOne(cascade = CascadeType.ALL)
     private User user = new User();
     @Transient
+    @NotBlank
+    @NotNull
     private String password;
 
     @ManyToMany(cascade = CascadeType.ALL)
