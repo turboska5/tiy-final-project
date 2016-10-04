@@ -67,7 +67,7 @@ public class MainService {
     }
 
     public User getUserByID(Integer id) {
-        return userRepository.getByID(id);
+        return userRepository.getById(id);
     }
 
     public User getUserByEmail(String email) {
