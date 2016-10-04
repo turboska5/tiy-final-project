@@ -1,8 +1,10 @@
 package com.andrewrnagel.objgrader.entity;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -14,15 +16,26 @@ public class Admin {
     @Id
     @GeneratedValue
     private Integer adminID;
+    @NotNull
+    @NotBlank
     private String firstName;
+    @NotNull
+    @NotBlank
     private String lastName;
+    @NotNull
+    @NotBlank
     private String emailAddress;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @NotNull
     private LocalDate hireDate;
+    @NotNull
+    @NotBlank
     private String title;
     @OneToOne(cascade = CascadeType.ALL)
     private User user = new User();
     @Transient
+    @NotNull
+    @NotBlank
     private String password;
 
     //constructors

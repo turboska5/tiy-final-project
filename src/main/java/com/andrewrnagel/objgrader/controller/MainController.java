@@ -75,6 +75,8 @@ public class MainController {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
             return "redirect:/logout";
         }
+        Admin admin = new Admin("", "", "", "");
+        model.addAttribute(admin);
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", date);
         return "adminManageAdmin";
@@ -87,6 +89,8 @@ public class MainController {
         if(bindingResult.hasErrors()){
             model.addAttribute("bindingResult", bindingResult);
             model.addAttribute("admin", admin);
+            model.addAttribute("userName", session.getAttribute("userName"));
+            model.addAttribute("date", date);
             return "adminManageAdmin";
         } else {
             mainService.saveAdmin(admin);
@@ -115,6 +119,8 @@ public class MainController {
         if(bindingResult.hasErrors()){
             model.addAttribute("bindingResult", bindingResult);
             model.addAttribute("teacher", teacher);
+            model.addAttribute("userName", session.getAttribute("userName"));
+            model.addAttribute("date", date);
             return "adminManageTeacher";
         } else {
             mainService.saveTeacher(teacher);
@@ -140,6 +146,8 @@ public class MainController {
         if(bindingResult.hasErrors()){
             model.addAttribute("bindingResult", bindingResult);
             model.addAttribute("student", student);
+            model.addAttribute("userName", session.getAttribute("userName"));
+            model.addAttribute("date", date);
             return "adminManageStudent";
         } else {
             mainService.saveStudent(student);
