@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -175,6 +176,15 @@ public class MainController {
         }
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", date);
+
+        if (student.getUser().getEmail().equals("")){
+            FieldError fieldError = new FieldError("student", "user.email", student.getUser().getEmail(), false, new String[]{"Declined.student.user.email"}, (String[])null, "Did not Take Email");
+            bindingResult.addError(fieldError);
+        }
+        if (student.getUser().getPassword().equals("")){
+            FieldError fieldError = new FieldError("student", "user.password", student.getUser().getPassword(), false, new String[]{"Declined.student.user.password"}, (String[])null, "Did not Take Password");
+            bindingResult.addError(fieldError);
+        }
         if(bindingResult.hasErrors()){
             model.addAttribute("bindingResult", bindingResult);
             model.addAttribute("student", student);
