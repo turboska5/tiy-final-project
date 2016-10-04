@@ -1,6 +1,7 @@
 package com.andrewrnagel.objgrader.controller;
 
 import com.andrewrnagel.objgrader.entity.Admin;
+import com.andrewrnagel.objgrader.entity.Teacher;
 import com.andrewrnagel.objgrader.misc.PasswordStorage;
 import com.andrewrnagel.objgrader.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,19 +97,17 @@ public class MainController {
         model.addAttribute("date", date);
         return "adminManageAdmin";
     }
-    @RequestMapping(value = "/ManageAdmin", method = RequestMethod.POST)
+    @RequestMapping(value = "/adminManageAdmin", method = RequestMethod.POST)
     public String adminUserAdminFormSubmit(@Valid Admin admin, BindingResult bindingResult, Model model, HttpSession session) throws SQLException, PasswordStorage.CannotPerformOperationException {
 
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
             return "redirect:/logout";
         }
 
-
-
         if(bindingResult.hasErrors()){
             model.addAttribute("bindingResult", bindingResult);
             model.addAttribute("admin", admin);
-            return "ManageAdmin";
+            return "adminManageAdmin";
         } else {
             mainService.saveAdmin(admin);
         }
@@ -127,6 +126,25 @@ public class MainController {
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", date);
         return "adminManageTeacher";
+    }
+    @RequestMapping(value = "/adminManageTeacher", method = RequestMethod.POST)
+    public String adminUserTeacherFormSubmit(@Valid Teacher teacher, BindingResult bindingResult, Model model, HttpSession session) throws SQLException, PasswordStorage.CannotPerformOperationException {
+
+        if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
+            return "redirect:/logout";
+        }
+
+        if(bindingResult.hasErrors()){
+            model.addAttribute("bindingResult", bindingResult);
+            model.addAttribute("teacher", teacher);
+            return "adminManageTeacher";
+        } else {
+            mainService.saveTeacher(teacher);
+        }
+
+        model.addAttribute("userName", session.getAttribute("userName"));
+        model.addAttribute("date", date);
+        return "redirect:/adminUsers";
     }
     @RequestMapping(value = "/adminManageStudent", method = RequestMethod.GET)
     public String adminUserStudentForm(Model model, HttpSession session) {

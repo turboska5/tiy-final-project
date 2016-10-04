@@ -12,17 +12,16 @@ import java.util.List;
 public class Student {
     @Id
     @GeneratedValue
-    @NotNull
     private Integer studentID;
-
     private String firstName;
     private String lastName;
     private String emailAddress;
     private String studentNumber;
     private Integer gradeLevel;
-
     @OneToOne(cascade = CascadeType.ALL)
-    private User user = new User(emailAddress, 3);
+    private User user = new User();
+    @Transient
+    private String password;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "studentID")
@@ -103,5 +102,13 @@ public class Student {
 
     public void setStudentClasses(List<AcademicClass> studentClasses) {
         this.studentClasses = studentClasses;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

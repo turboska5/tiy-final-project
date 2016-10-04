@@ -32,7 +32,8 @@
     <article>
         <fieldset>
             <legend>Manage Teacher</legend>
-                <form class="ManageForm" th:action="ManageTeacher" action="../templates/adminUsers.html" method="post">
+                <form class="ManageForm" th:action="adminManageTeacher" action="../templates/adminUsers.html" method="post">
+                    <input type="hidden" id="teacherID" name="teacherID"/>
                     <label>First Name</label>
                     <input name="firstName" type="text" placeholder="First Name"/>
                     <br/>
@@ -51,12 +52,12 @@
                     <label>Department</label>
                     <select name="department">
                         <option value="" disabled="true" selected="true">Department</option>
-                        <option value="math" >Math</option>
-                        <option value="science" >Science</option>
-                        <option value="social studies" >Social Studies</option>
-                        <option value="physical education" >Physical Education</option>
-                        <option value="agriculture" >Agriculture</option>
-                        <option value="technology" >Technology</option>
+                        <option value="Math" >Math</option>
+                        <option value="Science" >Science</option>
+                        <option value="Social Studies" >Social Studies</option>
+                        <option value="Physical Education" >Physical Education</option>
+                        <option value="Agriculture" >Agriculture</option>
+                        <option value="Technology" >Technology</option>
                     </select>
                     <br/>
                     <button>Save</button>

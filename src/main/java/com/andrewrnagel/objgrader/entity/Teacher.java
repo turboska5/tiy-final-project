@@ -1,8 +1,11 @@
 package com.andrewrnagel.objgrader.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -14,24 +17,33 @@ import java.util.List;
 public class Teacher {
     @Id
     @GeneratedValue
-    @NotNull
     private Integer teacherID;
-
     private String firstName;
     private String lastName;
     private String emailAddress;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate hireDate;
     private String department;
-
     @OneToOne(cascade = CascadeType.ALL)
-    private User user;
-
+    private User user = new User();
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "teacherID")
     @OrderBy("period")
     List<AcademicClass> teacherClasses = new ArrayList<>();
+    @Transient
+    private String password;
 
     public Teacher() {
+    }
+
+    public Teacher(String firstName, String lastName, String emailAddress, String hireDate, String department, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.emailAddress = emailAddress;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        this.hireDate = LocalDate.parse(hireDate, formatter);
+        this.department = department;
+        this.password = password;
     }
 
     public Teacher(String firstName, String lastName, String emailAddress, String department) {
@@ -39,7 +51,6 @@ public class Teacher {
         this.lastName = lastName;
         this.emailAddress = emailAddress;
         this.department = department;
-        this.user = new User(this.emailAddress, 2);
     }
 
     public User getUser() {
@@ -104,5 +115,13 @@ public class Teacher {
 
     public void setTeacherClasses(List<AcademicClass> teacherClasses) {
         this.teacherClasses = teacherClasses;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
