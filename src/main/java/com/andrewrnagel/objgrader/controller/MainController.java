@@ -1,6 +1,7 @@
 package com.andrewrnagel.objgrader.controller;
 
 import com.andrewrnagel.objgrader.entity.Admin;
+import com.andrewrnagel.objgrader.entity.Student;
 import com.andrewrnagel.objgrader.entity.Teacher;
 import com.andrewrnagel.objgrader.misc.PasswordStorage;
 import com.andrewrnagel.objgrader.service.MainService;
@@ -156,6 +157,25 @@ public class MainController {
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", date);
         return "adminManageStudent";
+    }
+    @RequestMapping(value = "/adminManageStudent", method = RequestMethod.POST)
+    public String adminUserStudentFormSubmit(@Valid Student student, BindingResult bindingResult, Model model, HttpSession session) throws SQLException, PasswordStorage.CannotPerformOperationException {
+
+        if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
+            return "redirect:/logout";
+        }
+
+        if(bindingResult.hasErrors()){
+            model.addAttribute("bindingResult", bindingResult);
+            model.addAttribute("student", student);
+            return "adminManageStudent";
+        } else {
+            mainService.saveStudent(student);
+        }
+
+        model.addAttribute("userName", session.getAttribute("userName"));
+        model.addAttribute("date", date);
+        return "redirect:/adminUsers";
     }
 
     //TEACHER ACCESS
