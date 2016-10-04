@@ -60,11 +60,11 @@
                         </tr>
                         <tr th:each="academicClass : ${classList}">
                             <td><a th:href="@{/adminManageClass}" href="../templates/adminManageClass.html"><button class="editicon"></button></a></td>
-                            <td th:text="${academicClass.getClassName()}">PHYSICS 101</td>
+                            <td th:text="${academicClass.getName()}">PHYSICS 101</td>
                             <td th:text="${academicClass.getIdentifier()}">SCIPHY101A</td>
                             <td th:text="${academicClass.getDepartment()}">SCIENCE</td>
-                            <td th:text="${'N/A'}">MR. NAGEL</td>
-                            <td th:text="${'N/A'}">">1</td>
+                            <td th:text="${academicClass.getTeacher().getLastName()}">MR. NAGEL</td>
+                            <td th:text="${academicClass.getPeriod()}">">1</td>
                             <td th:text="${'N/A'}">>11</td>
                             <td th:text="${'N/A'}">>30</td>
                         </tr>

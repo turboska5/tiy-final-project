@@ -27,6 +27,11 @@ public class MainService {
     private ClassRepo classRepo;
 
     //methods
+
+    public void saveClass(AcademicClass academicClass) {
+        this.classRepo.save(academicClass);
+    }
+
     //save admin user to admin table
     public void saveAdmin(Admin admin) throws SQLException, PasswordStorage.CannotPerformOperationException {
         admin.getUser().setPassword(PasswordStorage.createHash(admin.getPassword()));
@@ -43,20 +48,20 @@ public class MainService {
         this.teacherRepository.save(teacher);
     }
 
-    //save admin user to admin table
+    //TODO: save admin user to admin table
     public void saveNewStudent(Student student) throws SQLException, PasswordStorage.CannotPerformOperationException {
-        student.getUser().setPassword(PasswordStorage.createHash(student.getPassword()));
-        student.getUser().setEmail(student.getEmailAddress());
+        student.getUser().setPassword(PasswordStorage.createHash(student.getUser().getPassword()));
+//        student.getUser().setEmail(student.getEmailAddress());
         student.getUser().setRole(3);
         this.studentRepository.save(student);
     }
 
-    //save admin user to admin table
+    //TODO: save admin user to admin table
     public void updateStudent(Student student) throws SQLException, PasswordStorage.CannotPerformOperationException {
         User user = student.getUser();
-        user.setEmail(student.getEmailAddress());
-        if(!student.getPassword().isEmpty() || !(student.getPassword().equals(""))){
-            user.setPassword(PasswordStorage.createHash(student.getPassword()));
+//        user.setEmail(student.getEmailAddress());
+        if(!student.getUser().getPassword().isEmpty() || !(student.getUser().getPassword().equals(""))){
+            user.setPassword(PasswordStorage.createHash(student.getUser().getPassword()));
         }
         this.studentRepository.save(student);
     }

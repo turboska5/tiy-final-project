@@ -64,4 +64,12 @@ public class AcademicClass {
     public void setPeriod(Integer period) {
         this.period = period;
     }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
 }

@@ -14,16 +14,16 @@ import java.util.List;
 public class Student {
     @Id
     @GeneratedValue
-    private Integer studentID;
+    private Integer studentID = 0;
     @NotBlank
     @NotNull
     private String firstName;
     @NotBlank
     @NotNull
     private String lastName;
-    @NotBlank
-    @NotNull
-    private String emailAddress;
+//    @NotBlank
+//    @NotNull
+//    private String emailAddress;
     @NotBlank
     @NotNull
     private String studentNumber;
@@ -31,10 +31,10 @@ public class Student {
     private Integer gradeLevel;
     @OneToOne(cascade = CascadeType.ALL)
     private User user = new User();
-    @Transient
-    @NotBlank
-    @NotNull
-    private String password;
+//    @Transient
+//    @NotBlank
+//    @NotNull
+//    private String password;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "studentID")
@@ -44,13 +44,13 @@ public class Student {
     public Student() {
     }
 
-    public Student(String firstName, String lastName, String emailAddress, String studentNumber, Integer gradeLevel) {
+    public Student(String firstName, String lastName, String studentNumber, Integer gradeLevel) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.emailAddress = emailAddress;
+//        this.emailAddress = emailAddress;
         this.studentNumber = studentNumber;
         this.gradeLevel = gradeLevel;
-        this.user = new User(this.emailAddress, 3);
+//        this.user = new User(this.emailAddress, 3);
     }
 
     public Integer getStudentID() {
@@ -77,13 +77,13 @@ public class Student {
         this.lastName = lastName;
     }
 
-    public String getEmailAddress() {
-        return emailAddress;
-    }
-
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
-    }
+//    public String getEmailAddress() {
+//        return emailAddress;
+//    }
+//
+//    public void setEmailAddress(String emailAddress) {
+//        this.emailAddress = emailAddress;
+//    }
 
     public String getStudentNumber() {
         return studentNumber;
@@ -117,11 +117,11 @@ public class Student {
         this.studentClasses = studentClasses;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
+//    public String getPassword() {
+//        return password;
+//    }
+//
+//    public void setPassword(String password) {
+//        this.password = password;
+//    }
 }

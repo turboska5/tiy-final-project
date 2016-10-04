@@ -88,14 +88,14 @@ public class LoginController {
             }
             //student
             if(user.getRole() == 3) {
-                Student student = studentRepository.getByEmailAddress(user.getEmail());
-                student.getUser().setLastLogin();
-                studentRepository.save(student);
-                session.setAttribute("userName", student.getFirstName());
-                return "redirect:/studentHome";
+//                Student student = studentRepository.getByEmailAddress(user.getEmail());
+//                student.getUser().setLastLogin();
+//                studentRepository.save(student);
+//                session.setAttribute("userName", student.getFirstName());
+//                return "redirect:/studentHome";
             }
         }
-        session.setAttribute("userName", studentRepository.getByEmailAddress(user.getEmail()).getFirstName());
+//        session.setAttribute("userName", studentRepository.getByEmailAddress(user.getEmail()).getFirstName());
         model.addAttribute("loginFailed", true);
         return "login";
     }

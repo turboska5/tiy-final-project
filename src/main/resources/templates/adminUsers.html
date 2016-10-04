@@ -159,7 +159,7 @@
                         <td><a th:href="@{/adminManageStudent?(studentID=${student.getStudentID()})}" href="../templates/adminManageStudent.html"><button class="editicon"></button></a></td>
                         <td th:text="${student.getLastName()}">SMITH</td>
                         <td th:text="${student.getFirstName()}">MATTHEW</td>
-                        <td th:text="${student.getEmailAddress()}">msmith01@fakeschools.org</td>
+                        <td th:text="${'N/A'}">msmith01@fakeschools.org</td>
                         <td th:text="${student.getStudentNumber()}">9824621</td>
                         <td th:text="${student.getGradeLevel()}">12</td>
                         <td th:text="${student.getUser().getLastLogin()}">N/A</td>

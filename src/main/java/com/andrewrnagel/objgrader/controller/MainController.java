@@ -1,9 +1,6 @@
 package com.andrewrnagel.objgrader.controller;
 
-import com.andrewrnagel.objgrader.entity.Admin;
-import com.andrewrnagel.objgrader.entity.Student;
-import com.andrewrnagel.objgrader.entity.Teacher;
-import com.andrewrnagel.objgrader.entity.User;
+import com.andrewrnagel.objgrader.entity.*;
 import com.andrewrnagel.objgrader.misc.PasswordStorage;
 import com.andrewrnagel.objgrader.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,7 +59,25 @@ public class MainController {
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", date);
         model.addAttribute("teacherList", mainService.getAllTeachers());
+//        model.addAttribute("studentRoster", mainService.getAllStudentsInClass());
         return "adminManageClass";
+    }
+    @RequestMapping(value = "/adminManageClass", method = RequestMethod.POST)
+    public String adminClassEditFormSubmit(@Valid AcademicClass academicClass, BindingResult bindingResult, Model model, HttpSession session) {
+        if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
+            return "redirect:/logout";
+        }
+        model.addAttribute("userName", session.getAttribute("userName"));
+        model.addAttribute("date", date);
+        model.addAttribute("teacherList", mainService.getAllTeachers());
+        if(bindingResult.hasErrors()){
+            model.addAttribute("bindingResult", bindingResult);
+            model.addAttribute("class", academicClass);
+            return "adminManageClass";
+        } else {
+            mainService.saveClass(academicClass);
+        }
+        return "redirect:/adminClasses";
     }
     @RequestMapping(value = "/adminUsers", method = RequestMethod.GET)
     public String adminUserPage(Model model, HttpSession session) {
@@ -145,14 +160,10 @@ public class MainController {
         model.addAttribute("date", date);
         if(studentID > 0) {
             Student student = mainService.getStudent(studentID);
-            User user = mainService.getUserByEmail(student.getEmailAddress());
             model.addAttribute("student", student);
-            model.addAttribute("user", user);
         } else {
-            Student student = new Student("", "", "", "", 0);
-            User user = new User();
+            Student student = new Student("", "", "", 0);
             model.addAttribute("student", student);
-            model.addAttribute("user", user);
         }
         return "adminManageStudent";
     }
@@ -168,9 +179,10 @@ public class MainController {
             model.addAttribute("student", student);
             return "adminManageStudent";
         }
+        //TODO
         //hung up here - student id = null here (breaks for new student)
         if(student.getStudentID() > 0) {
-            student.setUser(mainService.getUserByEmail(student.getEmailAddress()));
+//            student.setUser(mainService.getUserByEmail(student.getEmailAddress()));
             //hung up here: rollback exception could not commit JPA transaction?
             mainService.updateStudent(student);
             return "redirect:/adminUsers";

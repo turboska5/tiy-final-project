@@ -32,7 +32,7 @@
     <article>
         <fieldset>
             <legend>Manage Class</legend>
-                <form class="ManageForm" th:action="ManageClass" action="../templates/adminClasses.html" method="post">
+                <form class="ManageForm" th:action="adminManageClass" action="../templates/adminClasses.html" method="post">
                     <label>Class Name</label>
                     <input name="name" type="text" placeholder="Class Name"/>
                     <br/>
@@ -104,7 +104,7 @@
                         <th>Class Name</th>
                         <th>Class ID#</th>
                     </tr>
-                    <tr th:each="student : ${studentList}">
+                    <tr th:each="student : ${studentRoster}">
                         <td><button class="minusicon"><a></a></button></td>
                         <td th:text="${student.getLastName()}">SMITH</td>
                         <td th:text="${student.getFirstName()}">MATTHEW</td>
