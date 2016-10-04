@@ -100,6 +100,9 @@ public class MainController {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
             return "redirect:/logout";
         }
+
+        Teacher teacher = new Teacher("", "", "", "");
+        model.addAttribute(teacher);
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", date);
         return "adminManageTeacher";

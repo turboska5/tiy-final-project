@@ -28,3 +28,20 @@ Button.minusicon:active {
     background-color: white;
     transform: translateY(1px);
 }
+
+ul.error{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+ul.error li{
+    color: darkred;
+    margin: 0.25em 0;
+    padding: 0.25em 0;
+    font-size: small;
+}
+input.error, select.error, textarea.error{
+    -webkit-box-shadow: 0 0 15px 0 rgba(255,0,0,0.5);
+    -moz-box-shadow: 0 0 15px 0 rgba(255,0,0,0.5);
+    box-shadow: 0 0 15px 0 rgba(255,0,0,0.5);
+}
