@@ -1,7 +1,6 @@
 package com.andrewrnagel.objgrader.entity;
 
 import org.hibernate.validator.constraints.NotBlank;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -21,9 +20,6 @@ public class Student {
     @NotBlank
     @NotNull
     private String lastName;
-//    @NotBlank
-//    @NotNull
-//    private String emailAddress;
     @NotBlank
     @NotNull
     private String studentNumber;
@@ -31,14 +27,8 @@ public class Student {
     private Integer gradeLevel;
     @OneToOne(cascade = CascadeType.ALL)
     private User user = new User();
-//    @Transient
-//    @NotBlank
-//    @NotNull
-//    private String password;
-
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "studentID")
-//    @OrderBy("lastName")
     private List<AcademicClass> studentClasses = new ArrayList<>();
 
     public Student() {
@@ -47,10 +37,8 @@ public class Student {
     public Student(String firstName, String lastName, String studentNumber, Integer gradeLevel) {
         this.firstName = firstName;
         this.lastName = lastName;
-//        this.emailAddress = emailAddress;
         this.studentNumber = studentNumber;
         this.gradeLevel = gradeLevel;
-//        this.user = new User(this.emailAddress, 3);
     }
 
     public Integer getStudentID() {
@@ -76,14 +64,6 @@ public class Student {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
-//    public String getEmailAddress() {
-//        return emailAddress;
-//    }
-//
-//    public void setEmailAddress(String emailAddress) {
-//        this.emailAddress = emailAddress;
-//    }
 
     public String getStudentNumber() {
         return studentNumber;
@@ -116,12 +96,4 @@ public class Student {
     public void setStudentClasses(List<AcademicClass> studentClasses) {
         this.studentClasses = studentClasses;
     }
-
-//    public String getPassword() {
-//        return password;
-//    }
-//
-//    public void setPassword(String password) {
-//        this.password = password;
-//    }
 }

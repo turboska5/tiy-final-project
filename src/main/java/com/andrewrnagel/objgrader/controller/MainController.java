@@ -179,6 +179,11 @@ public class MainController {
             model.addAttribute("student", student);
             return "adminManageStudent";
         }
+        //TODO: email address unique
+        if(student.getStudentID() > 0) {
+            //creating a new user despite already having one!
+            User user = student.getUser();
+        }
         student.getUser().setPassword(PasswordStorage.createHash(student.getUser().getPassword()));
         student.getUser().setRole(3);
         mainService.saveStudent(student);
