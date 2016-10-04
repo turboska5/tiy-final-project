@@ -38,7 +38,7 @@ public class Student {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "studentID")
-    @OrderBy("lastName")
+//    @OrderBy("lastName")
     private List<AcademicClass> studentClasses = new ArrayList<>();
 
     public Student() {

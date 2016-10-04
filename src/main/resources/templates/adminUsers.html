@@ -156,7 +156,7 @@
                         <th>Disabled</th>
                     </tr>
                     <tr th:each="student : ${studentList}">
-                        <td><a th:href="@{/adminManageStudent}" href="../templates/adminManageStudent.html"><button class="editicon"></button></a></td>
+                        <td><a th:href="@{/adminManageStudent?(studentID=${student.getStudentID()})}" href="../templates/adminManageStudent.html"><button class="editicon"></button></a></td>
                         <td th:text="${student.getLastName()}">SMITH</td>
                         <td th:text="${student.getFirstName()}">MATTHEW</td>
                         <td th:text="${student.getEmailAddress()}">msmith01@fakeschools.org</td>

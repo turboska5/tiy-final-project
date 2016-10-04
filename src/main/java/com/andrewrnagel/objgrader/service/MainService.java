@@ -1,9 +1,6 @@
 package com.andrewrnagel.objgrader.service;
 
-import com.andrewrnagel.objgrader.entity.AcademicClass;
-import com.andrewrnagel.objgrader.entity.Admin;
-import com.andrewrnagel.objgrader.entity.Student;
-import com.andrewrnagel.objgrader.entity.Teacher;
+import com.andrewrnagel.objgrader.entity.*;
 import com.andrewrnagel.objgrader.misc.PasswordStorage;
 import com.andrewrnagel.objgrader.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,10 +44,19 @@ public class MainService {
     }
 
     //save admin user to admin table
-    public void saveStudent(Student student) throws SQLException, PasswordStorage.CannotPerformOperationException {
+    public void saveNewStudent(Student student) throws SQLException, PasswordStorage.CannotPerformOperationException {
         student.getUser().setPassword(PasswordStorage.createHash(student.getPassword()));
         student.getUser().setEmail(student.getEmailAddress());
         student.getUser().setRole(3);
+        this.studentRepository.save(student);
+    }
+    //save admin user to admin table
+    public void updateStudent(Student student) throws SQLException, PasswordStorage.CannotPerformOperationException {
+        User user = student.getUser();
+        user.setEmail(student.getEmailAddress());
+        if(!student.getPassword().isEmpty() || !(student.getPassword() == "")){
+            user.setPassword(PasswordStorage.createHash(student.getPassword()));
+        }
         this.studentRepository.save(student);
     }
 
@@ -68,5 +74,9 @@ public class MainService {
 
     public List<Student> getAllStudents() {
         return this.studentRepository.findAll();
+    }
+
+    public Student getStudent(Integer studentID) {
+        return this.studentRepository.findOne(studentID);
     }
 }

@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.sql.SQLException;
@@ -132,12 +134,16 @@ public class MainController {
         return "redirect:/adminUsers";
     }
     @RequestMapping(value = "/adminManageStudent", method = RequestMethod.GET)
-    public String adminUserStudentForm(Model model, HttpSession session) {
+    public String adminUserStudentForm(Model model, HttpSession session, @RequestParam(defaultValue = "0") Integer studentID) {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
             return "redirect:/logout";
         }
-        Student student = new Student("", "", "", "", 0);
-        model.addAttribute(student);
+        if(studentID > 0) {
+            model.addAttribute("student", mainService.getStudent(studentID));
+        } else {
+            Student student = new Student("", "", "", "", 0);
+            model.addAttribute(student);
+        }
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", date);
         return "adminManageStudent";
@@ -154,7 +160,11 @@ public class MainController {
             model.addAttribute("date", date);
             return "adminManageStudent";
         } else {
-            mainService.saveStudent(student);
+            if(student.getStudentID() > 0) {
+               mainService.updateStudent(student);
+            } else {
+                mainService.saveNewStudent(student);
+            }
         }
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", date);
