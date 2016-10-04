@@ -3,13 +3,12 @@ package com.andrewrnagel.objgrader.service;
 import com.andrewrnagel.objgrader.entity.Admin;
 import com.andrewrnagel.objgrader.entity.Student;
 import com.andrewrnagel.objgrader.entity.Teacher;
-import com.andrewrnagel.objgrader.entity.User;
 import com.andrewrnagel.objgrader.misc.PasswordStorage;
 import com.andrewrnagel.objgrader.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * Created by Andrew Nagel on 9/28/16 at 2:50 PM EST.
@@ -54,4 +53,15 @@ public class MainService {
         this.studentRepository.save(student);
     }
 
+    public List<Admin> getAllAdmins() {
+        return this.adminRepository.findAll();
+    }
+
+    public List<Teacher> getAllTeachers() {
+        return this.teacherRepository.findAll();
+    }
+
+    public List<Student> getAllStudents() {
+        return this.studentRepository.findAll();
+    }
 }
