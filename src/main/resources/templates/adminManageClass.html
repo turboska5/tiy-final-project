@@ -89,25 +89,15 @@
                         <th>Class Name</th>
                         <th>Class ID#</th>
                     </tr>
-                    <tr>
+                    <tr th:each="student : ${studentList}">
                         <td><button class="minusicon"><a></a></button></td>
-                        <td>SMITH</td>
-                        <td>MATTHEW</td>
-                        <td>9824621</td>
-                        <td>12</td>
-                        <td>1</td>
-                        <td>PHYSICS 101</td>
-                        <td>SCIPHY101A</td>
-                    </tr>
-                    <tr>
-                        <td><button class="minusicon"><a></a></button></td>
-                        <td>ROJOS</td>
-                        <td>NADIA</td>
-                        <td>758432</td>
-                        <td>12</td>
-                        <td>1</td>
-                        <td>PHSYICS 101</td>
-                        <td>SCIPHY101A</td>
+                        <td th:text="${student.getLastName()}">SMITH</td>
+                        <td th:text="${student.getFirstName()}">MATTHEW</td>
+                        <td th:text="${student.getStudentNumber()}">9824621</td>
+                        <td th:text="${student.getGradeLevel()}">12</td>
+                        <td th:text="${'N/A'}">1</td>
+                        <td th:text="${'N/A'}">PHYSICS 101</td>
+                        <td th:text="${'N/A'}">SCIPHY101A</td>
                     </tr>
                 </table>
             </div>

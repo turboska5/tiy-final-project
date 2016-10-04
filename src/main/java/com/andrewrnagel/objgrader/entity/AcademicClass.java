@@ -14,7 +14,6 @@ public class AcademicClass {
     @GeneratedValue
     @NotNull
     private Integer classID;
-
     private String name;
     private String identifier;
     private String department;

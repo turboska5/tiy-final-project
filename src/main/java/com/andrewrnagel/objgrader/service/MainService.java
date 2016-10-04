@@ -1,5 +1,6 @@
 package com.andrewrnagel.objgrader.service;
 
+import com.andrewrnagel.objgrader.entity.AcademicClass;
 import com.andrewrnagel.objgrader.entity.Admin;
 import com.andrewrnagel.objgrader.entity.Student;
 import com.andrewrnagel.objgrader.entity.Teacher;
@@ -51,6 +52,10 @@ public class MainService {
         student.getUser().setEmail(student.getEmailAddress());
         student.getUser().setRole(3);
         this.studentRepository.save(student);
+    }
+
+    public List<AcademicClass> getAllClasses() {
+        return this.classRepo.findAll();
     }
 
     public List<Admin> getAllAdmins() {
