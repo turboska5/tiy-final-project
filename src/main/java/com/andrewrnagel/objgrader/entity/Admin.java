@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Created by Andrew Nagel on 10/3/16 at 11:24 AM EST.
@@ -18,7 +19,8 @@ public class Admin {
     private String firstName;
     private String lastName;
     private String emailAddress;
-    @DateTimeFormat(pattern = "yyyy-dd-MM")
+//    @DateTimeFormat(pattern = "yyyy-dd-MM")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate hireDate;
     private String title;
     @OneToOne(cascade = CascadeType.ALL)
@@ -30,12 +32,24 @@ public class Admin {
     public Admin() {
     }
 
+    public Admin(String firstName, String lastName, String emailAddress, String hireDate, String title, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.emailAddress = emailAddress;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        this.hireDate = LocalDate.parse(hireDate, formatter);
+        this.title = title;
+        this.password = password;
+        this.user = new User(this.emailAddress, 1);
+
+    }
+
     public Admin(String firstName, String lastName, String emailAddress, String title) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailAddress = emailAddress;
         this.title = title;
-        this.user = new User(this.emailAddress, 1);
+
     }
 
     //getters and setters

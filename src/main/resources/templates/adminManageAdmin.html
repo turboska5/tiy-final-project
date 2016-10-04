@@ -33,6 +33,7 @@
         <fieldset>
             <legend>Manage Admin</legend>
                 <form class="ManageForm" th:action="ManageAdmin" action="../templates/adminUsers.html" method="post">
+                    <input type="hidden" id="adminID" name="adminID" th:value="${admin.getAdminID()}"/>
                     <label>First Name</label>
                     <input name="firstName" type="text" placeholder="First Name"/>
                     <br/>
@@ -43,7 +44,7 @@
                     <input name="emailAddress" type="text" placeholder="Email"/>
                     <br/>
                     <label>Password</label>
-                    <input name="password" type="text" placeholder="Password"/>
+                    <input name="password" type="password" placeholder="Password"/>
                     <br/>
                     <label>Hire Date</label>
                     <input name="hireDate" type="date"/>
