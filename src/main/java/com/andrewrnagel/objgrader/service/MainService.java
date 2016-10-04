@@ -1,6 +1,7 @@
 package com.andrewrnagel.objgrader.service;
 
 import com.andrewrnagel.objgrader.entity.Admin;
+import com.andrewrnagel.objgrader.entity.User;
 import com.andrewrnagel.objgrader.misc.PasswordStorage;
 import com.andrewrnagel.objgrader.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +30,10 @@ public class MainService {
     //methods
     //save admin user to admin table
     public void saveAdmin(Admin admin) throws SQLException, PasswordStorage.CannotPerformOperationException {
-        admin.getUser().setEmail(admin.getEmailAddress());
+//        admin.setUser(new User());
         admin.getUser().setPassword(PasswordStorage.createHash(admin.getPassword()));
+        admin.getUser().setEmail(admin.getEmailAddress());
+        admin.getUser().setRole(1);
         this.adminRepository.save(admin);
     }
 }

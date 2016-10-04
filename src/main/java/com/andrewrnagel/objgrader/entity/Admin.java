@@ -14,22 +14,27 @@ import java.time.format.DateTimeFormatter;
 public class Admin {
     @Id
     @GeneratedValue
-    @NotNull
     private Integer adminID;
     private String firstName;
     private String lastName;
     private String emailAddress;
-//    @DateTimeFormat(pattern = "yyyy-dd-MM")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate hireDate;
     private String title;
     @OneToOne(cascade = CascadeType.ALL)
-    private User user;
+    private User user = new User();
     @Transient
     private String password;
 
     //constructors
     public Admin() {
+    }
+
+    public Admin(String firstName, String lastName, String emailAddress, String title) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.emailAddress = emailAddress;
+        this.title = title;
     }
 
     public Admin(String firstName, String lastName, String emailAddress, String hireDate, String title, String password) {
@@ -40,16 +45,6 @@ public class Admin {
         this.hireDate = LocalDate.parse(hireDate, formatter);
         this.title = title;
         this.password = password;
-        this.user = new User(this.emailAddress, 1);
-
-    }
-
-    public Admin(String firstName, String lastName, String emailAddress, String title) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.emailAddress = emailAddress;
-        this.title = title;
-
     }
 
     //getters and setters

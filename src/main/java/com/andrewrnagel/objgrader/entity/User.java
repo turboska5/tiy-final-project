@@ -21,6 +21,7 @@ public class User {
     private String password;
     @NotNull
     private Integer role;
+    boolean disabled = false;
 
     //constructors
     //default constructor
