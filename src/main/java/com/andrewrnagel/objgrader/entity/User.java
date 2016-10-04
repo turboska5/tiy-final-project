@@ -73,4 +73,15 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String isDisabled() {
+        if(disabled) {
+            return "Yes";
+        }
+        return "No";
+    }
+
+    public void setDisabled(boolean disabled) {
+        this.disabled = disabled;
+    }
 }
