@@ -8,4 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 
 public interface StudentRepository extends JpaRepository<Student, Integer> {
+    Student getByUserId(Integer id);
+//    Student getByEmailAddress(String email);
 }
