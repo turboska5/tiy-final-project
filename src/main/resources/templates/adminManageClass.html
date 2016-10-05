@@ -55,7 +55,7 @@
                         </select>
                         <br/>
                         <label>Teacher</label>
-                        <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('teacher.lastName')}"></li><li th:each="err : ${#fields.errors('teacher.firstName')}"></li></ul>
+                        <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('teacher')}"></li></ul>
                         <select name="teacher" th:field="*{teacher}" th:errorclass="error">
                             <option value="" selected="true">Teacher</option>
                             <option th:each="teacher : ${teacherList}" th:value="${teacher.getTeacherID()}" value="" th:text="${teacher.getLastName() + ', ' + teacher.getFirstName()}"></option>
