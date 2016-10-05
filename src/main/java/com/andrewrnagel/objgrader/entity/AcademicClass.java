@@ -37,8 +37,13 @@ public class AcademicClass {
     @NotNull
     private Integer capacity=0;
     @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "students_classes",
+            joinColumns = @JoinColumn(name = "classID"),
+            inverseJoinColumns = @JoinColumn(name = "studentID")
+    )
     @Valid
-    @JoinColumn(name = "studentID")
+//    @JoinColumn(name = "studentID")
     private List<Student> students = new ArrayList<>();
 
     public AcademicClass() {
