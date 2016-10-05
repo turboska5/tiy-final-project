@@ -39,8 +39,8 @@ public class MainService {
     }
 
     public void saveTeacher(Teacher teacher) throws SQLException, PasswordStorage.CannotPerformOperationException {
-        teacher.getUser().setPassword(PasswordStorage.createHash(teacher.getPassword()));
-        teacher.getUser().setEmail(teacher.getEmailAddress());
+        teacher.getUser().setPassword(PasswordStorage.createHash(teacher.getUser().getPassword()));
+        teacher.getUser().setEmail(teacher.getUser().getEmail());
         teacher.getUser().setRole(2);
         this.teacherRepository.save(teacher);
     }
