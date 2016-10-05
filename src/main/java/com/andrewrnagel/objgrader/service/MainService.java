@@ -38,14 +38,11 @@ public class MainService {
         this.adminRepository.save(admin);
     }
 
-    public void saveTeacher(Teacher teacher) throws SQLException, PasswordStorage.CannotPerformOperationException {
-        teacher.getUser().setPassword(PasswordStorage.createHash(teacher.getUser().getPassword()));
-        teacher.getUser().setEmail(teacher.getUser().getEmail());
-        teacher.getUser().setRole(2);
+    public void saveTeacher(Teacher teacher) throws SQLException {
         this.teacherRepository.save(teacher);
     }
 
-    public void saveStudent(Student student) throws SQLException, PasswordStorage.CannotPerformOperationException {
+    public void saveStudent(Student student) throws SQLException{
         this.studentRepository.save(student);
     }
 
@@ -79,5 +76,9 @@ public class MainService {
 
     public Teacher getTeacher(Integer teacherID) {
         return this.teacherRepository.findOne(teacherID);
+    }
+
+    public Admin getAdmin(Integer adminID) {
+        return this.adminRepository.findOne(adminID);
     }
 }

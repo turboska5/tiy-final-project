@@ -24,7 +24,6 @@ public class User {
     @NotNull
     @NotEmpty
     private String password;
-    @NotNull
     private Integer role;
     boolean disabled = false;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)

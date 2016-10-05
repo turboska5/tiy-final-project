@@ -60,7 +60,7 @@
                         <th>Disabled</th>
                     </tr>
                     <tr th:each="admin : ${adminList}" th:object="${admin}">
-                        <td><a th:href="@{/adminManageAdmin}" href="../templates/adminManageAdmin.html"><button class="editicon"></button></a></td>
+                        <td><a th:href="@{/adminManageAdmin?(adminID=${admin.getAdminID()})}" href="../templates/adminManageAdmin.html"><button class="editicon"></button></a></td>
                         <td th:text="*{lastName}">ROOSEVELT</td>
                         <td th:text="*{firstName}">THEODORE</td>
                         <td th:text="*{user.email}">troosevelt@gmail.com</td>
@@ -108,7 +108,7 @@
                         <th>Disabled</th>
                     </tr>
                     <tr th:each="teacher : ${teacherList}" th:object="${teacher}">
-                        <td><a th:href="@{/adminManageTeacher}" href="../templates/adminManageTeacher.html"><button class="editicon"></button></a></td>
+                        <td><a th:href="@{/adminManageTeacher?(teacherID=${teacher.getTeacherID()})}" href="../templates/adminManageTeacher.html"><button class="editicon"></button></a></td>
                         <td th:text="*{lastName}">BUSH</td>
                         <td th:text="*{firstName}">JAMES</td>
                         <td th:text="*{user.email}">jebush@gmail.com</td>
