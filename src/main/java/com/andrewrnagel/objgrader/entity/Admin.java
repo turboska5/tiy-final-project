@@ -23,9 +23,6 @@ public class Admin {
     @NotNull
     @NotBlank
     private String lastName;
-    @NotNull
-    @NotBlank
-    private String emailAddress;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @NotNull
     private LocalDate hireDate;
@@ -34,30 +31,23 @@ public class Admin {
     private String title;
     @OneToOne(cascade = CascadeType.ALL)
     private User user = new User();
-    @Transient
-    @NotNull
-    @NotBlank
-    private String password;
 
     //constructors
     public Admin() {
     }
 
-    public Admin(String firstName, String lastName, String emailAddress, String title) {
+    public Admin(String firstName, String lastName, String title) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.emailAddress = emailAddress;
         this.title = title;
     }
 
-    public Admin(String firstName, String lastName, String emailAddress, String hireDate, String title, String password) {
+    public Admin(String firstName, String lastName, String hireDate, String title) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.emailAddress = emailAddress;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         this.hireDate = LocalDate.parse(hireDate, formatter);
         this.title = title;
-        this.password = password;
     }
 
     //getters and setters
@@ -85,14 +75,6 @@ public class Admin {
         this.lastName = lastName;
     }
 
-    public String getEmailAddress() {
-        return emailAddress;
-    }
-
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
-    }
-
     public LocalDate getHireDate() {
         return hireDate;
     }
@@ -115,14 +97,6 @@ public class Admin {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getTenure() {
