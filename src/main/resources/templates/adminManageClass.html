@@ -27,100 +27,154 @@
     </nav>
 </head>
 <body>
-<section>
-    <!--class manager-->
-    <article>
-        <fieldset>
-            <legend>Manage Class</legend>
-                <form class="ManageForm" th:action="adminManageClass" action="../templates/adminClasses.html" method="post">
-                    <label>Class Name</label>
-                    <input name="name" type="text" placeholder="Class Name"/>
-                    <br/>
-                    <label>ID#</label>
-                    <input name="identifier" type="text" placeholder="Class ID#"/>
-                    <br/>
-                    <label>Dept.</label>
-                    <select name="department">
-                        <option value="" select="true">Department</option>
-                        <option value="Agriculture" >Agriculture</option>
-                        <option value="Math" >Math</option>
-                        <option value="Physical Education" >Physical Education</option>
-                        <option value="Science" >Science</option>
-                        <option value="Social Studies" >Social Studies</option>
-                        <option value="Technology" >Technology</option>
-                    </select>
-                    <br/>
-                    <label>Teacher</label>
-                    <select name="teacher">
-                        <option value="" selected="true">Teacher</option>
-                        <option th:each="teacher : ${teacherList}" th:value="${teacher.getTeacherID()}" value="" th:text="${teacher.getLastName() + ', ' + teacher.getFirstName()}"></option>
-                    </select>
-                    <br/>
-                    <label>Period</label>
-                    <select name="period">
-                        <option value="" selected="true">Period</option>
-                        <option value="1" >1</option>
-                        <option value="2" >2</option>
-                        <option value="3" >3</option>
-                        <option value="4" >4</option>
-                        <option value="5" >5</option>
-                        <option value="6" >6</option>
-                        <option value="7" >7</option>
-                        <option value="8" >8</option>
-                    </select>
-                    <br/>
-                    <label>Capacity</label>
-                    <input name="capacity" type="number" min="0" placeholder="Capacity"/>
-                    <br/>
-                    <button>Save</button>
-                </form>
-        </fieldset>
-    </article>
-    <!--class manager search engine-->
-    <fieldset class="SearchField">
-        <legend>Students</legend>
-        <article class="SearchParams">
-            <div id="StudentSearchParams">
-                <form>
-                    <input class="InputField" type="text" placeholder="Last Name"/>
-                    <input class="InputField" type="text" placeholder="First Name"/>
-                    <input class="InputField" type="text" placeholder="Student ID#"/>
-                    <input class="InputField" type="text" placeholder="Grade"/>
-                    <input class="InputField" type="text" placeholder="Period"/>
-                    <button class="SearchButton">Search</button>
-                </form>
-            </div>
-            <br/>
+    <section>
+        <!--class manager (class properties)-->
+        <article>
+            <fieldset>
+                <legend>Manage Class</legend>
+                    <form class="ManageForm" th:object="${thisClass}" th:action="adminManageClass" action="../templates/adminClasses.html" method="post">
+                        <input type="hidden" id="classID" name="classID" th:value="${thisClass.getClassID()}"/>
+                        <label>Class Name</label>
+                        <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('name')}"></li></ul>
+                        <input name="name" type="text" placeholder="Class Name" th:field="*{name}" th:errorclass="error"/>
+                        <br/>
+                        <label>ID#</label>
+                        <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('identifier')}"></li></ul>
+                        <input name="identifier" type="text" placeholder="Class ID#" th:field="*{identifier}" th:errorclass="error"/>
+                        <br/>
+                        <label>Dept.</label>
+                        <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('department')}"></li></ul>
+                        <select name="department" th:field="*{department}" th:errorclass="error">
+                            <option value="" select="true">Department</option>
+                            <option value="Agriculture" >Agriculture</option>
+                            <option value="Math" >Math</option>
+                            <option value="Physical Education" >Physical Education</option>
+                            <option value="Science" >Science</option>
+                            <option value="Social Studies" >Social Studies</option>
+                            <option value="Technology" >Technology</option>
+                        </select>
+                        <br/>
+                        <label>Teacher</label>
+                        <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('teacher.lastName')}"></li><li th:each="err : ${#fields.errors('teacher.firstName')}"></li></ul>
+                        <select name="teacher" th:field="*{teacher}" th:errorclass="error">
+                            <option value="" selected="true">Teacher</option>
+                            <option th:each="teacher : ${teacherList}" th:value="${teacher.getTeacherID()}" value="" th:text="${teacher.getLastName() + ', ' + teacher.getFirstName()}"></option>
+                        </select>
+                        <br/>
+                        <label>Period</label>
+                        <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('period')}"></li></ul>
+                        <select name="period" th:field="*{period}" th:errorclass="error">
+                            <option value="" selected="true">Period</option>
+                            <option value="1" >1</option>
+                            <option value="2" >2</option>
+                            <option value="3" >3</option>
+                            <option value="4" >4</option>
+                            <option value="5" >5</option>
+                            <option value="6" >6</option>
+                            <option value="7" >7</option>
+                            <option value="8" >8</option>
+                        </select>
+                        <br/>
+                        <label>Capacity</label>
+                        <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('capacity')}"></li></ul>
+                        <input name="capacity" type="number" min="0" placeholder="Capacity" th:field="*{capacity}" th:errorclass="error"/>
+                        <br/>
+                        <button>Save</button>
+                    </form>
+            </fieldset>
         </article>
-        <!--class manager results-->
-        <div class="SearchResults">
-            <!--<legend>Results</legend>-->
-            <div id="StudentResults">
-                <table class="ResultsTable">
-                    <tr>
-                        <th></th>
-                        <th>Last Name</th>
-                        <th>First Name</th>
-                        <th>Student ID#</th>
-                        <th>Grade</th>
-                        <th>Period</th>
-                        <th>Class Name</th>
-                        <th>Class ID#</th>
-                    </tr>
-                    <tr th:each="student : ${studentRoster}">
-                        <td><button class="minusicon"><a></a></button></td>
-                        <td th:text="${student.getLastName()}">SMITH</td>
-                        <td th:text="${student.getFirstName()}">MATTHEW</td>
-                        <td th:text="${student.getStudentNumber()}">9824621</td>
-                        <td th:text="${student.getGradeLevel()}">12</td>
-                        <td th:text="${'N/A'}">1</td>
-                        <td th:text="${'N/A'}">PHYSICS 101</td>
-                        <td th:text="${'N/A'}">SCIPHY101A</td>
-                    </tr>
-                </table>
+        <!--enrolled students manager search engine-->
+        <fieldset class="SearchField">
+            <legend>Enrolled Students</legend>
+            <article class="SearchParams">
+                <div id="EnrolledStudentSearchParams">
+                    <form>
+                        <input class="InputField" type="text" placeholder="Last Name"/>
+                        <input class="InputField" type="text" placeholder="First Name"/>
+                        <input class="InputField" type="text" placeholder="Student ID#"/>
+                        <input class="InputField" type="text" placeholder="Grade"/>
+                        <input class="InputField" type="text" placeholder="Period"/>
+                        <button class="SearchButton">Search</button>
+                    </form>
+                </div>
+                <br/>
+            </article>
+            <!--enrolled students manager results-->
+            <div class="SearchResults">
+                <!--<legend>Results</legend>-->
+                <div id="EnrolledStudentResults">
+                    <table class="ResultsTable">
+                        <tr>
+                            <th></th>
+                            <th>Last Name</th>
+                            <th>First Name</th>
+                            <th>Student ID#</th>
+                            <th>Grade</th>
+                            <th>Period</th>
+                            <th>Class Name</th>
+                            <th>Class ID#</th>
+                        </tr>
+                        <tr th:each="student : ${studentRoster}">
+                            <td><button class="minusicon"><a></a></button></td>
+                            <td th:text="${student.getLastName()}">SMITH</td>
+                            <td th:text="${student.getFirstName()}">MATTHEW</td>
+                            <td th:text="${student.getStudentNumber()}">9824621</td>
+                            <td th:text="${student.getGradeLevel()}">12</td>
+                            <td th:text="${'N/A'}">1</td>
+                            <td th:text="${'N/A'}">PHYSICS 101</td>
+                            <td th:text="${'N/A'}">SCIPHY101A</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
+        </fieldset>
+        <div class="divider">
+            <hr/>
         </div>
-    </fieldset>
-</section>
+        <!--available students manager search engine-->
+        <fieldset class="SearchField">
+            <legend>Available Students</legend>
+            <article class="SearchParams">
+                <div id="StudentSearchParams">
+                    <form>
+                        <input class="InputField" type="text" placeholder="Last Name"/>
+                        <input class="InputField" type="text" placeholder="First Name"/>
+                        <input class="InputField" type="text" placeholder="Student ID#"/>
+                        <input class="InputField" type="text" placeholder="Grade"/>
+                        <input class="InputField" type="text" placeholder="Period"/>
+                        <button class="SearchButton">Search</button>
+                    </form>
+                </div>
+                <br/>
+            </article>
+            <!--available students manager results-->
+            <div class="SearchResults">
+                <div id="StudentResults">
+                    <table class="ResultsTable">
+                        <tr>
+                            <th class="icon"></th>
+                            <th >Last Name</th>
+                            <th>First Name</th>
+                            <th>Student ID#</th>
+                            <th>Grade</th>
+                            <th>Period</th>
+                            <th>Class Name</th>
+                            <th>Class ID#</th>
+                        </tr>
+                        <tr th:each="student : ${studentList}" th:object="${student}">
+                            <td><button class="addicon"><a></a></button></td>
+                            <td th:text="*{lastName}">SMITH</td>
+                            <td th:text="*{firstName}">MATTHEW</td>
+                            <td th:text="*{studentNumber}">9824621</td>
+                            <td th:text="*{gradeLevel}">12</td>
+                            <td th:text="${'N/A'}">1</td>
+                            <td th:text="${'N/A'}">PHYSICS 101</td>
+                            <td th:text="${'N/A'}">SCIPHY101A</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </fieldset>
+    </section>
 </body>
 </html>

@@ -14,11 +14,11 @@ public class Grade {
 
     @NotNull
     @ManyToOne(cascade = CascadeType.PERSIST)
-    private Assignment assignment = new Assignment();
+    private Assignment assignment;
 
     @NotNull
     @ManyToOne(cascade = CascadeType.PERSIST)
-    private Student student = new Student();
+    private Student student;
 
     private Integer earnedPoints;
 
