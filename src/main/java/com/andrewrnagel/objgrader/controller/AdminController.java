@@ -19,11 +19,10 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Created by Andrew Nagel on 9/28/16 at 2:47 PM EST.
+ * Created by Jimmy and Andrew on 10/5/16.
  */
-
 @Controller
-public class MainController {
+public class AdminController {
     @Autowired
     private MainService mainService;
     //local properties
@@ -201,14 +200,6 @@ public class MainController {
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", date);
 
-//        if (student.getUser().getEmail().equals("")){
-//            FieldError fieldError = new FieldError("student", "user.email", student.getUser().getEmail(), false, new String[]{"Declined.student.user.email"}, (String[])null, "Did not Take Email");
-//            bindingResult.addError(fieldError);
-//        }
-//        if (student.getUser().getPassword().equals("")){
-//            FieldError fieldError = new FieldError("student", "user.password", student.getUser().getPassword(), false, new String[]{"Declined.student.user.password"}, (String[])null, "Did not Take Password");
-//            bindingResult.addError(fieldError);
-//        }
         if(bindingResult.hasErrors()){
             model.addAttribute("bindingResult", bindingResult);
             model.addAttribute("student", student);
@@ -233,52 +224,4 @@ public class MainController {
         return "redirect:/adminUsers";
     }
 
-    //TEACHER ACCESS
-    @RequestMapping(value = "/teacherHome", method = RequestMethod.GET)
-    public String teacherHomePage(Model model, HttpSession session) {
-        if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
-            return "redirect:/logout";
-        }
-        model.addAttribute("userName", session.getAttribute("userName"));
-        model.addAttribute("date", date);
-        return "teacherHome";
-    }
-    @RequestMapping(value = "/teacherAttendance", method = RequestMethod.GET)
-    public String teacherAttendancePage(Model model, HttpSession session) {
-        if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
-            return "redirect:/logout";
-        }
-        model.addAttribute("userName", session.getAttribute("userName"));
-        model.addAttribute("date", date);
-        return "teacherAttendance";
-    }
-    @RequestMapping(value = "/teacherGradeBook", method = RequestMethod.GET)
-    public String teacherGradeBookPage(Model model, HttpSession session) {
-        if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
-            return "redirect:/logout";
-        }
-        model.addAttribute("userName", session.getAttribute("userName"));
-        model.addAttribute("date", date);
-        return "teacherGradeBook";
-    }
-    @RequestMapping(value = "/teacherManageAssign", method = RequestMethod.GET)
-    public String teacherGradeBookAssignForm(Model model, HttpSession session) {
-        if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
-            return "redirect:/logout";
-        }
-        model.addAttribute("userName", session.getAttribute("userName"));
-        model.addAttribute("date", date);
-        return "teacherManageAssign";
-    }
-
-    //STUDENT ACCESS
-    @RequestMapping(value = "/studentHome", method = RequestMethod.GET)
-    public String studentHomePage(Model model, HttpSession session) {
-        if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(3)) {
-            return "redirect:/logout";
-        }
-        model.addAttribute("userName", session.getAttribute("userName"));
-        model.addAttribute("date", date);
-        return "studentHome";
-    }
 }
