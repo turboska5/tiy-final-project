@@ -59,11 +59,11 @@ public class AdminController {
             return "redirect:/logout";
         }
         if(classID > 0) {
-            AcademicClass thisClass = mainService.getAcademicClass(classID);
-            model.addAttribute("thisClass", thisClass);
+            AcademicClass academicClass = mainService.getAcademicClass(classID);
+            model.addAttribute("academicClass", academicClass);
         } else {
-            AcademicClass thisClass = new AcademicClass("", "");
-            model.addAttribute("thisClass", thisClass);
+            AcademicClass academicClass = new AcademicClass("", "");
+            model.addAttribute("academicClass", academicClass);
         }
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", date);
@@ -84,9 +84,10 @@ public class AdminController {
         model.addAttribute("teacherList", mainService.getAllTeachers());
         if(bindingResult.hasErrors()){
             model.addAttribute("bindingResult", bindingResult);
-            model.addAttribute("thisClass", academicClass);
+            model.addAttribute("academicClass", academicClass);
             model.addAttribute("userName", session.getAttribute("userName"));
             model.addAttribute("date", date);
+            model.addAttribute("studentList", mainService.getAllStudents());
             return "adminManageClass";
         }
 
@@ -201,6 +202,8 @@ public class AdminController {
         if(teacher.getTeacherID() > 0) {
             //bring over correct userID
             User user = mainService.getTeacher(teacher.getTeacherID()).getUser();
+            //persist teacher class assignments
+            teacher.setTeacherClasses(mainService.getTeacher(teacher.getTeacherID()).getTeacherClasses());
             //update email if changed
             if(!(teacher.getUser().getEmail().equals(user.getEmail()))){
                 user.setEmail(teacher.getUser().getEmail());

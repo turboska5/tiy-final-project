@@ -32,8 +32,8 @@
         <article>
             <fieldset>
                 <legend>Manage Class</legend>
-                    <form class="ManageForm" th:object="${thisClass}" th:action="adminManageClass" action="../templates/adminClasses.html" method="post">
-                        <input type="hidden" id="classID" name="classID" th:value="${thisClass.getClassID()}"/>
+                    <form class="ManageForm" th:object="${academicClass}" th:action="adminManageClass" action="../templates/adminClasses.html" method="post">
+                        <input type="hidden" id="classID" name="classID" th:value="${academicClass.getClassID()}"/>
                         <label>Class Name</label>
                         <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('name')}"></li></ul>
                         <input name="name" type="text" placeholder="Class Name" th:field="*{name}" th:errorclass="error"/>
@@ -42,7 +42,7 @@
                         <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('identifier')}"></li></ul>
                         <input name="identifier" type="text" placeholder="Class ID#" th:field="*{identifier}" th:errorclass="error"/>
                         <br/>
-                        <label>Dept.</label>
+                        <label>Department</label>
                         <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('department')}"></li></ul>
                         <select name="department" th:field="*{department}" th:errorclass="error">
                             <option value="" select="true">Department</option>
