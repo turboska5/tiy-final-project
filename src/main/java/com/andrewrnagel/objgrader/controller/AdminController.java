@@ -59,17 +59,24 @@ public class AdminController {
         if(classID > 0) {
             AcademicClass academicClass = mainService.getAcademicClass(classID);
             model.addAttribute("academicClass", academicClass);
+            List<Student> roster = academicClass.getStudents();
+            List<Student> pool = mainService.getAllStudents();
+            model.addAttribute("studentRoster", roster);
+            if(roster.size() > 0) {
+                //add studentList as those remaining
+                for(Student student : roster); {
+                    
+                }
+            }
+            model.addAttribute("studentList", pool);
         } else {
             AcademicClass academicClass = new AcademicClass("", "");
             model.addAttribute("academicClass", academicClass);
+            model.addAttribute("studentList", mainService.getAllStudents());
         }
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", date);
         model.addAttribute("teacherList", mainService.getAllTeachers());
-        //TODO: student roster
-//        model.addAttribute("studentRoster", thisClass.getStudents());
-        //TODO: display only students not currently enrolled this or any other class during this period
-        model.addAttribute("studentList", mainService.getAllStudents());
         return "adminManageClass";
     }
     @RequestMapping(value = "/adminManageClass", method = RequestMethod.POST)
