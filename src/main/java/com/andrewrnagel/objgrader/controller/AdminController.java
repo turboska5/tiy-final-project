@@ -17,6 +17,7 @@ import javax.validation.Valid;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 /**
  * Created by Jimmy and Andrew on 10/5/16.
@@ -83,11 +84,22 @@ public class AdminController {
         model.addAttribute("teacherList", mainService.getAllTeachers());
         if(bindingResult.hasErrors()){
             model.addAttribute("bindingResult", bindingResult);
-            model.addAttribute("class", academicClass);
+            model.addAttribute("thisClass", academicClass);
+            model.addAttribute("userName", session.getAttribute("userName"));
+            model.addAttribute("date", date);
             return "adminManageClass";
-        } else {
-            mainService.saveClass(academicClass);
         }
+
+        if(academicClass.getClassID() > 0) {
+            //bring over old student roster
+            List<Student> classStudents = mainService.getAcademicClass(academicClass.getClassID()).getStudents();
+            //update class roster, if changed
+            if(!academicClass.getStudents().equals(classStudents)) {
+                academicClass.setStudents(classStudents);
+            }
+        }
+
+        mainService.saveClass(academicClass);
         return "redirect:/adminClasses";
     }
     @RequestMapping(value = "/adminUsers", method = RequestMethod.GET)
@@ -155,15 +167,14 @@ public class AdminController {
         model.addAttribute("date", date);
         return "adminManageTeacher";
     }
+    //TODO
     @RequestMapping(value = "/adminManageTeacher", method = RequestMethod.POST)
     public String adminUserTeacherFormSubmit(@Valid Teacher teacher, BindingResult bindingResult, Model model, HttpSession session) throws SQLException, PasswordStorage.CannotPerformOperationException {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
             return "redirect:/logout";
         }
-
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", date);
-
         if(bindingResult.hasErrors()){
             model.addAttribute("bindingResult", bindingResult);
             model.addAttribute("teacher", teacher);
@@ -171,7 +182,6 @@ public class AdminController {
             model.addAttribute("date", date);
             return "adminManageTeacher";
         }
-
         if(teacher.getTeacherID() > 0) {
             //bring over correct userID
             User user = mainService.getTeacher(teacher.getTeacherID()).getUser();
@@ -185,11 +195,9 @@ public class AdminController {
             }
             teacher.setUser(user);
         }
-
         teacher.getUser().setPassword(PasswordStorage.createHash(teacher.getUser().getPassword()));
         teacher.getUser().setRole(2);
         mainService.saveTeacher(teacher);
-
         return "redirect:/adminUsers";
     }
     @RequestMapping(value = "/adminManageStudent", method = RequestMethod.GET)
@@ -216,7 +224,6 @@ public class AdminController {
         }
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", date);
-
         if(bindingResult.hasErrors()){
             model.addAttribute("bindingResult", bindingResult);
             model.addAttribute("student", student);
@@ -240,5 +247,4 @@ public class AdminController {
         mainService.saveStudent(student);
         return "redirect:/adminUsers";
     }
-
 }
