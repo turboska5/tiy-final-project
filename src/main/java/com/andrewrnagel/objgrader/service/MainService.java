@@ -76,4 +76,8 @@ public class MainService {
     public Student getStudent(Integer studentID) {
         return this.studentRepository.findOne(studentID);
     }
+
+    public Teacher getTeacher(Integer teacherID) {
+        return this.teacherRepository.findOne(teacherID);
+    }
 }

@@ -2,6 +2,7 @@ package com.andrewrnagel.objgrader.entity;
 
 import org.hibernate.validator.constraints.NotBlank;
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,7 @@ public class Student {
     @NotNull
     private Integer gradeLevel;
     @OneToOne(cascade = CascadeType.ALL)
+    @Valid
     private User user = new User();
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "studentID")

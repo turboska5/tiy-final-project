@@ -152,9 +152,26 @@ public class MainController {
             model.addAttribute("userName", session.getAttribute("userName"));
             model.addAttribute("date", date);
             return "adminManageTeacher";
-        } else {
-            mainService.saveTeacher(teacher);
         }
+
+        if(teacher.getTeacherID() > 0) {
+            //bring over correct userID
+            User user = mainService.getTeacher(teacher.getTeacherID()).getUser();
+            //update email if changed
+            if(!(teacher.getUser().getEmail().equals(user.getEmail()))){
+                user.setEmail(teacher.getUser().getEmail());
+            }
+            //update password if changed
+            if(!(teacher.getUser().getPassword().equals(user.getPassword()))){
+                user.setPassword(teacher.getUser().getPassword());
+            }
+            teacher.setUser(user);
+        }
+
+        teacher.getUser().setPassword(PasswordStorage.createHash(teacher.getUser().getPassword()));
+        teacher.getUser().setEmail(teacher.getUser().getEmail());
+        teacher.getUser().setRole(2);
+        mainService.saveTeacher(teacher);
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", date);
         return "redirect:/adminUsers";
@@ -184,14 +201,14 @@ public class MainController {
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", date);
 
-        if (student.getUser().getEmail().equals("")){
-            FieldError fieldError = new FieldError("student", "user.email", student.getUser().getEmail(), false, new String[]{"Declined.student.user.email"}, (String[])null, "Did not Take Email");
-            bindingResult.addError(fieldError);
-        }
-        if (student.getUser().getPassword().equals("")){
-            FieldError fieldError = new FieldError("student", "user.password", student.getUser().getPassword(), false, new String[]{"Declined.student.user.password"}, (String[])null, "Did not Take Password");
-            bindingResult.addError(fieldError);
-        }
+//        if (student.getUser().getEmail().equals("")){
+//            FieldError fieldError = new FieldError("student", "user.email", student.getUser().getEmail(), false, new String[]{"Declined.student.user.email"}, (String[])null, "Did not Take Email");
+//            bindingResult.addError(fieldError);
+//        }
+//        if (student.getUser().getPassword().equals("")){
+//            FieldError fieldError = new FieldError("student", "user.password", student.getUser().getPassword(), false, new String[]{"Declined.student.user.password"}, (String[])null, "Did not Take Password");
+//            bindingResult.addError(fieldError);
+//        }
         if(bindingResult.hasErrors()){
             model.addAttribute("bindingResult", bindingResult);
             model.addAttribute("student", student);
