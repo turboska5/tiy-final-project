@@ -36,10 +36,9 @@ public class AcademicClass {
     private Teacher teacher;
     @NotNull
     private Integer capacity=0;
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL)
     @Valid
-//    @JoinColumn(name = "studentID")
-//    @OrderBy("lastName")
+    @JoinColumn(name = "studentID")
     private List<Student> students = new ArrayList<>();
 
     public AcademicClass() {
