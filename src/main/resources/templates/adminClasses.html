@@ -58,13 +58,13 @@
                             <th>Enrolled</th>
                             <th>Capacity</th>
                         </tr>
-                        <tr th:each="academicClass : ${classList}">
+                        <tr th:each="academicClass : ${classList}" th:object="${academicClass}">
                             <td><a th:href="@{/adminManageClass}" href="../templates/adminManageClass.html"><button class="editicon"></button></a></td>
-                            <td th:text="${academicClass.getName()}">PHYSICS 101</td>
-                            <td th:text="${academicClass.getIdentifier()}">SCIPHY101A</td>
-                            <td th:text="${academicClass.getDepartment()}">SCIENCE</td>
-                            <td th:text="${academicClass.getTeacher().getLastName()}">MR. NAGEL</td>
-                            <td th:text="${academicClass.getPeriod()}">">1</td>
+                            <td th:text="*{name}">PHYSICS 101</td>
+                            <td th:text="*{identifier}">SCIPHY101A</td>
+                            <td th:text="*{department}">SCIENCE</td>
+                            <td th:text="*{teacher.lastName}">MR. NAGEL</td>
+                            <td th:text="*{period}">">1</td>
                             <td th:text="${'N/A'}">>11</td>
                             <td th:text="${'N/A'}">>30</td>
                         </tr>
@@ -105,12 +105,12 @@
                             <th>Class Name</th>
                             <th>Class ID#</th>
                         </tr>
-                        <tr th:each="student : ${studentList}">
+                        <tr th:each="student : ${studentList}" th:object="${student}">
                             <td><button class="addicon"><a></a></button></td>
-                            <td th:text="${student.getLastName()}">SMITH</td>
-                            <td th:text="${student.getFirstName()}">MATTHEW</td>
-                            <td th:text="${student.getStudentNumber()}">9824621</td>
-                            <td th:text="${student.getGradeLevel()}">12</td>
+                            <td th:text="*{lastName}">SMITH</td>
+                            <td th:text="*{firstName}">MATTHEW</td>
+                            <td th:text="*{studentNumber}">9824621</td>
+                            <td th:text="*{gradeLevel}">12</td>
                             <td th:text="${'N/A'}">1</td>
                             <td th:text="${'N/A'}">PHYSICS 101</td>
                             <td th:text="${'N/A'}">SCIPHY101A</td>
