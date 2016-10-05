@@ -123,8 +123,8 @@ public class AdminController {
             Admin admin = mainService.getAdmin(adminID);
             model.addAttribute("admin", admin);
         } else {
-            Admin admin = new Admin("", "", "", "");
-            model.addAttribute(admin);
+            Admin admin = new Admin("", "", "");
+            model.addAttribute("admin", admin);
         }
         
         model.addAttribute("userName", session.getAttribute("userName"));
@@ -136,17 +136,34 @@ public class AdminController {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
             return "redirect:/logout";
         }
+
+        model.addAttribute("userName", session.getAttribute("userName"));
+        model.addAttribute("date", date);
+
         if(bindingResult.hasErrors()){
             model.addAttribute("bindingResult", bindingResult);
             model.addAttribute("admin", admin);
             model.addAttribute("userName", session.getAttribute("userName"));
             model.addAttribute("date", date);
             return "adminManageAdmin";
-        } else {
-            mainService.saveAdmin(admin);
         }
-        model.addAttribute("userName", session.getAttribute("userName"));
-        model.addAttribute("date", date);
+        if(admin.getAdminID() > 0) {
+            //bring over correct userID
+            User user = mainService.getAdmin(admin.getAdminID()).getUser();
+            //update email if changed
+            if(!(admin.getUser().getEmail().equals(user.getEmail()))){
+                user.setEmail(admin.getUser().getEmail());
+            }
+            //update password if changed
+            if(!(admin.getUser().getPassword().equals(user.getPassword()))){
+                user.setPassword(admin.getUser().getPassword());
+            }
+            admin.setUser(user);
+        }
+
+        admin.getUser().setPassword(PasswordStorage.createHash(admin.getUser().getPassword()));
+        admin.getUser().setRole(1);
+        mainService.saveAdmin(admin);
         return "redirect:/adminUsers";
     }
     @RequestMapping(value = "/adminManageTeacher", method = RequestMethod.GET)
@@ -160,7 +177,7 @@ public class AdminController {
             model.addAttribute("teacher", teacher);
         } else {
             Teacher teacher = new Teacher("", "", "");
-            model.addAttribute(teacher);
+            model.addAttribute("teacher", teacher);
         }
 
         model.addAttribute("userName", session.getAttribute("userName"));
