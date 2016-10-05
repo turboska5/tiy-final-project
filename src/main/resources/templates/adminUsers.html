@@ -59,15 +59,15 @@
                         <th>Last Login</th>
                         <th>Disabled</th>
                     </tr>
-                    <tr th:each="admin : ${adminList}">
+                    <tr th:each="admin : ${adminList}" th:object="${admin}">
                         <td><a th:href="@{/adminManageAdmin}" href="../templates/adminManageAdmin.html"><button class="editicon"></button></a></td>
-                        <td th:text="${admin.getLastName()}">ROOSEVELT</td>
-                        <td th:text="${admin.getFirstName()}">THEODORE</td>
-                        <td th:text="${admin.getEmailAddress()}">troosevelt@gmail.com</td>
-                        <td th:text="${admin.getTitle()}">A. PRINCIPAL</td>
-                        <td th:text="${admin.getTenure()}">12</td>
-                        <td th:text="${admin.getUser().getLastLogin()}">09/29/16</td>
-                        <td th:text="${admin.getUser().isDisabled()}">NO</td>
+                        <td th:text="*{lastName}">ROOSEVELT</td>
+                        <td th:text="*{firstName}">THEODORE</td>
+                        <td th:text="*{user.email}">troosevelt@gmail.com</td>
+                        <td th:text="*{title}">A. PRINCIPAL</td>
+                        <td th:text="*{tenure}">12</td>
+                        <td th:text="*{user.lastLogin}">09/29/16</td>
+                        <td th:text="*{user.isDisabled()}">NO</td>
                     </tr>
                 </table>
             </div>
@@ -107,15 +107,15 @@
                         <th>Last Login</th>
                         <th>Disabled</th>
                     </tr>
-                    <tr th:each="teacher : ${teacherList}">
+                    <tr th:each="teacher : ${teacherList}" th:object="${teacher}">
                         <td><a th:href="@{/adminManageTeacher}" href="../templates/adminManageTeacher.html"><button class="editicon"></button></a></td>
-                        <td th:text="${teacher.getLastName()}">BUSH</td>
-                        <td th:text="${teacher.getFirstName()}">JAMES</td>
-                        <td th:text="${teacher.getEmailAddress()}">jebush@gmail.com</td>
-                        <td th:text="${teacher.getDepartment()}">PHYSED</td>
-                        <td th:text="${teacher.getTenure()}">43</td>
-                        <td th:text="${teacher.getUser().getLastLogin()}">09/29/16</td>
-                        <td th:text="${teacher.getUser().isDisabled()}">NO</td>
+                        <td th:text="*{lastName}">BUSH</td>
+                        <td th:text="*{firstName}">JAMES</td>
+                        <td th:text="*{user.email}">jebush@gmail.com</td>
+                        <td th:text="*{department}">PHYSED</td>
+                        <td th:text="*{tenure}">43</td>
+                        <td th:text="*{user.lastLogin}">09/29/16</td>
+                        <td th:text="*{user.isDisabled()}">NO</td>
                     </tr>
                 </table>
             </div>
@@ -155,15 +155,15 @@
                         <th>Last Login</th>
                         <th>Disabled</th>
                     </tr>
-                    <tr th:each="student : ${studentList}">
+                    <tr th:each="student : ${studentList}" th:object="${student}">
                         <td><a th:href="@{/adminManageStudent?(studentID=${student.getStudentID()})}" href="../templates/adminManageStudent.html"><button class="editicon"></button></a></td>
-                        <td th:text="${student.getLastName()}">SMITH</td>
-                        <td th:text="${student.getFirstName()}">MATTHEW</td>
-                        <td th:text="${student.getUser().getEmail()}">msmith01@fakeschools.org</td>
-                        <td th:text="${student.getStudentNumber()}">9824621</td>
-                        <td th:text="${student.getGradeLevel()}">12</td>
-                        <td th:text="${student.getUser().getLastLogin()}">N/A</td>
-                        <td th:text="${student.getUser().isDisabled()}">NO</td>
+                        <td th:text="*{lastName}">SMITH</td>
+                        <td th:text="*{firstName}">MATTHEW</td>
+                        <td th:text="*{user.email}">msmith01@fakeschools.org</td>
+                        <td th:text="*{studentNumber}">9824621</td>
+                        <td th:text="*{gradeLevel}">12</td>
+                        <td th:text="*{user.lastLogin}">N/A</td>
+                        <td th:text="*{user.isDisabled()}">NO</td>
                     </tr>
                 </table>
             </div>
