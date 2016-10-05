@@ -162,7 +162,7 @@
                             <th>Class ID#</th>
                         </tr>
                         <tr th:each="student : ${studentList}" th:object="${student}">
-                            <td><button class="addicon"><a></a></button></td>
+                            <td><a th:href="@{/adminAddStudentToClass?(classID=${academicClass.classID}, studentID=${student.studentID})}"><button class="addicon"></button></a></td>
                             <td th:text="*{lastName}">SMITH</td>
                             <td th:text="*{firstName}">MATTHEW</td>
                             <td th:text="*{studentNumber}">9824621</td>

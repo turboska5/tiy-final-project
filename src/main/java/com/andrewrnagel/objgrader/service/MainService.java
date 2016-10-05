@@ -82,4 +82,10 @@ public class MainService {
     public Admin getAdmin(Integer adminID) {
         return this.adminRepository.findOne(adminID);
     }
+
+    public void addStudentToClass(Integer classID, Integer studentID) {
+        AcademicClass academicClass = getAcademicClass(classID);
+        academicClass.getStudents().add(getStudent(studentID));
+        this.classRepo.save(academicClass);
+    }
 }

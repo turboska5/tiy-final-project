@@ -101,6 +101,15 @@ public class AdminController {
         mainService.saveClass(academicClass);
         return "redirect:/adminClasses";
     }
+    @RequestMapping(value = "/adminAddStudentToClass", method = RequestMethod.GET)
+    public String adminAddStudentToClass(Model model, HttpSession session,
+                                         @RequestParam(defaultValue = "0") Integer classID,
+                                         @RequestParam(defaultValue = "0") Integer studentID) {
+        //TODO
+        mainService.addStudentToClass(classID, studentID);
+
+        return "redirect:/adminManageClass?classID=" + classID;
+    }
     @RequestMapping(value = "/adminUsers", method = RequestMethod.GET)
     public String adminUserPage(Model model, HttpSession session) {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
