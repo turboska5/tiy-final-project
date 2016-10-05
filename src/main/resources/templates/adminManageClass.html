@@ -115,7 +115,7 @@
                             <th>Class ID#</th>
                         </tr>
                         <tr th:each="student : ${studentRoster}">
-                            <td><button class="minusicon"><a></a></button></td>
+                            <td><a th:href="@{/adminDropStudentFromClass?(classID=${academicClass.classID}, studentID=${student.studentID})}"><button class="minusicon"></button></a></td>
                             <td th:text="${student.getLastName()}">SMITH</td>
                             <td th:text="${student.getFirstName()}">MATTHEW</td>
                             <td th:text="${student.getStudentNumber()}">9824621</td>
