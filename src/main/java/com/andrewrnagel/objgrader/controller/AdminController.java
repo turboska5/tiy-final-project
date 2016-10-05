@@ -214,6 +214,7 @@ public class AdminController {
         }
         teacher.getUser().setPassword(PasswordStorage.createHash(teacher.getUser().getPassword()));
         teacher.getUser().setRole(2);
+
         mainService.saveTeacher(teacher);
         return "redirect:/adminUsers";
     }
