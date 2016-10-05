@@ -9,7 +9,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -26,9 +25,6 @@ public class Teacher {
     @NotBlank
     @NotNull
     private String lastName;
-    @NotBlank
-    @NotNull
-    private String emailAddress;
     @NotNull
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate hireDate;
@@ -41,28 +37,21 @@ public class Teacher {
     @JoinColumn(name = "teacherID")
     @OrderBy("period")
     List<AcademicClass> teacherClasses = new ArrayList<>();
-    @Transient
-    @NotBlank
-    @NotNull
-    private String password;
 
     public Teacher() {
     }
 
-    public Teacher(String firstName, String lastName, String emailAddress, String hireDate, String department, String password) {
+    public Teacher(String firstName, String lastName, String hireDate, String department) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.emailAddress = emailAddress;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         this.hireDate = LocalDate.parse(hireDate, formatter);
         this.department = department;
-        this.password = password;
     }
 
-    public Teacher(String firstName, String lastName, String emailAddress, String department) {
+    public Teacher(String firstName, String lastName, String department) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.emailAddress = emailAddress;
         this.department = department;
     }
 
@@ -98,14 +87,6 @@ public class Teacher {
         this.lastName = lastName;
     }
 
-    public String getEmailAddress() {
-        return emailAddress;
-    }
-
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
-    }
-
     public LocalDate getHireDate() {
         return hireDate;
     }
@@ -128,14 +109,6 @@ public class Teacher {
 
     public void setTeacherClasses(List<AcademicClass> teacherClasses) {
         this.teacherClasses = teacherClasses;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getTenure() {

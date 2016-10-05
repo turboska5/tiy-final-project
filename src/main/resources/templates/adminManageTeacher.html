@@ -33,7 +33,7 @@
         <fieldset>
             <legend>Manage Teacher</legend>
                 <form class="ManageForm" th:object="${teacher}" th:action="adminManageTeacher" action="../templates/adminUsers.html" method="post">
-                    <input type="hidden" id="teacherID" name="teacherID"/>
+                    <input type="hidden" id="teacherID" name="teacherID" th:value="${teacher.getTeacherID()}"/>
                     <label>First Name</label>
                     <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('firstName')}"></li></ul>
                     <input name="firstName" type="text" placeholder="First Name" th:field="*{firstName}" th:errorclass="error"/>
@@ -43,12 +43,12 @@
                     <input name="lastName" type="text" placeholder="Last Name" th:field="*{lastName}" th:errorclass="error"/>
                     <br/>
                     <label>Email Address</label>
-                    <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('emailAddress')}"></li></ul>
-                    <input name="emailAddress" type="text" placeholder="Email" th:field="*{emailAddress}" th:errorclass="error"/>
+                    <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('user.email')}"></li></ul>
+                    <input name="emailAddress" type="text" placeholder="Email" th:field="*{user.email}" th:errorclass="error"/>
                     <br/>
                     <label>Password</label>
-                    <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('password')}"></li></ul>
-                    <input name="password" type="password" placeholder="Password" th:field="*{password}" th:errorclass="error"/>
+                    <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('user.password')}"></li></ul>
+                    <input name="password" type="password" placeholder="Password" th:field="*{user.password}" th:errorclass="error"/>
                     <br/>
                     <label>Hire Date</label>
                     <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('hireDate')}"></li></ul>

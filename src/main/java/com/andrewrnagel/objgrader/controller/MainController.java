@@ -138,6 +138,14 @@ public class MainController {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
             return "redirect:/logout";
         }
+        if (teacher.getUser().getEmail().equals("")){
+            FieldError fieldError = new FieldError("teacher", "user.email", teacher.getUser().getEmail(), false, new String[]{"Declined.student.user.email"}, (String[])null, "Did not Take Email");
+            bindingResult.addError(fieldError);
+        }
+        if (teacher.getUser().getPassword().equals("")){
+            FieldError fieldError = new FieldError("teacher", "user.password", teacher.getUser().getPassword(), false, new String[]{"Declined.student.user.password"}, (String[])null, "Did not Take Password");
+            bindingResult.addError(fieldError);
+        }
         if(bindingResult.hasErrors()){
             model.addAttribute("bindingResult", bindingResult);
             model.addAttribute("teacher", teacher);
