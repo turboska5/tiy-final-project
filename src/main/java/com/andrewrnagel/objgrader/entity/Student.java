@@ -30,7 +30,7 @@ public class Student {
     @Valid
     private User user = new User();
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "studentID")
+    @JoinColumn(name = "classID")
     private List<AcademicClass> studentClasses = new ArrayList<>();
 
     public Student() {
