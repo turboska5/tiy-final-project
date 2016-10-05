@@ -27,49 +27,49 @@
     </nav>
 </head>
 <body>
-<section>
-    <!--Teacher manager-->
-    <article>
-        <fieldset>
-            <legend>Manage Teacher</legend>
-                <form class="ManageForm" th:object="${teacher}" th:action="adminManageTeacher" action="../templates/adminUsers.html" method="post">
-                    <input type="hidden" id="teacherID" name="teacherID" th:value="${teacher.getTeacherID()}"/>
-                    <label>First Name</label>
-                    <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('firstName')}"></li></ul>
-                    <input name="firstName" type="text" placeholder="First Name" th:field="*{firstName}" th:errorclass="error"/>
-                    <br/>
-                    <label>Last Name</label>
-                    <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('lastName')}"></li></ul>
-                    <input name="lastName" type="text" placeholder="Last Name" th:field="*{lastName}" th:errorclass="error"/>
-                    <br/>
-                    <label>Email Address</label>
-                    <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('user.email')}"></li></ul>
-                    <input name="emailAddress" type="text" placeholder="Email" th:field="*{user.email}" th:errorclass="error"/>
-                    <br/>
-                    <label>Password</label>
-                    <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('user.password')}"></li></ul>
-                    <input name="password" type="password" placeholder="Password" th:field="*{user.password}" th:errorclass="error"/>
-                    <br/>
-                    <label>Hire Date</label>
-                    <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('hireDate')}"></li></ul>
-                    <input name="hireDate" type="date" th:field="*{hireDate}" th:errorclass="error"/>
-                    <br/>
-                    <label>Department</label>
-                    <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('department')}"></li></ul>
-                    <select name="department" th:field="*{department}" th:errorclass="error">
-                        <option value="" selected="true">Department</option>
-                        <option value="Agriculture" >Agriculture</option>
-                        <option value="Math" >Math</option>
-                        <option value="Physical Education" >Physical Education</option>
-                        <option value="Science" >Science</option>
-                        <option value="Social Studies" >Social Studies</option>
-                        <option value="Technology" >Technology</option>
-                    </select>
-                    <br/>
-                    <button>Save</button>
-                </form>
-        </fieldset>
-    </article>
-</section>
+    <section>
+        <!--Teacher manager-->
+        <article>
+            <fieldset>
+                <legend>Manage Teacher</legend>
+                    <form class="ManageForm" th:object="${teacher}" th:action="adminManageTeacher" action="../templates/adminUsers.html" method="post">
+                        <input type="hidden" id="teacherID" name="teacherID" th:value="${teacher.getTeacherID()}"/>
+                        <label>First Name</label>
+                        <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('firstName')}"></li></ul>
+                        <input name="firstName" type="text" placeholder="First Name" th:field="*{firstName}" th:errorclass="error"/>
+                        <br/>
+                        <label>Last Name</label>
+                        <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('lastName')}"></li></ul>
+                        <input name="lastName" type="text" placeholder="Last Name" th:field="*{lastName}" th:errorclass="error"/>
+                        <br/>
+                        <label>Email Address</label>
+                        <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('user.email')}"></li></ul>
+                        <input name="emailAddress" type="text" placeholder="Email" th:field="*{user.email}" th:errorclass="error"/>
+                        <br/>
+                        <label>Password</label>
+                        <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('user.password')}"></li></ul>
+                        <input name="password" type="password" placeholder="Password" th:field="*{user.password}" th:errorclass="error"/>
+                        <br/>
+                        <label>Hire Date</label>
+                        <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('hireDate')}"></li></ul>
+                        <input name="hireDate" type="date" th:field="*{hireDate}" th:errorclass="error"/>
+                        <br/>
+                        <label>Department</label>
+                        <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('department')}"></li></ul>
+                        <select name="department" th:field="*{department}" th:errorclass="error">
+                            <option value="" selected="true">Department</option>
+                            <option value="Agriculture" >Agriculture</option>
+                            <option value="Math" >Math</option>
+                            <option value="Physical Education" >Physical Education</option>
+                            <option value="Science" >Science</option>
+                            <option value="Social Studies" >Social Studies</option>
+                            <option value="Technology" >Technology</option>
+                        </select>
+                        <br/>
+                        <button>Save</button>
+                    </form>
+            </fieldset>
+        </article>
+    </section>
 </body>
 </html>

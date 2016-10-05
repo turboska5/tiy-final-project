@@ -1,11 +1,13 @@
 package com.andrewrnagel.objgrader.controller;
 
+import com.andrewrnagel.objgrader.entity.Assignment;
 import com.andrewrnagel.objgrader.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
@@ -52,12 +54,21 @@ public class TeacherController {
         return "teacherGradeBook";
     }
     @RequestMapping(value = "/teacherManageAssign", method = RequestMethod.GET)
-    public String teacherGradeBookAssignForm(Model model, HttpSession session) {
+    public String teacherGradeBookAssignForm(Model model, HttpSession session,
+                                             @RequestParam(defaultValue = "0") Integer assignmentID) {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
             return "redirect:/logout";
         }
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", date);
+        if(assignmentID > 0) {
+            //TODO
+//            Assignment assignment = mainService.getAssignment(assignmentID);
+//            model.addAttribute("assignment", assignment);
+        } else {
+            Assignment assignment = new Assignment("", "", "", 0);
+            model.addAttribute("assignment", assignment);
+        }
         return "teacherManageAssign";
     }
 }

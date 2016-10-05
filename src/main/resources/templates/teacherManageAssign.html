@@ -27,5 +27,49 @@
     </nav>
 </head>
 <body>
+    <section>
+        <!--Assignment manager-->
+        <article>
+            <fieldset>
+                <legend>Manage Assignment</legend>
+                <form class="ManageForm" th:object="${assignment}" th:action="teacherManageAssign" action="../templates/teacherGradeBook.html" method="post">
+                    <input type="hidden" id="assignmentID" name="assignmentID" th:value="*{assignmentID}"/>
+                    <label>Assignment Name</label>
+                    <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('assignmentName')}"></li></ul>
+                    <input name="assignmentName" type="text" placeholder="Assignment Name" th:field="*{assignmentName}" th:errorclass="error"/>
+                    <br/>
+                    <label>Assignment ID</label>
+                    <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('assignmentIDNumber')}"></li></ul>
+                    <input name="assignmentIDNumber" type="text" placeholder="Assignment ID" th:field="*{assignmentIDNumber}" th:errorclass="error"/>
+                    <br/>
+                    <label>Date</label>
+                    <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('date')}"></li></ul>
+                    <input name="date" type="date" th:field="*{date}" th:errorclass="error"/>
+                    <br/>
+                    <label>Possible Points</label>
+                    <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('possPoints')}"></li></ul>
+                    <input name="possPoints" type="number" min="0" placeholder="Possible Points" th:field="*{possPoints}" th:errorclass="error"/>
+                    <br/>
+                    <label>Period</label>
+                    <input type="checkbox" name="attendance" value="1" />1
+                    <input type="checkbox" name="attendance" value="2" />2
+                    <input type="checkbox" name="attendance" value="3" />3
+                    <input type="checkbox" name="attendance" value="4" />4<br/>
+                    <input type="checkbox" name="attendance" value="5" />5
+                    <input type="checkbox" name="attendance" value="6" />6
+                    <input type="checkbox" name="attendance" value="7" />7
+                    <input type="checkbox" name="attendance" value="8" />8
+                    <br/>
+                    <label>Notes</label>
+                    <textarea></textarea>
+                    <br/>
+                    <label>Do Not Factor</label>
+                    <br/>
+                    <input type="checkbox"/>
+                    <button>Save</button>
+                </form>
+            </fieldset>
+        </article>
+    </section>
 </body>
 </html>

@@ -110,12 +110,9 @@ public class AdminController {
     public String adminAddStudentToClass(Model model, HttpSession session,
                                          @RequestParam(defaultValue = "0") Integer classID,
                                          @RequestParam(defaultValue = "0") Integer studentID) {
-        //TODO
         mainService.addStudentToClass(classID, studentID);
-
         return "redirect:/adminManageClass?classID=" + classID;
     }
-
     @RequestMapping(value = "/adminDropStudentFromClass", method = RequestMethod.GET)
     public String adminDropStudentFromClass(Model model, HttpSession session,
                                          @RequestParam(defaultValue = "0") Integer classID,
