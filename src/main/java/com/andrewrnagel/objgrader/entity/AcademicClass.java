@@ -21,15 +21,20 @@ public class AcademicClass {
     @NotBlank
     @NotNull
     private String name;
+    @NotBlank
+    @NotNull
     private String identifier;
     @NotBlank
     @NotNull
     private String department;
+    @NotNull
     private Integer period;
+    @NotNull
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "teacherID")
     @Valid
     private Teacher teacher;
+    @NotNull
     private Integer capacity=0;
     @OneToMany(cascade = CascadeType.ALL)
     @Valid
