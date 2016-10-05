@@ -1,8 +1,11 @@
 package com.andrewrnagel.objgrader.entity;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Created by Jimmy on 10/3/16.
@@ -12,21 +15,39 @@ public class Assignment {
     @Id
     @GeneratedValue
     private Integer assignmentID = 0;
-
+    @NotBlank
+    @NotNull
     private String assignmentName;
 
     //This is the assignment Id number
+    @NotBlank
+    @NotNull
     private String assignmentIDNumber;
 
+    @NotBlank
+    @NotNull
     private LocalDate date;
 
+    @NotNull
     private Integer possPoints;
+
+    @NotNull
+    private Integer period;
 
     @NotNull
     @ManyToOne(cascade = CascadeType.ALL)
     private AcademicClass academicClass;
 
     public Assignment() {
+    }
+
+    public Assignment(String assignmentName, String assignmentIDNumber, String date, Integer possPoints, Integer period) {
+        this.assignmentName = assignmentName;
+        this.assignmentIDNumber = assignmentIDNumber;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        this.date = LocalDate.parse(date, formatter);
+        this.possPoints = possPoints;
+        this.period = period;
     }
 
     public Assignment(String assignmentName, String assignmentIDNumber, LocalDate date, Integer possPoints) {
