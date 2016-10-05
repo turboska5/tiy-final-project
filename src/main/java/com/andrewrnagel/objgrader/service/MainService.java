@@ -31,10 +31,7 @@ public class MainService {
         this.classRepo.save(academicClass);
     }
 
-    public void saveAdmin(Admin admin) throws SQLException, PasswordStorage.CannotPerformOperationException {
-        admin.getUser().setPassword(PasswordStorage.createHash(admin.getUser().getPassword()));
-        admin.getUser().setEmail(admin.getUser().getEmail());
-        admin.getUser().setRole(1);
+    public void saveAdmin(Admin admin) throws SQLException {
         this.adminRepository.save(admin);
     }
 
