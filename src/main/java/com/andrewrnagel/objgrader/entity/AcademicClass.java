@@ -26,12 +26,12 @@ public class AcademicClass {
     @NotNull
     private String department;
     private Integer period;
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "teacherID")
     @Valid
     private Teacher teacher;
     private Integer capacity=0;
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @OneToMany(cascade = CascadeType.ALL)
     @Valid
 //    @JoinColumn(name = "studentID")
 //    @OrderBy("lastName")

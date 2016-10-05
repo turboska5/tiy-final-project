@@ -62,13 +62,13 @@ public class AdminController {
             AcademicClass thisClass = mainService.getAcademicClass(classID);
             model.addAttribute("thisClass", thisClass);
         } else {
-            //TODO
             AcademicClass thisClass = new AcademicClass("", "");
             model.addAttribute("thisClass", thisClass);
         }
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", date);
         model.addAttribute("teacherList", mainService.getAllTeachers());
+        //TODO: student roster
 //        model.addAttribute("studentRoster", thisClass.getStudents());
         //TODO: display only students not currently enrolled this or any other class during this period
         model.addAttribute("studentList", mainService.getAllStudents());
@@ -184,7 +184,6 @@ public class AdminController {
         model.addAttribute("date", date);
         return "adminManageTeacher";
     }
-    //TODO
     @RequestMapping(value = "/adminManageTeacher", method = RequestMethod.POST)
     public String adminUserTeacherFormSubmit(@Valid Teacher teacher, BindingResult bindingResult, Model model, HttpSession session) throws SQLException, PasswordStorage.CannotPerformOperationException {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
