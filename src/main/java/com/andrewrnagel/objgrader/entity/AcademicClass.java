@@ -1,6 +1,9 @@
 package com.andrewrnagel.objgrader.entity;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,20 +18,31 @@ public class AcademicClass {
     @Id
     @GeneratedValue
     private Integer classID = 0;
+    @NotBlank
+    @NotNull
     private String name;
     private String identifier;
+    @NotBlank
+    @NotNull
     private String department;
     private Integer period;
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "teacherID")
+    @Valid
     private Teacher teacher;
     private Integer capacity=0;
     @OneToMany(cascade = CascadeType.PERSIST)
+    @Valid
 //    @JoinColumn(name = "studentID")
 //    @OrderBy("lastName")
     private List<Student> students = new ArrayList<>();
 
     public AcademicClass() {
+    }
+
+    public AcademicClass(String name, String department) {
+        this.name = name;
+        this.department = department;
     }
 
     public Integer getClassID() {

@@ -57,11 +57,17 @@ public class AdminController {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
             return "redirect:/logout";
         }
-        AcademicClass thisClass = mainService.getAcademicClass(classID);
+        if(classID > 0) {
+            AcademicClass thisClass = mainService.getAcademicClass(classID);
+            model.addAttribute("thisClass", thisClass);
+        } else {
+            //TODO
+            AcademicClass thisClass = new AcademicClass("", "");
+            model.addAttribute("thisClass", thisClass);
+        }
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", date);
         model.addAttribute("teacherList", mainService.getAllTeachers());
-        model.addAttribute("thisClass", thisClass);
 //        model.addAttribute("studentRoster", thisClass.getStudents());
         //TODO: display only students not currently enrolled this or any other class during this period
         model.addAttribute("studentList", mainService.getAllStudents());
