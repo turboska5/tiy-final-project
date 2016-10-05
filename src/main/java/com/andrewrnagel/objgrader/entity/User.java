@@ -1,5 +1,6 @@
 package com.andrewrnagel.objgrader.entity;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -16,6 +17,7 @@ public class User {
     private Integer id = 0;
     @NotBlank
     @NotNull
+    @Email
     @Column(unique = true)
     private String email;
     @NotBlank

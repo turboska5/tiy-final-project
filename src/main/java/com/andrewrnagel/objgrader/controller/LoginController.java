@@ -47,17 +47,20 @@ public class LoginController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginForm() throws PasswordStorage.CannotPerformOperationException {
         //create sample users
-//        Admin admin = new Admin("Andrew", "Nagel", "arnagel@gmail.com", "Principal");
-//        admin.getUser().setEmail(admin.getEmailAddress());
-//        admin.getUser().setPassword(PasswordStorage.createHash("12345"));
+//        Admin admin = new Admin("Admin", "Alpha", "2016-01-01", "Principal");
+//        admin.getUser().setEmail("admin@fakeschools.com");
+//        admin.getUser().setPassword(PasswordStorage.createHash("123"));
+//        admin.getUser().setRole(1);
 //        adminRepository.save(admin);
-//        Teacher teacher = new Teacher("Jimmy", "Bush", "jbone@gmail.com", "Math");
-//        teacher.getUser().setEmail(teacher.getEmailAddress());
-//        teacher.getUser().setPassword(PasswordStorage.createHash("12345"));
+//        Teacher teacher = new Teacher("Teacher", "Alpha", "2016-01-01", "Science");
+//        teacher.getUser().setEmail("teacher@fakeschools.com");
+//        teacher.getUser().setPassword(PasswordStorage.createHash("123"));
+//        teacher.getUser().setRole(2);
 //        teacherRepository.save(teacher);
-//        Student student = new Student("Bob", "Jones", "bj@gmail.com", "BJ324123", 11);
-//        student.getUser().setEmail(student.getEmailAddress());
-//        student.getUser().setPassword(PasswordStorage.createHash("12345"));
+//        Student student = new Student("Student", "Alpha", "AB123456", 12);
+//        student.getUser().setEmail("student@fakeschools.com");
+//        student.getUser().setPassword(PasswordStorage.createHash("123"));
+//        student.getUser().setRole(3);
 //        studentRepository.save(student);
         return "login";
     }
