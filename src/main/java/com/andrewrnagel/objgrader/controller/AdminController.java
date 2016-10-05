@@ -131,6 +131,15 @@ public class AdminController {
 
         return "redirect:/adminManageClass?classID=" + classID;
     }
+
+    @RequestMapping(value = "/adminDropStudentFromClass", method = RequestMethod.GET)
+    public String adminDropStudentFromClass(Model model, HttpSession session,
+                                         @RequestParam(defaultValue = "0") Integer classID,
+                                         @RequestParam(defaultValue = "0") Integer studentID) {
+        mainService.dropStudentFromClass(classID, studentID);
+
+        return "redirect:/adminManageClass?classID=" + classID;
+    }
     @RequestMapping(value = "/adminUsers", method = RequestMethod.GET)
     public String adminUserPage(Model model, HttpSession session) {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
