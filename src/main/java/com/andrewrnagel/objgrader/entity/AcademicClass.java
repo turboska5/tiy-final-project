@@ -2,6 +2,8 @@ package com.andrewrnagel.objgrader.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Andrew Nagel on 9/28/16 at 2:39 PM EST.
@@ -17,10 +19,14 @@ public class AcademicClass {
     private String identifier;
     private String department;
     private Integer period;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "teacherID")
-    @OrderBy("period")
     private Teacher teacher;
+    private Integer capacity=0;
+    @OneToMany(cascade = CascadeType.PERSIST)
+//    @JoinColumn(name = "studentID")
+//    @OrderBy("lastName")
+    private List<Student> students = new ArrayList<>();
 
     public AcademicClass() {
     }
@@ -71,5 +77,21 @@ public class AcademicClass {
 
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
+    }
+
+    public Integer getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(Integer capacity) {
+        this.capacity = capacity;
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
     }
 }

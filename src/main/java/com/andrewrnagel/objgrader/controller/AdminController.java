@@ -52,14 +52,19 @@ public class AdminController {
         return "adminClasses";
     }
     @RequestMapping(value = "/adminManageClass", method = RequestMethod.GET)
-    public String adminClassEditForm(Model model, HttpSession session) {
+    public String adminClassEditForm(Model model, HttpSession session,
+                                     @RequestParam(defaultValue = "0") Integer classID) {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
             return "redirect:/logout";
         }
+        AcademicClass thisClass = mainService.getAcademicClass(classID);
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", date);
         model.addAttribute("teacherList", mainService.getAllTeachers());
-//        model.addAttribute("studentRoster", mainService.getAllStudentsInClass());
+        model.addAttribute("thisClass", thisClass);
+//        model.addAttribute("studentRoster", thisClass.getStudents());
+        //TODO: display only students not currently enrolled this or any other class during this period
+        model.addAttribute("studentList", mainService.getAllStudents());
         return "adminManageClass";
     }
     @RequestMapping(value = "/adminManageClass", method = RequestMethod.POST)

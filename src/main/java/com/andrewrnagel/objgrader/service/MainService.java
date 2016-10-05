@@ -70,6 +70,10 @@ public class MainService {
         return userRepository.getByEmail(email);
     }
 
+    public AcademicClass getAcademicClass(Integer classID) {
+        return this.classRepo.findOne(classID);
+    }
+
     public Student getStudent(Integer studentID) {
         return this.studentRepository.findOne(studentID);
     }

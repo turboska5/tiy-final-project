@@ -23,8 +23,8 @@ public class Assignment {
     private Integer possPoints;
 
     @NotNull
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    private AcademicClass academicClass = new AcademicClass();
+    @ManyToOne(cascade = CascadeType.ALL)
+    private AcademicClass academicClass;
 
     public Assignment() {
     }
