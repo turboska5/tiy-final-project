@@ -63,7 +63,7 @@
                             <td th:text="*{name}">PHYSICS 101</td>
                             <td th:text="*{identifier}">SCIPHY101A</td>
                             <td th:text="*{department}">SCIENCE</td>
-                            <td th:text="*{teacher.lastName}">MR. NAGEL</td>
+                            <td th:text="*{teacher.getLastName() + ', ' + teacher.getFirstName()}">MR. NAGEL</td>
                             <td th:text="*{period}">">1</td>
                             <td th:text="*{students.size()}">>11</td>
                             <td th:text="*{capacity}">>30</td>

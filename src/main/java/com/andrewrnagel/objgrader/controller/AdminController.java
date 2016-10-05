@@ -64,23 +64,7 @@ public class AdminController {
             List<Student> pool = mainService.getAllStudents();
             model.addAttribute("studentRoster", roster);
             if(roster.size() > 0) {
-                if ((roster.size() != pool.size())) {
-                    //add studentList as those remaining
-                    Iterator<Student> poolIterator = pool.iterator();
-                    while(poolIterator.hasNext()) {
-                        Iterator<Student> rosterIterator = roster.iterator();
-                        while(rosterIterator.hasNext()) {
-                            Student rosterStudent = rosterIterator.next();
-                            //here
-                            Student poolStudent = poolIterator.next();
-                            if(rosterStudent.getUser().equals(poolStudent.getUser())) {
-                                pool.remove(poolStudent);
-                            }
-                        }
-                    }
-                } else {
-                    pool.clear();
-                }
+                pool.removeAll(roster);
             }
             model.addAttribute("studentList", pool);
         } else {
