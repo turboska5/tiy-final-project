@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -213,6 +212,7 @@ public class AdminController {
         }
         teacher.getUser().setPassword(PasswordStorage.createHash(teacher.getUser().getPassword()));
         teacher.getUser().setRole(2);
+
         mainService.saveTeacher(teacher);
         return "redirect:/adminUsers";
     }
