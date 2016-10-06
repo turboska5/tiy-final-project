@@ -38,6 +38,7 @@ public class TeacherController {
             return "redirect:/logout";
         }
         model.addAttribute("date", date);
+        model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("teacher", session.getAttribute("teacher"));
         return "teacherHome";
     }
@@ -47,6 +48,7 @@ public class TeacherController {
             return "redirect:/logout";
         }
         model.addAttribute("date", date);
+        model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("teacher", session.getAttribute("teacher"));
         return "teacherAttendance";
     }
@@ -63,6 +65,7 @@ public class TeacherController {
             return "redirect:/logout";
         }
         model.addAttribute("date", date);
+        model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("teacher", session.getAttribute("teacher"));
         model.addAttribute("period", period);
         model.addAttribute("name", name);
@@ -71,7 +74,7 @@ public class TeacherController {
         model.addAttribute("teacherLastName", teacherLastName);
         model.addAttribute("teacherFirstName", teacherFirstName);
         model.addAttribute("teacherID", teacherID);
-        model.addAttribute("classList", mainService.searchClasses(period));
+        model.addAttribute("classList", mainService.searchClasses(period, "%" + name + "%", "%" + identifier + "%", "%" + department + "%", "%" + teacherLastName + "%", "%" + teacherFirstName + "%", teacherID));
         return "teacherGradeBook";
     }
     @RequestMapping(value = "/teacherManageAssign", method = RequestMethod.GET)
@@ -81,6 +84,7 @@ public class TeacherController {
             return "redirect:/logout";
         }
         model.addAttribute("date", date);
+        model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("teacher", session.getAttribute("teacher"));
         if(assignmentID > 0) {
             //TODO
@@ -98,6 +102,7 @@ public class TeacherController {
             return "redirect:/logout";
         }
         model.addAttribute("date", date);
+        model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("teacher", session.getAttribute("teacher"));
         if(bindingResult.hasErrors()){
             model.addAttribute("bindingResult", bindingResult);
