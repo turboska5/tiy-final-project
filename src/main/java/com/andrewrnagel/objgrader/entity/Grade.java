@@ -12,6 +12,11 @@ public class Grade {
     @GeneratedValue
     private Integer gradeID = 0;
 
+    //TODO
+//    @NotNull
+//    @ManyToOne(cascade = CascadeType.PERSIST)
+//    private AcademicClass academicClass;
+
     @NotNull
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Assignment assignment;
