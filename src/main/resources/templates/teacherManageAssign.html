@@ -36,35 +36,36 @@
                     <input type="hidden" id="assignmentID" name="assignmentID" th:value="*{assignmentID}"/>
                     <label>Assignment Name</label>
                     <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('assignmentName')}"></li></ul>
-                    <input name="assignmentName" type="text" placeholder="Assignment Name" th:field="*{assignmentName}" th:errorclass="error"/>
+                    <input name="assignmentName" type="text" class="FormInput" placeholder="Assignment Name" th:field="*{assignmentName}" th:errorclass="error"/>
                     <br/>
                     <label>Assignment ID</label>
                     <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('assignmentIDNumber')}"></li></ul>
-                    <input name="assignmentIDNumber" type="text" placeholder="Assignment ID" th:field="*{assignmentIDNumber}" th:errorclass="error"/>
+                    <input name="assignmentIDNumber" type="text" class="FormInput" placeholder="Assignment ID" th:field="*{assignmentIDNumber}" th:errorclass="error"/>
                     <br/>
                     <label>Date</label>
                     <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('date')}"></li></ul>
-                    <input name="date" type="date" th:field="*{date}" th:errorclass="error"/>
+                    <input name="date" type="date" class="FormInputDate" th:field="*{date}" th:errorclass="error"/>
                     <br/>
                     <label>Possible Points</label>
                     <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('possPoints')}"></li></ul>
-                    <input name="possPoints" type="number" min="0" placeholder="Possible Points" th:field="*{possPoints}" th:errorclass="error"/>
-                    <br/>
-                    <label>Period</label>
-                    <input type="checkbox" name="period" value="1" />1
-                    <input type="checkbox" name="period" value="2" />2
-                    <input type="checkbox" name="period" value="3" />3
-                    <input type="checkbox" name="period" value="4" />4
-                    <input type="checkbox" name="period" value="5" />5
-                    <input type="checkbox" name="period" value="6" />6
-                    <input type="checkbox" name="period" value="7" />7
-                    <input type="checkbox" name="period" value="8" />8
-                    <br/>
-                    <label>Notes</label>
-                    <textarea class="AddAssignmentNoteText"></textarea>
+                    <input name="possPoints" type="number" min="0" class="FormInputPoints" placeholder="Possible Points" th:field="*{possPoints}" th:errorclass="error"/>
                     <br/>
                     <label>Do Not Factor</label>
                     <input type="checkbox"/>
+                    <br/>
+                    <label>Period</label>
+                    <input type="checkbox" name="period" value="1" /><span class="periodID">1</span>
+                    <input type="checkbox" name="period" value="2" /><span class="periodID">2</span>
+                    <input type="checkbox" name="period" value="3" /><span class="periodID">3</span>
+                    <input type="checkbox" name="period" value="4" /><span class="periodID">4</span>
+                    <input type="checkbox" name="period" value="5" /><span class="periodID">5</span>
+                    <input type="checkbox" name="period" value="6" /><span class="periodID">6</span>
+                    <input type="checkbox" name="period" value="7" /><span class="periodID">7</span>
+                    <input type="checkbox" name="period" value="8" /><span class="periodID">8</span>
+                    <br/>
+                    <br/>
+                    <label>Notes</label>
+                    <textarea class="AddAssignmentNoteText"></textarea>
                     <br/>
                     <button>Save</button>
                 </form>
