@@ -46,15 +46,28 @@ public class TeacherController {
         return "teacherHome";
     }
     @RequestMapping(value = "/teacherAttendance", method = RequestMethod.GET)
-    public String teacherAttendancePage(Model model, HttpSession session) {
+    public String teacherAttendancePage(Model model, HttpSession session,
+                                        @RequestParam(defaultValue = "") Integer period,
+                                        @RequestParam(defaultValue = "") String name,
+                                        @RequestParam(defaultValue = "") String identifier,
+                                        @RequestParam(defaultValue = "") String department,
+                                        @RequestParam(defaultValue = "") String teacherLastName,
+                                        @RequestParam(defaultValue = "") String teacherFirstName,
+                                        @RequestParam(defaultValue = "") Integer teacherID) {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
             return "redirect:/logout";
         }
         model.addAttribute("date", date);
         model.addAttribute("userName", session.getAttribute("userName"));
-        Teacher teacher = (Teacher)session.getAttribute("teacher");
-        model.addAttribute("teacher", teacher);
-        model.addAttribute("classList", mainService.searchClasses(null, "", "", "", "", "", teacher.getTeacherID()));
+        model.addAttribute("teacher", session.getAttribute("teacher"));
+        model.addAttribute("period", period);
+        model.addAttribute("name", name);
+        model.addAttribute("identifier", identifier);
+        model.addAttribute("department", department);
+        model.addAttribute("teacherLastName", teacherLastName);
+        model.addAttribute("teacherFirstName", teacherFirstName);
+        model.addAttribute("teacherID", teacherID);
+        model.addAttribute("classList", mainService.searchClasses(period, "%" + name + "%", "%" + identifier + "%", "%" + department + "%", "%" + teacherLastName + "%", "%" + teacherFirstName + "%", teacherID));
         return "teacherAttendance";
     }
     @RequestMapping(value = "/teacherGradeBook", method = RequestMethod.GET)
@@ -122,7 +135,6 @@ public class TeacherController {
 
         }
         Integer id = teacher.getTeacherID();
-//        mainService.getAcademicClass()
         mainService.saveAssignment(assignment);
         return "redirect:/adminUsers";
     }
