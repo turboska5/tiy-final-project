@@ -59,15 +59,15 @@
                             <th>Assignments</th>
                             <th>Average</th>
                         </tr>
-                        <tr>
+                        <tr th:each="academicClass : ${classList}">
                             <td><a><button class="editicon"></button></a></td>
-                            <td>1</td>
-                            <td>PHYSICS 101</td>
-                            <td>SCIPHY101A</td>
-                            <td>Science</td>
-                            <td>MR. NAGEL</td>
-                            <td>13</td>
-                            <td>92.4</td>
+                            <td th:text="${academicClass.period}">1</td>
+                            <td th:text="${academicClass.name}">PHYSICS 101</td>
+                            <td th:text="${academicClass.identifier}">SCIPHY101A</td>
+                            <td th:text="${academicClass.department}">Science</td>
+                            <td th:text="${academicClass.teacher.lastName}">MR. NAGEL</td>
+                            <td th:text="${'N/A'}">13</td>
+                            <td th:text="${academicClass.average}">92.4</td>
                         </tr>
                     </table>
                 </div>

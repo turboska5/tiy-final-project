@@ -59,6 +59,7 @@ public class TeacherController {
         }
         model.addAttribute("date", date);
         model.addAttribute("teacher", session.getAttribute("teacher"));
+        model.addAttribute("classList", mainService.getAllClasses());
         return "teacherGradeBook";
     }
     @RequestMapping(value = "/teacherManageAssign", method = RequestMethod.GET)

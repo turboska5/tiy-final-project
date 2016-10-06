@@ -36,6 +36,8 @@ public class AcademicClass {
     private Teacher teacher;
     @NotNull
     private Integer capacity=0;
+    @NotNull
+    private Double average=0.0;
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "students_classes",
@@ -43,7 +45,6 @@ public class AcademicClass {
             inverseJoinColumns = @JoinColumn(name = "studentID")
     )
     @Valid
-//    @JoinColumn(name = "studentID")
     private List<Student> students = new ArrayList<>();
 
     public AcademicClass() {
@@ -116,5 +117,13 @@ public class AcademicClass {
 
     public void setStudents(List<Student> students) {
         this.students = students;
+    }
+
+    public Double getAverage() {
+        return average;
+    }
+
+    public void setAverage(Double average) {
+        this.average = average;
     }
 }
