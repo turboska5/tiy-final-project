@@ -40,7 +40,9 @@ public class TeacherController {
         }
         model.addAttribute("date", date);
         model.addAttribute("userName", session.getAttribute("userName"));
-        model.addAttribute("teacher", session.getAttribute("teacher"));
+        Teacher teacher = (Teacher)session.getAttribute("teacher");
+        model.addAttribute("teacher", teacher);
+        model.addAttribute("classList", mainService.searchClasses(null, "", "", "", "", "", teacher.getTeacherID()));
         return "teacherHome";
     }
     @RequestMapping(value = "/teacherAttendance", method = RequestMethod.GET)
@@ -50,7 +52,9 @@ public class TeacherController {
         }
         model.addAttribute("date", date);
         model.addAttribute("userName", session.getAttribute("userName"));
-        model.addAttribute("teacher", session.getAttribute("teacher"));
+        Teacher teacher = (Teacher)session.getAttribute("teacher");
+        model.addAttribute("teacher", teacher);
+        model.addAttribute("classList", mainService.searchClasses(null, "", "", "", "", "", teacher.getTeacherID()));
         return "teacherAttendance";
     }
     @RequestMapping(value = "/teacherGradeBook", method = RequestMethod.GET)

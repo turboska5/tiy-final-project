@@ -20,7 +20,7 @@
     <nav class="nav-links">
         <ul th:object="${teacher}">
             <li class="option"><a th:href="@{/teacherHome}" href="../templates/teacherHome.html">Home</a></li>
-            <li class="option"><a th:href="@{/teacherAttendance}" href="../templates/teacherAttendance.html">Attendance</a></li>
+            <li class="option"><a th:href="@{/teacherAttendance?(teacherLastName=*{lastName}, teacherFirstName=*{firstName}, teacherID=*{teacherID})}" href="../templates/teacherAttendance.html">Attendance</a></li>
             <li class="current"><a th:href="@{/teacherGradeBook?(teacherLastName=*{lastName}, teacherFirstName=*{firstName}, teacherID=*{teacherID})}" href="../templates/teacherGradeBook.html">Grade Book</a></li>
             <li class="logout"><a th:href="@{/logout}" href="../templates/login.html">Logout</a></li>
         </ul>

@@ -221,6 +221,13 @@ table tr:nth-child(2n) {
     color: white;
     background-color: #737373;
 }
+.attendanceCheckbox {
+    margin-left: 100%;
+    width: 25px;
+}
+.homeHyperlink {
+    padding-left: 10px;
+}
 #AttendanceTable td{
     padding: 0px 20px 0px;
     float: left;

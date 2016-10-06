@@ -6,6 +6,7 @@ import com.andrewrnagel.objgrader.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -101,7 +102,10 @@ public class MainService {
         this.assignmentRepo.save(assignment);
     }
 
+    //search criteria and organize by period
     public List<AcademicClass> searchClasses(Integer period, String name , String identifer, String department, String teacherLastName, String teacherFirstName, Integer teacherID) {
-        return this.classRepo.searchClasses(period, name, identifer, department, teacherLastName, teacherFirstName, teacherID);
+        List<AcademicClass> results = this.classRepo.searchClasses(period, name, identifer, department, teacherLastName, teacherFirstName, teacherID);
+        Collections.sort(results, (AcademicClass a1, AcademicClass a2) -> a1.getPeriod() - a2.getPeriod());
+        return results;
     }
 }
