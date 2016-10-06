@@ -19,7 +19,7 @@
     <nav class="nav-links">
         <ul th:object="${teacher}">
             <li class="current"><a th:href="@{/teacherHome}" href="../templates/teacherHome.html">Home</a></li>
-            <li class="option"><a th:href="@{/teacherAttendance}" href="../templates/teacherAttendance.html">Attendance</a></li>
+            <li class="option"><a th:href="@{/teacherAttendance?(teacherLastName=*{lastName}, teacherFirstName=*{firstName}, teacherID=*{teacherID})}" href="../templates/teacherAttendance.html">Attendance</a></li>
             <li class="option"><a th:href="@{/teacherGradeBook?(teacherLastName=*{lastName}, teacherFirstName=*{firstName}, teacherID=*{teacherID})}" href="../templates/teacherGradeBook.html">Grade Book</a></li>
             <li class="logout"><a th:href="@{/logout}" href="../templates/login.html">Logout</a></li>
         </ul>
@@ -32,7 +32,7 @@
                 <img id="SchoolPic" th:src="@{/images/schoolext.jpg}" src="../static/images/schoolext.jpg" alt=""/>
             </div>
             <div class="SchoolStats">
-                <ul>
+                <ul >
                     <h1 class="SchoolName">Excelsior High School</h1>
                     <li><span class="LabelText">District: </span><span>Fake County Public Schools</span></li>
                     <li><span class="LabelText">Principal: </span><span>Mrs. Felicity Scott</span></li>
@@ -50,69 +50,14 @@
             <fieldset>
                 <legend>My Classes</legend>
                     <table id="AttendanceTable">
-                        <tr>
+                        <tr th:each="academicClass : ${classList}" th:object="${teacher}">
                             <td class="icon"></td>
-                            <td>Period 1</td>
-                            <td>13 Students</td>
-                            <td>[]</td>
-                            <td><a href="../templates/teacherAttendance.html">Attendance</a></td>
-                            <td><a href="../templates/teacherGradeBook.html">Gradebook</a></td>
-                        </tr>
-                        <tr>
-                            <td class="icon"></td>
-                            <td>Period 2</td>
-                            <td>27 Students</td>
-                            <td>[]</td>
-                            <td><a href="../templates/teacherAttendance.html">Attendance</a></td>
-                            <td><a href="../templates/teacherGradeBook.html">Gradebook</a></td>
-                        </tr>
-                        <tr>
-                            <td class="icon"></td>
-                            <td>Period 3</td>
-                            <td>18 Students</td>
-                            <td>[]</td>
-                            <td><a href="../templates/teacherAttendance.html">Attendance</a></td>
-                            <td><a href="../templates/teacherGradeBook.html">Gradebook</a></td>
-                        </tr>
-                        <tr>
-                            <td class="icon"></td>
-                            <td>Period 4</td>
-                            <td>0 Students</td>
-                            <td>[]</td>
-                            <td><a href="../templates/teacherAttendance.html" disabled="true">Attendance</a></td>
-                            <td><a href="../templates/teacherGradeBook.html">Gradebook</a></td>
-                        </tr>
-                        <tr>
-                            <td class="icon"></td>
-                            <td>Period 5</td>
-                            <td>0 Students</td>
-                            <td>[]</td>
-                            <td><a href="../templates/teacherAttendance.html">Attendance</a></td>
-                            <td><a href="../templates/teacherGradeBook.html">Gradebook</a></td>
-                        </tr>
-                        <tr>
-                            <td class="icon"></td>
-                            <td>Period 6</td>
-                            <td>29 Students</td>
-                            <td>[]</td>
-                            <td><a href="../templates/teacherAttendance.html">Attendance</a></td>
-                            <td><a href="../templates/teacherGradeBook.html">Gradebook</a></td>
-                        </tr>
-                        <tr>
-                            <td class="icon"></td>
-                            <td>Period 7</td>
-                            <td>32 Students</td>
-                            <td>[]</td>
-                            <td><a href="../templates/teacherAttendance.html">Attendance</a></td>
-                            <td><a href="../templates/teacherGradeBook.html">Gradebook</a></td>
-                        </tr>
-                        <tr>
-                            <td class="icon"></td>
-                            <td>Period 8</td>
-                            <td>21 Students</td>
-                            <td>[]</td>
-                            <td><a href="../templates/teacherAttendance.html">Attendance</a></td>
-                            <td><a href="../templates/teacherGradeBook.html">Gradebook</a></td>
+                            <td th:text="${'Period ' + academicClass.period}">Period 1</td>
+                            <td th:text="${academicClass.students.size() + ' students'}">13 Students</td>
+                            <td><input class="attendanceCheckbox" disabled="true" type="checkbox"/>
+                                <a class="homeHyperlink" th:href="@{/teacherAttendance?(teacherLastName=*{lastName}, teacherFirstName=*{firstName}, teacherID=*{teacherID})}" href="../templates/teacherAttendance.html">Attendance</a>
+                                <a class="homeHyperlink" th:href="@{/teacherGradeBook?(teacherLastName=*{lastName}, teacherFirstName=*{firstName}, teacherID=*{teacherID})}" href="../templates/teacherGradeBook.html">Gradebook</a>
+                            </td>
                         </tr>
                     </table>
             </fieldset>
