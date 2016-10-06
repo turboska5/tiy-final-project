@@ -55,8 +55,10 @@ public class TeacherController {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
             return "redirect:/logout";
         }
-        model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", date);
+        model.addAttribute("userName", session.getAttribute("userName"));
+        model.addAttribute("userLastName", session.getAttribute("userLastName"));
+        model.addAttribute("userID", session.getAttribute("userID"));
         return "teacherGradeBook";
     }
     @RequestMapping(value = "/teacherManageAssign", method = RequestMethod.GET)

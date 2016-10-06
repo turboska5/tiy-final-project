@@ -38,7 +38,8 @@
                         <input class="InputField" type="text" placeholder="Class Name"/>
                         <input class="InputField" placeholder="Class ID#"/>
                         <input class="InputField" placeholder="Department"/>
-                        <input class="InputField" placeholder="Teacher" value="Nagel"/>
+                        <input class="InputField" placeholder="Teacher" th:value="${userLastName}" value="Nagel"/>
+                        <input class="InputField" placeholder="Teacher ID#" th:value="${userID}"/>
                         <button class="SearchButton">Search</button>
                     </form>
                 </div>
@@ -163,18 +164,8 @@
                             <td>MATTHEW</td>
                             <td>Orientation Assignment</td>
                             <td>09/25/2016</td>
-                            <td><input class="GradeInput" type="text" value="10"/></td>
-                            <td>10</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>1</td>
-                            <td>ROJOS</td>
-                            <td>NADIA</td>
-                            <td>Orientation Assignment</td>
-                            <td>09/25/2016</td>
-                            <td><input class="GradeInput" type="text" value="10"/></td>
-                            <td>10</td>
+                            <td><input class="GradeInput" type="number" min="0" value="100"/></td>
+                            <td>100</td>
                         </tr>
                     </table>
                 </div>

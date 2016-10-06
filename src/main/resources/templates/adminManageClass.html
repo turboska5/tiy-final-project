@@ -36,7 +36,7 @@
                         <input type="hidden" id="classID" name="classID" th:value="${academicClass.getClassID()}"/>
                         <label>Class Name</label>
                         <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('name')}"></li></ul>
-                        <input name="name" type="text" placeholder="Class Name" th:field="*{name}" th:errorclass="error"/>
+                        <input name="name" type="text" class="" placeholder="Class Name" th:field="*{name}" th:errorclass="error"/>
                         <br/>
                         <label>ID#</label>
                         <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('identifier')}"></li></ul>
