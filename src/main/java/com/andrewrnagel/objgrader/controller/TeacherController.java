@@ -37,8 +37,8 @@ public class TeacherController {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
             return "redirect:/logout";
         }
-        model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", date);
+        model.addAttribute("teacher", session.getAttribute("teacher"));
         return "teacherHome";
     }
     @RequestMapping(value = "/teacherAttendance", method = RequestMethod.GET)
@@ -46,21 +46,19 @@ public class TeacherController {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
             return "redirect:/logout";
         }
-        model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", date);
+        model.addAttribute("teacher", session.getAttribute("teacher"));
         return "teacherAttendance";
     }
     @RequestMapping(value = "/teacherGradeBook", method = RequestMethod.GET)
     public String teacherGradeBookPage(Model model, HttpSession session,
                                        @RequestParam(defaultValue = "") String teacherName,
-                                       @RequestParam(defaultValue = "0") Integer userID) {
+                                       @RequestParam(defaultValue = "0") Integer teacherID) {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
             return "redirect:/logout";
         }
         model.addAttribute("date", date);
-        model.addAttribute("userName", session.getAttribute("userName"));
-        model.addAttribute("userLastName", session.getAttribute("userLastName"));
-        model.addAttribute("userID", session.getAttribute("userID"));
+        model.addAttribute("teacher", session.getAttribute("teacher"));
         return "teacherGradeBook";
     }
     @RequestMapping(value = "/teacherManageAssign", method = RequestMethod.GET)
@@ -69,8 +67,8 @@ public class TeacherController {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
             return "redirect:/logout";
         }
-        model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", date);
+        model.addAttribute("teacher", session.getAttribute("teacher"));
         if(assignmentID > 0) {
             //TODO
 //            Assignment assignment = mainService.getAssignment(assignmentID);
@@ -81,14 +79,13 @@ public class TeacherController {
         }
         return "teacherManageAssign";
     }
-
     @RequestMapping(value = "/teacherManageAssign", method = RequestMethod.POST)
     public String teacherGradeBookAssignFormPost(@Valid Assignment assignment, BindingResult bindingResult, Model model, HttpSession session) throws SQLException, PasswordStorage.CannotPerformOperationException {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
             return "redirect:/logout";
         }
-        model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", date);
+        model.addAttribute("teacher", session.getAttribute("teacher"));
         if(bindingResult.hasErrors()){
             model.addAttribute("bindingResult", bindingResult);
             model.addAttribute("assignment", assignment);
@@ -99,7 +96,6 @@ public class TeacherController {
         if(assignment.getAssignmentID() > 0) {
 
         }
-
         mainService.saveAssignment(assignment);
         return "redirect:/adminUsers";
     }

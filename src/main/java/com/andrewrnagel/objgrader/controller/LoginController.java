@@ -83,9 +83,7 @@ public class LoginController {
                 Teacher teacher = teacherRepository.getByUserId(user.getId());
                 teacher.getUser().setLastLogin();
                 teacherRepository.save(teacher);
-                session.setAttribute("userName", teacher.getFirstName());
-                session.setAttribute("userLastName", teacher.getLastName());
-                session.setAttribute("userID", teacher.getUser().getId());
+                session.setAttribute("teacher", teacher);
                 return "redirect:/teacherHome";
             }
             //student

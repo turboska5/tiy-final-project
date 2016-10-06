@@ -13,14 +13,14 @@
     <banner>
         <div>
             <span class="date" th:text="${date}">September 26, 2016</span>
-            <span class="greeting" th:text="${'Hello, ' + userName + '!'}">Good Morning, Teacher!</span>
+            <span class="greeting" th:text="${'Hello, ' + teacher.firstName + '!'}">Good Morning, Teacher!</span>
         </div>
     </banner>
     <nav class="nav-links">
-        <ul>
+        <ul th:object="${teacher}">
             <li class="current"><a th:href="@{/teacherHome}" href="../templates/teacherHome.html">Home</a></li>
             <li class="option"><a th:href="@{/teacherAttendance}" href="../templates/teacherAttendance.html">Attendance</a></li>
-            <li class="option"><a th:href="@{/teacherGradeBook}" href="../templates/teacherGradeBook.html">Grade Book</a></li>
+            <li class="option"><a th:href="@{/teacherGradeBook?(teacherName=*{lastName}, teacherID=*{teacherID})}" href="../templates/teacherGradeBook.html">Grade Book</a></li>
             <li class="logout"><a th:href="@{/logout}" href="../templates/login.html">Logout</a></li>
         </ul>
     </nav>
