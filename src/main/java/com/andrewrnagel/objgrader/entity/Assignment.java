@@ -96,4 +96,20 @@ public class Assignment {
     public void setPossPoints(Integer possPoints) {
         this.possPoints = possPoints;
     }
+
+    public Integer getPeriod() {
+        return period;
+    }
+
+    public void setPeriod(Integer period) {
+        this.period = period;
+    }
+
+    public AcademicClass getAcademicClass() {
+        return academicClass;
+    }
+
+    public void setAcademicClass(AcademicClass academicClass) {
+        this.academicClass = academicClass;
+    }
 }

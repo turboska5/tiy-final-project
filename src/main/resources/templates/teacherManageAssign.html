@@ -50,19 +50,36 @@
                     <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('possPoints')}"></li></ul>
                     <input name="possPoints" type="number" min="0" class="FormInputPoints" placeholder="Possible Points" th:field="*{possPoints}" th:errorclass="error"/>
                     <br/>
-                    <label>Do Not Factor</label>
-                    <input type="checkbox"/>
-                    <br/>
                     <label>Period</label>
-                    <input type="checkbox" name="period" value="1" /><span class="periodID">1</span>
-                    <input type="checkbox" name="period" value="2" /><span class="periodID">2</span>
-                    <input type="checkbox" name="period" value="3" /><span class="periodID">3</span>
-                    <input type="checkbox" name="period" value="4" /><span class="periodID">4</span>
-                    <input type="checkbox" name="period" value="5" /><span class="periodID">5</span>
-                    <input type="checkbox" name="period" value="6" /><span class="periodID">6</span>
-                    <input type="checkbox" name="period" value="7" /><span class="periodID">7</span>
-                    <input type="checkbox" name="period" value="8" /><span class="periodID">8</span>
+                    <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('period')}"></li></ul>
+                    <select name="period" th:field="*{period}" th:errorclass="error">
+                        <option value="" selected="true">Period</option>
+                        <option value="1" >1</option>
+                        <option value="2" >2</option>
+                        <option value="3" >3</option>
+                        <option value="4" >4</option>
+                        <option value="5" >5</option>
+                        <option value="6" >6</option>
+                        <option value="7" >7</option>
+                        <option value="8" >8</option>
+                    </select>
                     <br/>
+
+                    <label>Do Not Factor</label>
+                    <input type="checkbox" disabled="true"/>
+                    <br/>
+
+                    <!--<label>Period</label>-->
+                    <!--<input type="checkbox" name="period" value="1" /><span class="periodID">1</span>-->
+                    <!--<input type="checkbox" name="period" value="2" /><span class="periodID">2</span>-->
+                    <!--<input type="checkbox" name="period" value="3" /><span class="periodID">3</span>-->
+                    <!--<input type="checkbox" name="period" value="4" /><span class="periodID">4</span>-->
+                    <!--<input type="checkbox" name="period" value="5" /><span class="periodID">5</span>-->
+                    <!--<input type="checkbox" name="period" value="6" /><span class="periodID">6</span>-->
+                    <!--<input type="checkbox" name="period" value="7" /><span class="periodID">7</span>-->
+                    <!--<input type="checkbox" name="period" value="8" /><span class="periodID">8</span>-->
+                    <!--<br/>-->
+
                     <br/>
                     <label>Notes</label>
                     <textarea class="AddAssignmentNoteText"></textarea>
