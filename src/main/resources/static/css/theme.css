@@ -144,7 +144,6 @@ form {
 }
 Button.editicon {
     background: url("../images/edit_pencil.png") no-repeat;
-    /*background: url("../static/images/editicon.png") no-repeat;*/
     background-size: 100%;
     border-radius: 50%;
     width: 20px;
@@ -160,7 +159,6 @@ Button.editicon:active {
 }
 Button.addicon {
     background: url("../images/plus.png") no-repeat;
-    /*background: url("../static/images/plus.png") no-repeat;*/
     background-size: 100%;
     border-radius: 50%;
     width: 20px;
@@ -176,7 +174,6 @@ Button.addicon:active {
 }
 Button.addnewuser {
     background: url("../images/add_user.png") no-repeat;
-    /*background: url("../static/images/add_user.png") no-repeat;*/
     background-size: 100%;
     border-radius: 50%;
     width: 20px;
@@ -212,7 +209,6 @@ th  {
 }
 table tr th:first-child, table tr td:first-child{
     width: 20px;
-    /*border: 1px red solid;*/
 }
 table tr:nth-child(2n) {
     color: #560023;

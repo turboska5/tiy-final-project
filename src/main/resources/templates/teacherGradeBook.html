@@ -61,7 +61,8 @@
                             <th>Average</th>
                         </tr>
                         <tr th:each="academicClass : ${classList}">
-                            <td><a><button class="editicon"></button></a></td>
+                            <td><input type="radio" name="classSelector"/>
+                            <a><button class="editicon"></button></a></td>
                             <td th:text="${academicClass.period}">1</td>
                             <td th:text="${academicClass.name}">PHYSICS 101</td>
                             <td th:text="${academicClass.identifier}">SCIPHY101A</td>
