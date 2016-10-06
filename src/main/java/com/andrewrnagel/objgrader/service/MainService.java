@@ -28,6 +28,8 @@ public class MainService {
     private UserRepository userRepository;
     @Autowired
     private ClassRepo classRepo;
+    @Autowired
+    private GradeRepo gradeRepo;
 
     //methods
     public void saveClass(AcademicClass academicClass) {
@@ -87,15 +89,20 @@ public class MainService {
     }
 
     public void addStudentToClass(Integer classID, Integer studentID) {
-        AcademicClass academicClass = getAcademicClass(classID);
+//        AcademicClass academicClass = getAcademicClass(classID);
 //        academicClass.getStudents().add(getStudent(studentID));
-        this.classRepo.save(academicClass);
+//        this.classRepo.save(academicClass);
+        Grade grade = new Grade();
+        grade.setAcademicClass(this.classRepo.getOne(classID));
+        grade.setStudent(this.studentRepository.getOne(studentID));
+        this.gradeRepo.save(grade);
     }
 
     public void dropStudentFromClass(Integer classID, Integer studentID) {
-        AcademicClass academicClass = getAcademicClass(classID);
+        //TODO
+//        AcademicClass academicClass = getAcademicClass(classID);
 //        academicClass.getStudents().remove(getStudent(studentID));
-        this.classRepo.save(academicClass);
+//        this.classRepo.save(academicClass);
     }
 
     public void saveAssignment(Assignment assignment){
