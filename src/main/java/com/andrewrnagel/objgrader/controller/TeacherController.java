@@ -1,15 +1,21 @@
 package com.andrewrnagel.objgrader.controller;
 
 import com.andrewrnagel.objgrader.entity.Assignment;
+import com.andrewrnagel.objgrader.entity.Teacher;
+import com.andrewrnagel.objgrader.entity.User;
+import com.andrewrnagel.objgrader.misc.PasswordStorage;
 import com.andrewrnagel.objgrader.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -74,5 +80,27 @@ public class TeacherController {
             model.addAttribute("assignment", assignment);
         }
         return "teacherManageAssign";
+    }
+
+    @RequestMapping(value = "/teacherManageAssign", method = RequestMethod.POST)
+    public String teacherGradeBookAssignFormPost(@Valid Assignment assignment, BindingResult bindingResult, Model model, HttpSession session) throws SQLException, PasswordStorage.CannotPerformOperationException {
+        if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
+            return "redirect:/logout";
+        }
+        model.addAttribute("userName", session.getAttribute("userName"));
+        model.addAttribute("date", date);
+        if(bindingResult.hasErrors()){
+            model.addAttribute("bindingResult", bindingResult);
+            model.addAttribute("assignment", assignment);
+            model.addAttribute("userName", session.getAttribute("userName"));
+            model.addAttribute("date", date);
+            return "adminManageTeacher";
+        }
+        if(assignment.getAssignmentID() > 0) {
+
+        }
+
+        mainService.saveAssignment(assignment);
+        return "redirect:/adminUsers";
     }
 }
