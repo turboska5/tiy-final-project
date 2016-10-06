@@ -76,6 +76,7 @@ public class TeacherController {
         model.addAttribute("teacherID", teacherID);
         model.addAttribute("classList", mainService.searchClasses(period, "%" + name + "%", "%" + identifier + "%", "%" + department + "%", "%" + teacherLastName + "%", "%" + teacherFirstName + "%", teacherID));
         return "teacherGradeBook";
+        //return "redirect:/teacherGradeBook?period=" + period + "&name=" + name + "&identifier=" + identifier + "&department=" + department + "&teacherLastName=" + teacherLastName + "&teacherFirstName=" + teacherFirstName + "&teacherID=" + teacherID;
     }
     @RequestMapping(value = "/teacherManageAssign", method = RequestMethod.GET)
     public String teacherGradeBookAssignForm(Model model, HttpSession session,
