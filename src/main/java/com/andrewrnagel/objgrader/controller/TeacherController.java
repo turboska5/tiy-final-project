@@ -110,7 +110,7 @@ public class TeacherController {
 //            Assignment assignment = mainService.getAssignment(assignmentID);
 //            model.addAttribute("assignment", assignment);
         } else {
-            Assignment assignment = new Assignment("", "", "2016-09-01", 0, 0);
+            Assignment assignment = new Assignment("", "", 0, 0);
             model.addAttribute("assignment", assignment);
         }
         return "teacherManageAssign";
@@ -136,6 +136,7 @@ public class TeacherController {
         }
         Integer id = teacher.getTeacherID();
         mainService.saveAssignment(assignment);
-        return "redirect:/adminUsers";
+
+        return "redirect:/teacherGradeBook";
     }
 }

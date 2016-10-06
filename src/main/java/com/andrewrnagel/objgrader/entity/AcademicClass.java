@@ -46,7 +46,7 @@ public class AcademicClass {
     )
     @Valid
     private List<Student> students = new ArrayList<>();
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "classID")
     @OrderBy("date")
     private List<Assignment> assignmentList = new ArrayList<>();

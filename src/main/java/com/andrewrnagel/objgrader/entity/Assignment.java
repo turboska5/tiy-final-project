@@ -7,6 +7,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Jimmy on 10/3/16.
@@ -37,8 +39,8 @@ public class Assignment {
 
     private String note;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    private AcademicClass academicClass;
+    //TODO
+//    private List<Grade> gradeList = new ArrayList<>();
 
     public Assignment() {
     }
@@ -132,14 +134,6 @@ public class Assignment {
 
     public void setPeriod(Integer period) {
         this.period = period;
-    }
-
-    public AcademicClass getAcademicClass() {
-        return academicClass;
-    }
-
-    public void setAcademicClass(AcademicClass academicClass) {
-        this.academicClass = academicClass;
     }
 
     public String getNote() {
