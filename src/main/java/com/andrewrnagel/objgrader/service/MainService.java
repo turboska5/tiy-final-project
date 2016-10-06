@@ -101,7 +101,7 @@ public class MainService {
         this.assignmentRepo.save(assignment);
     }
 
-    public List<AcademicClass> searchClasses(Integer period) {
-        return this.classRepo.searchClasses(period);
+    public List<AcademicClass> searchClasses(Integer period, String name , String identifer, String department, String teacherLastName, String teacherFirstName, Integer teacherID) {
+        return this.classRepo.searchClasses(period, name, identifer, department, teacherLastName, teacherFirstName, teacherID);
     }
 }
