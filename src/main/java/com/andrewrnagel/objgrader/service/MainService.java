@@ -93,8 +93,10 @@ public class MainService {
 //        academicClass.getStudents().add(getStudent(studentID));
 //        this.classRepo.save(academicClass);
         Grade grade = new Grade();
-        grade.setAcademicClass(this.classRepo.getOne(classID));
-        grade.setStudent(this.studentRepository.getOne(studentID));
+        AcademicClass academicClass = this.classRepo.findOne(classID);
+        grade.setAcademicClass(academicClass);
+        Student student = this.studentRepository.findOne(studentID);
+        grade.setStudent(student);
         this.gradeRepo.save(grade);
     }
 

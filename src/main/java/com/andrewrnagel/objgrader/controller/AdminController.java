@@ -83,7 +83,6 @@ public class AdminController {
         } else {
             AcademicClass academicClass = new AcademicClass("", "");
             model.addAttribute("academicClass", academicClass);
-            model.addAttribute("studentList", mainService.getAllStudents());
         }
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", date);
