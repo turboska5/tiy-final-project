@@ -46,6 +46,10 @@ public class AcademicClass {
     )
     @Valid
     private List<Student> students = new ArrayList<>();
+    @OneToMany
+    @JoinColumn(name = "classID")
+    @OrderBy("date")
+    private List<Assignment> assignmentList = new ArrayList<>();
 
     public AcademicClass() {
     }
@@ -125,5 +129,13 @@ public class AcademicClass {
 
     public void setAverage(Double average) {
         this.average = average;
+    }
+
+    public List<Assignment> getAssignmentList() {
+        return assignmentList;
+    }
+
+    public void setAssignmentList(List<Assignment> assignmentList) {
+        this.assignmentList = assignmentList;
     }
 }

@@ -100,4 +100,14 @@ public class MainService {
     public void saveAssignment(Assignment assignment){
         this.assignmentRepo.save(assignment);
     }
+
+    //return list holding stored animal objects by name (sans notes)
+    public List<AcademicClass> searchAndDisplayClasses(Integer academicClassPeriod, String academicClassName, String academicClassIdentifier, String academicClassDepartment, String teacherLastName, String teacherFirstName) throws SQLException {
+        return classRepo.findByPeriodOrNameContainingOrIdentifierContainingOrDepartmentContainingOrTeacherLastNameContainingOrTeacherFirstNameContaining(academicClassPeriod, academicClassName, academicClassIdentifier, academicClassDepartment, teacherLastName, teacherFirstName);
+    }
+
+    //return list holding stored animal objects by name (sans notes)
+    public List<AcademicClass> searchAndDisplayClasses(Integer academicClassPeriod, String academicClassName, String academicClassIdentifier, String academicClassDepartment, String teacherLastName, String teacherFirstName, Integer teacherID) throws SQLException {
+        return classRepo.findByPeriodOrNameOrIdentifierOrDepartmentOrTeacherLastNameOrTeacherFirstNameOrTeacherTeacherIDContaining(academicClassPeriod, academicClassName, academicClassIdentifier, academicClassDepartment, teacherLastName, teacherFirstName, teacherID);
+    }
 }

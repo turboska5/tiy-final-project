@@ -21,7 +21,7 @@
         <ul th:object="${teacher}">
             <li class="option"><a th:href="@{/teacherHome}" href="../templates/teacherHome.html">Home</a></li>
             <li class="option"><a th:href="@{/teacherAttendance}" href="../templates/teacherAttendance.html">Attendance</a></li>
-            <li class="current"><a th:href="@{/teacherGradeBook?(teacherName=*{lastName}, teacherID=*{teacherID})}" href="../templates/teacherGradeBook.html">Grade Book</a></li>
+            <li class="current"><a th:href="@{/teacherGradeBook?(teacherLastName=*{lastName}, teacherFirstName=*{firstName}, teacherID=*{teacherID})}" href="../templates/teacherGradeBook.html">Grade Book</a></li>
             <li class="logout"><a th:href="@{/logout}" href="../templates/login.html">Logout</a></li>
         </ul>
     </nav>
@@ -34,12 +34,13 @@
             <article class="SearchParams">
                 <div id="ClassSearchParams">
                     <form>
-                        <input class="InputField" placeholder="Period"/>
-                        <input class="InputField" type="text" placeholder="Class Name"/>
-                        <input class="InputField" placeholder="Class ID#"/>
-                        <input class="InputField" placeholder="Department"/>
-                        <input class="InputField" placeholder="Teacher" th:value="${teacher.lastName}" value="Nagel"/>
-                        <input class="InputField" placeholder="Teacher ID#" th:value="${teacher.teacherID}"/>
+                        <input name="academicClassPeriod" class="InputField" placeholder="Period"/>
+                        <input name="academicClassName" class="InputField" type="text" placeholder="Class Name"/>
+                        <input name="academicClassIdentifier" class="InputField" placeholder="Class ID#"/>
+                        <input name="academicClassDepartment" class="InputField" placeholder="Department"/>
+                        <input name="teacherLastName" class="InputField" placeholder="Last Name" th:value="${teacher.lastName}" value="Nagel"/>
+                        <input name="teacherFirstName" class="InputField" placeholder="First Name" th:value="${teacher.firstName}" value="Andrew"/>
+                        <input name="teacherID" class="InputField" placeholder="Teacher ID#" th:value="${teacher.teacherID}"/>
                         <button class="SearchButton">Search</button>
                     </form>
                 </div>
@@ -66,7 +67,7 @@
                             <td th:text="${academicClass.identifier}">SCIPHY101A</td>
                             <td th:text="${academicClass.department}">Science</td>
                             <td th:text="${academicClass.teacher.lastName}">MR. NAGEL</td>
-                            <td th:text="${'N/A'}">13</td>
+                            <td th:text="${academicClass.assignmentList.size()}">13</td>
                             <td th:text="${academicClass.average}">92.4</td>
                         </tr>
                     </table>

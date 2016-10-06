@@ -52,14 +52,21 @@ public class TeacherController {
     }
     @RequestMapping(value = "/teacherGradeBook", method = RequestMethod.GET)
     public String teacherGradeBookPage(Model model, HttpSession session,
-                                       @RequestParam(defaultValue = "") String teacherName,
-                                       @RequestParam(defaultValue = "0") Integer teacherID) {
+                                       @RequestParam(defaultValue = "") Integer academicClassPeriod,
+                                       @RequestParam(defaultValue = "") String academicClassName,
+                                       @RequestParam(defaultValue = "") String academicClassIdentifier,
+                                       @RequestParam(defaultValue = "") String academicClassDepartment,
+                                       @RequestParam(defaultValue = "") String teacherLastName,
+                                       @RequestParam(defaultValue = "") String teacherFirstName,
+                                       @RequestParam(defaultValue = "") Integer teacherID) throws SQLException {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
             return "redirect:/logout";
         }
         model.addAttribute("date", date);
         model.addAttribute("teacher", session.getAttribute("teacher"));
-        model.addAttribute("classList", mainService.getAllClasses());
+        model.addAttribute("classList", mainService.searchAndDisplayClasses(academicClassPeriod, academicClassName, academicClassIdentifier, academicClassDepartment, teacherLastName, teacherFirstName));
+//        model.addAttribute("classList", mainService.searchAndDisplayClasses(academicClassPeriod, academicClassName, academicClassIdentifier, academicClassDepartment, teacherLastName, teacherFirstName, teacherID));
+//        model.addAttribute("classList", mainService.getAllClasses());
         return "teacherGradeBook";
     }
     @RequestMapping(value = "/teacherManageAssign", method = RequestMethod.GET)
