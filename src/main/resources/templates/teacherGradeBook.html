@@ -34,13 +34,13 @@
             <article class="SearchParams">
                 <div id="ClassSearchParams">
                     <form>
-                        <input name="academicClassPeriod" class="InputField" placeholder="Period"/>
-                        <input name="academicClassName" class="InputField" type="text" placeholder="Class Name"/>
-                        <input name="academicClassIdentifier" class="InputField" placeholder="Class ID#"/>
-                        <input name="academicClassDepartment" class="InputField" placeholder="Department"/>
-                        <input name="teacherLastName" class="InputField" placeholder="Last Name" th:value="${teacher.lastName}" value="Nagel"/>
-                        <input name="teacherFirstName" class="InputField" placeholder="First Name" th:value="${teacher.firstName}" value="Andrew"/>
-                        <input name="teacherID" class="InputField" placeholder="Teacher ID#" th:value="${teacher.teacherID}"/>
+                        <input name="academicClassPeriod" class="InputField" placeholder="Period" th:value="${period}"/>
+                        <input name="academicClassName" class="InputField" type="text" placeholder="Class Name" th:value="${name}"/>
+                        <input name="academicClassIdentifier" class="InputField" placeholder="Class ID#" th:value="${identifier}"/>
+                        <input name="academicClassDepartment" class="InputField" placeholder="Department" th:value="${department}"/>
+                        <input name="teacherLastName" class="InputField" placeholder="Last Name" th:value="${teacherLastName}" value="Nagel"/>
+                        <input name="teacherFirstName" class="InputField" placeholder="First Name" th:value="${teacherFirstName}" value="Andrew"/>
+                        <input name="teacherID" class="InputField" placeholder="Teacher ID#" th:value="${teacherID}"/>
                         <button class="SearchButton">Search</button>
                     </form>
                 </div>

@@ -102,8 +102,8 @@ public class MainService {
     }
 
     //return list holding stored animal objects by name (sans notes)
-    public List<AcademicClass> searchAndDisplayClasses(Integer academicClassPeriod, String academicClassName, String academicClassIdentifier, String academicClassDepartment, String teacherLastName, String teacherFirstName) throws SQLException {
-        return classRepo.findByPeriodOrNameContainingOrIdentifierContainingOrDepartmentContainingOrTeacherLastNameContainingOrTeacherFirstNameContaining(academicClassPeriod, academicClassName, academicClassIdentifier, academicClassDepartment, teacherLastName, teacherFirstName);
+    public List<AcademicClass> searchAndDisplayClasses(Integer period, String name, String identifier, String department, String teacherLastName, String teacherFirstName) throws SQLException {
+        return classRepo.findByPeriodOrNameContainingOrIdentifierContainingOrDepartmentContainingOrTeacherLastNameContainingOrTeacherFirstNameContaining(period, name, identifier, department, teacherLastName, teacherFirstName);
     }
 
     //return list holding stored animal objects by name (sans notes)

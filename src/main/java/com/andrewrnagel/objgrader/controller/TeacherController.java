@@ -52,10 +52,10 @@ public class TeacherController {
     }
     @RequestMapping(value = "/teacherGradeBook", method = RequestMethod.GET)
     public String teacherGradeBookPage(Model model, HttpSession session,
-                                       @RequestParam(defaultValue = "") Integer academicClassPeriod,
-                                       @RequestParam(defaultValue = "") String academicClassName,
-                                       @RequestParam(defaultValue = "") String academicClassIdentifier,
-                                       @RequestParam(defaultValue = "") String academicClassDepartment,
+                                       @RequestParam(defaultValue = "") Integer period,
+                                       @RequestParam(defaultValue = "") String name,
+                                       @RequestParam(defaultValue = "") String identifier,
+                                       @RequestParam(defaultValue = "") String department,
                                        @RequestParam(defaultValue = "") String teacherLastName,
                                        @RequestParam(defaultValue = "") String teacherFirstName,
                                        @RequestParam(defaultValue = "") Integer teacherID) throws SQLException {
@@ -64,7 +64,15 @@ public class TeacherController {
         }
         model.addAttribute("date", date);
         model.addAttribute("teacher", session.getAttribute("teacher"));
-        model.addAttribute("classList", mainService.searchAndDisplayClasses(academicClassPeriod, academicClassName, academicClassIdentifier, academicClassDepartment, teacherLastName, teacherFirstName));
+        model.addAttribute("period", period);
+        model.addAttribute("name", name);
+        model.addAttribute("identifier", identifier);
+        model.addAttribute("department", department);
+        model.addAttribute("teacherLastName", teacherLastName);
+        model.addAttribute("teacherFirstName", teacherFirstName);
+        model.addAttribute("teacherID", teacherID);
+
+        model.addAttribute("classList", mainService.searchAndDisplayClasses(period, name, identifier, department, teacherLastName, teacherFirstName));
 //        model.addAttribute("classList", mainService.searchAndDisplayClasses(academicClassPeriod, academicClassName, academicClassIdentifier, academicClassDepartment, teacherLastName, teacherFirstName, teacherID));
 //        model.addAttribute("classList", mainService.getAllClasses());
         return "teacherGradeBook";
