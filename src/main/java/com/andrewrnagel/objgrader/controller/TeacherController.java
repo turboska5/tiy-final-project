@@ -45,7 +45,9 @@ public class TeacherController {
         return "teacherAttendance";
     }
     @RequestMapping(value = "/teacherGradeBook", method = RequestMethod.GET)
-    public String teacherGradeBookPage(Model model, HttpSession session) {
+    public String teacherGradeBookPage(Model model, HttpSession session,
+                                       @RequestParam(defaultValue = "") String teacherName,
+                                       @RequestParam(defaultValue = "0") Integer userID) {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
             return "redirect:/logout";
         }
