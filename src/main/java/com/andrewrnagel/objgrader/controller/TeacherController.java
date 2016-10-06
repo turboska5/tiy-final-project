@@ -1,5 +1,6 @@
 package com.andrewrnagel.objgrader.controller;
 
+import com.andrewrnagel.objgrader.entity.AcademicClass;
 import com.andrewrnagel.objgrader.entity.Assignment;
 import com.andrewrnagel.objgrader.entity.Teacher;
 import com.andrewrnagel.objgrader.entity.User;
@@ -98,6 +99,7 @@ public class TeacherController {
             return "redirect:/logout";
         }
         model.addAttribute("date", date);
+        Teacher teacher = (Teacher)session.getAttribute("teacher");
         model.addAttribute("teacher", session.getAttribute("teacher"));
         if(bindingResult.hasErrors()){
             model.addAttribute("bindingResult", bindingResult);
@@ -109,6 +111,8 @@ public class TeacherController {
         if(assignment.getAssignmentID() > 0) {
 
         }
+        Integer id = teacher.getTeacherID();
+//        mainService.getAcademicClass()
         mainService.saveAssignment(assignment);
         return "redirect:/adminUsers";
     }

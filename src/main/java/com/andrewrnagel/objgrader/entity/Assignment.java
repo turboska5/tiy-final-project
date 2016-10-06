@@ -1,6 +1,7 @@
 package com.andrewrnagel.objgrader.entity;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -24,7 +25,7 @@ public class Assignment {
     @NotNull
     private String assignmentIDNumber;
 
-    @NotBlank
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @NotNull
     private LocalDate date;
 
@@ -34,11 +35,8 @@ public class Assignment {
     @NotNull
     private Integer period;
 
-    @NotBlank
-    @NotNull
     private String note;
 
-    @NotNull
     @ManyToOne(cascade = CascadeType.ALL)
     private AcademicClass academicClass;
 
