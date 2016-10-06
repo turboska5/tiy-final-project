@@ -18,6 +18,8 @@ public class MainService {
     @Autowired
     private AdminRepository adminRepository;
     @Autowired
+    private AssignmentRepo assignmentRepo;
+    @Autowired
     private TeacherRepository teacherRepository;
     @Autowired
     private StudentRepository studentRepository;
@@ -93,5 +95,9 @@ public class MainService {
         AcademicClass academicClass = getAcademicClass(classID);
         academicClass.getStudents().remove(getStudent(studentID));
         this.classRepo.save(academicClass);
+    }
+
+    public void saveAssignment(Assignment assignment){
+        this.assignmentRepo.save(assignment);
     }
 }
