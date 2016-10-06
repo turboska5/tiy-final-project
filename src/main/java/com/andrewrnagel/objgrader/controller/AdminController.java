@@ -123,6 +123,9 @@ public class AdminController {
     public String adminAddStudentToClass(Model model, HttpSession session,
                                          @RequestParam(defaultValue = "0") Integer classID,
                                          @RequestParam(defaultValue = "0") Integer studentID) {
+        if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
+            return "redirect:/logout";
+        }
         mainService.addStudentToClass(classID, studentID);
         return "redirect:/adminManageClass?classID=" + classID;
     }
@@ -130,6 +133,9 @@ public class AdminController {
     public String adminDropStudentFromClass(Model model, HttpSession session,
                                          @RequestParam(defaultValue = "0") Integer classID,
                                          @RequestParam(defaultValue = "0") Integer studentID) {
+        if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
+            return "redirect:/logout";
+        }
         mainService.dropStudentFromClass(classID, studentID);
 
         return "redirect:/adminManageClass?classID=" + classID;
