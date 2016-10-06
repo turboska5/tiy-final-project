@@ -89,9 +89,9 @@ public class TeacherController {
         if(bindingResult.hasErrors()){
             model.addAttribute("bindingResult", bindingResult);
             model.addAttribute("assignment", assignment);
-            model.addAttribute("userName", session.getAttribute("userName"));
+            model.addAttribute("teacher", session.getAttribute("teacher"));
             model.addAttribute("date", date);
-            return "adminManageTeacher";
+            return "teacherManageAssign";
         }
         if(assignment.getAssignmentID() > 0) {
 
