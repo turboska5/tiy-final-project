@@ -27,17 +27,17 @@ public class Assignment {
     @NotNull
     private String assignmentIDNumber;
 
+    private String note;
+
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @NotNull
     private LocalDate date;
 
-    @NotNull
-    private Integer possPoints;
-
-    @NotNull
-    private Integer period;
-
-    private String note;
+//    @NotNull
+//    private Integer possPoints;
+//
+//    @NotNull
+//    private Integer period;
 
     //TODO
 //    private List<Grade> gradeList = new ArrayList<>();
@@ -45,46 +45,36 @@ public class Assignment {
     public Assignment() {
     }
 
-    public Assignment(String assignmentName, String assignmentIDNumber, LocalDate date, Integer possPoints, Integer period) {
+    public Assignment(String assignmentName, String assignmentIDNumber, LocalDate date) {
         this.assignmentName = assignmentName;
         this.assignmentIDNumber = assignmentIDNumber;
         this.date = date;
-        this.possPoints = possPoints;
-        this.period = period;
     }
 
-    public Assignment(String assignmentName, String assignmentIDNumber, String date, Integer possPoints, Integer period) {
+    public Assignment(String assignmentName, String assignmentIDNumber, String date) {
         this.assignmentName = assignmentName;
         this.assignmentIDNumber = assignmentIDNumber;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         this.date = LocalDate.parse(date, formatter);
-        this.possPoints = possPoints;
-        this.period = period;
     }
 
-    public Assignment(String assignmentName, String assignmentIDNumber, Integer possPoints, Integer period) {
+    public Assignment(String assignmentName, String assignmentIDNumber) {
         this.assignmentName = assignmentName;
         this.assignmentIDNumber = assignmentIDNumber;
-        this.possPoints = possPoints;
-        this.period = period;
     }
 
-    public Assignment(String assignmentName, String assignmentIDNumber, LocalDate date, Integer possPoints, Integer period, String note) {
+    public Assignment(String assignmentName, String assignmentIDNumber, LocalDate date, String note) {
         this.assignmentName = assignmentName;
         this.assignmentIDNumber = assignmentIDNumber;
         this.date = date;
-        this.possPoints = possPoints;
-        this.period = period;
         this.note = note;
     }
 
-    public Assignment(String assignmentName, String assignmentIDNumber, String date, Integer possPoints, Integer period, String note) {
+    public Assignment(String assignmentName, String assignmentIDNumber, String date,String note) {
         this.assignmentName = assignmentName;
         this.assignmentIDNumber = assignmentIDNumber;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         this.date = LocalDate.parse(date, formatter);
-        this.possPoints = possPoints;
-        this.period = period;
         this.note = note;
     }
 
@@ -120,21 +110,21 @@ public class Assignment {
         this.date = date;
     }
 
-    public Integer getPossPoints() {
-        return possPoints;
-    }
-
-    public void setPossPoints(Integer possPoints) {
-        this.possPoints = possPoints;
-    }
-
-    public Integer getPeriod() {
-        return period;
-    }
-
-    public void setPeriod(Integer period) {
-        this.period = period;
-    }
+//    public Integer getPossPoints() {
+//        return possPoints;
+//    }
+//
+//    public void setPossPoints(Integer possPoints) {
+//        this.possPoints = possPoints;
+//    }
+//
+//    public Integer getPeriod() {
+//        return period;
+//    }
+//
+//    public void setPeriod(Integer period) {
+//        this.period = period;
+//    }
 
     public String getNote() {
         return note;

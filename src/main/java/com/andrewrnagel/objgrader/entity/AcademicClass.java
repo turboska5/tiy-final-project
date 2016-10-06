@@ -36,20 +36,20 @@ public class AcademicClass {
     private Teacher teacher;
     @NotNull
     private Integer capacity=0;
-    @NotNull
-    private Double average=0.0;
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "students_classes",
-            joinColumns = @JoinColumn(name = "classID"),
-            inverseJoinColumns = @JoinColumn(name = "studentID")
-    )
-    @Valid
-    private List<Student> students = new ArrayList<>();
-    @OneToMany(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "classID")
-    @OrderBy("date")
-    private List<Assignment> assignmentList = new ArrayList<>();
+//    @NotNull
+//    private Double average=0.0;
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(
+//            name = "students_classes",
+//            joinColumns = @JoinColumn(name = "classID"),
+//            inverseJoinColumns = @JoinColumn(name = "studentID")
+//    )
+//    @Valid
+//    private List<Student> students = new ArrayList<>();
+//    @OneToMany(cascade = CascadeType.PERSIST)
+//    @JoinColumn(name = "classID")
+//    @OrderBy("date")
+//    private List<Assignment> assignmentList = new ArrayList<>();
 
     public AcademicClass() {
     }
@@ -115,27 +115,27 @@ public class AcademicClass {
         this.capacity = capacity;
     }
 
-    public List<Student> getStudents() {
-        return students;
-    }
+//    public List<Student> getStudents() {
+//        return students;
+//    }
+//
+//    public void setStudents(List<Student> students) {
+//        this.students = students;
+//    }
 
-    public void setStudents(List<Student> students) {
-        this.students = students;
-    }
+//    public Double getAverage() {
+//        return average;
+//    }
+//
+//    public void setAverage(Double average) {
+//        this.average = average;
+//    }
 
-    public Double getAverage() {
-        return average;
-    }
-
-    public void setAverage(Double average) {
-        this.average = average;
-    }
-
-    public List<Assignment> getAssignmentList() {
-        return assignmentList;
-    }
-
-    public void setAssignmentList(List<Assignment> assignmentList) {
-        this.assignmentList = assignmentList;
-    }
+//    public List<Assignment> getAssignmentList() {
+//        return assignmentList;
+//    }
+//
+//    public void setAssignmentList(List<Assignment> assignmentList) {
+//        this.assignmentList = assignmentList;
+//    }
 }

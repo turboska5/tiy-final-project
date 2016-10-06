@@ -13,9 +13,9 @@ public class Grade {
     private Integer gradeID = 0;
 
     //TODO
-//    @NotNull
-//    @ManyToOne(cascade = CascadeType.PERSIST)
-//    private AcademicClass academicClass;
+    @NotNull
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private AcademicClass academicClass;
 
     @NotNull
     @ManyToOne(cascade = CascadeType.PERSIST)
@@ -26,6 +26,12 @@ public class Grade {
     private Student student;
 
     private Integer earnedPoints;
+
+    private Integer possiblePoints;
+
+    private String dateCreated;
+
+    private String dateModifided;
 
     public Grade() {
     }

@@ -110,7 +110,7 @@ public class TeacherController {
 //            Assignment assignment = mainService.getAssignment(assignmentID);
 //            model.addAttribute("assignment", assignment);
         } else {
-            Assignment assignment = new Assignment("", "", 0, 0);
+            Assignment assignment = new Assignment("", "", "");
             model.addAttribute("assignment", assignment);
         }
         return "teacherManageAssign";

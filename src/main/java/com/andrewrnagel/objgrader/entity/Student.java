@@ -29,8 +29,8 @@ public class Student {
     @OneToOne(cascade = CascadeType.ALL)
     @Valid
     private User user = new User();
-    @ManyToMany(mappedBy = "students")
-    private List<AcademicClass> studentClasses = new ArrayList<>();
+//    @ManyToMany(mappedBy = "students")
+//    private List<AcademicClass> studentClasses = new ArrayList<>();
 
     public Student() {
     }
@@ -90,11 +90,11 @@ public class Student {
         this.user = user;
     }
 
-    public List<AcademicClass> getStudentClasses() {
-        return studentClasses;
-    }
-
-    public void setStudentClasses(List<AcademicClass> studentClasses) {
-        this.studentClasses = studentClasses;
-    }
+//    public List<AcademicClass> getStudentClasses() {
+//        return studentClasses;
+//    }
+//
+//    public void setStudentClasses(List<AcademicClass> studentClasses) {
+//        this.studentClasses = studentClasses;
+//    }
 }

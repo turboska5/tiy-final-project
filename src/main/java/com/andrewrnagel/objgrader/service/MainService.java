@@ -88,13 +88,13 @@ public class MainService {
 
     public void addStudentToClass(Integer classID, Integer studentID) {
         AcademicClass academicClass = getAcademicClass(classID);
-        academicClass.getStudents().add(getStudent(studentID));
+//        academicClass.getStudents().add(getStudent(studentID));
         this.classRepo.save(academicClass);
     }
 
     public void dropStudentFromClass(Integer classID, Integer studentID) {
         AcademicClass academicClass = getAcademicClass(classID);
-        academicClass.getStudents().remove(getStudent(studentID));
+//        academicClass.getStudents().remove(getStudent(studentID));
         this.classRepo.save(academicClass);
     }
 
