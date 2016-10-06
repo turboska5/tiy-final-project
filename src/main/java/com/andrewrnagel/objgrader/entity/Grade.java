@@ -36,6 +36,11 @@ public class Grade {
     public Grade() {
     }
 
+    public Grade(AcademicClass academicClass, Student student) {
+        this.academicClass = academicClass;
+        this.student = student;
+    }
+
     public Grade(Integer earnedPoints) {
         this.earnedPoints = earnedPoints;
     }
