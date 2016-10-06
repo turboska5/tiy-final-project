@@ -33,11 +33,12 @@
             <article class="SearchParams">
                 <div id="ClassSearchParams">
                     <form>
-                        <input class="InputField" type="text" placeholder="Class Name"/>
-                        <input class="InputField" type="text" placeholder="Class ID#"/>
-                        <input class="InputField" type="text" placeholder="Department"/>
-                        <input class="InputField" type="text" placeholder="Teacher"/>
-                        <input class="InputField" type="text" placeholder="Period"/>
+                        <input name="name" class="InputField" type="text" placeholder="Class Name" th:value="${name}"/>
+                        <input name="identifier" class="InputField" type="text" placeholder="Class ID#" th:value="${identifier}"/>
+                        <input name="department" class="InputField" type="text" placeholder="Department" th:value="${department}"/>
+                        <input name="teacherLastName" class="InputField" type="text" placeholder="Last Name" th:value="${teacherLastName}"/>
+                        <input name="teacherFirstName" class="InputField" type="text" placeholder="First Name" th:value="${teacherFirstName}"/>
+                        <input name="period" class="InputField" type="text" placeholder="Period" th:value="${period}"/>
                         <button class="SearchButton">Search</button>
                     </form>
                     <a th:href="@{/adminManageClass}" href="../templates/adminManageClass.html"><button id="AddClassButton" class="addnewuser"></button></a>

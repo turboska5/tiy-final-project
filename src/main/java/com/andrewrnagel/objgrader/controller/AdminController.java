@@ -41,14 +41,27 @@ public class AdminController {
         return "adminHome";
     }
     @RequestMapping(value = "/adminClasses", method = RequestMethod.GET)
-    public String adminClassPage(Model model, HttpSession session) {
+    public String adminClassPage(Model model, HttpSession session,
+                                 @RequestParam(defaultValue = "") String name,
+                                 @RequestParam(defaultValue = "") String identifier,
+                                 @RequestParam(defaultValue = "") String department,
+                                 @RequestParam(defaultValue = "") String teacherLastName,
+                                 @RequestParam(defaultValue = "") String teacherFirstName,
+                                 @RequestParam(defaultValue = "") Integer teacherID,
+                                 @RequestParam(defaultValue = "") Integer period) {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
             return "redirect:/logout";
         }
-        model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", date);
-        model.addAttribute("classList", mainService.getAllClasses());
-        model.addAttribute("studentList", mainService.getAllStudents());
+        model.addAttribute("userName", session.getAttribute("userName"));
+        model.addAttribute("name", name);
+        model.addAttribute("identifier", identifier);
+        model.addAttribute("department", department);
+        model.addAttribute("teacherLastName", teacherLastName);
+        model.addAttribute("teacherFirstName", teacherFirstName);
+        model.addAttribute("teacherID", teacherID);
+        model.addAttribute("period", period);
+        model.addAttribute("classList", mainService.searchClasses(period, "%" + name + "%", "%" + identifier + "%", "%" + department + "%", "%" + teacherLastName + "%", "%" + teacherFirstName + "%", teacherID));
         return "adminClasses";
     }
     @RequestMapping(value = "/adminManageClass", method = RequestMethod.GET)
