@@ -34,11 +34,23 @@ public class Assignment {
     @NotNull
     private Integer period;
 
+    @NotBlank
+    @NotNull
+    private String note;
+
     @NotNull
     @ManyToOne(cascade = CascadeType.ALL)
     private AcademicClass academicClass;
 
     public Assignment() {
+    }
+
+    public Assignment(String assignmentName, String assignmentIDNumber, LocalDate date, Integer possPoints, Integer period) {
+        this.assignmentName = assignmentName;
+        this.assignmentIDNumber = assignmentIDNumber;
+        this.date = date;
+        this.possPoints = possPoints;
+        this.period = period;
     }
 
     public Assignment(String assignmentName, String assignmentIDNumber, String date, Integer possPoints, Integer period) {
@@ -50,11 +62,30 @@ public class Assignment {
         this.period = period;
     }
 
-    public Assignment(String assignmentName, String assignmentIDNumber, LocalDate date, Integer possPoints) {
+    public Assignment(String assignmentName, String assignmentIDNumber, Integer possPoints, Integer period) {
+        this.assignmentName = assignmentName;
+        this.assignmentIDNumber = assignmentIDNumber;
+        this.possPoints = possPoints;
+        this.period = period;
+    }
+
+    public Assignment(String assignmentName, String assignmentIDNumber, LocalDate date, Integer possPoints, Integer period, String note) {
         this.assignmentName = assignmentName;
         this.assignmentIDNumber = assignmentIDNumber;
         this.date = date;
         this.possPoints = possPoints;
+        this.period = period;
+        this.note = note;
+    }
+
+    public Assignment(String assignmentName, String assignmentIDNumber, String date, Integer possPoints, Integer period, String note) {
+        this.assignmentName = assignmentName;
+        this.assignmentIDNumber = assignmentIDNumber;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        this.date = LocalDate.parse(date, formatter);
+        this.possPoints = possPoints;
+        this.period = period;
+        this.note = note;
     }
 
     public Integer getAssignmentID() {
@@ -95,5 +126,29 @@ public class Assignment {
 
     public void setPossPoints(Integer possPoints) {
         this.possPoints = possPoints;
+    }
+
+    public Integer getPeriod() {
+        return period;
+    }
+
+    public void setPeriod(Integer period) {
+        this.period = period;
+    }
+
+    public AcademicClass getAcademicClass() {
+        return academicClass;
+    }
+
+    public void setAcademicClass(AcademicClass academicClass) {
+        this.academicClass = academicClass;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 }
