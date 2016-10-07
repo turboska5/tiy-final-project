@@ -57,6 +57,9 @@ public class AcademicClass {
 
     public AcademicClass() {
     }
+    public AcademicClass(Integer classID) {
+        this.classID = classID;
+    }
 
     public AcademicClass(String name, String department) {
         this.name = name;

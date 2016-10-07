@@ -37,9 +37,9 @@
                     <input type="hidden" id="gradeID" name="gradeID" th:value="${gradeID}"/>
                     <label>Class</label>
                     <!--<ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('academicClass.period')}"></li></ul>-->
-                    <select name="teacherClasses" >
+                    <select name="teacherClasses" th:field="${teacherClasses}">
                         <option value="" selected="true">Class</option>
-                        <option th:each="classes : ${teacherClasses}" th:value="${classes.getClassID()}" value="" th:text="${classes.getPeriod()+ ', ' + classes.getName()}"></option>
+                        <option th:each="academicClass : ${teacherClasses}" th:value="${academicClass.getClassID()}" value="" th:text="${academicClass.getPeriod()+ ', ' + academicClass.getName()}"></option>
                     </select>
                     <br/><label>Assignment Name</label>
                     <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('assignment.assignmentName')}"></li></ul>

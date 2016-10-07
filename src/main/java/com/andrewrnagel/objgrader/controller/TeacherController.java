@@ -183,7 +183,7 @@ public class TeacherController {
         return "teacherManageAssign";
     }
     @RequestMapping(value = "/teacherManageAssign", method = RequestMethod.POST)
-    public String teacherGradeBookAssignFormPost(@Valid Assignment assignment, BindingResult bindingResult, Model model, HttpSession session,
+    public String teacherGradeBookAssignFormPost(@Valid Assignment assignment, BindingResult bindingResult, AcademicClass academicClass, Model model, HttpSession session,
                                                  @RequestParam(defaultValue = "0") Integer gradeID,
                                                  @RequestParam(defaultValue = "0") Integer classID) throws SQLException, PasswordStorage.CannotPerformOperationException {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
@@ -193,6 +193,7 @@ public class TeacherController {
         Teacher teacher = (Teacher)session.getAttribute("teacher");
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("teacher", session.getAttribute("teacher"));
+        academicClass.getClassID();
         if(bindingResult.hasErrors()){
             model.addAttribute("bindingResult", bindingResult);
             model.addAttribute("assignment", assignment);
