@@ -61,8 +61,9 @@
                             <th>Average</th>
                         </tr>
                         <tr th:each="academicClass : ${classList}">
-                            <td><input type="radio" name="classSelector"/>
-                            <a><button class="editicon"></button></a></td>
+                            <td>
+                                <!--<input type="radio" name="classSelector"/>-->
+                            <a><button disabled="true" class="editicon"></button></a></td>
                             <td th:text="${academicClass.period}">1</td>
                             <td th:text="${academicClass.name}">PHYSICS 101</td>
                             <td th:text="${academicClass.identifier}">SCIPHY101A</td>
@@ -86,7 +87,7 @@
             <article class="SearchParams">
                 <div id="AssigmentSearchParams">
                     <form>
-                        <input class="InputField" placeholder="Period" Value="1"/>
+                        <input class="InputField" placeholder="Period" Value=""/>
                         <input class="InputField" type="text" placeholder="Name"/>
                         <input class="InputField" placeholder="ID#"/>
                         <input class="InputField" placeholder="Date"/>
@@ -136,10 +137,10 @@
             <article class="SearchParams">
                 <div id="StudentSearchParams">
                     <form>
-                        <input class="InputField" type="text" placeholder="Period" value="1"/>
+                        <input class="InputField" type="text" placeholder="Period" value=""/>
                         <input class="InputField" type="text" placeholder="Last Name"/>
                         <input class="InputField" type="text" placeholder="First Name"/>
-                        <input class="InputField" type="text" placeholder="Name" value="Orientation Assignment"/>
+                        <input class="InputField" type="text" placeholder="Name" value=""/>
                         <input class="InputField" type="text" placeholder="ID#"/>
                         <button class="SearchButton">Search</button>
                     </form>
