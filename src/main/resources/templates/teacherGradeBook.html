@@ -20,8 +20,8 @@
     <nav class="nav-links">
         <ul th:object="${teacher}">
             <li class="option"><a th:href="@{/teacherHome}" href="../templates/teacherHome.html">Home</a></li>
-            <li class="option"><a th:href="@{/teacherAttendance?(teacherLastName=*{lastName}, teacherFirstName=*{firstName}, teacherID=*{teacherID})}" href="../templates/teacherAttendance.html">Attendance</a></li>
-            <li class="current"><a th:href="@{/teacherGradeBook?(teacherLastName=*{lastName}, teacherFirstName=*{firstName}, teacherID=*{teacherID})}" href="../templates/teacherGradeBook.html">Grade Book</a></li>
+            <li class="option"><a th:href="@{teacherMyAttendance}" href="../templates/teacherAttendance.html">Attendance</a></li>
+            <li class="current"><a th:href="@{teacherMyGradeBook}" href="../templates/teacherGradeBook.html">Grade Book</a></li>
             <li class="logout"><a th:href="@{/logout}" href="../templates/login.html">Logout</a></li>
         </ul>
     </nav>
@@ -113,7 +113,7 @@
                             <th>Class Avg</th>
                             <th></th>
                         </tr>
-                        <tr>
+                        <tr th:each="assignment : ${assignmentList}">
                             <td><a th:href="@{/teacherManageAssign}" href="../templates/teacherManageAssign.html"><button class="editicon"></button></a></td>
                             <td>1</td>
                             <td>Orientation Assignment</td>
@@ -161,7 +161,7 @@
                             <th>Pts Earned</th>
                             <th>Pts Possible</th>
                         </tr>
-                        <tr>
+                        <tr th:each="assignment : ${studentAssignmentList}">
                             <td></td>
                             <td>1</td>
                             <td>SMITH</td>

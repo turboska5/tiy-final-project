@@ -45,6 +45,21 @@ public class TeacherController {
         model.addAttribute("classList", mainService.searchClasses(null, "", "", "", "", "", teacher.getTeacherID()));
         return "teacherHome";
     }
+    @RequestMapping(value = "/teacherMyAttendance")
+    public String teacherAttendancePagePersonalized(Model model, HttpSession session) {
+        if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
+            return "redirect:/logout";
+        }
+        Teacher teacher = (Teacher)session.getAttribute("teacher");
+        String teacherLastName = teacher.getLastName();
+        String teacherFirstName = teacher.getFirstName();
+        Integer teacherID = teacher.getTeacherID();
+        model.addAttribute("teacher", teacher);
+        model.addAttribute("teacherLastName", teacherLastName);
+        model.addAttribute("teacherFirstName", teacherFirstName);
+        model.addAttribute("teacherID", teacherID);
+        return "redirect:/teacherAttendance?teacherLastName=" + teacherLastName + "&teacherFirstName=" + teacherFirstName + "&teacherID=" + teacherID;
+    }
     @RequestMapping(value = "/teacherAttendance", method = RequestMethod.GET)
     public String teacherAttendancePage(Model model, HttpSession session,
                                         @RequestParam(defaultValue = "") Integer period,
@@ -68,7 +83,24 @@ public class TeacherController {
         model.addAttribute("teacherFirstName", teacherFirstName);
         model.addAttribute("teacherID", teacherID);
         model.addAttribute("classList", mainService.searchClasses(period, "%" + name + "%", "%" + identifier + "%", "%" + department + "%", "%" + teacherLastName + "%", "%" + teacherFirstName + "%", teacherID));
+//        model.addAttribute("assignmentList", "");
+//        model.addAttribute("studentAssignmentList", "");
         return "teacherAttendance";
+    }
+    @RequestMapping(value = "/teacherMyGradeBook")
+    public String teacherGradeBookPagePersonalized(Model model, HttpSession session) {
+        if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
+            return "redirect:/logout";
+        }
+        Teacher teacher = (Teacher)session.getAttribute("teacher");
+        String teacherLastName = teacher.getLastName();
+        String teacherFirstName = teacher.getFirstName();
+        Integer teacherID = teacher.getTeacherID();
+        model.addAttribute("teacher", teacher);
+        model.addAttribute("teacherLastName", teacherLastName);
+        model.addAttribute("teacherFirstName", teacherFirstName);
+        model.addAttribute("teacherID", teacherID);
+        return "redirect:/teacherGradeBook?teacherLastName=" + teacherLastName + "&teacherFirstName=" + teacherFirstName + "&teacherID=" + teacherID;
     }
     @RequestMapping(value = "/teacherGradeBook", method = RequestMethod.GET)
     public String teacherGradeBookPage(Model model, HttpSession session,
