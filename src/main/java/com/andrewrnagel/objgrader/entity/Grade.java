@@ -6,17 +6,16 @@ import javax.validation.constraints.NotNull;
 /**
  * Created by Jimmy on 10/3/16.
  */
+
 @Entity
 public class Grade {
     @Id
     @GeneratedValue
     private Integer gradeID = 0;
 
-    //TODO
     @ManyToOne
     private AcademicClass academicClass;
 
-//    (cascade = CascadeType.PERSIST)
     @ManyToOne
     private Assignment assignment;
 
@@ -35,9 +34,23 @@ public class Grade {
     public Grade() {
     }
 
+    public Grade(Integer possPoints) {
+        this.possPoints = possPoints;
+    }
+
     public Grade(AcademicClass academicClass, Assignment assignment) {
         this.academicClass = academicClass;
         this.assignment = assignment;
+    }
+
+    public Grade(AcademicClass academicClass, Student student) {
+        this.academicClass = academicClass;
+        this.student = student;
+    }
+
+    public Grade(Integer earnedPoints, Integer possPoints) {
+        this.earnedPoints = earnedPoints;
+        this.possPoints = possPoints;
     }
 
     public Grade(AcademicClass academicClass, Assignment assignment, Student student) {
@@ -46,28 +59,14 @@ public class Grade {
         this.student = student;
     }
 
-    public Grade(AcademicClass academicClass, Student student) {
-        this.academicClass = academicClass;
-        this.student = student;
-    }
-
-    public Grade(AcademicClass academicClass, Assignment assignment, Student student, Integer earnedPoints, Integer possPoints, String dateCreated, String dateModifided) {
+    public Grade(AcademicClass academicClass, Assignment assignment, Student student, Integer earnedPoints, Integer possPoints, String dateCreated, String dateModified) {
         this.academicClass = academicClass;
         this.assignment = assignment;
         this.student = student;
         this.earnedPoints = earnedPoints;
         this.possPoints = possPoints;
         this.dateCreated = dateCreated;
-        this.dateModified = dateModifided;
-    }
-
-    public Grade(Integer earnedPoints, Integer possPoints) {
-        this.earnedPoints = earnedPoints;
-        this.possPoints = possPoints;
-    }
-
-    public Grade(Integer possPoints) {
-        this.possPoints = possPoints;
+        this.dateModified = dateModified;
     }
 
     public Integer getGradeID() {
