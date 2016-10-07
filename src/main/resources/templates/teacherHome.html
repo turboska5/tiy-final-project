@@ -53,8 +53,7 @@
                         <tr th:each="academicClass : ${classList}" th:object="${teacher}">
                             <td class="icon"></td>
                             <td th:text="${'Period ' + academicClass.period}">Period 1</td>
-                            <!--<td th:text="${academicClass.students.size() + ' students'}">13 Students</td>-->
-                            <td>11 Students</td>
+                            <td th:text="${academicClass.studentNumber + ' students'}">13 Students</td>
                             <td><input class="attendanceCheckbox" disabled="true" type="checkbox"/>
                                 <a class="homeHyperlink" th:href="@{/teacherAttendance?(teacherLastName=*{lastName}, teacherFirstName=*{firstName}, teacherID=*{teacherID})}" href="../templates/teacherAttendance.html">Attendance</a>
                                 <a class="homeHyperlink" th:href="@{/teacherGradeBook?(teacherLastName=*{lastName}, teacherFirstName=*{firstName}, teacherID=*{teacherID})}" href="../templates/teacherGradeBook.html">Gradebook</a>

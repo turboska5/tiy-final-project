@@ -122,10 +122,7 @@ public class MainService {
     }
 
     public void dropStudentFromClass(Integer classID, Integer studentID) {
-        //TODO
-//        AcademicClass academicClass = getAcademicClass(classID);
-//        academicClass.getStudents().remove(getStudent(studentID));
-//        this.classRepo.save(academicClass);
+        this.gradeRepo.removeStudentFromClass(classID, studentID);
     }
 
     public void saveAssignment(Assignment assignment, Integer classID){

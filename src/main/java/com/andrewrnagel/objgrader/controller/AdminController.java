@@ -126,7 +126,6 @@ public class AdminController {
             return "redirect:/logout";
         }
         mainService.dropStudentFromClass(classID, studentID);
-
         return "redirect:/adminManageClass?classID=" + classID;
     }
     @RequestMapping(value = "/adminUsers", method = RequestMethod.GET)

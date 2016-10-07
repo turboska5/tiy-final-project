@@ -3,13 +3,15 @@ package com.andrewrnagel.objgrader.repository;
 import com.andrewrnagel.objgrader.entity.Grade;
 import com.andrewrnagel.objgrader.entity.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import java.util.List;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 /**
  * Created by Jimmy on 10/6/16.
+ * Modified by Andrew on 10/7/16.
  */
 
 public interface GradeRepo extends JpaRepository<Grade, Integer> {
@@ -17,4 +19,9 @@ public interface GradeRepo extends JpaRepository<Grade, Integer> {
 
     @Query(value = "SELECT DISTINCT g.student FROM Grade g WHERE (g.academicClass.classID = ?1)")
     List<Student> getStudentRoster(Integer classID);
+
+    @Modifying
+    @Transactional
+    @Query(value = "DELETE FROM Grade g WHERE (g.academicClass.classID = ?1 AND g.student.studentID = ?2)")
+    void removeStudentFromClass(Integer classID, Integer studentID);
 }
