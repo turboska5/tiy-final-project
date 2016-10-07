@@ -1,7 +1,5 @@
 package com.andrewrnagel.objgrader.entity;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -32,7 +30,7 @@ public class Grade {
 
     private String dateCreated;
 
-    private String dateModifided;
+    private String dateModified;
 
     public Grade() {
     }
@@ -102,11 +100,11 @@ public class Grade {
         this.dateCreated = dateCreated;
     }
 
-    public String getDateModifided() {
-        return dateModifided;
+    public String getDateModified() {
+        return dateModified;
     }
 
-    public void setDateModifided(String dateModifided) {
-        this.dateModifided = dateModifided;
+    public void setDateModified(String dateModified) {
+        this.dateModified = dateModified;
     }
 }

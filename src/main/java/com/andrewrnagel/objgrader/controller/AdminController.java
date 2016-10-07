@@ -73,12 +73,12 @@ public class AdminController {
         if(classID > 0) {
             AcademicClass academicClass = mainService.getAcademicClass(classID);
             model.addAttribute("academicClass", academicClass);
-//            List<Student> roster = academicClass.getStudents();
+            List<Student> roster = mainService.getStudentRoster(academicClass.getClassID());
             List<Student> pool = mainService.getAllStudents();
-//            model.addAttribute("studentRoster", roster);
-//            if(roster.size() > 0) {
-//                pool.removeAll(roster);
-//            }
+            model.addAttribute("studentRoster", roster);
+            if(roster.size() > 0) {
+                pool.removeAll(roster);
+            }
             model.addAttribute("studentList", pool);
         } else {
             AcademicClass academicClass = new AcademicClass("", "");
@@ -105,16 +105,6 @@ public class AdminController {
             model.addAttribute("studentList", mainService.getAllStudents());
             return "adminManageClass";
         }
-
-        if(academicClass.getClassID() > 0) {
-            //bring over old student roster
-//            List<Student> classStudents = mainService.getAcademicClass(academicClass.getClassID()).getStudents();
-//            //update class roster, if changed
-//            if(!academicClass.getStudents().equals(classStudents)) {
-//                academicClass.setStudents(classStudents);
-//            }
-        }
-
         mainService.saveClass(academicClass);
         return "redirect:/adminClasses";
     }

@@ -1,13 +1,14 @@
 package com.andrewrnagel.objgrader.service;
 
 import com.andrewrnagel.objgrader.entity.*;
-import com.andrewrnagel.objgrader.misc.PasswordStorage;
 import com.andrewrnagel.objgrader.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import java.sql.Array;
 import java.sql.SQLException;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Andrew Nagel on 9/28/16 at 2:50 PM EST.
@@ -86,13 +87,32 @@ public class MainService {
 
     public Admin getAdmin(Integer adminID) {
         return this.adminRepository.findOne(adminID);
-
     }
 
+    public List<Grade> getClassGrades(Integer classID) {
+        return this.gradeRepo.findByAcademicClassClassID(classID);
+    }
+
+    public List<Student> getStudentRoster(Integer classID) {
+        return this.gradeRepo.getStudentRoster(classID);
+    }
+
+//    public Integer getStudentCount(Integer classID) {
+//        return this.gradeRepo.countDistinctStudentByAcademicClassClassID(classID);
+//        //student --> grade; location --> Student(studentID)
+//        //map: studentID(DB) --> List of Grade Objects
+//        HashMap<Integer, List<Grade>> hashMap = new HashMap<Integer, List<Grade>>();
+//        if (!hashMap.containsKey(studentID)) {
+//            List<Grade> list = new ArrayList<Grade>();
+//            list.add(grade);
+//            hashMap.put(studentID, list);
+//        } else {
+//            hashMap.get(studentID).add(grade);
+//        }
+//        return classRoster;
+//    }
+
     public void addStudentToClass(Integer academicClassID, Integer studentID) {
-//        AcademicClass academicClass = getAcademicClass(classID);
-//        academicClass.getStudents().add(getStudent(studentID));
-//        this.classRepo.save(academicClass);
         Grade grade = new Grade();
         AcademicClass academicClass = this.classRepo.findOne(academicClassID);
         grade.setAcademicClass(academicClass);
