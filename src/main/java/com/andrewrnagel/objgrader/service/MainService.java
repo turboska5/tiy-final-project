@@ -86,14 +86,15 @@ public class MainService {
 
     public Admin getAdmin(Integer adminID) {
         return this.adminRepository.findOne(adminID);
+
     }
 
-    public void addStudentToClass(Integer classID, Integer studentID) {
+    public void addStudentToClass(Integer academicClassID, Integer studentID) {
 //        AcademicClass academicClass = getAcademicClass(classID);
 //        academicClass.getStudents().add(getStudent(studentID));
 //        this.classRepo.save(academicClass);
         Grade grade = new Grade();
-        AcademicClass academicClass = this.classRepo.findOne(classID);
+        AcademicClass academicClass = this.classRepo.findOne(academicClassID);
         grade.setAcademicClass(academicClass);
         Student student = this.studentRepository.findOne(studentID);
         grade.setStudent(student);

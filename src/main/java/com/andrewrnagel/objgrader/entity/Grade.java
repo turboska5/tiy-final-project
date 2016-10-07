@@ -16,16 +16,14 @@ public class Grade {
 
     //TODO
     @NotNull
-    @NotEmpty
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     private AcademicClass academicClass;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     private Assignment assignment;
 
     @NotNull
-    @NotEmpty
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     private Student student;
 
     private Integer earnedPoints;
