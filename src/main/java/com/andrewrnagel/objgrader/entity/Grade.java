@@ -30,7 +30,7 @@ public class Grade {
 
     private String dateCreated;
 
-    private String dateModifided;
+    private String dateModified;
 
     public Grade() {
     }
@@ -58,7 +58,7 @@ public class Grade {
         this.earnedPoints = earnedPoints;
         this.possPoints = possPoints;
         this.dateCreated = dateCreated;
-        this.dateModifided = dateModifided;
+        this.dateModified = dateModifided;
     }
 
     public Grade(Integer earnedPoints, Integer possPoints) {
@@ -126,11 +126,11 @@ public class Grade {
         this.dateCreated = dateCreated;
     }
 
-    public String getDateModifided() {
-        return dateModifided;
+    public String getDateModified() {
+        return dateModified;
     }
 
-    public void setDateModifided(String dateModifided) {
-        this.dateModifided = dateModifided;
+    public void setDateModified(String dateModified) {
+        this.dateModified = dateModified;
     }
 }

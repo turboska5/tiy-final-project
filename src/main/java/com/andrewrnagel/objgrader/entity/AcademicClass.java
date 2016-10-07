@@ -1,5 +1,6 @@
 package com.andrewrnagel.objgrader.entity;
 
+import org.hibernate.annotations.Formula;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
@@ -36,6 +37,9 @@ public class AcademicClass {
     private Teacher teacher;
     @NotNull
     private Integer capacity=0;
+    @Formula("(SELECT COUNT(distinct g.student_studentid) FROM Grade AS g WHERE g.academic_class_classid = classID)")
+    private Integer studentNumber=0;
+
 //    @NotNull
 //    private Double average=0.0;
 //    @ManyToMany(cascade = CascadeType.ALL)
@@ -115,27 +119,11 @@ public class AcademicClass {
         this.capacity = capacity;
     }
 
-//    public List<Student> getStudents() {
-//        return students;
-//    }
-//
-//    public void setStudents(List<Student> students) {
-//        this.students = students;
-//    }
+    public Integer getStudentNumber() {
+        return studentNumber;
+    }
 
-//    public Double getAverage() {
-//        return average;
-//    }
-//
-//    public void setAverage(Double average) {
-//        this.average = average;
-//    }
-
-//    public List<Assignment> getAssignmentList() {
-//        return assignmentList;
-//    }
-//
-//    public void setAssignmentList(List<Assignment> assignmentList) {
-//        this.assignmentList = assignmentList;
-//    }
+    public void setStudentNumber(Integer studentNumber) {
+        this.studentNumber = studentNumber;
+    }
 }
