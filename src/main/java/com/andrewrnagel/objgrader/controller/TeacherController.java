@@ -163,7 +163,8 @@ public class TeacherController {
         model.addAttribute("userName", session.getAttribute("userName"));
         Teacher teacher = (Teacher)session.getAttribute("teacher");
         model.addAttribute("teacher", teacher);
-        List<AcademicClass> teacherClases = mainService.searchForTeacherClasses(teacher.getTeacherID());
+//        List<AcademicClass> teacherClasses = mainService.searchForTeacherClasses(teacher.getTeacherID());
+        model.addAttribute("teacherClasses", mainService.searchForTeacherClasses(teacher.getTeacherID()));
 
         if(assignmentID > 0) {
             //TODO
@@ -182,7 +183,9 @@ public class TeacherController {
         return "teacherManageAssign";
     }
     @RequestMapping(value = "/teacherManageAssign", method = RequestMethod.POST)
-    public String teacherGradeBookAssignFormPost(@Valid Assignment assignment, BindingResult bindingResult, Model model, HttpSession session) throws SQLException, PasswordStorage.CannotPerformOperationException {
+    public String teacherGradeBookAssignFormPost(@Valid Assignment assignment, BindingResult bindingResult, Model model, HttpSession session,
+                                                 @RequestParam(defaultValue = "0") Integer gradeID,
+                                                 @RequestParam(defaultValue = "0") Integer classID) throws SQLException, PasswordStorage.CannotPerformOperationException {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
             return "redirect:/logout";
         }
@@ -195,6 +198,8 @@ public class TeacherController {
             model.addAttribute("assignment", assignment);
             model.addAttribute("teacher", session.getAttribute("teacher"));
             model.addAttribute("date", date);
+            model.addAttribute("gradeID", gradeID);
+            model.addAttribute("teacherClasses", mainService.searchForTeacherClasses(teacher.getTeacherID()));
             return "teacherManageAssign";
         }
         if(assignment.getAssignmentID() > 0) {
