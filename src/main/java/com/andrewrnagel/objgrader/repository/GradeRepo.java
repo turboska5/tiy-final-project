@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -24,4 +25,10 @@ public interface GradeRepo extends JpaRepository<Grade, Integer> {
     @Transactional
     @Query(value = "DELETE FROM Grade g WHERE (g.academicClass.classID = ?1 AND g.student.studentID = ?2)")
     void removeStudentFromClass(Integer classID, Integer studentID);
+
+    @Query(value = "SELECT g FROM Grade g WHERE (?1 IS NULL OR g.academicClass.period = ?1) AND (?2 = '' OR upper(g.assignment.assignmentName) LIKE upper(?2)) AND (?3 = '' OR upper(g.assignment.assignmentIDNumber) LIKE upper(?3)) AND (?4 IS NULL OR g.assignment.date = ?4) AND (?5 IS NULL OR g.possPoints = ?5)")
+    List<Grade> searchForTeacherAssignments(Integer aPeriod, String aName, String aID, LocalDate aDate, Integer aPoints);
+
+    @Query(value = "SELECT g FROM Grade g WHERE (?1 IS NULL OR g.academicClass.period = ?1) AND (?2 = '' OR upper(g.student.lastName) LIKE upper(?2)) AND (?3 = '' OR upper(g.student.firstName) LIKE upper(?3)) AND (?4 = '' OR upper(g.assignment.assignmentName) LIKE upper(?4)) AND (?5 = '' OR upper(g.assignment.assignmentIDNumber) LIKE upper(?5))")
+    List<Grade> searchForTeacherStudents(Integer sPeriod, String sLastName, String sFirstName, String sAName, String sAID);
 }

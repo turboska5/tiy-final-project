@@ -3,11 +3,14 @@ package com.andrewrnagel.objgrader.service;
 import com.andrewrnagel.objgrader.entity.*;
 import com.andrewrnagel.objgrader.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import java.sql.Array;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 /**
@@ -139,11 +142,26 @@ public class MainService {
         return results;
     }
 
-    //TODO
-    public void getTeacherAssignments(Integer aPeriod, String s, String s1, String s2, String s3) {}
+    //all of one teacher's assignments (search)
+    public List<Grade> getTeacherAssignments(Integer aPeriod, String aName, String aID, String aDate, String aPoints) {
+        LocalDate aDateConverted = null;
+        Integer aPointsParsed = null;
+        if(!aDate.equals("")) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            aDateConverted = LocalDate.parse(aDate, formatter);
+        }
+        if(!aPoints.equals("")) {
+            aPointsParsed = Integer.parseInt(aPoints);
+        }
+        List<Grade> results = this.gradeRepo.searchForTeacherAssignments(aPeriod, aName, aID, aDateConverted, aPointsParsed);
+        return results;
+    }
 
     //TODO
-    public void getTeacherStudents(Integer sPeriod, String s, String s1, String s2, String s3) {}
+    public List<Grade> getTeacherStudents(Integer sPeriod, String sLastName, String sFirstName, String sAName, String sAID) {
+        return this.gradeRepo.searchForTeacherStudents(sPeriod, sLastName, sFirstName, sAName, sAID);
+    }
+
 
     //search criteria and organize by period
     public List<AcademicClass> searchForTeacherClasses(Integer teacherID) {

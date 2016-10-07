@@ -1,5 +1,6 @@
 package com.andrewrnagel.objgrader.entity;
 
+import org.hibernate.annotations.Formula;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -32,6 +33,18 @@ public class Assignment {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @NotNull
     private LocalDate date;
+
+    //number of students with non-null scores (completed)
+    @Formula("(SELECT COUNT(g.student_studentid) FROM Grade AS g WHERE g.assignment_assignmentid = assignmentID AND g.earned_points IS NOT NULL)")
+    private Integer studentsWithGrade=0;
+
+    //sum of student points with non-null scores (scored)
+    @Formula("(SELECT SUM(g.earned_points) FROM Grade AS g WHERE g.assignment_assignmentid = assignmentID AND g.earned_points IS NOT NULL)")
+    private Integer sumStudentEarnedPointsWithGrade=0;
+
+    //average of student points with non-null scores (class average for this assignment)
+    @Formula("(sumStudentEarnedPointsWithGrade/studentsWithGrade)*100.0")
+    private Double average=0.0;
 
 //    @NotNull
 //    private Integer possPoints;

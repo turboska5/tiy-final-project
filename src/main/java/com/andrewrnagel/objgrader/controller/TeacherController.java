@@ -141,14 +141,14 @@ public class TeacherController {
         model.addAttribute("aID", aID);
         model.addAttribute("aDate", aDate);
         model.addAttribute("aPoints", aPoints);
-//        model.addAttribute("assignmentList", mainService.getTeacherAssignments(aPeriod, "%" + aName + "%", "%" + aID + "%", "%" + aDate + "%", "%" + aPoints + "%"));
+        model.addAttribute("assignmentList", mainService.getTeacherAssignments(aPeriod, "%" + aName + "%", "%" + aID + "%", aDate, aPoints));
         //student search
         model.addAttribute("sPeriod", sPeriod);
         model.addAttribute("sLastName", sLastName);
         model.addAttribute("sFirstName", sFirstName);
         model.addAttribute("sAName", sAName);
         model.addAttribute("sAID", sAID);
-//        model.addAttribute("gradeList", mainService.getTeacherStudents(sPeriod, "%" + sLastName + "%", "%" + sFirstName + "%", "%" + sAName + "%", "%" + sAID + "%"));
+        model.addAttribute("studentList", mainService.getTeacherStudents(sPeriod, "%" + sLastName + "%", "%" + sFirstName + "%", "%" + sAName + "%", "%" + sAID + "%"));
         return "teacherGradeBook";
     }
     @RequestMapping(value = "/teacherManageAssign", method = RequestMethod.GET)
