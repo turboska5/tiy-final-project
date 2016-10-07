@@ -39,6 +39,8 @@ public class AcademicClass {
     private Integer capacity=0;
     @Formula("(SELECT COUNT(distinct g.student_studentid) FROM Grade AS g WHERE g.academic_class_classid = classID)")
     private Integer studentNumber=0;
+    @Formula("(SELECT COUNT(distinct g.assignment_assignmentid) FROM Grade AS g WHERE g.academic_class_classid = classID)")
+    private Integer assignmentNumber=0;
 
 //    @NotNull
 //    private Double average=0.0;
@@ -128,5 +130,13 @@ public class AcademicClass {
 
     public void setStudentNumber(Integer studentNumber) {
         this.studentNumber = studentNumber;
+    }
+
+    public Integer getAssignmentNumber() {
+        return assignmentNumber;
+    }
+
+    public void setAssignmentNumber(Integer assignmentNumber) {
+        this.assignmentNumber = assignmentNumber;
     }
 }

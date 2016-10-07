@@ -193,7 +193,6 @@ public class TeacherController {
         Teacher teacher = (Teacher)session.getAttribute("teacher");
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("teacher", session.getAttribute("teacher"));
-        academicClass.getClassID();
         if(bindingResult.hasErrors()){
             model.addAttribute("bindingResult", bindingResult);
             model.addAttribute("assignment", assignment);

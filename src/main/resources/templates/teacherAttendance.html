@@ -61,7 +61,9 @@
                             <th>Capacity</th>
                         </tr>
                         <tr th:each="academicClass : ${classList}">
-                            <td><input type="radio" name="classSelector"/></td>
+                            <td>
+                                <!--<input type="radio" name="classSelector"/>-->
+                            </td>
                             <td th:text="${academicClass.period}">1</td>
                             <td th:text="${academicClass.name}">PHYSICS 101</td>
                             <td th:text="${academicClass.identifier}">SCIPHY101A</td>
