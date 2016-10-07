@@ -140,10 +140,15 @@ public class MainService {
     }
 
     //TODO
-    public Object getTeacherAssignments(Integer aPeriod, String s, String s1, String s2, String s3) {
-    }
+    public void getTeacherAssignments(Integer aPeriod, String s, String s1, String s2, String s3) {}
 
     //TODO
-    public Object getTeacherStudents(Integer sPeriod, String s, String s1, String s2, String s3) {
+    public void getTeacherStudents(Integer sPeriod, String s, String s1, String s2, String s3) {}
+
+    //search criteria and organize by period
+    public List<AcademicClass> searchForTeacherClasses(Integer teacherID) {
+        List<AcademicClass> results = this.classRepo.getByTeacherTeacherID(teacherID);
+        Collections.sort(results, (AcademicClass a1, AcademicClass a2) -> a1.getPeriod() - a2.getPeriod());
+        return results;
     }
 }
