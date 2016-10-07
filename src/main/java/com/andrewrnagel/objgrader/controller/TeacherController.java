@@ -107,13 +107,25 @@ public class TeacherController {
                                        @RequestParam(defaultValue = "") String department,
                                        @RequestParam(defaultValue = "") String teacherLastName,
                                        @RequestParam(defaultValue = "") String teacherFirstName,
-                                       @RequestParam(defaultValue = "") Integer teacherID) throws SQLException {
+                                       @RequestParam(defaultValue = "") Integer teacherID,
+                                       @RequestParam(defaultValue = "") Integer aPeriod,
+                                       @RequestParam(defaultValue = "") String aName,
+                                       @RequestParam(defaultValue = "") String aID,
+                                       @RequestParam(defaultValue = "") String aDate,
+                                       @RequestParam(defaultValue = "") String aPoints,
+                                       @RequestParam(defaultValue = "") Integer sPeriod,
+                                       @RequestParam(defaultValue = "") String sLastName,
+                                       @RequestParam(defaultValue = "") String sFirstName,
+                                       @RequestParam(defaultValue = "") String sAName,
+                                       @RequestParam(defaultValue = "") String sAID) throws SQLException {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
             return "redirect:/logout";
         }
+        //banner
         model.addAttribute("date", date);
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("teacher", session.getAttribute("teacher"));
+        //class search
         model.addAttribute("period", period);
         model.addAttribute("name", name);
         model.addAttribute("identifier", identifier);
@@ -122,6 +134,20 @@ public class TeacherController {
         model.addAttribute("teacherFirstName", teacherFirstName);
         model.addAttribute("teacherID", teacherID);
         model.addAttribute("classList", mainService.searchClasses(period, "%" + name + "%", "%" + identifier + "%", "%" + department + "%", "%" + teacherLastName + "%", "%" + teacherFirstName + "%", teacherID));
+        //assignment search
+        model.addAttribute("aPeriod", aPeriod);
+        model.addAttribute("aName", aName);
+        model.addAttribute("aID", aID);
+        model.addAttribute("aDate", aDate);
+        model.addAttribute("aPoints", aPoints);
+        model.addAttribute("assignmentList", mainService.getTeacherAssignments(aPeriod, "%" + aName + "%", "%" + aID + "%", "%" + aDate + "%", "%" + aPoints + "%"));
+        //student search
+        model.addAttribute("sPeriod", sPeriod);
+        model.addAttribute("sLastName", sLastName);
+        model.addAttribute("sFirstName", sFirstName);
+        model.addAttribute("sAName", sAName);
+        model.addAttribute("sAID", sAID);
+        model.addAttribute("gradeList", mainService.getTeacherStudents(sPeriod, "%" + sLastName + "%", "%" + sFirstName + "%", "%" + sAName + "%", "%" + sAID + "%"));
         return "teacherGradeBook";
     }
     @RequestMapping(value = "/teacherManageAssign", method = RequestMethod.GET)

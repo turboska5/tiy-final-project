@@ -138,4 +138,12 @@ public class MainService {
         Collections.sort(results, (AcademicClass a1, AcademicClass a2) -> a1.getPeriod() - a2.getPeriod());
         return results;
     }
+
+    //TODO
+    public Object getTeacherAssignments(Integer aPeriod, String s, String s1, String s2, String s3) {
+    }
+
+    //TODO
+    public Object getTeacherStudents(Integer sPeriod, String s, String s1, String s2, String s3) {
+    }
 }

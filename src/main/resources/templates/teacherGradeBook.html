@@ -62,7 +62,6 @@
                         </tr>
                         <tr th:each="academicClass : ${classList}">
                             <td>
-                                <!--<input type="radio" name="classSelector"/>-->
                             <a><button disabled="true" class="editicon"></button></a></td>
                             <td th:text="${academicClass.period}">1</td>
                             <td th:text="${academicClass.name}">PHYSICS 101</td>
@@ -117,9 +116,9 @@
                         <tr th:each="assignment : ${assignmentList}">
                             <td><a th:href="@{/teacherManageAssign}" href="../templates/teacherManageAssign.html"><button class="editicon"></button></a></td>
                             <td>1</td>
-                            <td>Orientation Assignment</td>
-                            <td>HW1</td>
-                            <td>09/25/2016</td>
+                            <td th:text="${assignment.assignmentName}">Orientation Assignment</td>
+                            <td th:text="${assignment.assignmentIDNumber}">HW1</td>
+                            <td th:text="${assignment.date}">09/25/2016</td>
                             <td>10</td>
                             <td>95.2</td>
                             <td></td>
@@ -150,7 +149,6 @@
             <!--class manager results-->
             <div class="SearchResults">
                 <div id="StudentResults">
-                    <!--This table only appears when assignment is specified-->
                     <table class="ResultsTable">
                         <tr>
                             <th class="icon"></th>
@@ -162,15 +160,15 @@
                             <th>Pts Earned</th>
                             <th>Pts Possible</th>
                         </tr>
-                        <tr th:each="assignment : ${studentAssignmentList}">
+                        <tr th:each="grade : ${gradeList}">
                             <td></td>
-                            <td>1</td>
-                            <td>SMITH</td>
-                            <td>MATTHEW</td>
-                            <td>Orientation Assignment</td>
-                            <td>09/25/2016</td>
-                            <td><input class="GradeInput" type="number" min="0" value="100"/></td>
-                            <td>100</td>
+                            <td th:text="${grade.academicClass.period}">1</td>
+                            <td th:text="${grade.student.lastName}">SMITH</td>
+                            <td th:text="${grade.student.firstName}">MATTHEW</td>
+                            <td th:text="${grade.assignmentName}">Orientation Assignment</td>
+                            <td th:text="${grade.assignmentDate}">09/25/2016</td>
+                            <td th:text="${grade.earnedPoints}"><input class="GradeInput" type="number" min="0" value="100"/></td>
+                            <td th:text="${grade.possPoints}">100</td>
                         </tr>
                     </table>
                 </div>
