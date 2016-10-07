@@ -86,11 +86,12 @@
             <article class="SearchParams">
                 <div id="AssigmentSearchParams">
                     <form>
-                        <input class="InputField" placeholder="Period" Value=""/>
-                        <input class="InputField" type="text" placeholder="Name"/>
-                        <input class="InputField" placeholder="ID#"/>
-                        <input class="InputField" placeholder="Date"/>
-                        <input class="InputField" placeholder="Points"/>
+                        <!--<input type="hidden" id="aClassID" name="aClassID" th:value="${academicClass.ClassID}"/>-->
+                        <input name="" class="InputField" placeholder="Period" Value=""/>
+                        <input name="" class="InputField" type="text" placeholder="Name"/>
+                        <input name="" class="InputField" placeholder="ID#"/>
+                        <input name="" class="InputField" placeholder="Date"/>
+                        <input name="" class="InputField" placeholder="Points"/>
                         <button class="SearchButton">Search</button>
                     </form>
                 </div>
@@ -110,18 +111,20 @@
                             <th>ID#</th>
                             <th>Date</th>
                             <th>Pts Possible</th>
+                            <th>Submitted</th>
                             <th>Class Avg</th>
-                            <th></th>
                         </tr>
-                        <tr th:each="assignment : ${assignmentList}">
+                        <tr th:each="grade : ${assignmentList}">
                             <td><a th:href="@{/teacherManageAssign}" href="../templates/teacherManageAssign.html"><button class="editicon"></button></a></td>
-                            <td>1</td>
-                            <td th:text="${assignment.assignmentName}">Orientation Assignment</td>
-                            <td th:text="${assignment.assignmentIDNumber}">HW1</td>
-                            <td th:text="${assignment.date}">09/25/2016</td>
-                            <td>10</td>
-                            <td>95.2</td>
-                            <td></td>
+                            <td th:text="${grade.academicClass.period}">1</td>
+                            <td th:text="${grade.assignment.assignmentName}">Orientation Assignment</td>
+                            <td th:text="${grade.assignment.assignmentIDNumber}">HW1</td>
+                            <td th:text="${grade.assignment.date}">09/25/2016</td>
+                            <td th:text="${grade.possPoints}">100</td>
+                            <span th:with="submissionRate=${grade.assignment.studentsWithGrade / grade.academicClass.studentNumber}">
+                            <td th:text="${submissionRate + '%'}">72.3%</td>
+                            </span>
+                            <td th:text="${grade.assignment.average + '%'}">95.2%</td>
                         </tr>
                     </table>
                 </div>
@@ -136,6 +139,7 @@
             <article class="SearchParams">
                 <div id="StudentSearchParams">
                     <form>
+                        <!--<input type="hidden" id="sClassID" name="sClassID" th:value="${academicClass.ClassID}"/>-->
                         <input class="InputField" type="text" placeholder="Period" value=""/>
                         <input class="InputField" type="text" placeholder="Last Name"/>
                         <input class="InputField" type="text" placeholder="First Name"/>
@@ -160,7 +164,7 @@
                             <th>Pts Earned</th>
                             <th>Pts Possible</th>
                         </tr>
-                        <tr th:each="grade : ${gradeList}">
+                        <tr th:each="grade : ${studentList}">
                             <td></td>
                             <td th:text="${grade.academicClass.period}">1</td>
                             <td th:text="${grade.student.lastName}">SMITH</td>
