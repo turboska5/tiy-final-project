@@ -46,15 +46,6 @@ public class Assignment {
     @Formula("(sumStudentEarnedPointsWithGrade/studentsWithGrade)*100.0")
     private Double average=0.0;
 
-//    @NotNull
-//    private Integer possPoints;
-//
-//    @NotNull
-//    private Integer period;
-
-    //TODO
-//    private List<Grade> gradeList = new ArrayList<>();
-
     public Assignment() {
     }
 
@@ -122,22 +113,6 @@ public class Assignment {
     public void setDate(LocalDate date) {
         this.date = date;
     }
-
-//    public Integer getPossPoints() {
-//        return possPoints;
-//    }
-//
-//    public void setPossPoints(Integer possPoints) {
-//        this.possPoints = possPoints;
-//    }
-//
-//    public Integer getPeriod() {
-//        return period;
-//    }
-//
-//    public void setPeriod(Integer period) {
-//        this.period = period;
-//    }
 
     public String getNote() {
         return note;

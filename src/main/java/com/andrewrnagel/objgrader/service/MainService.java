@@ -157,11 +157,9 @@ public class MainService {
         return results;
     }
 
-    //TODO
     public List<Grade> getTeacherStudents(Integer sPeriod, String sLastName, String sFirstName, String sAName, String sAID) {
         return this.gradeRepo.searchForTeacherStudents(sPeriod, sLastName, sFirstName, sAName, sAID);
     }
-
 
     //search criteria and organize by period
     public List<AcademicClass> searchForTeacherClasses(Integer teacherID) {

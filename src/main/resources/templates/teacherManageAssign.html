@@ -31,8 +31,9 @@
         <!--Assignment manager-->
         <article>
             <fieldset>
+                <!--think from perspective of grade, even though creating object-->
                 <legend>Manage Assignment</legend>
-                <form class="ManageForm" th:action="teacherManageAssign" action="../templates/teacherGradeBook.html" method="post">
+                <form class="ManageForm" th:action="teacherManageAssign" th:object="${grade}" action="../templates/teacherGradeBook.html" method="post">
                     <input type="hidden" id="assignmentID" name="assignmentID" th:value="${assignment.assignmentID}"/>
                     <input type="hidden" id="gradeID" name="gradeID" th:value="${gradeID}"/>
                     <label>Class</label>
