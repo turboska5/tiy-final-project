@@ -16,6 +16,7 @@ import javax.validation.Valid;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 /**
  * Created by Jimmy and Andrew on 10/5/16.
@@ -134,7 +135,10 @@ public class TeacherController {
         }
         model.addAttribute("date", date);
         model.addAttribute("userName", session.getAttribute("userName"));
-        model.addAttribute("teacher", session.getAttribute("teacher"));
+        Teacher teacher = (Teacher)session.getAttribute("teacher");
+        model.addAttribute("teacher", teacher);
+        List<AcademicClass> teacherClases = mainService.searchForTeacherClasses(teacher.getTeacherID());
+
         if(assignmentID > 0) {
             //TODO
 //            Assignment assignment = mainService.getAssignment(assignmentID);

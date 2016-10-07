@@ -138,4 +138,12 @@ public class MainService {
         Collections.sort(results, (AcademicClass a1, AcademicClass a2) -> a1.getPeriod() - a2.getPeriod());
         return results;
     }
+
+
+    //search criteria and organize by period
+    public List<AcademicClass> searchForTeacherClasses(Integer teacherID) {
+        List<AcademicClass> results = this.classRepo.getByTeacherTeacherID(teacherID);
+        Collections.sort(results, (AcademicClass a1, AcademicClass a2) -> a1.getPeriod() - a2.getPeriod());
+        return results;
+    }
 }
