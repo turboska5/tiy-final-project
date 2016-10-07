@@ -1,9 +1,6 @@
 package com.andrewrnagel.objgrader.controller;
 
-import com.andrewrnagel.objgrader.entity.AcademicClass;
-import com.andrewrnagel.objgrader.entity.Assignment;
-import com.andrewrnagel.objgrader.entity.Teacher;
-import com.andrewrnagel.objgrader.entity.User;
+import com.andrewrnagel.objgrader.entity.*;
 import com.andrewrnagel.objgrader.misc.PasswordStorage;
 import com.andrewrnagel.objgrader.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -129,7 +126,8 @@ public class TeacherController {
     }
     @RequestMapping(value = "/teacherManageAssign", method = RequestMethod.GET)
     public String teacherGradeBookAssignForm(Model model, HttpSession session,
-                                             @RequestParam(defaultValue = "0") Integer assignmentID) {
+                                             @RequestParam(defaultValue = "0") Integer assignmentID,
+                                             @RequestParam(defaultValue = "0") Integer gradeID) {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
             return "redirect:/logout";
         }
@@ -141,8 +139,11 @@ public class TeacherController {
 //            Assignment assignment = mainService.getAssignment(assignmentID);
 //            model.addAttribute("assignment", assignment);
         } else {
-            Assignment assignment = new Assignment("", "", "");
+            Assignment assignment = new Assignment("", "");
             model.addAttribute("assignment", assignment);
+
+            Grade grade = new Grade(0);
+            model.addAttribute("grade", grade);
         }
         return "teacherManageAssign";
     }
@@ -166,8 +167,8 @@ public class TeacherController {
 
         }
         //TODO
-        Integer id = teacher.getTeacherID();
-        mainService.saveAssignment(assignment);
+
+//        mainService.saveAssignment(assignment, classID);
 
         return "redirect:/teacherGradeBook";
     }

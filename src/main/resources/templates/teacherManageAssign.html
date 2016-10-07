@@ -34,6 +34,7 @@
                 <legend>Manage Assignment</legend>
                 <form class="ManageForm" th:object="${assignment}" th:action="teacherManageAssign" action="../templates/teacherGradeBook.html" method="post">
                     <input type="hidden" id="assignmentID" name="assignmentID" th:value="*{assignmentID}"/>
+                    <input type="hidden" id="gradeID" name="gradeID" th:value="${grade.gradeID}"/>
                     <!--<input type="hidden" id="academicClass" name="academicClass" th:value="*{academicClass}"/>-->
                     <label>Assignment Name</label>
                     <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('assignmentName')}"></li></ul>
@@ -48,23 +49,23 @@
                     <input name="date" type="date" class="FormInputDate" th:field="*{date}" th:errorclass="error"/>
                     <br/>
                     <label>Possible Points</label>
-                    <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('possPoints')}"></li></ul>
-                    <input name="possPoints" type="number" min="0" class="FormInputPoints" placeholder="Possible Points" th:field="*{possPoints}" th:errorclass="error"/>
+                    <!--<ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('grade.possPoints')}"></li></ul>-->
+                    <input name="possPoints" type="number" min="0" class="FormInputPoints" placeholder="Possible Points" th:field="${grade.possPoints}" th:errorclass="error"/>
                     <br/>
-                    <label>Period</label>
-                    <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('period')}"></li></ul>
-                    <select name="period" th:field="*{period}" th:errorclass="error">
-                        <option value="" selected="true">Period</option>
-                        <option value="1" >1</option>
-                        <option value="2" >2</option>
-                        <option value="3" >3</option>
-                        <option value="4" >4</option>
-                        <option value="5" >5</option>
-                        <option value="6" >6</option>
-                        <option value="7" >7</option>
-                        <option value="8" >8</option>
-                    </select>
-                    <br/>
+                    <!--<label>Period</label>-->
+                    <!--<ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('academicClass.period')}"></li></ul>-->
+                    <!--<select name="period" th:field="${academicClass.period}" th:errorclass="error">-->
+                        <!--<option value="" selected="true">Period</option>-->
+                        <!--<option value="1" >1</option>-->
+                        <!--<option value="2" >2</option>-->
+                        <!--<option value="3" >3</option>-->
+                        <!--<option value="4" >4</option>-->
+                        <!--<option value="5" >5</option>-->
+                        <!--<option value="6" >6</option>-->
+                        <!--<option value="7" >7</option>-->
+                        <!--<option value="8" >8</option>-->
+                    <!--</select>-->
+                    <!--<br/>-->
 
                     <label>Do Not Factor</label>
                     <input type="checkbox" disabled="true"/>
@@ -82,7 +83,8 @@
                     <!--<br/>-->
 
                     <label>Notes</label>
-                    <textarea class="AddAssignmentNoteText"></textarea>
+                    <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('note')}"></li></ul>
+                    <textarea name="note" class="AddAssignmentNoteText" th:field="*{note}" th:errorclass="error"></textarea>
                     <br/>
                     <button>Save</button>
                 </form>

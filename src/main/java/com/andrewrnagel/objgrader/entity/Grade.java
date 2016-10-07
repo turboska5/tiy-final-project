@@ -1,7 +1,5 @@
 package com.andrewrnagel.objgrader.entity;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -15,10 +13,10 @@ public class Grade {
     private Integer gradeID = 0;
 
     //TODO
-    @NotNull
     @ManyToOne
     private AcademicClass academicClass;
 
+//    (cascade = CascadeType.PERSIST)
     @ManyToOne
     private Assignment assignment;
 
@@ -28,7 +26,7 @@ public class Grade {
 
     private Integer earnedPoints;
 
-    private Integer possiblePoints;
+    private Integer possPoints;
 
     private String dateCreated;
 
@@ -37,13 +35,39 @@ public class Grade {
     public Grade() {
     }
 
+    public Grade(AcademicClass academicClass, Assignment assignment) {
+        this.academicClass = academicClass;
+        this.assignment = assignment;
+    }
+
+    public Grade(AcademicClass academicClass, Assignment assignment, Student student) {
+        this.academicClass = academicClass;
+        this.assignment = assignment;
+        this.student = student;
+    }
+
     public Grade(AcademicClass academicClass, Student student) {
         this.academicClass = academicClass;
         this.student = student;
     }
 
-    public Grade(Integer earnedPoints) {
+    public Grade(AcademicClass academicClass, Assignment assignment, Student student, Integer earnedPoints, Integer possPoints, String dateCreated, String dateModifided) {
+        this.academicClass = academicClass;
+        this.assignment = assignment;
+        this.student = student;
         this.earnedPoints = earnedPoints;
+        this.possPoints = possPoints;
+        this.dateCreated = dateCreated;
+        this.dateModifided = dateModifided;
+    }
+
+    public Grade(Integer earnedPoints, Integer possPoints) {
+        this.earnedPoints = earnedPoints;
+        this.possPoints = possPoints;
+    }
+
+    public Grade(Integer possPoints) {
+        this.possPoints = possPoints;
     }
 
     public Integer getGradeID() {
@@ -86,12 +110,12 @@ public class Grade {
         this.student = student;
     }
 
-    public Integer getPossiblePoints() {
-        return possiblePoints;
+    public Integer getPossPoints() {
+        return possPoints;
     }
 
-    public void setPossiblePoints(Integer possiblePoints) {
-        this.possiblePoints = possiblePoints;
+    public void setPossPoints(Integer possPoints) {
+        this.possPoints = possPoints;
     }
 
     public String getDateCreated() {

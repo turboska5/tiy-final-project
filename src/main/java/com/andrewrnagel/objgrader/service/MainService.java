@@ -108,8 +108,11 @@ public class MainService {
 //        this.classRepo.save(academicClass);
     }
 
-    public void saveAssignment(Assignment assignment){
+    public void saveAssignment(Assignment assignment, Integer classID){
         this.assignmentRepo.save(assignment);
+        AcademicClass academicClass = this.classRepo.findOne(classID);
+        Grade grade = new Grade(academicClass, assignment);
+        this.gradeRepo.save(grade);
     }
 
     //search criteria and organize by period
