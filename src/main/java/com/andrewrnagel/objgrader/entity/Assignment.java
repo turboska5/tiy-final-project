@@ -8,8 +8,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Jimmy on 10/3/16.
@@ -42,8 +40,15 @@ public class Assignment {
     @Formula("(SELECT SUM(g.earned_points) FROM Grade AS g WHERE g.assignment_assignmentid = assignmentID AND g.earned_points IS NOT NULL)")
     private Integer sumStudentEarnedPointsWithGrade=0;
 
+    //number of students enrolled
+    @Formula("(SELECT COUNT(g.student_studentid) FROM Grade AS g WHERE g.assignment_assignmentid = assignmentID AND g.student_studentID IS NOT NULL)")
+    private Integer studentsAssigned=0;
+
     //average of student points with non-null scores (class average for this assignment)
     private Double average=0.0;
+
+    //average of student points with non-null scores (class average for this assignment)
+    private Double submissionRate=0.0;
 
     public Assignment() {
     }
@@ -145,7 +150,19 @@ public class Assignment {
         }
     }
 
-    public void setAverage(Double average) {
+    public void setAverage(Double submissionRate) {
         this.average = average;
+    }
+
+    public Double getSubmissionRate() {
+        if(studentsAssigned.equals(0) || studentsAssigned.equals(null)) {
+            return 0.0;
+        } else {
+            return ((studentsWithGrade / studentsAssigned) * 100.0);
+        }
+    }
+
+    public void setSubmissionRate(Double submissionRate) {
+        this.submissionRate = submissionRate;
     }
 }

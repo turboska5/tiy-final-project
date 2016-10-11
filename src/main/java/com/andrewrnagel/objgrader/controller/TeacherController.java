@@ -140,14 +140,14 @@ public class TeacherController {
         model.addAttribute("aID", aID);
         model.addAttribute("aDate", aDate);
         model.addAttribute("aPoints", aPoints);
-        model.addAttribute("assignmentList", mainService.getTeacherAssignments(aPeriod, "%" + aName + "%", "%" + aID + "%", aDate, aPoints));
+        model.addAttribute("assignmentList", mainService.getTeacherAssignments(aPeriod, "%" + aName + "%", "%" + aID + "%", aDate, aPoints, teacherID));
         //student search
         model.addAttribute("sPeriod", sPeriod);
         model.addAttribute("sLastName", sLastName);
         model.addAttribute("sFirstName", sFirstName);
         model.addAttribute("sAName", sAName);
         model.addAttribute("sAID", sAID);
-        model.addAttribute("studentList", mainService.getTeacherStudents(sPeriod, "%" + sLastName + "%", "%" + sFirstName + "%", "%" + sAName + "%", "%" + sAID + "%"));
+        model.addAttribute("studentList", mainService.getTeacherStudents(sPeriod, "%" + sLastName + "%", "%" + sFirstName + "%", "%" + sAName + "%", "%" + sAID + "%", teacherID));
         return "teacherGradeBook";
     }
     @RequestMapping(value = "/teacherManageAssign", method = RequestMethod.GET)
@@ -191,6 +191,9 @@ public class TeacherController {
         Teacher teacher = (Teacher)session.getAttribute("teacher");
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("teacher", session.getAttribute("teacher"));
+        //errors that validation won't catch
+        
+
         //error checking
         if(bindingResult.hasErrors()){
             model.addAttribute("bindingResult", bindingResult);

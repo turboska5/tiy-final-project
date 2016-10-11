@@ -153,7 +153,7 @@ public class MainService {
     }
 
     //all of one teacher's assignments (search)
-    public List<Grade> getTeacherAssignments(Integer aPeriod, String aName, String aID, String aDate, String aPoints) {
+    public List<Grade> getTeacherAssignments(Integer aPeriod, String aName, String aID, String aDate, String aPoints, Integer teacherID) {
         LocalDate aDateConverted = null;
         Integer aPointsParsed = null;
         if(!aDate.equals("")) {
@@ -163,12 +163,12 @@ public class MainService {
         if(!aPoints.equals("")) {
             aPointsParsed = Integer.parseInt(aPoints);
         }
-        List<Grade> results = this.gradeRepo.searchForTeacherAssignments(aPeriod, aName, aID, aDateConverted, aPointsParsed);
+        List<Grade> results = this.gradeRepo.searchForTeacherAssignments(aPeriod, aName, aID, aDateConverted, aPointsParsed, teacherID);
         return results;
     }
 
-    public List<Grade> getTeacherStudents(Integer sPeriod, String sLastName, String sFirstName, String sAName, String sAID) {
-        return this.gradeRepo.searchForTeacherStudents(sPeriod, sLastName, sFirstName, sAName, sAID);
+    public List<Grade> getTeacherStudents(Integer sPeriod, String sLastName, String sFirstName, String sAName, String sAID, Integer teacherID) {
+        return this.gradeRepo.searchForTeacherStudents(sPeriod, sLastName, sFirstName, sAName, sAID, teacherID);
     }
 
     //search criteria and organize by period
