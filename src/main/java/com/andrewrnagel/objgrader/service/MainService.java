@@ -122,6 +122,7 @@ public class MainService {
         grade.setAcademicClass(academicClass);
         Student student = this.studentRepository.findOne(studentID);
         grade.setStudent(student);
+        grade.setPossPoints(0); //to allow for validation of assignment (not null constraint)
         this.gradeRepo.save(grade);
         //create assignments for student based on class added to
         List <Grade> classAssignments = this.gradeRepo.getClassAssignments(academicClassID);

@@ -187,26 +187,9 @@ public class TeacherController {
         //banner
         model.addAttribute("date", date);
         Teacher teacher = (Teacher)session.getAttribute("teacher");
-        model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("teacher", teacher);
-        //errors that validation won't catch
-//        if (grade.getAcademicClass().equals("Class")){
-//            FieldError fieldError = new FieldError("grade", "academicClass", grade.getAcademicClass(), false, new String[]{"Declined.grade.academicClass"}, (String[])null, "Did not Take Class");
-//            bindingResult.addError(fieldError);
-//        }
-//        if(StringUtils.isEmpty(grade.getAssignment().getAssignmentName().trim())){
-//            FieldError fieldError = new FieldError("grade", "assignment.assignmentName", grade.getAssignment().getAssignmentName(), false, new String[]{"Declined.student.user.password"}, (String[])null, "Did not Take Password");
-//            bindingResult.addError(fieldError);
-//        }
-//        if(StringUtils.isEmpty(grade.getAssignment().getAssignmentIDNumber().trim())){
-//            FieldError fieldError = new FieldError("grade", "assignment.assignmentIDNumber", grade.getAssignment().getAssignmentIDNumber(), false, new String[]{"Declined.student.user.password"}, (String[])null, "Did not Take Password");
-//            bindingResult.addError(fieldError);
-//        }
-        // TODO: Date Validation
-//        if(grade.getAssignment().getDateAsString().trim().equals("") || grade.getAssignment().getDateAsString().trim().equals(null)){
-//            FieldError fieldError = new FieldError("grade", "assignment.date", grade.getAssignment().getDateAsString(), false, new String[]{"Declined.student.user.password"}, (String[])null, "Did not Take Password");
-//            bindingResult.addError(fieldError);
-//        }
+        //todo: redundant (refactor)
+        model.addAttribute("userName", session.getAttribute("userName"));
         //error checking
         if(bindingResult.hasErrors()){
             model.addAttribute("bindingResult", bindingResult);
