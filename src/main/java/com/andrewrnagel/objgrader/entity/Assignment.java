@@ -47,6 +47,7 @@ public class Assignment {
     private Double average=0.0;
 
     public Assignment() {
+        this.date = LocalDate.now();
     }
 
     public Assignment(String assignmentName, String assignmentIDNumber, LocalDate date) {
@@ -74,7 +75,7 @@ public class Assignment {
         this.note = note;
     }
 
-    public Assignment(String assignmentName, String assignmentIDNumber, String date,String note) {
+    public Assignment(String assignmentName, String assignmentIDNumber, String date, String note) {
         this.assignmentName = assignmentName;
         this.assignmentIDNumber = assignmentIDNumber;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");

@@ -128,6 +128,10 @@ public class MainService {
         this.gradeRepo.removeStudentFromClass(classID, studentID);
     }
 
+    public void saveGrade(Grade grade) {
+        this.gradeRepo.save(grade);
+    }
+
     public void saveAssignment(Assignment assignment, Integer classID){
         this.assignmentRepo.save(assignment);
         AcademicClass academicClass = this.classRepo.findOne(classID);

@@ -1,7 +1,11 @@
 package com.andrewrnagel.objgrader.entity;
 
+import org.apache.tomcat.jni.Local;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Created by Jimmy on 10/3/16.
@@ -19,19 +23,19 @@ public class Grade {
     @ManyToOne(cascade = CascadeType.ALL)
     private Assignment assignment;
 
-    @NotNull
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Student student;
 
     private Integer earnedPoints;
 
     private Integer possPoints;
 
-    private String dateCreated;
+    private LocalDate dateCreated;
 
-    private String dateModified;
+    private LocalDate dateModified;
 
     public Grade() {
+        this.dateCreated = LocalDate.now();
     }
 
     public Grade(Integer possPoints) {
@@ -65,8 +69,9 @@ public class Grade {
         this.student = student;
         this.earnedPoints = earnedPoints;
         this.possPoints = possPoints;
-        this.dateCreated = dateCreated;
-        this.dateModified = dateModified;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        this.dateCreated = LocalDate.parse(dateCreated, formatter);
+        this.dateModified = LocalDate.parse(dateModified, formatter);
     }
 
     public Integer getGradeID() {
@@ -117,19 +122,19 @@ public class Grade {
         this.possPoints = possPoints;
     }
 
-    public String getDateCreated() {
+    public LocalDate getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(String dateCreated) {
+    public void setDateCreated(LocalDate dateCreated) {
         this.dateCreated = dateCreated;
     }
 
-    public String getDateModified() {
+    public LocalDate getDateModified() {
         return dateModified;
     }
 
-    public void setDateModified(String dateModified) {
+    public void setDateModified(LocalDate dateModified) {
         this.dateModified = dateModified;
     }
 }
