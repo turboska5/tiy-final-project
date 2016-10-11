@@ -21,7 +21,7 @@ public class Grade {
     @ManyToOne
     private AcademicClass academicClass;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Assignment assignment;
 
     @ManyToOne
