@@ -143,7 +143,6 @@ public class MainService {
     }
 
     public void saveAssignment(Grade grade) {
-        //TODO: gradeID null when it should be zero
         if(grade.getGradeID().equals(0)) {
             //save base assignment as grade
             this.gradeRepo.save(grade);

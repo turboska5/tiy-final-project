@@ -18,13 +18,13 @@ public class Grade {
     @GeneratedValue
     private Integer gradeID = 0;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private AcademicClass academicClass;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private Assignment assignment;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Student student;
 
     private Integer earnedPoints;

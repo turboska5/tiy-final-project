@@ -153,8 +153,7 @@ public class TeacherController {
     }
     @RequestMapping(value = "/teacherManageAssign", method = RequestMethod.GET)
     public String teacherGradeBookAssignForm(Model model, HttpSession session,
-                                             @RequestParam(defaultValue = "0") Integer gradeID,
-                                             @RequestParam(defaultValue = "0") Integer assignmentID) {
+                                             @RequestParam(defaultValue = "0") Integer gradeID) {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
             return "redirect:/logout";
         }
@@ -172,13 +171,11 @@ public class TeacherController {
             model.addAttribute("gradeID", gradeID);
             model.addAttribute("grade", grade);
             model.addAttribute("assignment", assignment);
-            model.addAttribute("assignmentID", assignmentID);
         } else {
             Grade grade = new Grade(0);
             Assignment assignment = new Assignment("", "");
             model.addAttribute("grade", grade);
             model.addAttribute("assignment", assignment);
-            model.addAttribute("assignmentID", assignmentID);
         }
         return "teacherManageAssign";
     }
@@ -211,7 +208,7 @@ public class TeacherController {
 //            FieldError fieldError = new FieldError("grade", "assignment.date", grade.getAssignment().getDate(), false, new String[]{"Declined.student.user.password"}, (String[])null, "Did not Take Password");
 //            bindingResult.addError(fieldError);
 //        }
-        if (grade.getPossPoints() == null || grade.getPossPoints().equals("")){
+        if(grade.getPossPoints().equals(null) || (grade.getPossPoints().equals(""))){
             FieldError fieldError = new FieldError("grade", "possPoints", grade.getPossPoints(), false, new String[]{"Declined.student.user.password"}, (String[])null, "Did not Take Password");
             bindingResult.addError(fieldError);
         }
@@ -226,9 +223,9 @@ public class TeacherController {
             model.addAttribute("teacherClasses", mainService.searchForTeacherClasses(teacher.getTeacherID()));
             return "teacherManageAssign";
         }
-//        if(grade.getGradeID() > 0) {
-//            //TODO: edit assignment (gradeID null when it should be zero)
-//        }
+        if(grade.getGradeID() > 0) {
+            //TODO: edit assignment (gradeID null when it should be zero)
+        }
         mainService.saveAssignment(grade);
         return "redirect:/teacherMyGradeBook";
     }
