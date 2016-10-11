@@ -190,20 +190,20 @@ public class TeacherController {
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("teacher", teacher);
         //errors that validation won't catch
-        //// TODO: 10/11/16  
+        // TODO: 10/11/16
 //        if (grade.getAcademicClass().equals("") || grade.getAcademicClass() == null){
 //            FieldError fieldError = new FieldError("grade", "academicClass", grade.getAcademicClass(), false, new String[]{"Declined.grade.academicClass"}, (String[])null, "Did not Take Class");
 //            bindingResult.addError(fieldError);
 //        }
-        if (grade.getAssignment().getAssignmentName().equals("")){
+        if(grade.getAssignment().getAssignmentName().equals("")){
             FieldError fieldError = new FieldError("grade", "assignment.assignmentName", grade.getAssignment().getAssignmentName(), false, new String[]{"Declined.student.user.password"}, (String[])null, "Did not Take Password");
             bindingResult.addError(fieldError);
         }
-        if (grade.getAssignment().getAssignmentIDNumber().equals("")){
+        if(grade.getAssignment().getAssignmentIDNumber().equals("")){
             FieldError fieldError = new FieldError("grade", "assignment.assignmentIDNumber", grade.getAssignment().getAssignmentIDNumber(), false, new String[]{"Declined.student.user.password"}, (String[])null, "Did not Take Password");
             bindingResult.addError(fieldError);
         }
-        //// TODO: 10/11/16  
+        // TODO: 10/11/16
 //        if (grade.getAssignment().getDate().equals("")){
 //            FieldError fieldError = new FieldError("grade", "assignment.date", grade.getAssignment().getDate(), false, new String[]{"Declined.student.user.password"}, (String[])null, "Did not Take Password");
 //            bindingResult.addError(fieldError);
@@ -223,9 +223,9 @@ public class TeacherController {
             model.addAttribute("teacherClasses", mainService.searchForTeacherClasses(teacher.getTeacherID()));
             return "teacherManageAssign";
         }
-        if(grade.getGradeID() > 0) {
-            //TODO: edit assignment
-        }
+//        if(grade.getGradeID() > 0) {
+//            //TODO: edit assignment (gradeID null when it should be zero)
+//        }
         mainService.saveAssignment(grade);
         return "redirect:/teacherMyGradeBook";
     }

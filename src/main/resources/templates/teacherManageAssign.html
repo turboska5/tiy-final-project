@@ -34,7 +34,7 @@
                 <!--think from perspective of grade, even though creating object-->
                 <legend>Manage Assignment</legend>
                 <form class="ManageForm" th:action="teacherManageAssign" th:object="${grade}" action="../templates/teacherGradeBook.html" method="post">
-                    <input type="hidden" id="gradeID" name="gradeID" th:value="${gradeID}"/>
+                    <input type="hidden" id="gradeID" name="gradeID" th:value="${grade.gradeID}"/>
                     <input type="hidden" id="assignmentID" name="assignmentID" th:value="${assignment.assignmentID}"/>
                     <label>Class</label>
                     <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('academicClass')}"></li></ul>
@@ -59,7 +59,7 @@
                     <input name="possPoints" type="number" min="0" class="FormInputPoints" placeholder="Possible Points" th:field="*{possPoints}" th:errorclass="error"/>
                     <br/>
 
-                    <!--TODO-->
+                    <!--TODO: Do not factor-->
                     <label>Do Not Factor</label>
                     <input type="checkbox" disabled="true"/>
                     <br/>

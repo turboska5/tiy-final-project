@@ -115,25 +115,39 @@ public class MainService {
 //        return classRoster;
 //    }
 
+    //TODO: verify populate assignments on add
     public void addStudentToClass(Integer academicClassID, Integer studentID) {
+        //create record on grade table
         Grade grade = new Grade();
         AcademicClass academicClass = this.classRepo.findOne(academicClassID);
         grade.setAcademicClass(academicClass);
         Student student = this.studentRepository.findOne(studentID);
         grade.setStudent(student);
         this.gradeRepo.save(grade);
+        //create assignments for student based on class added to
+        List <Grade> classAssignments = this.gradeRepo.getClassAssignments(academicClassID);
+        for(Grade classAssignment : classAssignments) {
+            Grade currentGrade = new Grade();
+            currentGrade.setStudent(student);
+            currentGrade.setAssignment(classAssignment.getAssignment());
+            currentGrade.setAcademicClass(classAssignment.getAcademicClass());
+            currentGrade.setPossPoints(classAssignment.getPossPoints());
+            currentGrade.setDateCreated(classAssignment.getDateCreated());
+            this.gradeRepo.save(currentGrade);
+        }
     }
 
+    //TODO: verify remove assignments from student on drop
     public void dropStudentFromClass(Integer classID, Integer studentID) {
         this.gradeRepo.removeStudentFromClass(classID, studentID);
     }
 
     public void saveAssignment(Grade grade) {
+        //TODO: gradeID null when it should be zero
         if(grade.getGradeID().equals(0)) {
             //save base assignment as grade
             this.gradeRepo.save(grade);
             //iterate through roster, adding a line to grade for each student
-            //TODO: only works for students currently enrolled
             List<Student> roster = getStudentRoster(grade.getAcademicClass().getClassID());
             for (Student student : roster) {
                 Grade currentGrade = new Grade();

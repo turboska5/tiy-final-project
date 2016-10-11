@@ -31,12 +31,11 @@ public class Grade {
 
     private Integer possPoints;
 
-    private LocalDate dateCreated;
+    private LocalDate dateCreated = LocalDate.now();
 
     private LocalDate dateModified;
 
     public Grade() {
-        this.dateCreated = LocalDate.now();
     }
 
     public Grade(Integer possPoints) {
