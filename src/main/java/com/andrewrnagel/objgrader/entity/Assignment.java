@@ -47,7 +47,6 @@ public class Assignment {
     private Double average=0.0;
 
     public Assignment() {
-        this.date = LocalDate.now();
     }
 
     public Assignment(String assignmentName, String assignmentIDNumber, LocalDate date) {
