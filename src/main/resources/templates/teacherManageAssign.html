@@ -34,13 +34,13 @@
                 <!--think from perspective of grade, even though creating object-->
                 <legend>Manage Assignment</legend>
                 <form class="ManageForm" th:action="teacherManageAssign" th:object="${grade}" action="../templates/teacherGradeBook.html" method="post">
-                    <input type="hidden" id="gradeID" name="gradeID" th:value="${gradeID}"/>
-                    <input type="hidden" id="assignmentID" name="assignmentID" th:value="${assignment.assignmentID}"/>
+                    <input type="hidden" id="gradeID" name="gradeID" th:value="${grade.getGradeID()}"/>
+                    <input type="hidden" id="assignmentID" name="assignmentID" th:value="${assignmentID}"/>
                     <label>Class</label>
                     <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('academicClass')}"></li></ul>
-                    <select name="academicClass">
+                    <select name="academicClass" th:field="*{academicClass}">
                         <option value="" selected="true">Class</option>
-                        <option th:each="academicClass : ${teacherClasses}" th:field="*{academicClass}" value="" th:text="${'Period ' + academicClass.getPeriod()+ ': ' + academicClass.getName()}"></option>
+                        <option th:each="academicClass : ${teacherClasses}" th:value="${academicClass.getClassID()}" value="" th:text="${'Period ' + academicClass.getPeriod()+ ': ' + academicClass.getName()}"></option>
                     </select>
                     <br/><label>Assignment Name</label>
                     <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('assignment.assignmentName')}"></li></ul>
