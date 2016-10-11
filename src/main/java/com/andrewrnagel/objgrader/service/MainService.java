@@ -128,15 +128,21 @@ public class MainService {
         this.gradeRepo.removeStudentFromClass(classID, studentID);
     }
 
-    public void saveGrade(Grade grade) {
+    //TODO: only works for students currently enrolled
+    public void saveAssignment(Grade grade) {
+        //save base assignment as grade
         this.gradeRepo.save(grade);
-    }
-
-    public void saveAssignment(Assignment assignment, Integer classID){
-        this.assignmentRepo.save(assignment);
-        AcademicClass academicClass = this.classRepo.findOne(classID);
-        Grade grade = new Grade(academicClass, assignment);
-        this.gradeRepo.save(grade);
+        //iterate through roster, adding a line to grade for each student
+        List<Student> roster = getStudentRoster(grade.getAcademicClass().getClassID());
+        for(Student student: roster) {
+            Grade currentGrade = new Grade();
+            currentGrade.setAssignment(grade.getAssignment());
+            currentGrade.setAcademicClass(grade.getAcademicClass());
+            currentGrade.setStudent(student);
+            currentGrade.setPossPoints(grade.getPossPoints());
+            currentGrade.setDateCreated(grade.getDateCreated());
+            this.gradeRepo.save(currentGrade);
+        }
     }
 
     //search criteria and organize by period

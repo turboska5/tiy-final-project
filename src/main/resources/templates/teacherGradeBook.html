@@ -168,9 +168,9 @@
                             <td th:text="${grade.academicClass.period}">1</td>
                             <td th:text="${grade.student.lastName}">SMITH</td>
                             <td th:text="${grade.student.firstName}">MATTHEW</td>
-                            <td th:text="${grade.assignmentName}">Orientation Assignment</td>
-                            <td th:text="${grade.assignmentDate}">09/25/2016</td>
-                            <td th:text="${grade.earnedPoints}"><input class="GradeInput" type="number" min="0" value="100"/></td>
+                            <td th:text="${grade.assignment.assignmentName}">Orientation Assignment</td>
+                            <td th:text="${grade.assignment.date}">09/25/2016</td>
+                            <td><input class="GradeInput" type="number" min="0" value="100" th:value="${grade.earnedPoints}"/></td>
                             <td th:text="${grade.possPoints}">100</td>
                         </tr>
                     </table>

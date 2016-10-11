@@ -204,7 +204,7 @@ public class TeacherController {
         if(grade.getAssignment().getAssignmentID() > 0) {
             //TODO: edit assignment
         }
-        mainService.saveGrade(grade);
+        mainService.saveAssignment(grade);
 //        mainService.saveAssignment(assignment, classID);
         return "redirect:/teacherMyGradeBook";
     }
