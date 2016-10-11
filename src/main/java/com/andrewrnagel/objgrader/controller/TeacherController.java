@@ -108,7 +108,7 @@ public class TeacherController {
                                        @RequestParam(defaultValue = "") String teacherLastName,
                                        @RequestParam(defaultValue = "") String teacherFirstName,
                                        @RequestParam(defaultValue = "") Integer teacherID,
-                                       @RequestParam(defaultValue = "0") Integer aPeriod,
+                                       @RequestParam(defaultValue = "") Integer aPeriod,
                                        @RequestParam(defaultValue = "") String aName,
                                        @RequestParam(defaultValue = "") String aID,
                                        @RequestParam(defaultValue = "") String aDate,
@@ -167,7 +167,7 @@ public class TeacherController {
         model.addAttribute("teacherClasses", mainService.searchForTeacherClasses(teacher.getTeacherID()));
 
         if(assignmentID > 0) {
-            //TODO
+            //TODO: EDIT ASSIGNMENT
 //            Assignment assignment = mainService.getAssignment(assignmentID);
 //            model.addAttribute("assignment", assignment);
             model.addAttribute("classID", classID);
@@ -206,6 +206,6 @@ public class TeacherController {
         }
         mainService.saveGrade(grade);
 //        mainService.saveAssignment(assignment, classID);
-        return "redirect:/teacherGradeBook";
+        return "redirect:/teacherMyGradeBook";
     }
 }

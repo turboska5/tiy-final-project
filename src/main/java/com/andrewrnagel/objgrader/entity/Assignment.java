@@ -43,7 +43,6 @@ public class Assignment {
     private Integer sumStudentEarnedPointsWithGrade=0;
 
     //average of student points with non-null scores (class average for this assignment)
-    @Formula("(sumStudentEarnedPointsWithGrade/studentsWithGrade)*100.0")
     private Double average=0.0;
 
     public Assignment() {
@@ -120,5 +119,33 @@ public class Assignment {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public Integer getStudentsWithGrade() {
+        return studentsWithGrade;
+    }
+
+    public void setStudentsWithGrade(Integer studentsWithGrade) {
+        this.studentsWithGrade = studentsWithGrade;
+    }
+
+    public Integer getSumStudentEarnedPointsWithGrade() {
+        return sumStudentEarnedPointsWithGrade;
+    }
+
+    public void setSumStudentEarnedPointsWithGrade(Integer sumStudentEarnedPointsWithGrade) {
+        this.sumStudentEarnedPointsWithGrade = sumStudentEarnedPointsWithGrade;
+    }
+
+    public Double getAverage() {
+        if(studentsWithGrade.equals(0) || studentsWithGrade.equals(null)) {
+            return 0.0;
+        } else {
+            return ((sumStudentEarnedPointsWithGrade / studentsWithGrade) * 100.0);
+        }
+    }
+
+    public void setAverage(Double average) {
+        this.average = average;
     }
 }
