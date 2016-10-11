@@ -49,22 +49,15 @@ public class Assignment {
     public Assignment() {
     }
 
+    public Assignment(String assignmentName, String assignmentIDNumber) {
+        this.assignmentName = assignmentName;
+        this.assignmentIDNumber = assignmentIDNumber;
+    }
+
     public Assignment(String assignmentName, String assignmentIDNumber, LocalDate date) {
         this.assignmentName = assignmentName;
         this.assignmentIDNumber = assignmentIDNumber;
         this.date = date;
-    }
-
-    public Assignment(String assignmentName, String assignmentIDNumber, String date) {
-        this.assignmentName = assignmentName;
-        this.assignmentIDNumber = assignmentIDNumber;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        this.date = LocalDate.parse(date, formatter);
-    }
-
-    public Assignment(String assignmentName, String assignmentIDNumber) {
-        this.assignmentName = assignmentName;
-        this.assignmentIDNumber = assignmentIDNumber;
     }
 
     public Assignment(String assignmentName, String assignmentIDNumber, LocalDate date, String note) {
@@ -72,6 +65,13 @@ public class Assignment {
         this.assignmentIDNumber = assignmentIDNumber;
         this.date = date;
         this.note = note;
+    }
+
+    public Assignment(String assignmentName, String assignmentIDNumber, String date) {
+        this.assignmentName = assignmentName;
+        this.assignmentIDNumber = assignmentIDNumber;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        this.date = LocalDate.parse(date, formatter);
     }
 
     public Assignment(String assignmentName, String assignmentIDNumber, String date, String note) {
