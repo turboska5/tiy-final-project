@@ -22,7 +22,6 @@ public class Assignment {
     @NotBlank
     @NotNull
     private String assignmentName;
-
     //This is the assignment Id number
     @NotBlank
     @NotNull
@@ -31,6 +30,7 @@ public class Assignment {
     private String note;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @NotBlank
     private LocalDate date;
 
     //number of students with non-null scores (completed)

@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -22,9 +23,11 @@ public class Grade {
     private Integer gradeID = 0;
 
     @ManyToOne
+    @Valid
     private AcademicClass academicClass;
 
     @ManyToOne
+    @Valid
     private Assignment assignment;
 
     @ManyToOne
