@@ -35,7 +35,7 @@
                 <legend>Manage Assignment</legend>
                 <form class="ManageForm" th:action="teacherManageAssign" th:object="${grade}" action="../templates/teacherGradeBook.html" method="post">
                     <input type="hidden" id="gradeID" name="gradeID" th:value="${grade.gradeID}"/>
-                    <input type="hidden" id="assignmentID" name="assignmentID" th:value="${assignment.assignmentID}"/>
+                    <input type="hidden" id="assignmentID" name="assignmentID" th:field="*{assignment.assignmentID}"/>
                     <label>Class</label>
                     <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('academicClass')}"></li></ul>
                     <select name="academicClass" th:field="*{academicClass}">

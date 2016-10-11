@@ -113,7 +113,7 @@
                             <th>Class Avg</th>
                         </tr>
                         <tr th:each="grade : ${assignmentList}">
-                            <td><a th:href="@{/teacherManageAssign(gradeID=${grade.gradeID})}" href="../templates/teacherManageAssign.html"><button class="editicon"></button></a></td>
+                            <td><a th:href="@{/teacherManageAssign(gradeID=${grade.gradeID}, assignmentID=${grade.assignment.assignmentID})}" href="../templates/teacherManageAssign.html"><button class="editicon"></button></a></td>
                             <td th:text="${grade.academicClass.period}">1</td>
                             <td th:text="${grade.assignment.assignmentName}">Orientation Assignment</td>
                             <td th:text="${grade.assignment.assignmentIDNumber}">HW1</td>
