@@ -81,8 +81,7 @@ public class TeacherController {
         model.addAttribute("teacherFirstName", teacherFirstName);
         model.addAttribute("teacherID", teacherID);
         model.addAttribute("classList", mainService.searchClasses(period, "%" + name + "%", "%" + identifier + "%", "%" + department + "%", "%" + teacherLastName + "%", "%" + teacherFirstName + "%", teacherID));
-//        model.addAttribute("assignmentList", "");
-//        model.addAttribute("studentAssignmentList", "");
+        model.addAttribute("studentList", mainService.getAllStudents());
         return "teacherAttendance";
     }
     @RequestMapping(value = "/teacherMyGradeBook")
@@ -109,7 +108,7 @@ public class TeacherController {
                                        @RequestParam(defaultValue = "") String teacherLastName,
                                        @RequestParam(defaultValue = "") String teacherFirstName,
                                        @RequestParam(defaultValue = "") Integer teacherID,
-                                       @RequestParam(defaultValue = "") Integer aPeriod,
+                                       @RequestParam(defaultValue = "0") Integer aPeriod,
                                        @RequestParam(defaultValue = "") String aName,
                                        @RequestParam(defaultValue = "") String aID,
                                        @RequestParam(defaultValue = "") String aDate,
