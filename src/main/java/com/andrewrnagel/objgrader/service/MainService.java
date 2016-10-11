@@ -129,7 +129,7 @@ public class MainService {
     }
 
     public void saveAssignment(Grade grade) {
-        if(grade.getAssignment().getAssignmentID().equals(0)) {
+        if(grade.getGradeID().equals(0)) {
             //save base assignment as grade
             this.gradeRepo.save(grade);
             //iterate through roster, adding a line to grade for each student
@@ -150,8 +150,8 @@ public class MainService {
         }
     }
 
-    public Grade getBaseAssignment(Integer assignmentID) {
-        return this.gradeRepo.getBaseAssignment(assignmentID);
+    public Grade getBaseAssignment(Integer gradeID) {
+        return this.gradeRepo.getOne(gradeID);
     }
 
     //search criteria and organize by period

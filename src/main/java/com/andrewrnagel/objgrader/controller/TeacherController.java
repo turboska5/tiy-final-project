@@ -152,7 +152,7 @@ public class TeacherController {
     }
     @RequestMapping(value = "/teacherManageAssign", method = RequestMethod.GET)
     public String teacherGradeBookAssignForm(Model model, HttpSession session,
-                                             @RequestParam(defaultValue = "0") Integer assignmentID) {
+                                             @RequestParam(defaultValue = "0") Integer gradeID) {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
             return "redirect:/logout";
         }
@@ -164,15 +164,16 @@ public class TeacherController {
         //fill the form
         model.addAttribute("teacherClasses", mainService.searchForTeacherClasses(teacher.getTeacherID()));
 
-        if(assignmentID > 0) {
-            Grade grade = mainService.getBaseAssignment(assignmentID);
+        if(gradeID > 0) {
+            Grade grade = mainService.getBaseAssignment(gradeID);
+            Assignment assignment = grade.getAssignment();
+            model.addAttribute("gradeID", gradeID);
             model.addAttribute("grade", grade);
-            model.addAttribute("assignment", grade.getAssignment());
-            model.addAttribute("assignmentID", assignmentID);
+            model.addAttribute("assignment", assignment);
         } else {
             Grade grade = new Grade(0);
-            model.addAttribute("grade", grade);
             Assignment assignment = new Assignment("", "");
+            model.addAttribute("grade", grade);
             model.addAttribute("assignment", assignment);
         }
         return "teacherManageAssign";
