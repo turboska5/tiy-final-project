@@ -1,6 +1,7 @@
 package com.andrewrnagel.objgrader.entity;
 
 import org.apache.tomcat.jni.Local;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

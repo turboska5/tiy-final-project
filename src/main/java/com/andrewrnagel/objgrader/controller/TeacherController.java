@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -190,15 +191,36 @@ public class TeacherController {
         model.addAttribute("date", date);
         Teacher teacher = (Teacher)session.getAttribute("teacher");
         model.addAttribute("userName", session.getAttribute("userName"));
-        model.addAttribute("teacher", session.getAttribute("teacher"));
+        model.addAttribute("teacher", teacher);
         //errors that validation won't catch
-        
+        //// TODO: 10/11/16  
+//        if (grade.getAcademicClass().equals("") || grade.getAcademicClass() == null){
+//            FieldError fieldError = new FieldError("grade", "academicClass", grade.getAcademicClass(), false, new String[]{"Declined.grade.academicClass"}, (String[])null, "Did not Take Class");
+//            bindingResult.addError(fieldError);
+//        }
+        if (grade.getAssignment().getAssignmentName().equals("")){
+            FieldError fieldError = new FieldError("grade", "assignment.assignmentName", grade.getAssignment().getAssignmentName(), false, new String[]{"Declined.student.user.password"}, (String[])null, "Did not Take Password");
+            bindingResult.addError(fieldError);
+        }
+        if (grade.getAssignment().getAssignmentIDNumber().equals("")){
+            FieldError fieldError = new FieldError("grade", "assignment.assignmentIDNumber", grade.getAssignment().getAssignmentIDNumber(), false, new String[]{"Declined.student.user.password"}, (String[])null, "Did not Take Password");
+            bindingResult.addError(fieldError);
+        }
+        //// TODO: 10/11/16  
+//        if (grade.getAssignment().getDate().equals("")){
+//            FieldError fieldError = new FieldError("grade", "assignment.date", grade.getAssignment().getDate(), false, new String[]{"Declined.student.user.password"}, (String[])null, "Did not Take Password");
+//            bindingResult.addError(fieldError);
+//        }
+        if (grade.getPossPoints() == null || grade.getPossPoints().equals("")){
+            FieldError fieldError = new FieldError("grade", "possPoints", grade.getPossPoints(), false, new String[]{"Declined.student.user.password"}, (String[])null, "Did not Take Password");
+            bindingResult.addError(fieldError);
+        }
 
         //error checking
         if(bindingResult.hasErrors()){
             model.addAttribute("bindingResult", bindingResult);
             model.addAttribute("assignment", grade.getAssignment());
-            model.addAttribute("teacher", session.getAttribute("teacher"));
+            model.addAttribute("teacher", teacher);
             model.addAttribute("date", date);
             model.addAttribute("gradeID", grade.getGradeID());
             model.addAttribute("teacherClasses", mainService.searchForTeacherClasses(teacher.getTeacherID()));
