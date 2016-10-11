@@ -115,7 +115,6 @@ public class MainService {
 //        return classRoster;
 //    }
 
-    //TODO: verify populate assignments on add
     public void addStudentToClass(Integer academicClassID, Integer studentID) {
         //create record on grade table
         Grade grade = new Grade();
@@ -137,7 +136,6 @@ public class MainService {
         }
     }
 
-    //TODO: verify remove assignments from student on drop
     public void dropStudentFromClass(Integer classID, Integer studentID) {
         this.gradeRepo.removeStudentFromClass(classID, studentID);
     }
