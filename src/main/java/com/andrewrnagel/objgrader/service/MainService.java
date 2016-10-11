@@ -115,7 +115,6 @@ public class MainService {
 //        return classRoster;
 //    }
 
-    //TODO: verify populate assignments on add
     public void addStudentToClass(Integer academicClassID, Integer studentID) {
         //create record on grade table
         Grade grade = new Grade();
@@ -123,6 +122,7 @@ public class MainService {
         grade.setAcademicClass(academicClass);
         Student student = this.studentRepository.findOne(studentID);
         grade.setStudent(student);
+        grade.setPossPoints(0); //to allow for validation of assignment (not null constraint)
         this.gradeRepo.save(grade);
         //create assignments for student based on class added to
         List <Grade> classAssignments = this.gradeRepo.getClassAssignments(academicClassID);
@@ -137,7 +137,6 @@ public class MainService {
         }
     }
 
-    //TODO: verify remove assignments from student on drop
     public void dropStudentFromClass(Integer classID, Integer studentID) {
         this.gradeRepo.removeStudentFromClass(classID, studentID);
     }

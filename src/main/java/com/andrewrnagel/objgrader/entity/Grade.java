@@ -1,9 +1,10 @@
 package com.andrewrnagel.objgrader.entity;
 
-import org.apache.tomcat.jni.Local;
-import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -19,9 +20,12 @@ public class Grade {
     private Integer gradeID = 0;
 
     @ManyToOne
+    @Valid
+    @NotNull
     private AcademicClass academicClass;
 
     @ManyToOne
+    @Valid
     private Assignment assignment;
 
     @ManyToOne
@@ -29,10 +33,14 @@ public class Grade {
 
     private Integer earnedPoints;
 
+    @NotNull
+    @Min(0)
     private Integer possPoints;
 
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dateCreated = LocalDate.now();
 
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dateModified;
 
     public Grade() {

@@ -3,6 +3,7 @@ package com.andrewrnagel.objgrader.controller;
 import com.andrewrnagel.objgrader.entity.*;
 import com.andrewrnagel.objgrader.misc.PasswordStorage;
 import com.andrewrnagel.objgrader.service.MainService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +18,6 @@ import javax.validation.Valid;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 /**
  * Created by Jimmy and Andrew on 10/5/16.
@@ -192,33 +192,10 @@ public class TeacherController {
         }
         //banner
         model.addAttribute("date", date);
-        Teacher teacher = (Teacher) session.getAttribute("teacher");
-        model.addAttribute("userName", session.getAttribute("userName"));
+        Teacher teacher = (Teacher)session.getAttribute("teacher");
         model.addAttribute("teacher", teacher);
-        //errors that validation won't catch
-        // TODO: 10/11/16
-//        if (grade.getAcademicClass().equals("") || grade.getAcademicClass() == null){
-//            FieldError fieldError = new FieldError("grade", "academicClass", grade.getAcademicClass(), false, new String[]{"Declined.grade.academicClass"}, (String[])null, "Did not Take Class");
-//            bindingResult.addError(fieldError);
-//        }
-        if (grade.getAssignment().getAssignmentName().equals("")) {
-            FieldError fieldError = new FieldError("grade", "assignment.assignmentName", grade.getAssignment().getAssignmentName(), false, new String[]{"Declined.student.user.password"}, (String[]) null, "Did not Take Password");
-            bindingResult.addError(fieldError);
-        }
-        if (grade.getAssignment().getAssignmentIDNumber().equals("")) {
-            FieldError fieldError = new FieldError("grade", "assignment.assignmentIDNumber", grade.getAssignment().getAssignmentIDNumber(), false, new String[]{"Declined.student.user.password"}, (String[]) null, "Did not Take Password");
-            bindingResult.addError(fieldError);
-        }
-        // TODO: 10/11/16
-//        if (grade.getAssignment().getDate().equals("")){
-//            FieldError fieldError = new FieldError("grade", "assignment.date", grade.getAssignment().getDate(), false, new String[]{"Declined.student.user.password"}, (String[])null, "Did not Take Password");
-//            bindingResult.addError(fieldError);
-//        }
-        if (grade.getPossPoints().equals(null) || (grade.getPossPoints().equals(""))) {
-            FieldError fieldError = new FieldError("grade", "possPoints", grade.getPossPoints(), false, new String[]{"Declined.student.user.password"}, (String[]) null, "Did not Take Password");
-            bindingResult.addError(fieldError);
-        }
-
+        //todo: redundant (refactor)
+        model.addAttribute("userName", session.getAttribute("userName"));
         //error checking
         if (bindingResult.hasErrors()) {
             model.addAttribute("bindingResult", bindingResult);
@@ -228,9 +205,6 @@ public class TeacherController {
             model.addAttribute("gradeID", grade.getGradeID());
             model.addAttribute("teacherClasses", mainService.searchForTeacherClasses(teacher.getTeacherID()));
             return "teacherManageAssign";
-        }
-        if (grade.getGradeID() > 0) {
-            //TODO: edit assignment (gradeID null when it should be zero)
         }
         mainService.saveAssignment(grade);
         return "redirect:/teacherMyGradeBook";

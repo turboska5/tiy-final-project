@@ -2,12 +2,14 @@ package com.andrewrnagel.objgrader.entity;
 
 import org.hibernate.annotations.Formula;
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 /**
  * Created by Jimmy on 10/3/16.
@@ -20,7 +22,6 @@ public class Assignment {
     @NotBlank
     @NotNull
     private String assignmentName;
-
     //This is the assignment Id number
     @NotBlank
     @NotNull
@@ -29,7 +30,7 @@ public class Assignment {
     private String note;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    @NotNull
+    @NotBlank
     private LocalDate date;
 
     //number of students with non-null scores (completed)
@@ -164,5 +165,10 @@ public class Assignment {
 
     public void setSubmissionRate(Double submissionRate) {
         this.submissionRate = submissionRate;
+    }
+
+    public String getDateAsString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT);
+        return this.date.format(formatter);
     }
 }
