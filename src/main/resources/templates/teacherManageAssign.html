@@ -44,7 +44,7 @@
                     </select>
                     <br/><label>Assignment Name</label>
                     <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('assignment.assignmentName')}"></li></ul>
-                    <input name="assignmentName" type="text" class="FormInput" placeholder="Assignment Name" th:field="${assignment.assignmentName}" th:errorclass="error"/>
+                    <input name="assignmentName" type="text" class="FormInput" placeholder="Assignment Name" th:field="*{assignment.assignmentName}" th:errorclass="error"/>
                     <br/>
                     <label>Assignment ID</label>
                     <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('assignment.assignmentIDNumber')}"></li></ul>
@@ -52,7 +52,7 @@
                     <br/>
                     <label>Date</label>
                     <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('assignment.date')}"></li></ul>
-                    <input name="assignmentDate" type="date" class="FormInputDate" th:field="${assignment.date}" th:errorclass="error"/>
+                    <input name="assignmentDate" type="date" class="FormInputDate" th:field="*{assignment.date}" th:errorclass="error"/>
                     <br/>
                     <label>Possible Points</label>
                     <!--<ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('grade.possPoints')}"></li></ul>-->
