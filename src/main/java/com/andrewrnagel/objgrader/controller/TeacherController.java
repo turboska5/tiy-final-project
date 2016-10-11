@@ -152,8 +152,6 @@ public class TeacherController {
     }
     @RequestMapping(value = "/teacherManageAssign", method = RequestMethod.GET)
     public String teacherGradeBookAssignForm(Model model, HttpSession session,
-                                             @RequestParam(defaultValue = "0") Integer gradeID,
-                                             @RequestParam(defaultValue = "0") Integer classID,
                                              @RequestParam(defaultValue = "0") Integer assignmentID) {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
             return "redirect:/logout";
@@ -167,15 +165,13 @@ public class TeacherController {
         model.addAttribute("teacherClasses", mainService.searchForTeacherClasses(teacher.getTeacherID()));
 
         if(assignmentID > 0) {
-            //TODO: EDIT ASSIGNMENT
-//            Assignment assignment = mainService.getAssignment(assignmentID);
-//            model.addAttribute("assignment", assignment);
-            model.addAttribute("classID", classID);
-            model.addAttribute("gradeID", gradeID);
+            Grade grade = mainService.getBaseAssignment(assignmentID);
+            model.addAttribute("grade", grade);
+            model.addAttribute("assignment", grade.getAssignment());
+            model.addAttribute("assignmentID", assignmentID);
         } else {
             Grade grade = new Grade(0);
             model.addAttribute("grade", grade);
-            model.addAttribute("classID", classID);
             Assignment assignment = new Assignment("", "");
             model.addAttribute("assignment", assignment);
         }
@@ -191,8 +187,8 @@ public class TeacherController {
         Teacher teacher = (Teacher)session.getAttribute("teacher");
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("teacher", session.getAttribute("teacher"));
-        //errors that validation won't catch
-        
+        //TODO: errors that validation won't catch
+
 
         //error checking
         if(bindingResult.hasErrors()){
@@ -204,7 +200,7 @@ public class TeacherController {
             model.addAttribute("teacherClasses", mainService.searchForTeacherClasses(teacher.getTeacherID()));
             return "teacherManageAssign";
         }
-        if(grade.getAssignment().getAssignmentID() > 0) {
+        if(grade.getGradeID() > 0) {
             //TODO: edit assignment
         }
         mainService.saveAssignment(grade);

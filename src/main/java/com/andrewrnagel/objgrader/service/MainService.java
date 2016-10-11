@@ -128,21 +128,30 @@ public class MainService {
         this.gradeRepo.removeStudentFromClass(classID, studentID);
     }
 
-    //TODO: only works for students currently enrolled
     public void saveAssignment(Grade grade) {
-        //save base assignment as grade
-        this.gradeRepo.save(grade);
-        //iterate through roster, adding a line to grade for each student
-        List<Student> roster = getStudentRoster(grade.getAcademicClass().getClassID());
-        for(Student student: roster) {
-            Grade currentGrade = new Grade();
-            currentGrade.setAssignment(grade.getAssignment());
-            currentGrade.setAcademicClass(grade.getAcademicClass());
-            currentGrade.setStudent(student);
-            currentGrade.setPossPoints(grade.getPossPoints());
-            currentGrade.setDateCreated(grade.getDateCreated());
-            this.gradeRepo.save(currentGrade);
+        if(grade.getAssignment().getAssignmentID().equals(0)) {
+            //save base assignment as grade
+            this.gradeRepo.save(grade);
+            //iterate through roster, adding a line to grade for each student
+            //TODO: only works for students currently enrolled
+            List<Student> roster = getStudentRoster(grade.getAcademicClass().getClassID());
+            for (Student student : roster) {
+                Grade currentGrade = new Grade();
+                currentGrade.setAssignment(grade.getAssignment());
+                currentGrade.setAcademicClass(grade.getAcademicClass());
+                currentGrade.setStudent(student);
+                currentGrade.setPossPoints(grade.getPossPoints());
+                currentGrade.setDateCreated(grade.getDateCreated());
+                this.gradeRepo.save(currentGrade);
+            }
+        } else {
+            //update base assignment as grade
+            this.gradeRepo.save(grade);
         }
+    }
+
+    public Grade getBaseAssignment(Integer assignmentID) {
+        return this.gradeRepo.getBaseAssignment(assignmentID);
     }
 
     //search criteria and organize by period
