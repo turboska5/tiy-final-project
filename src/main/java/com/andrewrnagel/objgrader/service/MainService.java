@@ -202,4 +202,10 @@ public class MainService {
         Collections.sort(results, (AcademicClass a1, AcademicClass a2) -> a1.getPeriod() - a2.getPeriod());
         return results;
     }
+
+    public void gradePost(Grade grade){
+        Grade grader = this.gradeRepo.findOne(grade.getGradeID());
+        grader.setEarnedPoints(grade.getEarnedPoints());
+        this.gradeRepo.save(grader);
+    }
 }

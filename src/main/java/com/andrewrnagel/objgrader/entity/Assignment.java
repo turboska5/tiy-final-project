@@ -146,7 +146,7 @@ public class Assignment {
         if(studentsWithGrade.equals(0) || studentsWithGrade.equals(null)) {
             return 0.0;
         } else {
-            return ((sumStudentEarnedPointsWithGrade / studentsWithGrade) * 100.0);
+            return ((double)(sumStudentEarnedPointsWithGrade / studentsWithGrade));
         }
     }
 
