@@ -1,0 +1,19 @@
+/*Title Header*/
+header {
+    height: 64px;
+    margin: 0px auto;
+    border: 1px black solid;
+    background: url("../images/bricktile.jpg") repeat;
+}
+.HeaderText{
+    color: white;
+    text-shadow: 5px 0px black;
+    background: rgba(13, 90, 255, 0.56);
+    height: 100%;
+    text-align: center;
+    font-family: "Courier New", sans-serif;
+    font-size: x-large;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

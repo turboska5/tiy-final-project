@@ -1,22 +1,3 @@
-/*Title Header*/
-header {
-    height: 64px;
-    margin: 0px auto;
-    border: 1px black solid;
-    background: url("../images/bricktile.jpg") repeat;
-}
-.HeaderText{
-    color: white;
-    text-shadow: 5px 0px black;
-    background: rgba(255, 64, 64, 0.3);
-    height: 100%;
-    text-align: center;
-    font-family: "Courier New", sans-serif;
-    font-size: x-large;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 /*First banner: date/greeting*/
 banner div {
     height: 20px;
@@ -217,20 +198,29 @@ table tr:nth-child(2n) {
     color: white;
     background-color: #737373;
 }
-.attendanceCheckbox {
-    margin-left: 100%;
-    width: 25px;
-}
-.homeHyperlink {
-    padding-left: 10px;
-}
 #AttendanceTable td{
-    padding: 0px 20px 0px;
+    padding: 0px 5px 0px;
     float: left;
-    display: flex;
+    display: inline-block;
     justify-content: center;
     align-items: center;
     width: 100px;
+}
+.spacer {
+    margin: 1px 1px 0px 0px;
+}
+.attendanceCheckbox {
+    float: left;
+    font-size: xx-small;
+}
+.homeHyperlinkAttendance {
+    float: left;
+}
+.homeHyperlinkGrade {
+    float: left;
+}
+.teacherHomeGrade {
+    float: right;
 }
 #SaveAttendance {
     padding: 10px 0px 0px;
@@ -242,7 +232,4 @@ table tr:nth-child(2n) {
 }
 .GradeInput {
     width: 35px;
-}
-.teacherHomeDisplay {
-    padding: 0px 25px 0px;
 }

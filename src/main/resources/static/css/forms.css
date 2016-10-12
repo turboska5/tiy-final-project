@@ -28,7 +28,6 @@ Button.minusicon:active {
     background-color: white;
     transform: translateY(1px);
 }
-
 ul.error{
     margin: 0;
     padding: 0;
@@ -45,18 +44,6 @@ input.error, select.error, textarea.error{
     -moz-box-shadow: 0 0 15px 0 rgba(255,0,0,0.5);
     box-shadow: 0 0 15px 0 rgba(255,0,0,0.5);
 }
-/*.FormInput {*/
-    /*width: 50%;*/
-/*}*/
-/*.FormInputDate {*/
-    /*width: 45%;*/
-/*}*/
-/*.FormInputPoints {*/
-    /*width: 15%;*/
-/*}*/
-/*.periodID {*/
-    /*font-size: small;*/
-/*}*/
 .AddAssignmentNoteText {
     padding: 5px;
     width: 60%;

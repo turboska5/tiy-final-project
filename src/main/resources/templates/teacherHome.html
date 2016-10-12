@@ -4,6 +4,7 @@
     <meta charset="UTF-8"/>
     <title>Objective Grader: Login</title>
     <link th:href="@{css/theme.css}" href="../static/css/theme.css" rel="stylesheet" type="text/css"/>
+    <link th:href="@{css/themeTeacher.css}" href="../static/css/themeTeacher.css" rel="stylesheet" type="text/css"/>
     <link th:href="@{images/icon.png}" href="../static/images/icon.png" rel="icon"/>
     <header>
         <div class="HeaderText">
@@ -54,11 +55,16 @@
                             <td class="icon"></td>
                             <td th:text="${'Period ' + academicClass.period}">Period 1</td>
                             <td th:text="${academicClass.studentNumber + ' students'}">13 Students</td>
+                            <td class="spacer"><span></span></td>
+                            <td class="spacer"><span></span></td>
                             <td>
-                                <input class="attendanceCheckbox" disabled="true" type="checkbox"/>
-                                <a class="homeHyperlink" th:href="@{/teacherAttendance?(teacherLastName=*{lastName}, teacherFirstName=*{firstName}, teacherID=*{teacherID}, sPeriod=${academicClass.period})}" href="../templates/teacherAttendance.html">Attendance</a>
-                                <a class="homeHyperlink" th:href="@{/teacherGradeBook?(teacherLastName=*{lastName}, teacherFirstName=*{firstName}, teacherID=*{teacherID}, aPeriod=${academicClass.period}, sPeriod=${academicClass.period})}" href="../templates/teacherGradeBook.html">Gradebook</a>
-                                <span class="teacherHomeDisplay" th:text="${academicClass.classAverage + '%'}"></span>
+                                <span class=""><input class="attendanceCheckbox" disabled="true" type="checkbox"/><a class="homeHyperlinkAttendance" th:href="@{/teacherAttendance?(teacherLastName=*{lastName}, teacherFirstName=*{firstName}, teacherID=*{teacherID}, sPeriod=${academicClass.period})}" href="../templates/teacherAttendance.html">Attendance</a></span>
+                            </td>
+                            <td>
+                                <span class="teacherHomeGrade" th:text="${academicClass.classAverage + '%'}">60.8% D</span>
+                            </td>
+                            <td>
+                                <span class=""><a class="homeHyperlinkGrade" th:href="@{/teacherGradeBook?(teacherLastName=*{lastName}, teacherFirstName=*{firstName}, teacherID=*{teacherID}, aPeriod=${academicClass.period}, sPeriod=${academicClass.period})}" href="../templates/teacherGradeBook.html">Gradebook</a></span>
                             </td>
                         </tr>
                     </table>
