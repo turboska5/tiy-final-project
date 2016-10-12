@@ -3,11 +3,7 @@ package com.andrewrnagel.objgrader.service;
 import com.andrewrnagel.objgrader.entity.*;
 import com.andrewrnagel.objgrader.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
-
-import javax.persistence.criteria.CriteriaBuilder;
-import java.sql.Array;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -19,7 +15,12 @@ import java.util.*;
 
 @Service
 public class MainService {
-    //object properties
+    //local properties
+    LocalDate today = LocalDate.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d, yyyy");
+    String date = today.format(formatter);
+
+    //spring properties
     @Autowired
     private AdminRepository adminRepository;
     @Autowired
@@ -195,5 +196,9 @@ public class MainService {
         Grade grader = this.gradeRepo.findOne(grade.getGradeID());
         grader.setEarnedPoints(grade.getEarnedPoints());
         this.gradeRepo.save(grader);
+    }
+
+    public String getDate() {
+        return this.date;
     }
 }
