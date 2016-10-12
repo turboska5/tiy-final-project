@@ -20,6 +20,7 @@
     <nav class="nav-links">
         <ul th:object="${student}">
             <li class="current"><a th:href="@{/studentHome}" href="../templates/studentHome.html">Home</a></li>
+            <li class="option"><a th:href="@{/studentGradeView}" href="../templates/studentGradeView.html">Grade View</a></li>
             <li class="logout"><a th:href="@{/logout}" href="../templates/login.html">Logout</a></li>
         </ul>
     </nav>

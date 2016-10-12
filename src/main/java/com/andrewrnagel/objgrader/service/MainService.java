@@ -212,4 +212,10 @@ public class MainService {
     public School getSchool() {
         return this.schoolRepo.getOne(0);
     }
+
+    public List<Grade> getStudentGrades(Integer studentID) {
+        List<Grade> results = this.gradeRepo.findByStudentStudentID(studentID);
+        Collections.sort(results, (Grade a1, Grade a2) -> a1.getAcademicClass().getPeriod() - a2.getAcademicClass().getPeriod());
+        return results;
+    }
 }
