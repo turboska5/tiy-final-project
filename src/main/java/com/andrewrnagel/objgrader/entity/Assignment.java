@@ -29,7 +29,7 @@ public class Assignment {
     private String note;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    @NotBlank
+//    @NotBlank
     private LocalDate date;
 
     //number of students with non-null scores (completed)
@@ -49,8 +49,10 @@ public class Assignment {
     private Integer thisPossiblePts=0;
 
     //average of student points with non-null scores (class average for this assignment)
+    @Transient
     private Double average=0.0;
 
+    @Transient
     //average of student points with non-null scores (class average for this assignment)
     private Double submissionRate=0.0;
 

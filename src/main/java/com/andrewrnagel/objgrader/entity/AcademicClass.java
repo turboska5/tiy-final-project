@@ -2,6 +2,7 @@ package com.andrewrnagel.objgrader.entity;
 
 import org.hibernate.annotations.Formula;
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.expression.spel.ast.Assign;
 
 import javax.persistence.*;
 import javax.validation.Valid;
@@ -42,6 +43,12 @@ public class AcademicClass {
     private Integer studentNumber=0;
     @Formula("(SELECT COUNT(distinct g.assignment_assignmentid) FROM Grade AS g WHERE g.academic_class_classid = classID)")
     private Integer assignmentNumber=0;
+//    @Formula("(SELECT SUM(g.assignment.average) FROM Grade AS g WHERE g.academic_class_classid = classID AND g.student_studentID IS NULL)")
+//    private Double classSum=0.0;
+//    @Formula("(SELECT g.assignment_assignmentid FROM Grade AS g WHERE g.academic_class_classid = classID AND g.student_studentID IS NULL)")
+//    private List<Integer> assignmentIDs;
+    @Transient
+    private Double classAverage=0.0;
 
 //    @NotNull
 //    private Double average=0.0;
@@ -139,5 +146,21 @@ public class AcademicClass {
 
     public void setAssignmentNumber(Integer assignmentNumber) {
         this.assignmentNumber = assignmentNumber;
+    }
+
+//    public List<Integer> getAssignmentIDs() {
+//        return assignmentIDs;
+//    }
+//
+//    public void setAssignmentIDs(List<Integer> assignmentIDs) {
+//        this.assignmentIDs = assignmentIDs;
+//    }
+
+    public Double getClassAverage() {
+        return classAverage;
+    }
+
+    public void setClassAverage(Double classAverage) {
+        this.classAverage = classAverage;
     }
 }
