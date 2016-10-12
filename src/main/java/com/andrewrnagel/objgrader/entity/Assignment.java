@@ -163,7 +163,7 @@ public class Assignment {
         if(studentsAssigned.equals(0) || studentsAssigned.equals(null)) {
             return 0.0;
         } else {
-            return ((studentsWithGrade / studentsAssigned) * 100.0);
+            return (((double)studentsWithGrade / studentsAssigned) * 100.0);
         }
     }
 
