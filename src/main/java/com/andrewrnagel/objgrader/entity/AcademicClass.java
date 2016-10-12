@@ -2,15 +2,10 @@ package com.andrewrnagel.objgrader.entity;
 
 import org.hibernate.annotations.Formula;
 import org.hibernate.validator.constraints.NotBlank;
-import org.springframework.expression.spel.ast.Assign;
-
 import javax.persistence.*;
 import javax.validation.Valid;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Andrew Nagel on 9/28/16 at 2:39 PM EST.
@@ -18,58 +13,52 @@ import java.util.List;
 
 @Entity
 public class AcademicClass {
-
     @Id
     @GeneratedValue
     private Integer classID = 0;
+
     @NotBlank
     @NotNull
     private String name;
+
     @NotBlank
     @NotNull
     private String identifier;
+
     @NotBlank
     @NotNull
     private String department;
+
     @NotNull
     private Integer period;
+
     @NotNull
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "teacherID")
     @Valid
     private Teacher teacher;
+
     @NotNull
     private Integer capacity=0;
+
     @Formula("(SELECT COUNT(distinct g.student_studentid) FROM Grade AS g WHERE g.academic_class_classid = classID)")
     private Integer studentNumber=0;
+
     @Formula("(SELECT COUNT(distinct g.assignment_assignmentid) FROM Grade AS g WHERE g.academic_class_classid = classID)")
     private Integer assignmentNumber=0;
+
     @Formula("(SELECT SUM(g.earned_points) FROM Grade AS g WHERE g.academic_class_classid = classID AND g.earned_points IS NOT NULL)")
     private Double classSumEarnedPoints=0.0;
+
     @Formula("(SELECT SUM(g.poss_points) FROM Grade AS g WHERE g.academic_class_classid = classID AND g.earned_points IS NOT NULL)")
     private Double classSumPossPoints=0.0;
-//    @Formula("(SELECT g.assignment_assignmentid FROM Grade AS g WHERE g.academic_class_classid = classID AND g.student_studentID IS NULL)")
-//    private List<Integer> assignmentIDs;
+
     @Transient
     private Double classAverage=0.0;
 
-//    @NotNull
-//    private Double average=0.0;
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    @JoinTable(
-//            name = "students_classes",
-//            joinColumns = @JoinColumn(name = "classID"),
-//            inverseJoinColumns = @JoinColumn(name = "studentID")
-//    )
-//    @Valid
-//    private List<Student> students = new ArrayList<>();
-//    @OneToMany(cascade = CascadeType.PERSIST)
-//    @JoinColumn(name = "classID")
-//    @OrderBy("date")
-//    private List<Assignment> assignmentList = new ArrayList<>();
-
     public AcademicClass() {
     }
+
     public AcademicClass(Integer classID) {
         this.classID = classID;
     }
@@ -150,14 +139,6 @@ public class AcademicClass {
     public void setAssignmentNumber(Integer assignmentNumber) {
         this.assignmentNumber = assignmentNumber;
     }
-
-//    public List<Integer> getAssignmentIDs() {
-//        return assignmentIDs;
-//    }
-//
-//    public void setAssignmentIDs(List<Integer> assignmentIDs) {
-//        this.assignmentIDs = assignmentIDs;
-//    }
 
     public String getClassAverage() {
         if(classSumEarnedPoints.equals(0) || classSumEarnedPoints.equals(null)) {
