@@ -8,6 +8,10 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
+/**
+ * Created by Andrew Nagel on 10/3/16 at 11:24 AM EST.
+ */
+
 @Entity
 @Table(name = "users")
 public class User {
