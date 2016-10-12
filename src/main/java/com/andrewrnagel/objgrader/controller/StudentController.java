@@ -1,5 +1,6 @@
 package com.andrewrnagel.objgrader.controller;
 
+import com.andrewrnagel.objgrader.entity.Student;
 import com.andrewrnagel.objgrader.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,5 +27,17 @@ public class StudentController {
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", mainService.getDate());
         return "studentHome";
+    }
+
+    @RequestMapping(value = "/studentGradeView", method = RequestMethod.GET)
+    public String studentGradeView(Model model, HttpSession session) {
+        if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(3)) {
+            return "redirect:/logout";
+        }
+        model.addAttribute("userName", session.getAttribute("userName"));
+        model.addAttribute("date", mainService.getDate());
+        Student student = (Student)session.getAttribute("student");
+        model.addAttribute("studentList", mainService.getStudentGrades(student.getStudentID()));
+        return "studentGradeView";
     }
 }

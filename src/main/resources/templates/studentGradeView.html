@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Objective Grader: Login</title>
+    <link th:href="@{css/theme.css}" href="../static/css/theme.css" rel="stylesheet" type="text/css"/>
+    <link th:href="@{css/themeStudent.css}" href="../static/css/themeStudent.css" rel="stylesheet" type="text/css"/>
+    <link th:href="@{images/icon.png}" href="../static/images/icon.png" rel="icon"/>
+    <header>
+        <div class="HeaderText">
+            <h1>Objective Grader</h1>
+        </div>
+    </header>
+    <banner>
+        <div>
+            <span class="date" th:text="${date}">September 26, 2016</span>
+            <span class="greeting" th:text="${'Hello, ' + userName + '!'}">Good Morning, Student!</span>
+        </div>
+    </banner>
+    <nav class="nav-links">
+        <ul th:object="${student}">
+            <li class="option"><a th:href="@{/studentHome}" href="../templates/studentHome.html">Home</a></li>
+            <li class="current"><a th:href="@{/studentGradeView}" href="../templates/studentGradeView.html">Grade View</a></li>
+            <li class="logout"><a th:href="@{/logout}" href="../templates/login.html">Logout</a></li>
+        </ul>
+    </nav>
+</head>
+<body>
+    <section>
+        <article>
+            <fieldset class="SearchField">
+                <legend>Assignments</legend>
+                    <div id="StudentSearchParams">
+                        <form th:action="">
+                            <input name="period" class="InputField" type="text" placeholder="Period" th:value="${period}" value=""/>
+                            <input name="assignment" class="InputField" type="text" placeholder="Assignment" value="" th:value="${assignment}"/>
+                            <input name="possPoints" class="InputField" type="text" placeholder="Possible Points" th:value="${possPoints}"/>
+                            <button class="SearchButton">Search</button>
+                        </form>
+                    </div>
+                    <div class="SearchResults">
+                        <div id="StudentResults">
+                            <table class="ResultsTable">
+                                <tr>
+                                    <th>Period</th>
+                                    <th>Last Name</th>
+                                    <th>First Name</th>
+                                    <th>Assignment</th>
+                                    <th>Date</th>
+                                    <th>Pts Earned</th>
+                                    <th>Pts Possible</th>
+                                </tr>
+                                <tr th:each="grade : ${studentList}">
+                                    <td th:text="${grade.academicClass.period}">1</td>
+                                    <td th:text="${grade.student.lastName}">SMITH</td>
+                                    <td th:text="${grade.student.firstName}">MATTHEW</td>
+                                    <td th:text="${grade.assignment.assignmentName}">Orientation Assignment</td>
+                                    <td th:text="${grade.assignment.date}">09/25/2016</td>
+                                    <td th:text="${grade.earnedPoints}"></td>
+                                    <td th:text="${grade.possPoints}">100</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </fieldset>
+        </article>
+    </section>
+</body>
+</html>
