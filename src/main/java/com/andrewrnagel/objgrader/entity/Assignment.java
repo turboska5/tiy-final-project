@@ -2,6 +2,7 @@ package com.andrewrnagel.objgrader.entity;
 
 import org.hibernate.annotations.Formula;
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -29,8 +30,8 @@ public class Assignment {
     private String note;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-//    @NotBlank
-    private LocalDate date;
+    @NotNull
+    private LocalDate date = LocalDate.now();
 
     //number of students with non-null scores (completed)
     @Formula("(SELECT COUNT(g.student_studentid) FROM Grade AS g WHERE g.assignment_assignmentid = assignmentID AND g.earned_points IS NOT NULL)")
