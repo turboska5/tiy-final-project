@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -17,6 +16,8 @@ import java.util.List;
 
 public interface GradeRepo extends JpaRepository<Grade, Integer> {
     List<Grade> findByAcademicClassClassID(Integer classID);
+
+    List<Grade> findByAssignmentAssignmentID(Integer assignmentID);
 
     @Query(value = "SELECT DISTINCT g.student FROM Grade g WHERE (g.academicClass.classID = ?1)")
     List<Student> getStudentRoster(Integer classID);

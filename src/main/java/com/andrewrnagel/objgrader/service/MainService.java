@@ -129,10 +129,10 @@ public class MainService {
 
     public void saveAssignment(Grade grade) {
         if(grade.getGradeID().equals(0)) {
-            //save base assignment as grade
+            //new assignment: save base assignment as grade
             Assignment assignment = this.assignmentRepo.save(grade.getAssignment());
             grade.setAssignment(assignment);
-            //iterate through roster, adding a line to grade for each student
+            //iterate through roster, adding a line to grade table for each student
             List<Student> roster = getStudentRoster(grade.getAcademicClass().getClassID());
             for (Student student : roster) {
                 Grade currentGrade = new Grade();
@@ -147,7 +147,12 @@ public class MainService {
         } else {
             //update base assignment as grade
             this.assignmentRepo.save(grade.getAssignment());
-            this.gradeRepo.save(grade);
+            //iterate through all grade references on table
+            List<Grade> gradesList = this.gradeRepo.findByAssignmentAssignmentID(grade.getAssignment().getAssignmentID());
+            for (Grade grades : gradesList) {
+                grades.setPossPoints(grade.getPossPoints());
+                this.gradeRepo.save(grade);
+            }
         }
     }
 
