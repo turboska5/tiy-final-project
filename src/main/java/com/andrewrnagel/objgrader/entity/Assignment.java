@@ -2,11 +2,11 @@ package com.andrewrnagel.objgrader.entity;
 
 import org.hibernate.annotations.Formula;
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
@@ -149,12 +149,13 @@ public class Assignment {
         this.sumStudentEarnedPointsWithGrade = sumStudentEarnedPointsWithGrade;
     }
 
-    public Double getAverage() {
+    public String getAverage() {
         if(studentsWithGrade.equals(0) || studentsWithGrade.equals(null)) {
-            return 0.0;
+            return "0.00";
         } else {
             Double average = ((sumStudentEarnedPointsWithGrade / (studentsWithGrade*thisPossiblePts))*100.0);
-            return average;
+            DecimalFormat numberFormat = new DecimalFormat("#.00");
+            return numberFormat.format(average);
         }
     }
 
@@ -162,11 +163,13 @@ public class Assignment {
         this.average = average;
     }
 
-    public Double getSubmissionRate() {
+    public String getSubmissionRate() {
         if(studentsAssigned.equals(0) || studentsAssigned.equals(null)) {
-            return 0.0;
+            return "0.00";
         } else {
-            return (((double)studentsWithGrade / studentsAssigned) * 100.0);
+            Double subRate = (((double)studentsWithGrade / studentsAssigned) * 100.0);
+            DecimalFormat numberFormat = new DecimalFormat("#.00");
+            return numberFormat.format(subRate);
         }
     }
 

@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,8 +44,10 @@ public class AcademicClass {
     private Integer studentNumber=0;
     @Formula("(SELECT COUNT(distinct g.assignment_assignmentid) FROM Grade AS g WHERE g.academic_class_classid = classID)")
     private Integer assignmentNumber=0;
-//    @Formula("(SELECT SUM(g.assignment.average) FROM Grade AS g WHERE g.academic_class_classid = classID AND g.student_studentID IS NULL)")
-//    private Double classSum=0.0;
+    @Formula("(SELECT SUM(g.earned_points) FROM Grade AS g WHERE g.academic_class_classid = classID AND g.earned_points IS NOT NULL)")
+    private Double classSumEarnedPoints=0.0;
+    @Formula("(SELECT SUM(g.poss_points) FROM Grade AS g WHERE g.academic_class_classid = classID AND g.poss_points IS NOT NULL)")
+    private Double classSumPossPoints=0.0;
 //    @Formula("(SELECT g.assignment_assignmentid FROM Grade AS g WHERE g.academic_class_classid = classID AND g.student_studentID IS NULL)")
 //    private List<Integer> assignmentIDs;
     @Transient
@@ -156,11 +159,33 @@ public class AcademicClass {
 //        this.assignmentIDs = assignmentIDs;
 //    }
 
-    public Double getClassAverage() {
-        return classAverage;
+    public String getClassAverage() {
+        if(classSumEarnedPoints.equals(0) || classSumEarnedPoints.equals(null)) {
+            return "0.00";
+        } else {
+           Double average = (classSumEarnedPoints / classSumPossPoints) * 100.0;
+            DecimalFormat numberFormat = new DecimalFormat("#.00");
+            return numberFormat.format(average);
+        }
     }
 
     public void setClassAverage(Double classAverage) {
         this.classAverage = classAverage;
+    }
+
+    public Double getClassSumEarnedPoints() {
+        return classSumEarnedPoints;
+    }
+
+    public void setClassSumEarnedPoints(Double classSumEarnedPoints) {
+        this.classSumEarnedPoints = classSumEarnedPoints;
+    }
+
+    public Double getClassSumPossPoints() {
+        return classSumPossPoints;
+    }
+
+    public void setClassSumPossPoints(Double classSumPossPoints) {
+        this.classSumPossPoints = classSumPossPoints;
     }
 }
