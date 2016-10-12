@@ -46,7 +46,7 @@ public class AcademicClass {
     private Integer assignmentNumber=0;
     @Formula("(SELECT SUM(g.earned_points) FROM Grade AS g WHERE g.academic_class_classid = classID AND g.earned_points IS NOT NULL)")
     private Double classSumEarnedPoints=0.0;
-    @Formula("(SELECT SUM(g.poss_points) FROM Grade AS g WHERE g.academic_class_classid = classID AND g.poss_points IS NOT NULL)")
+    @Formula("(SELECT SUM(g.poss_points) FROM Grade AS g WHERE g.academic_class_classid = classID AND g.earned_points IS NOT NULL)")
     private Double classSumPossPoints=0.0;
 //    @Formula("(SELECT g.assignment_assignmentid FROM Grade AS g WHERE g.academic_class_classid = classID AND g.student_studentID IS NULL)")
 //    private List<Integer> assignmentIDs;
