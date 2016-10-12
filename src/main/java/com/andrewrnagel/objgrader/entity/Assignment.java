@@ -29,7 +29,7 @@ public class Assignment {
     private String note;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    @NotBlank
+//    @NotBlank
     private LocalDate date;
 
     //number of students with non-null scores (completed)

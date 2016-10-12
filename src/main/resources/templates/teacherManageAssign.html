@@ -63,19 +63,8 @@
                     <label>Do Not Factor</label>
                     <input type="checkbox" disabled="true"/>
                     <br/>
-                    <!--<label>Period</label>-->
-                    <!--<input type="checkbox" name="period" value="1" /><span class="periodID">1</span>-->
-                    <!--<input type="checkbox" name="period" value="2" /><span class="periodID">2</span>-->
-                    <!--<input type="checkbox" name="period" value="3" /><span class="periodID">3</span>-->
-                    <!--<input type="checkbox" name="period" value="4" /><span class="periodID">4</span>-->
-                    <!--<input type="checkbox" name="period" value="5" /><span class="periodID">5</span>-->
-                    <!--<input type="checkbox" name="period" value="6" /><span class="periodID">6</span>-->
-                    <!--<input type="checkbox" name="period" value="7" /><span class="periodID">7</span>-->
-                    <!--<input type="checkbox" name="period" value="8" /><span class="periodID">8</span>-->
-                    <!--<br/>-->
-
                     <label>Notes</label>
-                    <textarea name="assignmentNote" class="AddAssignmentNoteText" th:value="*{assignment.note}"></textarea>
+                    <textarea name="note" class="AddAssignmentNoteText" th:field="*{assignment.note}"></textarea>
                     <br/>
                     <button>Save</button>
                 </form>

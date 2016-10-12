@@ -100,21 +100,6 @@ public class MainService {
         return this.gradeRepo.getStudentRoster(classID);
     }
 
-//    public Integer getStudentCount(Integer classID) {
-//        return this.gradeRepo.countDistinctStudentByAcademicClassClassID(classID);
-//        //student --> grade; location --> Student(studentID)
-//        //map: studentID(DB) --> List of Grade Objects
-//        HashMap<Integer, List<Grade>> hashMap = new HashMap<Integer, List<Grade>>();
-//        if (!hashMap.containsKey(studentID)) {
-//            List<Grade> list = new ArrayList<Grade>();
-//            list.add(grade);
-//            hashMap.put(studentID, list);
-//        } else {
-//            hashMap.get(studentID).add(grade);
-//        }
-//        return classRoster;
-//    }
-
     public void addStudentToClass(Integer academicClassID, Integer studentID) {
         //create record on grade table
         Grade grade = new Grade();

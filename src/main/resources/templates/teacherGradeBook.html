@@ -161,7 +161,6 @@
                                 <th>Pts Possible</th>
                             </tr>
                             <tr th:each="grade : ${studentList}">
-                                <!--<td></td>-->
                                 <form th:action="teacherGradePost" method="post">
                                 <td><button>Save</button></td>
                                 <td th:text="${grade.academicClass.period}">1</td>
@@ -172,12 +171,6 @@
                                 <td><input class="GradeInput" type="number" min="0" value="100" name="earnedPoints" th:value="${grade.earnedPoints}"/></td>
                                 <td th:text="${grade.possPoints}">100</td>
                                 <input type="hidden" name="gradeID" th:value="${grade.gradeID}"/>
-                                <!--<input type="hidden" name="assignmentID" th:field="${grade.assignment.assignmentID}"/>-->
-                                <!--<input type="hidden" name="academicClassID" th:field="${grade.academicClass.academicClassID}"/>-->
-                                <!--<input type="hidden" name="studentID" th:field="${grade.student.studentID}"/>-->
-                                <!--<input type="hidden" name="gradeID" th:value="${grade.gradeID}"/>-->
-                                <!--<input type="hidden" name="gradeID" th:value="${grade.gradeID}"/>-->
-                                <!--<input type="hidden" name="gradeID" th:value="${grade.gradeID}"/>-->
                                 </form>
                             </tr>
                         </table>

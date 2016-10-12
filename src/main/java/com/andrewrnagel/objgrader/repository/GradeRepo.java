@@ -35,6 +35,4 @@ public interface GradeRepo extends JpaRepository<Grade, Integer> {
     @Query(value = "SELECT g FROM Grade g WHERE (g.academicClass.classID = ?1) AND g.student.studentID IS NULL")
     List<Grade> getClassAssignments(Integer academicClassID);
 
-//    @Query(value = "SELECT g FROM Grade g WHERE (g.assignment.assignmentID = ?1) AND g.student.studentID IS NULL")
-//    Grade getBaseAssignment(Integer assignmentID);
 }

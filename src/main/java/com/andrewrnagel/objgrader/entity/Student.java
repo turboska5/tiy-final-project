@@ -29,8 +29,6 @@ public class Student {
     @OneToOne(cascade = CascadeType.ALL)
     @Valid
     private User user = new User();
-//    @ManyToMany(mappedBy = "students")
-//    private List<AcademicClass> studentClasses = new ArrayList<>();
 
     public Student() {
     }
