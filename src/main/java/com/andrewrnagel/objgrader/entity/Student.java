@@ -4,28 +4,32 @@ import org.hibernate.validator.constraints.NotBlank;
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Andrew Nagel on 10/3/16 at 11:24 AM EST.
  */
+
 @Entity
 public class Student {
     @Id
     @GeneratedValue
     private Integer studentID = 0;
+
     @NotBlank
     @NotNull
     private String firstName;
+
     @NotBlank
     @NotNull
     private String lastName;
+
     @NotBlank
     @NotNull
     private String studentNumber;
+
     @NotNull
     private Integer gradeLevel;
+
     @OneToOne(cascade = CascadeType.ALL)
     @Valid
     private User user = new User();
@@ -87,12 +91,4 @@ public class Student {
     public void setUser(User user) {
         this.user = user;
     }
-
-//    public List<AcademicClass> getStudentClasses() {
-//        return studentClasses;
-//    }
-//
-//    public void setStudentClasses(List<AcademicClass> studentClasses) {
-//        this.studentClasses = studentClasses;
-//    }
 }

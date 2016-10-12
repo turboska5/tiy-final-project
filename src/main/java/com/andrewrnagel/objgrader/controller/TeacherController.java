@@ -3,33 +3,25 @@ package com.andrewrnagel.objgrader.controller;
 import com.andrewrnagel.objgrader.entity.*;
 import com.andrewrnagel.objgrader.misc.PasswordStorage;
 import com.andrewrnagel.objgrader.service.MainService;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 /**
  * Created by Jimmy and Andrew on 10/5/16.
  */
+
 @Controller
 public class TeacherController {
     @Autowired
     private MainService mainService;
-    //local properties
-    LocalDate today = LocalDate.now();
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d, yyyy");
-    String date = today.format(formatter);
 
     //TEACHER ACCESS
     @RequestMapping(value = "/teacherHome", method = RequestMethod.GET)
@@ -37,7 +29,7 @@ public class TeacherController {
         if (session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
             return "redirect:/logout";
         }
-        model.addAttribute("date", date);
+        model.addAttribute("date", mainService.getDate());
         model.addAttribute("userName", session.getAttribute("userName"));
         Teacher teacher = (Teacher) session.getAttribute("teacher");
         model.addAttribute("teacher", teacher);
@@ -78,7 +70,7 @@ public class TeacherController {
         if (session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
             return "redirect:/logout";
         }
-        model.addAttribute("date", date);
+        model.addAttribute("date", mainService.getDate());
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("teacher", session.getAttribute("teacher"));
         model.addAttribute("period", period);
@@ -133,7 +125,7 @@ public class TeacherController {
             return "redirect:/logout";
         }
         //banner
-        model.addAttribute("date", date);
+        model.addAttribute("date", mainService.getDate());
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("teacher", session.getAttribute("teacher"));
         //class search
@@ -169,7 +161,7 @@ public class TeacherController {
             return "redirect:/logout";
         }
         //banner
-        model.addAttribute("date", date);
+        model.addAttribute("date", mainService.getDate());
         model.addAttribute("userName", session.getAttribute("userName"));
         Teacher teacher = (Teacher) session.getAttribute("teacher");
         model.addAttribute("teacher", teacher);
@@ -197,7 +189,7 @@ public class TeacherController {
             return "redirect:/logout";
         }
         //banner
-        model.addAttribute("date", date);
+        model.addAttribute("date", mainService.getDate());
         Teacher teacher = (Teacher)session.getAttribute("teacher");
         model.addAttribute("teacher", teacher);
         //todo: redundant (refactor)
@@ -207,7 +199,7 @@ public class TeacherController {
             model.addAttribute("bindingResult", bindingResult);
             model.addAttribute("assignment", grade.getAssignment());
             model.addAttribute("teacher", teacher);
-            model.addAttribute("date", date);
+            model.addAttribute("date", mainService.getDate());
             model.addAttribute("gradeID", grade.getGradeID());
             model.addAttribute("teacherClasses", mainService.searchForTeacherClasses(teacher.getTeacherID()));
             return "teacherManageAssign";

@@ -2,7 +2,6 @@ package com.andrewrnagel.objgrader.entity;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -15,26 +14,33 @@ import java.util.List;
 /**
  * Created by Andrew Nagel on 10/3/16 at 11:24 AM EST.
  */
+
 @Entity
 public class Teacher {
     @Id
     @GeneratedValue
     private Integer teacherID = 0;
+
     @NotBlank
     @NotNull
     private String firstName;
+
     @NotBlank
     @NotNull
     private String lastName;
-    @NotNull
+
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private LocalDate hireDate;
+    @NotNull
+    private LocalDate hireDate = LocalDate.now();
+
     @NotBlank
     @NotNull
     private String department;
+
     @OneToOne(cascade = CascadeType.ALL)
     @Valid
     private User user = new User();
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "teacherID")
     @OrderBy("period")
@@ -43,17 +49,17 @@ public class Teacher {
     public Teacher() {
     }
 
+    public Teacher(String firstName, String lastName, String department) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.department = department;
+    }
+
     public Teacher(String firstName, String lastName, String hireDate, String department) {
         this.firstName = firstName;
         this.lastName = lastName;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         this.hireDate = LocalDate.parse(hireDate, formatter);
-        this.department = department;
-    }
-
-    public Teacher(String firstName, String lastName, String department) {
-        this.firstName = firstName;
-        this.lastName = lastName;
         this.department = department;
     }
 

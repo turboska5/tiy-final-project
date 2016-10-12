@@ -8,43 +8,37 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
+/**
+ * Created by Andrew Nagel on 10/3/16 at 11:24 AM EST.
+ */
+
 @Entity
 @Table(name = "users")
 public class User {
-
     @Id
     @GeneratedValue
     private Integer id = 0;
+
     @NotBlank
     @NotNull
     @Email
     @Column(unique = true)
     private String email;
+
     @NotBlank
     @NotNull
     @NotEmpty
     private String password;
-    private Integer role;
-    boolean disabled = false;
+
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate lastLogin = null;
+
+    private Integer role;
+    boolean disabled = false;
 
     //constructors
     //default constructor
     public User() {
-    }
-
-    //assign specific email and password of 12345
-    public User(String email, Integer role) {
-        this.password = "12345";
-        this.role = role;
-    }
-
-    //assign specific email and password
-    public User(String email, String password, Integer role) {
-        this.email = email;
-        this.password = password;
-        this.role = role;
     }
 
     //getters and setters
@@ -85,6 +79,10 @@ public class User {
             return "Yes";
         }
         return "No";
+    }
+
+    public boolean getDisabled() {
+        return this.disabled;
     }
 
     public void setDisabled(boolean disabled) {

@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
@@ -25,10 +23,6 @@ import java.util.List;
 public class AdminController {
     @Autowired
     private MainService mainService;
-    //local properties
-    LocalDate today = LocalDate.now();
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d, yyyy");
-    String date = today.format(formatter);
 
     //ADMIN ACCESS
     @RequestMapping(value = "/adminHome", method = RequestMethod.GET)
@@ -36,8 +30,8 @@ public class AdminController {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
             return "redirect:/logout";
         }
+        model.addAttribute("date", mainService.getDate());
         model.addAttribute("userName", session.getAttribute("userName"));
-        model.addAttribute("date", date);
         return "adminHome";
     }
     @RequestMapping(value = "/adminClasses", method = RequestMethod.GET)
@@ -52,7 +46,7 @@ public class AdminController {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
             return "redirect:/logout";
         }
-        model.addAttribute("date", date);
+        model.addAttribute("date", mainService.getDate());
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("name", name);
         model.addAttribute("identifier", identifier);
@@ -70,6 +64,9 @@ public class AdminController {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
             return "redirect:/logout";
         }
+        model.addAttribute("date", mainService.getDate());
+        model.addAttribute("userName", session.getAttribute("userName"));
+        model.addAttribute("teacherList", mainService.getAllTeachers());
         if(classID > 0) {
             AcademicClass academicClass = mainService.getAcademicClass(classID);
             model.addAttribute("academicClass", academicClass);
@@ -84,9 +81,6 @@ public class AdminController {
             AcademicClass academicClass = new AcademicClass("", "");
             model.addAttribute("academicClass", academicClass);
         }
-        model.addAttribute("userName", session.getAttribute("userName"));
-        model.addAttribute("date", date);
-        model.addAttribute("teacherList", mainService.getAllTeachers());
         return "adminManageClass";
     }
     @RequestMapping(value = "/adminManageClass", method = RequestMethod.POST)
@@ -94,14 +88,14 @@ public class AdminController {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
             return "redirect:/logout";
         }
+        model.addAttribute("date", mainService.getDate());
         model.addAttribute("userName", session.getAttribute("userName"));
-        model.addAttribute("date", date);
         model.addAttribute("teacherList", mainService.getAllTeachers());
         if(bindingResult.hasErrors()){
             model.addAttribute("bindingResult", bindingResult);
             model.addAttribute("academicClass", academicClass);
             model.addAttribute("userName", session.getAttribute("userName"));
-            model.addAttribute("date", date);
+            model.addAttribute("date", mainService.getDate());
             model.addAttribute("studentList", mainService.getAllStudents());
             return "adminManageClass";
         }
@@ -133,8 +127,8 @@ public class AdminController {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
             return "redirect:/logout";
         }
+        model.addAttribute("date", mainService.getDate());
         model.addAttribute("userName", session.getAttribute("userName"));
-        model.addAttribute("date", date);
         model.addAttribute("adminList", mainService.getAllAdmins());
         model.addAttribute("teacherList", mainService.getAllTeachers());
         model.addAttribute("studentList", mainService.getAllStudents());
@@ -145,16 +139,21 @@ public class AdminController {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
             return "redirect:/logout";
         }
+        model.addAttribute("date", mainService.getDate());
+        model.addAttribute("userName", session.getAttribute("userName"));
+        model.addAttribute("thisAdmin", session.getAttribute("admin"));
+        model.addAttribute("checkboxDisabled", false);
         if(adminID > 0) {
             Admin admin = mainService.getAdmin(adminID);
+            Admin thisAdmin = (Admin)session.getAttribute("admin");
             model.addAttribute("admin", admin);
+            if(admin.getUser().getId().equals(thisAdmin.getUser().getId())) {
+                model.addAttribute("checkboxDisabled", true);
+            }
         } else {
             Admin admin = new Admin("", "", "");
             model.addAttribute("admin", admin);
         }
-        
-        model.addAttribute("userName", session.getAttribute("userName"));
-        model.addAttribute("date", date);
         return "adminManageAdmin";
     }
     @RequestMapping(value = "/adminManageAdmin", method = RequestMethod.POST)
@@ -162,31 +161,30 @@ public class AdminController {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
             return "redirect:/logout";
         }
-
+        model.addAttribute("date", mainService.getDate());
         model.addAttribute("userName", session.getAttribute("userName"));
-        model.addAttribute("date", date);
-
         if(bindingResult.hasErrors()){
             model.addAttribute("bindingResult", bindingResult);
             model.addAttribute("admin", admin);
             model.addAttribute("userName", session.getAttribute("userName"));
-            model.addAttribute("date", date);
+            model.addAttribute("date", mainService.getDate());
             return "adminManageAdmin";
         }
         if(admin.getAdminID() > 0) {
             //bring over correct userID
             User user = mainService.getAdmin(admin.getAdminID()).getUser();
-            //update email if changed
+            //update attributes on user object if changed (email/pass/disabled)
             if(!(admin.getUser().getEmail().equals(user.getEmail()))){
                 user.setEmail(admin.getUser().getEmail());
             }
-            //update password if changed
             if(!(admin.getUser().getPassword().equals(user.getPassword()))){
                 user.setPassword(admin.getUser().getPassword());
             }
+            if((admin.getUser().getDisabled() != user.getDisabled())) {
+                user.setDisabled(admin.getUser().getDisabled());
+            }
             admin.setUser(user);
         }
-
         admin.getUser().setPassword(PasswordStorage.createHash(admin.getUser().getPassword()));
         admin.getUser().setRole(1);
         mainService.saveAdmin(admin);
@@ -197,7 +195,8 @@ public class AdminController {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
             return "redirect:/logout";
         }
-
+        model.addAttribute("date", mainService.getDate());
+        model.addAttribute("userName", session.getAttribute("userName"));
         if(teacherID > 0) {
             Teacher teacher = mainService.getTeacher(teacherID);
             model.addAttribute("teacher", teacher);
@@ -205,9 +204,6 @@ public class AdminController {
             Teacher teacher = new Teacher("", "", "");
             model.addAttribute("teacher", teacher);
         }
-
-        model.addAttribute("userName", session.getAttribute("userName"));
-        model.addAttribute("date", date);
         return "adminManageTeacher";
     }
     @RequestMapping(value = "/adminManageTeacher", method = RequestMethod.POST)
@@ -215,27 +211,28 @@ public class AdminController {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
             return "redirect:/logout";
         }
+        model.addAttribute("date", mainService.getDate());
         model.addAttribute("userName", session.getAttribute("userName"));
-        model.addAttribute("date", date);
         if(bindingResult.hasErrors()){
             model.addAttribute("bindingResult", bindingResult);
             model.addAttribute("teacher", teacher);
             model.addAttribute("userName", session.getAttribute("userName"));
-            model.addAttribute("date", date);
+            model.addAttribute("date", mainService.getDate());
             return "adminManageTeacher";
         }
         if(teacher.getTeacherID() > 0) {
             //bring over correct userID
             User user = mainService.getTeacher(teacher.getTeacherID()).getUser();
-            //persist teacher class assignments
+            //update attributes on user object if changed (email/pass/disabled)
             teacher.setTeacherClasses(mainService.getTeacher(teacher.getTeacherID()).getTeacherClasses());
-            //update email if changed
             if(!(teacher.getUser().getEmail().equals(user.getEmail()))){
                 user.setEmail(teacher.getUser().getEmail());
             }
-            //update password if changed
             if(!(teacher.getUser().getPassword().equals(user.getPassword()))){
                 user.setPassword(teacher.getUser().getPassword());
+            }
+            if((teacher.getUser().getDisabled() != user.getDisabled())) {
+                user.setDisabled(teacher.getUser().getDisabled());
             }
             teacher.setUser(user);
         }
@@ -251,8 +248,8 @@ public class AdminController {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
             return "redirect:/logout";
         }
+        model.addAttribute("date", mainService.getDate());
         model.addAttribute("userName", session.getAttribute("userName"));
-        model.addAttribute("date", date);
         if(studentID > 0) {
             Student student = mainService.getStudent(studentID);
             model.addAttribute("student", student);
@@ -267,8 +264,8 @@ public class AdminController {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
             return "redirect:/logout";
         }
+        model.addAttribute("date", mainService.getDate());
         model.addAttribute("userName", session.getAttribute("userName"));
-        model.addAttribute("date", date);
         if(bindingResult.hasErrors()){
             model.addAttribute("bindingResult", bindingResult);
             model.addAttribute("student", student);
@@ -277,13 +274,15 @@ public class AdminController {
         if(student.getStudentID() > 0) {
             //bring over correct userID
             User user = mainService.getStudent(student.getStudentID()).getUser();
-            //update email if changed
+            //update attributes on user object if changed (email/pass/disabled)
             if(!(student.getUser().getEmail().equals(user.getEmail()))){
                 user.setEmail(student.getUser().getEmail());
             }
-            //update password if changed
             if(!(student.getUser().getPassword().equals(user.getPassword()))){
                 user.setPassword(student.getUser().getPassword());
+            }
+            if((student.getUser().getDisabled() != user.getDisabled())) {
+                user.setDisabled(student.getUser().getDisabled());
             }
             student.setUser(user);
         }
