@@ -26,9 +26,9 @@ public class Teacher {
     @NotBlank
     @NotNull
     private String lastName;
-    @NotNull
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private LocalDate hireDate;
+    @NotNull
+    private LocalDate hireDate = LocalDate.now();
     @NotBlank
     @NotNull
     private String department;

@@ -26,7 +26,7 @@ public class Admin {
     private String lastName;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @NotNull
-    private LocalDate hireDate;
+    private LocalDate hireDate = LocalDate.now();
     @NotNull
     @NotBlank
     private String title;
