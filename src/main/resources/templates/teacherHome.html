@@ -54,9 +54,11 @@
                             <td class="icon"></td>
                             <td th:text="${'Period ' + academicClass.period}">Period 1</td>
                             <td th:text="${academicClass.studentNumber + ' students'}">13 Students</td>
-                            <td><input class="attendanceCheckbox" disabled="true" type="checkbox"/>
-                                <a class="homeHyperlink" th:href="@{/teacherAttendance?(teacherLastName=*{lastName}, teacherFirstName=*{firstName}, teacherID=*{teacherID})}" href="../templates/teacherAttendance.html">Attendance</a>
-                                <a class="homeHyperlink" th:href="@{/teacherGradeBook?(teacherLastName=*{lastName}, teacherFirstName=*{firstName}, teacherID=*{teacherID})}" href="../templates/teacherGradeBook.html">Gradebook</a>
+                            <td>
+                                <input class="attendanceCheckbox" disabled="true" type="checkbox"/>
+                                <a class="homeHyperlink" th:href="@{/teacherAttendance?(teacherLastName=*{lastName}, teacherFirstName=*{firstName}, teacherID=*{teacherID}, sPeriod=${academicClass.period})}" href="../templates/teacherAttendance.html">Attendance</a>
+                                <a class="homeHyperlink" th:href="@{/teacherGradeBook?(teacherLastName=*{lastName}, teacherFirstName=*{firstName}, teacherID=*{teacherID}, aPeriod=${academicClass.period}, sPeriod=${academicClass.period})}" href="../templates/teacherGradeBook.html">Gradebook</a>
+                                <span class="teacherHomeDisplay" th:text="${academicClass.classAverage + '%'}"></span>
                             </td>
                         </tr>
                     </table>

@@ -84,7 +84,7 @@
             <article class="SearchParams">
                 <div id="AssigmentSearchParams">
                     <form>
-                        <input name="" class="InputField" placeholder="Period" Value=""/>
+                        <input name="aPeriod" class="InputField" placeholder="Period" th:value="${aPeriod}" value=""/>
                         <input name="" class="InputField" type="text" placeholder="Name"/>
                         <input name="" class="InputField" placeholder="ID#"/>
                         <input name="" class="InputField" placeholder="Date"/>
@@ -134,7 +134,7 @@
             <article class="SearchParams">
                 <div id="StudentSearchParams">
                     <form>
-                        <input class="InputField" type="text" placeholder="Period" value=""/>
+                        <input name="sPeriod" class="InputField" type="text" placeholder="Period" th:value="${sPeriod}" value=""/>
                         <input class="InputField" type="text" placeholder="Last Name"/>
                         <input class="InputField" type="text" placeholder="First Name"/>
                         <input class="InputField" type="text" placeholder="Name" value=""/>

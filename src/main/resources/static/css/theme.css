@@ -230,7 +230,7 @@ table tr:nth-child(2n) {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 75px;
+    width: 100px;
 }
 #SaveAttendance {
     padding: 10px 0px 0px;
@@ -242,4 +242,7 @@ table tr:nth-child(2n) {
 }
 .GradeInput {
     width: 35px;
+}
+.teacherHomeDisplay {
+    padding: 0px 25px 0px;
 }
