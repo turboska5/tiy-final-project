@@ -2,7 +2,6 @@ package com.andrewrnagel.objgrader.entity;
 
 import org.hibernate.annotations.Formula;
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -39,11 +38,15 @@ public class Assignment {
 
     //sum of student points with non-null scores (scored)
     @Formula("(SELECT SUM(g.earned_points) FROM Grade AS g WHERE g.assignment_assignmentid = assignmentID AND g.earned_points IS NOT NULL)")
-    private Integer sumStudentEarnedPointsWithGrade=0;
+    private Double sumStudentEarnedPointsWithGrade=0.0;
 
     //number of students enrolled
     @Formula("(SELECT COUNT(g.student_studentid) FROM Grade AS g WHERE g.assignment_assignmentid = assignmentID AND g.student_studentID IS NOT NULL)")
     private Integer studentsAssigned=0;
+
+    //possible points
+    @Formula("(SELECT (g.poss_points) FROM Grade AS g WHERE g.assignment_assignmentid = assignmentID AND g.student_studentID IS NULL)")
+    private Integer thisPossiblePts=0;
 
     //average of student points with non-null scores (class average for this assignment)
     private Double average=0.0;
@@ -135,11 +138,11 @@ public class Assignment {
         this.studentsWithGrade = studentsWithGrade;
     }
 
-    public Integer getSumStudentEarnedPointsWithGrade() {
+    public Double getSumStudentEarnedPointsWithGrade() {
         return sumStudentEarnedPointsWithGrade;
     }
 
-    public void setSumStudentEarnedPointsWithGrade(Integer sumStudentEarnedPointsWithGrade) {
+    public void setSumStudentEarnedPointsWithGrade(Double sumStudentEarnedPointsWithGrade) {
         this.sumStudentEarnedPointsWithGrade = sumStudentEarnedPointsWithGrade;
     }
 
@@ -147,7 +150,8 @@ public class Assignment {
         if(studentsWithGrade.equals(0) || studentsWithGrade.equals(null)) {
             return 0.0;
         } else {
-            return (((double)sumStudentEarnedPointsWithGrade / studentsWithGrade));
+            Double average = ((sumStudentEarnedPointsWithGrade / (studentsWithGrade*thisPossiblePts))*100.0);
+            return average;
         }
     }
 
@@ -170,5 +174,21 @@ public class Assignment {
     public String getDateAsString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT);
         return this.date.format(formatter);
+    }
+
+    public Integer getStudentsAssigned() {
+        return studentsAssigned;
+    }
+
+    public void setStudentsAssigned(Integer studentsAssigned) {
+        this.studentsAssigned = studentsAssigned;
+    }
+
+    public Integer getThisPossiblePts() {
+        return thisPossiblePts;
+    }
+
+    public void setThisPossiblePts(Integer thisPossiblePts) {
+        this.thisPossiblePts = thisPossiblePts;
     }
 }
