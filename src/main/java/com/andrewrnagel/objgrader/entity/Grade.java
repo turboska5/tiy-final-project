@@ -1,7 +1,6 @@
 package com.andrewrnagel.objgrader.entity;
 
 import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
@@ -50,6 +49,11 @@ public class Grade {
         this.possPoints = possPoints;
     }
 
+    public Grade(Integer earnedPoints, Integer possPoints) {
+        this.earnedPoints = earnedPoints;
+        this.possPoints = possPoints;
+    }
+
     public Grade(AcademicClass academicClass, Assignment assignment) {
         this.academicClass = academicClass;
         this.assignment = assignment;
@@ -58,11 +62,6 @@ public class Grade {
     public Grade(AcademicClass academicClass, Student student) {
         this.academicClass = academicClass;
         this.student = student;
-    }
-
-    public Grade(Integer earnedPoints, Integer possPoints) {
-        this.earnedPoints = earnedPoints;
-        this.possPoints = possPoints;
     }
 
     public Grade(AcademicClass academicClass, Assignment assignment, Student student) {

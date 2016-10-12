@@ -2,9 +2,7 @@ package com.andrewrnagel.objgrader.entity;
 
 import org.hibernate.annotations.Formula;
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -14,15 +12,17 @@ import java.time.format.FormatStyle;
 /**
  * Created by Jimmy on 10/3/16.
  */
+
 @Entity
 public class Assignment {
     @Id
     @GeneratedValue
     private Integer assignmentID = 0;
+
     @NotBlank
     @NotNull
     private String assignmentName;
-    //This is the assignment Id number
+
     @NotBlank
     @NotNull
     private String assignmentIDNumber;
@@ -53,8 +53,8 @@ public class Assignment {
     @Transient
     private Double average=0.0;
 
+    //number of students with a grade versus total assigned
     @Transient
-    //average of student points with non-null scores (class average for this assignment)
     private Double submissionRate=0.0;
 
     public Assignment() {
@@ -63,6 +63,13 @@ public class Assignment {
     public Assignment(String assignmentName, String assignmentIDNumber) {
         this.assignmentName = assignmentName;
         this.assignmentIDNumber = assignmentIDNumber;
+    }
+
+    public Assignment(String assignmentName, String assignmentIDNumber, String date) {
+        this.assignmentName = assignmentName;
+        this.assignmentIDNumber = assignmentIDNumber;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        this.date = LocalDate.parse(date, formatter);
     }
 
     public Assignment(String assignmentName, String assignmentIDNumber, LocalDate date) {
@@ -76,13 +83,6 @@ public class Assignment {
         this.assignmentIDNumber = assignmentIDNumber;
         this.date = date;
         this.note = note;
-    }
-
-    public Assignment(String assignmentName, String assignmentIDNumber, String date) {
-        this.assignmentName = assignmentName;
-        this.assignmentIDNumber = assignmentIDNumber;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        this.date = LocalDate.parse(date, formatter);
     }
 
     public Assignment(String assignmentName, String assignmentIDNumber, String date, String note) {
