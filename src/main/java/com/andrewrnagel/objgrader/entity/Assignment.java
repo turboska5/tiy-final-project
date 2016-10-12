@@ -151,7 +151,8 @@ public class Assignment {
     }
 
     public String getAverage() {
-        if(studentsWithGrade.equals(0) || studentsWithGrade.equals(null)) {
+        if( studentsWithGrade == null || studentsWithGrade.equals(0) ||
+                sumStudentEarnedPointsWithGrade == null || sumStudentEarnedPointsWithGrade.equals(0)) {
             return "0.00";
         } else {
             Double average = ((sumStudentEarnedPointsWithGrade / (studentsWithGrade*thisPossiblePts))*100.0);
@@ -165,10 +166,11 @@ public class Assignment {
     }
 
     public String getSubmissionRate() {
-        if(studentsAssigned.equals(0) || studentsAssigned.equals(null)) {
+        if(studentsAssigned == null || studentsAssigned.equals(0) ||
+                studentsWithGrade == null || studentsWithGrade.equals(0)) {
             return "0.00";
         } else {
-            Double subRate = (((double)studentsWithGrade / studentsAssigned) * 100.0);
+            Double subRate = (((double)studentsWithGrade / studentsAssigned)*100.0);
             DecimalFormat numberFormat = new DecimalFormat("#.00");
             return numberFormat.format(subRate);
         }

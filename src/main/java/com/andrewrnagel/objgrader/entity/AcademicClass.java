@@ -47,10 +47,10 @@ public class AcademicClass {
     @Formula("(SELECT COUNT(distinct g.assignment_assignmentid) FROM Grade AS g WHERE g.academic_class_classid = classID)")
     private Integer assignmentNumber=0;
 
-    @Formula("(SELECT SUM(g.earned_points) FROM Grade AS g WHERE g.academic_class_classid = classID AND g.earned_points IS NOT NULL)")
+    @Formula("(SELECT SUM(coalesce(g.earned_points, 0)) FROM Grade AS g WHERE g.academic_class_classid = classID AND g.earned_points IS NOT NULL)")
     private Double classSumEarnedPoints=0.0;
 
-    @Formula("(SELECT SUM(g.poss_points) FROM Grade AS g WHERE g.academic_class_classid = classID AND g.earned_points IS NOT NULL)")
+    @Formula("(SELECT COALESCE(SUM(g.poss_points), 0) FROM Grade AS g WHERE g.academic_class_classid = classID AND g.earned_points IS NOT NULL)")
     private Double classSumPossPoints=0.0;
 
     @Transient
@@ -141,10 +141,11 @@ public class AcademicClass {
     }
 
     public String getClassAverage() {
-        if(classSumEarnedPoints.equals(0) || classSumEarnedPoints.equals(null)) {
+        if(classSumPossPoints == null || classSumPossPoints.equals(0) ||
+                 classSumEarnedPoints == null || classSumEarnedPoints.equals(0)) {
             return "0.00";
         } else {
-           Double average = (classSumEarnedPoints / classSumPossPoints) * 100.0;
+            Double average = (classSumEarnedPoints / classSumPossPoints)*100.0;
             DecimalFormat numberFormat = new DecimalFormat("#.00");
             return numberFormat.format(average);
         }
