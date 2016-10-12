@@ -87,6 +87,10 @@ public class User {
         return "No";
     }
 
+    public boolean getDisabled() {
+        return this.disabled;
+    }
+
     public void setDisabled(boolean disabled) {
         this.disabled = disabled;
     }

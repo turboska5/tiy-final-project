@@ -176,17 +176,18 @@ public class AdminController {
         if(admin.getAdminID() > 0) {
             //bring over correct userID
             User user = mainService.getAdmin(admin.getAdminID()).getUser();
-            //update email if changed
+            //update attributes on user object if changed (email/pass/disabled)
             if(!(admin.getUser().getEmail().equals(user.getEmail()))){
                 user.setEmail(admin.getUser().getEmail());
             }
-            //update password if changed
             if(!(admin.getUser().getPassword().equals(user.getPassword()))){
                 user.setPassword(admin.getUser().getPassword());
             }
+            if((admin.getUser().getDisabled() != user.getDisabled())) {
+                user.setDisabled(admin.getUser().getDisabled());
+            }
             admin.setUser(user);
         }
-
         admin.getUser().setPassword(PasswordStorage.createHash(admin.getUser().getPassword()));
         admin.getUser().setRole(1);
         mainService.saveAdmin(admin);
@@ -197,7 +198,6 @@ public class AdminController {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
             return "redirect:/logout";
         }
-
         if(teacherID > 0) {
             Teacher teacher = mainService.getTeacher(teacherID);
             model.addAttribute("teacher", teacher);
@@ -205,7 +205,6 @@ public class AdminController {
             Teacher teacher = new Teacher("", "", "");
             model.addAttribute("teacher", teacher);
         }
-
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", date);
         return "adminManageTeacher";
@@ -227,15 +226,16 @@ public class AdminController {
         if(teacher.getTeacherID() > 0) {
             //bring over correct userID
             User user = mainService.getTeacher(teacher.getTeacherID()).getUser();
-            //persist teacher class assignments
+            //update attributes on user object if changed (email/pass/disabled)
             teacher.setTeacherClasses(mainService.getTeacher(teacher.getTeacherID()).getTeacherClasses());
-            //update email if changed
             if(!(teacher.getUser().getEmail().equals(user.getEmail()))){
                 user.setEmail(teacher.getUser().getEmail());
             }
-            //update password if changed
             if(!(teacher.getUser().getPassword().equals(user.getPassword()))){
                 user.setPassword(teacher.getUser().getPassword());
+            }
+            if((teacher.getUser().getDisabled() != user.getDisabled())) {
+                user.setDisabled(teacher.getUser().getDisabled());
             }
             teacher.setUser(user);
         }
@@ -277,13 +277,15 @@ public class AdminController {
         if(student.getStudentID() > 0) {
             //bring over correct userID
             User user = mainService.getStudent(student.getStudentID()).getUser();
-            //update email if changed
+            //update attributes on user object if changed (email/pass/disabled)
             if(!(student.getUser().getEmail().equals(user.getEmail()))){
                 user.setEmail(student.getUser().getEmail());
             }
-            //update password if changed
             if(!(student.getUser().getPassword().equals(user.getPassword()))){
                 user.setPassword(student.getUser().getPassword());
+            }
+            if((student.getUser().getDisabled() != user.getDisabled())) {
+                user.setDisabled(student.getUser().getDisabled());
             }
             student.setUser(user);
         }

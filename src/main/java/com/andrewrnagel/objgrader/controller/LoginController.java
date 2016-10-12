@@ -52,22 +52,12 @@ public class LoginController {
 //        admin.getUser().setPassword(PasswordStorage.createHash("123"));
 //        admin.getUser().setRole(1);
 //        adminRepository.save(admin);
-//        Teacher teacher = new Teacher("Teacher", "Alpha", "2016-01-01", "Science");
-//        teacher.getUser().setEmail("teacher@fakeschools.org");
-//        teacher.getUser().setPassword(PasswordStorage.createHash("123"));
-//        teacher.getUser().setRole(2);
-//        teacherRepository.save(teacher);
-//        Student student = new Student("Student", "Alpha", "AB123456", 12);
-//        student.getUser().setEmail("student@fakeschools.org");
-//        student.getUser().setPassword(PasswordStorage.createHash("123"));
-//        student.getUser().setRole(3);
-//        studentRepository.save(student);
         return "login";
     }
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(String email, String password, HttpSession session, Model model) throws PasswordStorage.InvalidHashException, PasswordStorage.CannotPerformOperationException {
         User user = userRepository.getByEmail(email);
-        if(user != null && PasswordStorage.verifyPassword(password, user.getPassword())){
+        if(user != null && (!user.getDisabled()) && PasswordStorage.verifyPassword(password, user.getPassword())){
             session.setAttribute("userId", user.getId());
             session.setAttribute("userRole", user.getRole());
             //admin
