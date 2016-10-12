@@ -5,7 +5,7 @@ header {
     border: 1px black solid;
     background: url("../images/bricktile.jpg") repeat;
 }
-.HeaderText{
+.HeaderText {
     color: white;
     text-shadow: 5px 0px black;
     background: rgba(255, 64, 64, 0.3);
@@ -17,3 +17,4 @@ header {
     justify-content: center;
     align-items: center;
 }
+/*Unique items to Admin screens*/

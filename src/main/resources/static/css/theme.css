@@ -68,6 +68,7 @@ article ul li {
     display: block;
 }
 .SchoolName{
+    float: left;
     font-size: xx-large;
     margin: 0px;
 }

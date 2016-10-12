@@ -34,6 +34,16 @@ public class AdminController {
         model.addAttribute("userName", session.getAttribute("userName"));
         return "adminHome";
     }
+    @RequestMapping(value = "/adminManageInfo", method = RequestMethod.GET)
+    public String adminEditInfoPage(Model model, HttpSession session) {
+        if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
+            return "redirect:/logout";
+        }
+        model.addAttribute("date", mainService.getDate());
+        model.addAttribute("userName", session.getAttribute("userName"));
+        model.addAttribute("school", mainService.getSchool());
+        return "adminManageInfo";
+    }
     @RequestMapping(value = "/adminClasses", method = RequestMethod.GET)
     public String adminClassPage(Model model, HttpSession session,
                                  @RequestParam(defaultValue = "") String name,

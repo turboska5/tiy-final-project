@@ -35,6 +35,8 @@ public class MainService {
     private ClassRepo classRepo;
     @Autowired
     private GradeRepo gradeRepo;
+    @Autowired
+    private SchoolRepo schoolRepo;
 
     //methods
     public void saveClass(AcademicClass academicClass) {
@@ -205,5 +207,9 @@ public class MainService {
 
     public String getDate() {
         return this.date;
+    }
+
+    public School getSchool() {
+        return this.schoolRepo.getOne(0);
     }
 }

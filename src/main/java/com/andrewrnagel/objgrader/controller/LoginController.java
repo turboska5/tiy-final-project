@@ -1,9 +1,6 @@
 package com.andrewrnagel.objgrader.controller;
 
-import com.andrewrnagel.objgrader.entity.Admin;
-import com.andrewrnagel.objgrader.entity.Student;
-import com.andrewrnagel.objgrader.entity.Teacher;
-import com.andrewrnagel.objgrader.entity.User;
+import com.andrewrnagel.objgrader.entity.*;
 import com.andrewrnagel.objgrader.misc.PasswordStorage;
 import com.andrewrnagel.objgrader.repository.AdminRepository;
 import com.andrewrnagel.objgrader.repository.StudentRepository;
