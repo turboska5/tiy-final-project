@@ -180,6 +180,10 @@ public class MainService {
         return this.gradeRepo.searchForTeacherStudents(sPeriod, sLastName, sFirstName, sAName, sAID, teacherID);
     }
 
+    public List<Grade> getTeacherStudents(Integer sPeriod, String sLastName, String sFirstName, String sID, Integer gradeLevel) {
+        return this.gradeRepo.searchForTeacherStudents(sPeriod, sLastName, sFirstName, sID, gradeLevel);
+    }
+
     //search criteria and organize by period
     public List<AcademicClass> searchForTeacherClasses(Integer teacherID) {
         List<AcademicClass> results = this.classRepo.getByTeacherTeacherID(teacherID);

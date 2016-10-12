@@ -69,7 +69,12 @@ public class TeacherController {
                                         @RequestParam(defaultValue = "") String department,
                                         @RequestParam(defaultValue = "") String teacherLastName,
                                         @RequestParam(defaultValue = "") String teacherFirstName,
-                                        @RequestParam(defaultValue = "") Integer teacherID) {
+                                        @RequestParam(defaultValue = "") Integer teacherID,
+                                        @RequestParam(defaultValue = "") Integer sPeriod,
+                                        @RequestParam(defaultValue = "") String sLastName,
+                                        @RequestParam(defaultValue = "") String sFirstName,
+                                        @RequestParam(defaultValue = "") String sID,
+                                        @RequestParam(defaultValue = "") Integer gradeLevel) {
         if (session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
             return "redirect:/logout";
         }
@@ -84,6 +89,7 @@ public class TeacherController {
         model.addAttribute("teacherFirstName", teacherFirstName);
         model.addAttribute("teacherID", teacherID);
         model.addAttribute("classList", mainService.searchClasses(period, "%" + name + "%", "%" + identifier + "%", "%" + department + "%", "%" + teacherLastName + "%", "%" + teacherFirstName + "%", teacherID));
+//        model.addAttribute("studentList", mainService.getTeacherStudents(sPeriod, "%" + sLastName + "%", "%" + sFirstName + "%", "%" + sID + "%", gradeLevel));
         model.addAttribute("studentList", mainService.getAllStudents());
         return "teacherAttendance";
     }

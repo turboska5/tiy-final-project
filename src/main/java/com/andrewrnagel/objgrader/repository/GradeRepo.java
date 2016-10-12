@@ -32,7 +32,9 @@ public interface GradeRepo extends JpaRepository<Grade, Integer> {
     @Query(value = "SELECT g FROM Grade g WHERE (?1 IS NULL OR g.academicClass.period = ?1) AND (?2 = '' OR upper(g.student.lastName) LIKE upper(?2)) AND (?3 = '' OR upper(g.student.firstName) LIKE upper(?3)) AND (?4 = '' OR upper(g.assignment.assignmentName) LIKE upper(?4)) AND (?5 = '' OR upper(g.assignment.assignmentIDNumber) LIKE upper(?5)) AND g.academicClass.teacher.teacherID IS ?6")
     List<Grade> searchForTeacherStudents(Integer sPeriod, String sLastName, String sFirstName, String sAName, String sAID, Integer teacherID);
 
+    @Query(value = "SELECT g FROM Grade g WHERE (?1 IS NULL OR g.academicClass.period = ?1) AND (?2 = '' OR upper(g.student.lastName) LIKE upper(?2)) AND (?3 = '' OR upper(g.student.firstName) LIKE upper(?3)) AND (?4 = '') AND (?5 = '')")
+    List<Grade> searchForTeacherStudents(Integer sPeriod, String sLastName, String sFirstName, String sID, Integer gradeLevel);
+
     @Query(value = "SELECT g FROM Grade g WHERE (g.academicClass.classID = ?1) AND g.student.studentID IS NULL")
     List<Grade> getClassAssignments(Integer academicClassID);
-
 }
