@@ -141,9 +141,15 @@ public class AdminController {
         }
         model.addAttribute("date", mainService.getDate());
         model.addAttribute("userName", session.getAttribute("userName"));
+        model.addAttribute("thisAdmin", session.getAttribute("admin"));
+        model.addAttribute("checkboxDisabled", false);
         if(adminID > 0) {
             Admin admin = mainService.getAdmin(adminID);
+            Admin thisAdmin = (Admin)session.getAttribute("admin");
             model.addAttribute("admin", admin);
+            if(admin.getUser().getId().equals(thisAdmin.getUser().getId())) {
+                model.addAttribute("checkboxDisabled", true);
+            }
         } else {
             Admin admin = new Admin("", "", "");
             model.addAttribute("admin", admin);

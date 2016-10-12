@@ -65,6 +65,7 @@ public class LoginController {
                 Admin admin = adminRepository.getByUserId(user.getId());
                 admin.getUser().setLastLogin();
                 adminRepository.save(admin);
+                session.setAttribute("admin", admin);
                 session.setAttribute("userName", admin.getFirstName());
                 return "redirect:/adminHome";
             }
@@ -82,6 +83,7 @@ public class LoginController {
                 Student student = studentRepository.getByUserId(user.getId());
                 student.getUser().setLastLogin();
                 studentRepository.save(student);
+                session.setAttribute("student", student);
                 session.setAttribute("userName", student.getFirstName());
                 return "redirect:/studentHome";
             }
