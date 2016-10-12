@@ -33,14 +33,10 @@
             <!--class manager search engine-->
             <article class="SearchParams">
                 <div id="ClassSearchParams">
-                    <form>
+                    <form th:action="teacherGradeBook">
                         <input name="period" class="InputField" placeholder="Period" th:value="${period}"/>
                         <input name="name" class="InputField" type="text" placeholder="Class Name" th:value="${name}"/>
                         <input name="identifier" class="InputField" placeholder="Class ID#" th:value="${identifier}"/>
-                        <input name="department" class="InputField" placeholder="Department" th:value="${department}"/>
-                        <input name="teacherLastName" class="InputField" placeholder="Last Name" th:value="${teacherLastName}" value="Nagel"/>
-                        <input name="teacherFirstName" class="InputField" placeholder="First Name" th:value="${teacherFirstName}" value="Andrew"/>
-                        <input name="teacherID" class="InputField" placeholder="Teacher ID#" th:value="${teacherID}"/>
                         <button class="SearchButton">Search</button>
                     </form>
                 </div>
@@ -83,12 +79,12 @@
             <!--assignment manager search engine-->
             <article class="SearchParams">
                 <div id="AssigmentSearchParams">
-                    <form>
+                    <form th:action="teacherGradeBook">
                         <input name="aPeriod" class="InputField" placeholder="Period" th:value="${aPeriod}" value=""/>
-                        <input name="" class="InputField" type="text" placeholder="Name"/>
-                        <input name="" class="InputField" placeholder="ID#"/>
-                        <input name="" class="InputField" placeholder="Date"/>
-                        <input name="" class="InputField" placeholder="Points"/>
+                        <input name="aName" class="InputField" type="text" placeholder="Name" th:value="${aName}"/>
+                        <input name="aID" class="InputField" placeholder="ID#" th:value="${aID}"/>
+                        <input name="aDate" class="InputField" placeholder="Date" th:value="${aDate}"/>
+                        <input name="aPoints" class="InputField" placeholder="Points" th:value="${aPoints}"/>
                         <button class="SearchButton">Search</button>
                     </form>
                 </div>
@@ -133,12 +129,12 @@
             <legend>Students</legend>
             <article class="SearchParams">
                 <div id="StudentSearchParams">
-                    <form>
+                    <form th:action="teacherGradeBook">
                         <input name="sPeriod" class="InputField" type="text" placeholder="Period" th:value="${sPeriod}" value=""/>
-                        <input class="InputField" type="text" placeholder="Last Name"/>
-                        <input class="InputField" type="text" placeholder="First Name"/>
-                        <input class="InputField" type="text" placeholder="Name" value=""/>
-                        <input class="InputField" type="text" placeholder="ID#"/>
+                        <input name="sLastName" class="InputField" type="text" placeholder="Last Name" th:value="${sLastName}"/>
+                        <input name="sFirstName" class="InputField" type="text" placeholder="First Name" th:value="${sFirstName}"/>
+                        <input name="sAName" class="InputField" type="text" placeholder="Name" value="" th:value="${sAName}"/>
+                        <input name="sAID" class="InputField" type="text" placeholder="ID#" th:value="${sAID}"/>
                         <button class="SearchButton">Search</button>
                     </form>
                 </div>

@@ -125,32 +125,37 @@ public class TeacherController {
             return "redirect:/logout";
         }
         //banner
+        Teacher teacher = (Teacher)session.getAttribute("teacher");
         model.addAttribute("date", mainService.getDate());
         model.addAttribute("userName", session.getAttribute("userName"));
-        model.addAttribute("teacher", session.getAttribute("teacher"));
+        model.addAttribute("teacher", teacher);
         //class search
         model.addAttribute("period", period);
         model.addAttribute("name", name);
         model.addAttribute("identifier", identifier);
-        model.addAttribute("department", department);
-        model.addAttribute("teacherLastName", teacherLastName);
-        model.addAttribute("teacherFirstName", teacherFirstName);
-        model.addAttribute("teacherID", teacherID);
-        model.addAttribute("classList", mainService.searchClasses(period, "%" + name + "%", "%" + identifier + "%", "%" + department + "%", "%" + teacherLastName + "%", "%" + teacherFirstName + "%", teacherID));
+        model.addAttribute("classList", mainService.searchClasses(period, "%" + name + "%", "%" + identifier + "%", "%" + department + "%", "%" + teacher.getLastName() + "%", "%" + teacher.getFirstName() + "%", teacher.getTeacherID()));
         //assignment search
         model.addAttribute("aPeriod", aPeriod);
+        if (!(period == null)){
+            model.addAttribute("aPeriod", period);
+            aPeriod = period;
+        }
         model.addAttribute("aName", aName);
         model.addAttribute("aID", aID);
         model.addAttribute("aDate", aDate);
         model.addAttribute("aPoints", aPoints);
-        model.addAttribute("assignmentList", mainService.getTeacherAssignments(aPeriod, "%" + aName + "%", "%" + aID + "%", aDate, aPoints, teacherID));
+        model.addAttribute("assignmentList", mainService.getTeacherAssignments(aPeriod, "%" + aName + "%", "%" + aID + "%", aDate, aPoints, teacher.getTeacherID()));
         //student search
         model.addAttribute("sPeriod", sPeriod);
+        if (!(period == null)){
+            model.addAttribute("sPeriod", period);
+            sPeriod = period;
+        }
         model.addAttribute("sLastName", sLastName);
         model.addAttribute("sFirstName", sFirstName);
         model.addAttribute("sAName", sAName);
         model.addAttribute("sAID", sAID);
-        model.addAttribute("studentList", mainService.getTeacherStudents(sPeriod, "%" + sLastName + "%", "%" + sFirstName + "%", "%" + sAName + "%", "%" + sAID + "%", teacherID));
+        model.addAttribute("studentList", mainService.getTeacherStudents(sPeriod, "%" + sLastName + "%", "%" + sFirstName + "%", "%" + sAName + "%", "%" + sAID + "%", teacher.getTeacherID()));
         return "teacherGradeBook";
     }
 
