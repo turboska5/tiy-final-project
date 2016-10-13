@@ -44,9 +44,12 @@ input.error, select.error, textarea.error{
     -moz-box-shadow: 0 0 15px 0 rgba(255,0,0,0.5);
     box-shadow: 0 0 15px 0 rgba(255,0,0,0.5);
 }
+.formInput {
+    width: 200px;
+}
 .AddAssignmentNoteText {
     padding: 5px;
-    width: 60%;
+    width: 200px;
     height: 3.5em;
     resize: vertical;
 }

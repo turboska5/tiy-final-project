@@ -117,7 +117,7 @@ form {
     text-align: left;
 }
 .InputField {
-    width: 10%;
+    width: 80px;
 }
 #AddClassButton, #AddAdminButton, #AddTeacherButton, #AddStudentButton, #AddAssignButton {
     float: right;

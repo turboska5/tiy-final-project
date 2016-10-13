@@ -37,27 +37,27 @@
                         <input type="hidden" id="teacherID" name="teacherID" th:value="${teacher.getTeacherID()}"/>
                         <label>First Name</label>
                         <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('firstName')}"></li></ul>
-                        <input name="firstName" type="text" placeholder="First Name" th:field="*{firstName}" th:errorclass="error"/>
+                        <input name="firstName" class="formInput" type="text" placeholder="First Name" th:field="*{firstName}" th:errorclass="error"/>
                         <br/>
                         <label>Last Name</label>
                         <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('lastName')}"></li></ul>
-                        <input name="lastName" type="text" placeholder="Last Name" th:field="*{lastName}" th:errorclass="error"/>
+                        <input name="lastName" class="formInput" type="text" placeholder="Last Name" th:field="*{lastName}" th:errorclass="error"/>
                         <br/>
                         <label>Email Address</label>
                         <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('user.email')}"></li></ul>
-                        <input name="emailAddress" type="text" placeholder="Email" th:field="*{user.email}" th:errorclass="error"/>
+                        <input name="emailAddress" class="formInput" type="text" placeholder="Email" th:field="*{user.email}" th:errorclass="error"/>
                         <br/>
                         <label>Password</label>
                         <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('user.password')}"></li></ul>
-                        <input name="password" type="password" placeholder="Password" th:field="*{user.password}" th:errorclass="error"/>
+                        <input name="password" class="formInput" type="password" placeholder="Password" th:field="*{user.password}" th:errorclass="error"/>
                         <br/>
                         <label>Hire Date</label>
                         <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('hireDate')}"></li></ul>
-                        <input name="hireDate" type="date" th:field="*{hireDate}" th:errorclass="error"/>
+                        <input name="hireDate" class="formInput" type="date" th:field="*{hireDate}" th:errorclass="error"/>
                         <br/>
                         <label>Department</label>
                         <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('department')}"></li></ul>
-                        <select name="department" th:field="*{department}" th:errorclass="error">
+                        <select name="department" class="formInput" th:field="*{department}" th:errorclass="error">
                             <option value="" selected="true">Department</option>
                             <option value="Agriculture" >Agriculture</option>
                             <option value="Math" >Math</option>
@@ -68,7 +68,7 @@
                         </select>
                         <br/>
                         <label>Disabled</label>
-                        <input name="disabled" type="checkbox" th:field="*{user.disabled}"/>
+                        <input name="disabled" class="formInput" type="checkbox" th:field="*{user.disabled}"/>
                         <br/>
                         <button>Save</button>
                     </form>

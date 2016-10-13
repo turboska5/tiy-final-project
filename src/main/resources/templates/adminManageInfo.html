@@ -38,38 +38,38 @@
                     <input type="hidden" id="photoID" name="photoID" th:value="${school.photo.photoID}"/>
                     <label>School Name</label>
                     <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('schoolName')}"></li></ul>
-                    <input name="schoolName" type="text" placeholder="School Name" th:field="*{schoolName}" th:errorclass="error"/>
+                    <input name="schoolName" type="text" class="formInput" placeholder="School Name" th:field="*{schoolName}" th:errorclass="error"/>
                     <br/>
                     <label>District</label>
                     <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('district')}"></li></ul>
-                    <input name="district" type="text" placeholder="School District" th:field="*{district}" th:errorclass="error"/>
+                    <input name="district" type="text" class="formInput" placeholder="School District" th:field="*{district}" th:errorclass="error"/>
                     <br/>
                     <label>School Address</label>
                     <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('address')}"></li></ul>
-                    <input name="address" type="text" placeholder="School Address" th:field="*{address}" th:errorclass="error"/>
+                    <input name="address" type="text" class="formInput" placeholder="School Address" th:field="*{address}" th:errorclass="error"/>
                     <br/>
                     <label>City</label>
                     <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('city')}"></li></ul>
-                    <input name="city" type="text" placeholder="City" th:field="*{city}" th:errorclass="error"/>
+                    <input name="city" type="text" class="formInput" placeholder="City" th:field="*{city}" th:errorclass="error"/>
                     <br/>
                     <label>State</label>
                     <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('state')}"></li></ul>
-                    <input name="state" type="text" placeholder="State" th:field="*{state}" th:errorclass="error"/>
+                    <input name="state" type="text" class="formInput" placeholder="State" th:field="*{state}" th:errorclass="error"/>
                     <br/>
                     <label>Zip Code</label>
                     <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('zipCode')}"></li></ul>
-                    <input name="zipCode" type="text" placeholder="Zip Code" th:field="*{zipCode}" th:errorclass="error"/>
+                    <input name="zipCode" type="text" class="formInput" placeholder="Zip Code" th:field="*{zipCode}" th:errorclass="error"/>
                     <br/>
                     <label>School Email</label>
                     <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('email')}"></li></ul>
-                    <input name="email" type="email" placeholder="School Email" th:field="*{email}" th:errorclass="error"/>
+                    <input name="email" type="email" class="formInput" placeholder="School Email" th:field="*{email}" th:errorclass="error"/>
                     <br/>
                     <label>School Phone</label>
                     <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('phone')}"></li></ul>
-                    <input name="phone" type="tel" placeholder="Phone" th:field="*{phone}" th:errorclass="error"/>
+                    <input name="phone" type="tel" class="formInput" placeholder="Phone" th:field="*{phone}" th:errorclass="error"/>
                     <br/>
                     <label>School Picture</label>
-                    <input name="photoFile" type="file" value=""/>
+                    <input name="photoFile" class="formInput" type="file" value=""/>
                     <br/>
                     <br/>
                     <button>Save</button>

@@ -37,15 +37,15 @@
                         <input type="hidden" id="classID" name="classID" th:value="${academicClass.getClassID()}"/>
                         <label>Class Name</label>
                         <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('name')}"></li></ul>
-                        <input name="name" type="text" class="" placeholder="Class Name" th:field="*{name}" th:errorclass="error"/>
+                        <input name="name" type="text" class="formInput" placeholder="Class Name" th:field="*{name}" th:errorclass="error"/>
                         <br/>
                         <label>ID#</label>
                         <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('identifier')}"></li></ul>
-                        <input name="identifier" type="text" placeholder="Class ID#" th:field="*{identifier}" th:errorclass="error"/>
+                        <input name="identifier" type="text" class="formInput" placeholder="Class ID#" th:field="*{identifier}" th:errorclass="error"/>
                         <br/>
                         <label>Department</label>
                         <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('department')}"></li></ul>
-                        <select name="department" th:field="*{department}" th:errorclass="error">
+                        <select name="department" class="formInput" th:field="*{department}" th:errorclass="error">
                             <option value="" select="true">Department</option>
                             <option value="Agriculture" >Agriculture</option>
                             <option value="Math" >Math</option>
@@ -57,14 +57,14 @@
                         <br/>
                         <label>Teacher</label>
                         <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('teacher')}"></li></ul>
-                        <select name="teacher" th:field="*{teacher}" th:errorclass="error">
+                        <select name="teacher" class="formInput" th:field="*{teacher}" th:errorclass="error">
                             <option value="" selected="true">Teacher</option>
                             <option th:each="teacher : ${teacherList}" th:value="${teacher.getTeacherID()}" value="" th:text="${teacher.getLastName() + ', ' + teacher.getFirstName()}"></option>
                         </select>
                         <br/>
                         <label>Period</label>
                         <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('period')}"></li></ul>
-                        <select name="period" th:field="*{period}" th:errorclass="error">
+                        <select name="period" class="formInput" th:field="*{period}" th:errorclass="error">
                             <option value="" selected="true">Period</option>
                             <option value="1" >1</option>
                             <option value="2" >2</option>
@@ -78,7 +78,7 @@
                         <br/>
                         <label>Capacity</label>
                         <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('capacity')}"></li></ul>
-                        <input name="capacity" type="number" min="0" placeholder="Capacity" th:field="*{capacity}" th:errorclass="error"/>
+                        <input name="capacity" class="formInput" type="number" min="0" placeholder="Capacity" th:field="*{capacity}" th:errorclass="error"/>
                         <br/>
                         <button>Save</button>
                     </form>
