@@ -10,8 +10,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -48,17 +51,27 @@ public class AdminController {
         return "adminManageInfo";
     }
     @RequestMapping(value = "/adminManageInfo", method = RequestMethod.POST)
-    public String adminEditInfoFormSubmit(@Valid School school, BindingResult bindingResult, Model model, HttpSession session) {
+    public String adminEditInfoFormSubmit(@Valid School school, BindingResult bindingResult,
+                                          @RequestParam(name = "photo") MultipartFile photo,
+                                          Model model, HttpSession session) {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
             return "redirect:/logout";
         }
         model.addAttribute("date", mainService.getDate());
         model.addAttribute("day", mainService.getTimeOfDay());
         model.addAttribute("userName", session.getAttribute("userName"));
-        if(bindingResult.hasErrors()){
-            model.addAttribute("bindingResult", bindingResult);
-            model.addAttribute("school", school);
-            return "adminManageInfo";
+//        if(bindingResult.hasErrors()){
+//            model.addAttribute("bindingResult", bindingResult);
+//            model.addAttribute("school", school);
+//            return "adminManageInfo";
+//        }
+        if(!photo.isEmpty()) {
+            try {
+                school.getPhoto().setData(photo.getBytes());
+                school.getPhoto().setContentType(photo.getContentType());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         mainService.updateSchool(school);
         return "redirect:/adminHome";

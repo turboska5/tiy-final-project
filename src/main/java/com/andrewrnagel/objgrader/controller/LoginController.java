@@ -6,6 +6,7 @@ import com.andrewrnagel.objgrader.repository.AdminRepository;
 import com.andrewrnagel.objgrader.repository.StudentRepository;
 import com.andrewrnagel.objgrader.repository.TeacherRepository;
 import com.andrewrnagel.objgrader.repository.UserRepository;
+import com.andrewrnagel.objgrader.repository.SchoolRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +28,8 @@ public class LoginController {
     StudentRepository studentRepository;
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    SchoolRepo schoolRepo;
 
     //Requires user to be logged in
     @RequestMapping(value = "/")
@@ -49,6 +52,17 @@ public class LoginController {
 //        admin.getUser().setPassword(PasswordStorage.createHash("123"));
 //        admin.getUser().setRole(1);
 //        adminRepository.save(admin);
+        //create school
+//        School school = new School();
+//        school.setSchoolName("Superior High School");
+//        school.setDistrict("Fake County Public Schools");
+//        school.setAddress("981 S. Emerson Street");
+//        school.setCity("Cary");
+//        school.setState("NC");
+//        school.setZipCode("27519");
+//        school.setEmail("superioroffice@fakeschools.org");
+//        school.setPhone("(919)867-5309");
+//        schoolRepo.save(school);
         return "login";
     }
     @RequestMapping(value = "/login", method = RequestMethod.POST)

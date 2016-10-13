@@ -1,8 +1,6 @@
 package com.andrewrnagel.objgrader.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by Andrew Nagel on 10/13/16 at 7:46 AM EST.
@@ -14,9 +12,11 @@ public class Photo {
     @GeneratedValue
     private Integer photoID = 0;
 
-    private String fileName;
-
+    @Lob
+    @Basic(fetch=FetchType.EAGER)
     private byte[] data;
+
+    private String contentType;
 
     public Photo() {
     }
@@ -29,19 +29,19 @@ public class Photo {
         this.photoID = photoID;
     }
 
-    public String getFileName() {
-        return fileName;
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
-
     public byte[] getData() {
         return data;
     }
 
     public void setData(byte[] data) {
         this.data = data;
+    }
+
+    public String getContentType() {
+        return contentType;
+    }
+
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
     }
 }

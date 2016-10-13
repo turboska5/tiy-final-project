@@ -33,8 +33,9 @@
     <article>
         <fieldset>
             <legend>Manage School</legend>
-                <form class="ManageForm" th:object="${school}" th:action="adminManageInfo" action="../templates/adminHome.html" method="post">
+                <form class="ManageForm" th:object="${school}" th:action="adminManageInfo" action="../templates/adminHome.html" method="post" enctype="multipart/form-data">
                     <input type="hidden" id="schoolID" name="schoolID" th:value="0"/>
+                    <input type="hidden" id="photoID" name="photoID" th:value="*{photo.photoID}"/>
                     <label>School Name</label>
                     <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('schoolName')}"></li></ul>
                     <input name="schoolName" type="text" placeholder="School Name" th:field="*{schoolName}" th:errorclass="error"/>
@@ -67,10 +68,11 @@
                     <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('phone')}"></li></ul>
                     <input name="phone" type="tel" placeholder="Phone" th:field="*{phone}" th:errorclass="error"/>
                     <br/>
-                    <!--<label>School Picture</label>-->
+                    <label>School Picture</label>
                     <!--<ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('photo')}"></li></ul>-->
-                    <!--<input name="photo" type="file" placeholder="School Photo" th:field="*{photo}" th:errorclass="error"/>-->
-                    <!--<br/>-->
+                    <!--<input name="photo" type="file" value="" placeholder="School Photo" th:errorclass="error"/>-->
+                    <input name="photo" type="file" value=""/>
+                    <br/>
                     <br/>
                     <button>Save</button>
                 </form>

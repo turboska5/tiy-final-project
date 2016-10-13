@@ -3,10 +3,7 @@ package com.andrewrnagel.objgrader.entity;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -59,8 +56,8 @@ public class School {
     @NotBlank
     private String phone = "(919)123-4567";
 
-//    @OneToOne
-    private String photo;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Photo photo = new Photo();
 
     public School() {
     }
@@ -137,19 +134,11 @@ public class School {
         this.phone = phone;
     }
 
-//    public Photo getPhoto() {
-//        return photo;
-//    }
-//
-//    public void setPhoto(Photo photo) {
-//        this.photo = photo;
-//    }
-
-    public String getPhoto() {
+    public Photo getPhoto() {
         return photo;
     }
 
-    public void setPhoto(String photo) {
+    public void setPhoto(Photo photo) {
         this.photo = photo;
     }
 }
