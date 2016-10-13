@@ -54,7 +54,7 @@ public class AdminController {
     }
     @RequestMapping(value = "/adminManageInfo", method = RequestMethod.POST)
     public String adminEditInfoFormSubmit(@Valid School school, BindingResult bindingResult,
-                                          @RequestParam(name = "photo") MultipartFile photo,
+                                          @RequestParam(name = "photoFile") MultipartFile photoFile,
                                           Model model, HttpSession session) {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
             return "redirect:/logout";
@@ -67,10 +67,13 @@ public class AdminController {
 //            model.addAttribute("school", school);
 //            return "adminManageInfo";
 //        }
-        if(!photo.isEmpty()) {
+        if(!photoFile.isEmpty()) {
             try {
-                school.getPhoto().setData(photo.getBytes());
-                school.getPhoto().setContentType(photo.getContentType());
+                //TODO: logic if photo exists to avoid duplication
+                Photo tempPhoto = new Photo();
+                tempPhoto.setContentType(photoFile.getContentType());
+                tempPhoto.setData(photoFile.getBytes());
+                school.setPhoto(tempPhoto);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -342,12 +345,14 @@ public class AdminController {
     @GetMapping("/school/image")
     @ResponseBody
     public ResponseEntity serveFile() throws URISyntaxException {
+        System.out.println("*****************");
         School school = mainService.getSchool();
+        //TODO: photo caching (param?)
         if(school.getPhoto().getContentType() != null){
             return ResponseEntity
                     .ok()
                     .header(HttpHeaders.CONTENT_TYPE, school.getPhoto().getContentType())
-                    .body(school.getPhoto());
+                    .body(school.getPhoto().getData());
         } else {
             return ResponseEntity
                     .status(301)

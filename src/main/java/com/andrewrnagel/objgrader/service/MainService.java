@@ -224,7 +224,7 @@ public class MainService {
     }
 
     public School getSchool() {
-        return this.schoolRepo.getOne(0);
+        return this.schoolRepo.findOne(0);
     }
 
     public List<Grade> getStudentGrades(Integer studentID) {

@@ -35,7 +35,7 @@
             <legend>Manage School</legend>
                 <form class="ManageForm" th:object="${school}" th:action="adminManageInfo" action="../templates/adminHome.html" method="post" enctype="multipart/form-data">
                     <input type="hidden" id="schoolID" name="schoolID" th:value="0"/>
-                    <input type="hidden" id="photoID" name="photoID" th:value="*{photo.photoID}"/>
+                    <input type="hidden" id="photoID" name="photoID" th:value="${school.photo.photoID}"/>
                     <label>School Name</label>
                     <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('schoolName')}"></li></ul>
                     <input name="schoolName" type="text" placeholder="School Name" th:field="*{schoolName}" th:errorclass="error"/>
@@ -71,7 +71,7 @@
                     <label>School Picture</label>
                     <!--<ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('photo')}"></li></ul>-->
                     <!--<input name="photo" type="file" value="" placeholder="School Photo" th:errorclass="error"/>-->
-                    <input name="photo" type="file" value=""/>
+                    <input name="photoFile" type="file" value=""/>
                     <br/>
                     <br/>
                     <button>Save</button>

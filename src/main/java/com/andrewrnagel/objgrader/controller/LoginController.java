@@ -2,11 +2,7 @@ package com.andrewrnagel.objgrader.controller;
 
 import com.andrewrnagel.objgrader.entity.*;
 import com.andrewrnagel.objgrader.misc.PasswordStorage;
-import com.andrewrnagel.objgrader.repository.AdminRepository;
-import com.andrewrnagel.objgrader.repository.StudentRepository;
-import com.andrewrnagel.objgrader.repository.TeacherRepository;
-import com.andrewrnagel.objgrader.repository.UserRepository;
-import com.andrewrnagel.objgrader.repository.SchoolRepo;
+import com.andrewrnagel.objgrader.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -62,6 +58,7 @@ public class LoginController {
 //        school.setZipCode("27519");
 //        school.setEmail("superioroffice@fakeschools.org");
 //        school.setPhone("(919)867-5309");
+//        school.setPhoto(new Photo());
 //        schoolRepo.save(school);
         return "login";
     }

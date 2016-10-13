@@ -57,7 +57,7 @@ public class School {
     private String phone = "(919)123-4567";
 
     @OneToOne(cascade = CascadeType.ALL)
-    private Photo photo = new Photo();
+    private Photo photo;
 
     public School() {
     }
