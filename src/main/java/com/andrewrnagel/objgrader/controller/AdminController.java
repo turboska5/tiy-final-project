@@ -32,6 +32,7 @@ public class AdminController {
         }
         model.addAttribute("date", mainService.getDate());
         model.addAttribute("userName", session.getAttribute("userName"));
+        model.addAttribute("thisSchool", mainService.getSchool());
         return "adminHome";
     }
     @RequestMapping(value = "/adminManageInfo", method = RequestMethod.GET)

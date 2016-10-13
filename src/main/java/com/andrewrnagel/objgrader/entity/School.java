@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -56,9 +57,10 @@ public class School {
     @NotNull
     @NotEmpty
     @NotBlank
-    private String phone = "1(919)123-4567";
+    private String phone = "(919)123-4567";
 
-    private String photo;
+    @OneToOne
+    private Photo photo;
 
     public Integer getSchoolID() {
         return schoolID;
@@ -132,11 +134,11 @@ public class School {
         this.phone = phone;
     }
 
-    public String getPhoto() {
+    public Photo getPhoto() {
         return photo;
     }
 
-    public void setPhoto(String photo) {
+    public void setPhoto(Photo photo) {
         this.photo = photo;
     }
 }
