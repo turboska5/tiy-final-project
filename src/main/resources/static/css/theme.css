@@ -116,9 +116,6 @@ form {
     padding: 0px;
     text-align: left;
 }
-/*.InputField {*/
-    /*width: 80px;*/
-/*}*/
 #AddClassButton, #AddAdminButton, #AddTeacherButton, #AddStudentButton, #AddAssignButton {
     float: right;
 }
@@ -235,9 +232,6 @@ table tr:nth-child(2n) {
 .icon {
     max-width: 20px;
 }
-/*.GradeInput {*/
-    /*width: 35px;*/
-/*}*/
 .ManageForm {
     border-width: 0;
     padding: 1px 8px 10px;
@@ -284,6 +278,16 @@ input.error, select.error, textarea.error{
     -moz-box-shadow: 0 0 15px 0 rgba(255,0,0,0.5);
     box-shadow: 0 0 15px 0 rgba(255,0,0,0.5);
 }
+
+/*Teacher Grade Input field*/
+.GradeInput {
+width: 35px;
+}
+/*Search Menu Input fields*/
+.InputField {
+    width: 80px;
+}
+/*Manage Screen Input fields*/
 .formInput {
     width: 200px;
 }
