@@ -61,7 +61,10 @@
                             <th>Capacity</th>
                         </tr>
                         <tr th:each="academicClass : ${classList}" th:object="${academicClass}">
-                            <td><a th:href="@{/adminManageClass?(classID=${academicClass.getClassID()})}" href="../templates/adminManageClass.html"><button class="editicon"></button></a></td>
+                            <td class="buttonArea">
+                                <a th:href="@{/adminManageClass?(classID=${academicClass.getClassID()})}" href="../templates/adminManageClass.html"><button class="editicon"></button></a>
+                                <a><button class="deleteicon"></button></a>
+                                </td>
                             <td th:text="*{name}">PHYSICS 101</td>
                             <td th:text="*{identifier}">SCIPHY101A</td>
                             <td th:text="*{department}">SCIENCE</td>

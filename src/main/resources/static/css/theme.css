@@ -125,6 +125,37 @@ form {
 .SearchResults {
     margin: 10px 0px 0px;
 }
+Button.classicicon {
+
+    background: url("../images/classicGB.png") no-repeat;
+    background-size: 100%;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    margin: 0px;
+    padding: 0px;
+    border: none;
+    outline: none;
+}
+Button.classicicon:active {
+    background-color: white;
+    transform: translateY(1px);
+}
+Button.deleteicon {
+    background: url("../images/delete.png") no-repeat;
+    background-size: 100%;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+}
+Button.deleteicon:active {
+    background-color: white;
+    transform: translateY(1px);
+}
 Button.editicon {
     background: url("../images/edit_pencil.png") no-repeat;
     background-size: 100%;
@@ -268,6 +299,11 @@ Button.minusicon:active {
 
 /*Those below have been revisited across all levels*/
 
+/*First column of tables with buttons present*/
+.buttonArea {
+    display: flex;
+    align-items: center;
+}
 /*Error highlighting of bad fields*/
 ul.error{
     margin: 0;
