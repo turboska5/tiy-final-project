@@ -31,6 +31,7 @@ public class AdminController {
             return "redirect:/logout";
         }
         model.addAttribute("date", mainService.getDate());
+        model.addAttribute("day", mainService.getTimeOfDay());
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("thisSchool", mainService.getSchool());
         return "adminHome";
@@ -41,6 +42,7 @@ public class AdminController {
             return "redirect:/logout";
         }
         model.addAttribute("date", mainService.getDate());
+        model.addAttribute("day", mainService.getTimeOfDay());
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("school", mainService.getSchool());
         return "adminManageInfo";
@@ -51,12 +53,11 @@ public class AdminController {
             return "redirect:/logout";
         }
         model.addAttribute("date", mainService.getDate());
+        model.addAttribute("day", mainService.getTimeOfDay());
         model.addAttribute("userName", session.getAttribute("userName"));
         if(bindingResult.hasErrors()){
             model.addAttribute("bindingResult", bindingResult);
             model.addAttribute("school", school);
-            model.addAttribute("date", mainService.getDate());
-            model.addAttribute("userName", session.getAttribute("userName"));
             return "adminManageInfo";
         }
         mainService.updateSchool(school);
@@ -75,6 +76,7 @@ public class AdminController {
             return "redirect:/logout";
         }
         model.addAttribute("date", mainService.getDate());
+        model.addAttribute("day", mainService.getTimeOfDay());
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("name", name);
         model.addAttribute("identifier", identifier);
@@ -93,6 +95,7 @@ public class AdminController {
             return "redirect:/logout";
         }
         model.addAttribute("date", mainService.getDate());
+        model.addAttribute("day", mainService.getTimeOfDay());
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("teacherList", mainService.getAllTeachers());
         if(classID > 0) {
@@ -117,13 +120,12 @@ public class AdminController {
             return "redirect:/logout";
         }
         model.addAttribute("date", mainService.getDate());
+        model.addAttribute("day", mainService.getTimeOfDay());
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("teacherList", mainService.getAllTeachers());
         if(bindingResult.hasErrors()){
             model.addAttribute("bindingResult", bindingResult);
             model.addAttribute("academicClass", academicClass);
-            model.addAttribute("userName", session.getAttribute("userName"));
-            model.addAttribute("date", mainService.getDate());
             model.addAttribute("studentList", mainService.getAllStudents());
             return "adminManageClass";
         }
@@ -156,6 +158,7 @@ public class AdminController {
             return "redirect:/logout";
         }
         model.addAttribute("date", mainService.getDate());
+        model.addAttribute("day", mainService.getTimeOfDay());
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("adminList", mainService.getAllAdmins());
         model.addAttribute("teacherList", mainService.getAllTeachers());
@@ -168,6 +171,7 @@ public class AdminController {
             return "redirect:/logout";
         }
         model.addAttribute("date", mainService.getDate());
+        model.addAttribute("day", mainService.getTimeOfDay());
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("thisAdmin", session.getAttribute("admin"));
         model.addAttribute("checkboxDisabled", false);
@@ -190,12 +194,11 @@ public class AdminController {
             return "redirect:/logout";
         }
         model.addAttribute("date", mainService.getDate());
+        model.addAttribute("day", mainService.getTimeOfDay());
         model.addAttribute("userName", session.getAttribute("userName"));
         if(bindingResult.hasErrors()){
             model.addAttribute("bindingResult", bindingResult);
             model.addAttribute("admin", admin);
-            model.addAttribute("userName", session.getAttribute("userName"));
-            model.addAttribute("date", mainService.getDate());
             return "adminManageAdmin";
         }
         if(admin.getAdminID() > 0) {
@@ -224,6 +227,7 @@ public class AdminController {
             return "redirect:/logout";
         }
         model.addAttribute("date", mainService.getDate());
+        model.addAttribute("day", mainService.getTimeOfDay());
         model.addAttribute("userName", session.getAttribute("userName"));
         if(teacherID > 0) {
             Teacher teacher = mainService.getTeacher(teacherID);
@@ -240,12 +244,11 @@ public class AdminController {
             return "redirect:/logout";
         }
         model.addAttribute("date", mainService.getDate());
+        model.addAttribute("day", mainService.getTimeOfDay());
         model.addAttribute("userName", session.getAttribute("userName"));
         if(bindingResult.hasErrors()){
             model.addAttribute("bindingResult", bindingResult);
             model.addAttribute("teacher", teacher);
-            model.addAttribute("userName", session.getAttribute("userName"));
-            model.addAttribute("date", mainService.getDate());
             return "adminManageTeacher";
         }
         if(teacher.getTeacherID() > 0) {
@@ -277,6 +280,7 @@ public class AdminController {
             return "redirect:/logout";
         }
         model.addAttribute("date", mainService.getDate());
+        model.addAttribute("day", mainService.getTimeOfDay());
         model.addAttribute("userName", session.getAttribute("userName"));
         if(studentID > 0) {
             Student student = mainService.getStudent(studentID);
@@ -293,6 +297,7 @@ public class AdminController {
             return "redirect:/logout";
         }
         model.addAttribute("date", mainService.getDate());
+        model.addAttribute("day", mainService.getTimeOfDay());
         model.addAttribute("userName", session.getAttribute("userName"));
         if(bindingResult.hasErrors()){
             model.addAttribute("bindingResult", bindingResult);

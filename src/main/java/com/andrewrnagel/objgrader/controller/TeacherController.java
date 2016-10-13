@@ -32,6 +32,7 @@ public class TeacherController {
             return "redirect:/logout";
         }
         model.addAttribute("date", mainService.getDate());
+        model.addAttribute("day", mainService.getTimeOfDay());
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("thisSchool", mainService.getSchool());
         Teacher teacher = (Teacher) session.getAttribute("teacher");
@@ -72,6 +73,7 @@ public class TeacherController {
             return "redirect:/logout";
         }
         model.addAttribute("date", mainService.getDate());
+        model.addAttribute("day", mainService.getTimeOfDay());
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("teacher", session.getAttribute("teacher"));
         model.addAttribute("teacherLastName", teacherLastName);
@@ -112,6 +114,7 @@ public class TeacherController {
         //banner
         Teacher teacher = (Teacher)session.getAttribute("teacher");
         model.addAttribute("date", mainService.getDate());
+        model.addAttribute("day", mainService.getTimeOfDay());
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("teacher", teacher);
         //class search
@@ -159,6 +162,7 @@ public class TeacherController {
         }
         //banner
         model.addAttribute("date", mainService.getDate());
+        model.addAttribute("day", mainService.getTimeOfDay());
         model.addAttribute("userName", session.getAttribute("userName"));
         Teacher teacher = (Teacher) session.getAttribute("teacher");
         model.addAttribute("teacher", teacher);
@@ -184,14 +188,13 @@ public class TeacherController {
             return "redirect:/logout";
         }
         model.addAttribute("date", mainService.getDate());
+        model.addAttribute("day", mainService.getTimeOfDay());
         model.addAttribute("userName", session.getAttribute("userName"));
         Teacher teacher = (Teacher)session.getAttribute("teacher");
         model.addAttribute("teacher", teacher);
         if (bindingResult.hasErrors()) {
             model.addAttribute("bindingResult", bindingResult);
             model.addAttribute("assignment", grade.getAssignment());
-            model.addAttribute("teacher", teacher);
-            model.addAttribute("date", mainService.getDate());
             model.addAttribute("gradeID", grade.getGradeID());
             model.addAttribute("teacherClasses", mainService.searchForTeacherClasses(teacher.getTeacherID()));
             return "teacherManageAssign";

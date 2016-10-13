@@ -24,8 +24,9 @@ public class StudentController {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(3)) {
             return "redirect:/logout";
         }
-        model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", mainService.getDate());
+        model.addAttribute("day", mainService.getTimeOfDay());
+        model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("thisSchool", mainService.getSchool());
         return "studentHome";
     }
@@ -35,8 +36,9 @@ public class StudentController {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(3)) {
             return "redirect:/logout";
         }
-        model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", mainService.getDate());
+        model.addAttribute("day", mainService.getTimeOfDay());
+        model.addAttribute("userName", session.getAttribute("userName"));
         Student student = (Student)session.getAttribute("student");
         model.addAttribute("studentList", mainService.getStudentGrades(student.getStudentID()));
         return "studentGradeView";

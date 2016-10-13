@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
@@ -17,6 +18,7 @@ import java.util.*;
 public class MainService {
     //local properties
     LocalDate today = LocalDate.now();
+    LocalTime theTime = LocalTime.now();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d, yyyy");
     String date = today.format(formatter);
 
@@ -207,6 +209,18 @@ public class MainService {
 
     public String getDate() {
         return this.date;
+    }
+
+    public String getTimeOfDay() {
+        if(theTime.getHour() >= 6 && theTime.getHour() < 12) {
+            return "morning";
+        } else if(theTime.getHour() >= 12 && theTime.getHour() < 18) {
+            return "afternoon";
+        } else if((theTime.getHour() >= 18 && theTime.getHour() < 24) ||
+                (theTime.getHour() >= 0 && theTime.getHour() < 6)) {
+            return "evening";
+        }
+        return "day";
     }
 
     public School getSchool() {
