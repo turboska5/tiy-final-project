@@ -18,6 +18,9 @@ public class Photo {
 
     private byte[] data;
 
+    public Photo() {
+    }
+
     public Integer getPhotoID() {
         return photoID;
     }

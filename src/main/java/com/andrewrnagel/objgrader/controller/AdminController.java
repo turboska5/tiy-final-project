@@ -27,7 +27,7 @@ public class AdminController {
     //ADMIN ACCESS
     @RequestMapping(value = "/adminHome", method = RequestMethod.GET)
     public String adminHomePage(Model model, HttpSession session) {
-        if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
+        if (session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
             return "redirect:/logout";
         }
         model.addAttribute("date", mainService.getDate());
@@ -36,14 +36,31 @@ public class AdminController {
         return "adminHome";
     }
     @RequestMapping(value = "/adminManageInfo", method = RequestMethod.GET)
-    public String adminEditInfoPage(Model model, HttpSession session) {
-        if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
+    public String adminEditInfoForm(Model model, HttpSession session) {
+        if (session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
             return "redirect:/logout";
         }
         model.addAttribute("date", mainService.getDate());
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("thisSchool", mainService.getSchool());
         return "adminManageInfo";
+    }
+    @RequestMapping(value = "/adminManageInfo", method = RequestMethod.POST)
+    public String adminEditInfoFormSubmit(@Valid School school, BindingResult bindingResult, Model model, HttpSession session) {
+        if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
+            return "redirect:/logout";
+        }
+        model.addAttribute("date", mainService.getDate());
+        model.addAttribute("userName", session.getAttribute("userName"));
+        if(bindingResult.hasErrors()){
+            model.addAttribute("bindingResult", bindingResult);
+            model.addAttribute("thisSchool", school);
+            model.addAttribute("date", mainService.getDate());
+            model.addAttribute("userName", session.getAttribute("userName"));
+            return "adminManageInfo";
+        }
+//        mainService.updateSchool(school);
+        return "redirect:/adminHome";
     }
     @RequestMapping(value = "/adminClasses", method = RequestMethod.GET)
     public String adminClassPage(Model model, HttpSession session,

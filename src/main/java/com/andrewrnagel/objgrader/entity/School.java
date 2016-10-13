@@ -59,8 +59,11 @@ public class School {
     @NotBlank
     private String phone = "(919)123-4567";
 
-    @OneToOne
-    private Photo photo;
+//    @OneToOne
+    private String photo;
+
+    public School() {
+    }
 
     public Integer getSchoolID() {
         return schoolID;
@@ -134,11 +137,19 @@ public class School {
         this.phone = phone;
     }
 
-    public Photo getPhoto() {
+//    public Photo getPhoto() {
+//        return photo;
+//    }
+//
+//    public void setPhoto(Photo photo) {
+//        this.photo = photo;
+//    }
+
+    public String getPhoto() {
         return photo;
     }
 
-    public void setPhoto(Photo photo) {
+    public void setPhoto(String photo) {
         this.photo = photo;
     }
 }
