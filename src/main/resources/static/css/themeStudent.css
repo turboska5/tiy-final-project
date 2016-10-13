@@ -7,7 +7,7 @@ header {
 .HeaderText{
     color: white;
     text-shadow: 5px 0px black;
-    background: rgba(25, 255, 79, 0.56);
+    background: rgba(15, 113, 41, 0.75);
     height: 100%;
     text-align: center;
     font-family: "Courier New", sans-serif;
@@ -16,8 +16,8 @@ header {
     justify-content: center;
     align-items: center;
 }
-banner div, .nav-links, li a:hover, .current, a:link, a:visited, a:hover, a:active {
-    color: #319859;
+banner div, .nav-links, li a:hover, .current, a:link, a:visited, a:hover, a:active, table tr:nth-child(2n) {
+    color: #1b5838;
 }
 a {
     text-decoration: none;

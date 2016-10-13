@@ -196,7 +196,8 @@ table tr th:first-child, table tr td:first-child{
 table tr:nth-child(2n) {
     color: #560023;
     background: rgba(133, 133, 133, 0.95);
-}table tr:nth-child(2n+1) {
+}
+table tr:nth-child(2n+1) {
     color: white;
     background-color: #737373;
 }
@@ -293,7 +294,7 @@ input.error, select.error, textarea.error{
 .formInput {
     width: 200px;
 }
-/*Manage Screen Save buttons*/
+/*Manage Screen Save buttons (Admin/Teacher)*/
 .formSave {
     clear: both;
     width: 80px;

@@ -16,7 +16,7 @@ header {
     justify-content: center;
     align-items: center;
 }
-banner div, .nav-links, li a:hover, .current, a:link, a:visited, a:hover, a:active {
+banner div, .nav-links, li a:hover, .current, a:link, a:visited, a:hover, a:active, table tr:nth-child(2n) {
     color: #560023;
 }
 a {

@@ -16,8 +16,8 @@ header {
     justify-content: center;
     align-items: center;
 }
-banner div, .nav-links, li a:hover, .current, a:link, a:visited, a:hover, a:active {
-    color: #0c45c2;
+banner div, .nav-links, li a:hover, .current, a:link, a:visited, a:hover, a:active, table tr:nth-child(2n) {
+    color: #0a2768;
 }
 a {
     text-decoration: none;
