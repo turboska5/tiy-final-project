@@ -248,7 +248,6 @@ table tr:nth-child(2n) {
 }
 Button.minusicon {
     background: url("../images/minus.png") no-repeat;
-    /*background: url("../static/images/minus.png") no-repeat;*/
     background-size: 100%;
     border-radius: 50%;
     width: 20px;
@@ -262,6 +261,13 @@ Button.minusicon:active {
     background-color: white;
     transform: translateY(1px);
 }
+
+
+
+
+/*Those below have been revisited across all levels*/
+
+/*Error highlighting of bad fields*/
 ul.error{
     margin: 0;
     padding: 0;
@@ -274,26 +280,22 @@ ul.error li{
     font-size: small;
 }
 input.error, select.error, textarea.error{
-    -webkit-box-shadow: 0 0 15px 0 rgba(255,0,0,0.5);
-    -moz-box-shadow: 0 0 15px 0 rgba(255,0,0,0.5);
-    box-shadow: 0 0 15px 0 rgba(255,0,0,0.5);
+    border: 1px red solid;
+    /*-webkit-box-shadow: 0 0 15px 0 rgba(255,0,0,0.5);*/
+    /*-moz-box-shadow: 0 0 15px 0 rgba(255,0,0,0.5);*/
+    /*box-shadow: 0 0 15px 0 rgba(255,0,0,0.5);*/
 }
-
-/*Teacher Grade Input field*/
-.GradeInput {
-width: 35px;
-}
-/*Search Menu Input fields*/
+/*Search Menu Input fields across all levels*/
 .InputField {
     width: 80px;
 }
-/*Manage Screen Input fields*/
+/*Manage Screen Input fields (Admin/Teacher)*/
 .formInput {
     width: 200px;
 }
-.AddAssignmentNoteText {
-    padding: 5px;
-    width: 200px;
-    height: 3.5em;
-    resize: vertical;
+/*Manage Screen Save buttons*/
+.formSave {
+    clear: both;
+    width: 80px;
+    margin: 0px 125px;
 }

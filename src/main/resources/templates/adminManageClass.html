@@ -79,7 +79,8 @@
                         <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('capacity')}"></li></ul>
                         <input name="capacity" class="formInput" type="number" min="0" placeholder="Capacity" th:field="*{capacity}" th:errorclass="error"/>
                         <br/>
-                        <button>Save</button>
+                        <br/>
+                        <button class="formSave">Save</button>
                     </form>
             </fieldset>
         </article>

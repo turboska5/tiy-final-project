@@ -22,3 +22,14 @@ banner div, .nav-links, li a:hover, .current, a:link, a:visited, a:hover, a:acti
 a {
     text-decoration: none;
 }
+/*Teacher only: Grade Input field*/
+.GradeInput {
+    width: 35px;
+}
+/*Teacher Only: Assignment Note field*/
+.AddAssignmentNoteText {
+    padding: 5px;
+    width: 200px;
+    height: 3.5em;
+    resize: vertical;
+}
