@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class School {
     @Id
-    @GeneratedValue
+//    @GeneratedValue
     private Integer schoolID = 0;
 
     @NotNull

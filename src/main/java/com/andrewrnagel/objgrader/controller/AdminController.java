@@ -59,7 +59,7 @@ public class AdminController {
             model.addAttribute("userName", session.getAttribute("userName"));
             return "adminManageInfo";
         }
-//        mainService.updateSchool(school);
+        mainService.updateSchool(school);
         return "redirect:/adminHome";
     }
     @RequestMapping(value = "/adminClasses", method = RequestMethod.GET)

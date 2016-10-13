@@ -218,4 +218,8 @@ public class MainService {
         Collections.sort(results, (Grade a1, Grade a2) -> a1.getAcademicClass().getPeriod() - a2.getAcademicClass().getPeriod());
         return results;
     }
+
+    public void updateSchool(School school) {
+        this.schoolRepo.save(school);
+    }
 }
