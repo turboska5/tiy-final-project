@@ -44,7 +44,9 @@ CREATE TABLE academic_class (
     identifier character varying(255) NOT NULL,
     name character varying(255) NOT NULL,
     period integer NOT NULL,
-    teacherid integer NOT NULL
+    teacherid integer NOT NULL,
+    class_sum_earned_points double precision,
+    class_sum_poss_points double precision
 );
 
 
@@ -72,11 +74,10 @@ ALTER TABLE admin OWNER TO rush;
 
 CREATE TABLE assignment (
     assignmentid integer NOT NULL,
-    assignmentidnumber character varying(255),
-    assignment_name character varying(255),
-    date date,
-    poss_points integer,
-    academic_class_classid integer NOT NULL
+    assignmentidnumber character varying(255) NOT NULL,
+    assignment_name character varying(255) NOT NULL,
+    date date NOT NULL,
+    note character varying(255)
 );
 
 
@@ -88,9 +89,14 @@ ALTER TABLE assignment OWNER TO rush;
 
 CREATE TABLE grade (
     gradeid integer NOT NULL,
+    date_created date,
+    date_modified date,
     earned_points integer,
-    assignment_assignmentid integer NOT NULL,
-    student_studentid integer NOT NULL
+    poss_points integer NOT NULL,
+    academic_class_classid integer NOT NULL,
+    assignment_assignmentid integer,
+    student_studentid integer,
+    CONSTRAINT grade_poss_points_check CHECK ((poss_points >= 0))
 );
 
 
@@ -111,6 +117,40 @@ CREATE SEQUENCE hibernate_sequence
 ALTER TABLE hibernate_sequence OWNER TO rush;
 
 --
+-- Name: photo; Type: TABLE; Schema: public; Owner: rush
+--
+
+CREATE TABLE photo (
+    photoid integer NOT NULL,
+    data bytea,
+    file_name character varying(255)
+);
+
+
+ALTER TABLE photo OWNER TO rush;
+
+--
+-- Name: school; Type: TABLE; Schema: public; Owner: rush
+--
+
+CREATE TABLE school (
+    schoolid integer NOT NULL,
+    address character varying(255) NOT NULL,
+    city character varying(255) NOT NULL,
+    district character varying(255) NOT NULL,
+    email character varying(255) NOT NULL,
+    phone character varying(255) NOT NULL,
+    school_name character varying(255) NOT NULL,
+    state character varying(255) NOT NULL,
+    zip_code character varying(255) NOT NULL,
+    photo_photoid integer,
+    photo character varying(255)
+);
+
+
+ALTER TABLE school OWNER TO rush;
+
+--
 -- Name: student; Type: TABLE; Schema: public; Owner: rush
 --
 
@@ -125,18 +165,6 @@ CREATE TABLE student (
 
 
 ALTER TABLE student OWNER TO rush;
-
---
--- Name: students_classes; Type: TABLE; Schema: public; Owner: rush
---
-
-CREATE TABLE students_classes (
-    classid integer NOT NULL,
-    studentid integer NOT NULL
-);
-
-
-ALTER TABLE students_classes OWNER TO rush;
 
 --
 -- Name: teacher; Type: TABLE; Schema: public; Owner: rush
@@ -174,9 +202,14 @@ ALTER TABLE users OWNER TO rush;
 -- Data for Name: academic_class; Type: TABLE DATA; Schema: public; Owner: rush
 --
 
-COPY academic_class (classid, capacity, department, identifier, name, period, teacherid) FROM stdin;
-191	28	Science	PHYS101-1A	Physics 101	1	180
-192	28	Math	CALC101-3A	Calculus 101	3	174
+COPY academic_class (classid, capacity, department, identifier, name, period, teacherid, class_sum_earned_points, class_sum_poss_points) FROM stdin;
+203	32	Science	PHYS101-4A	Physics 101	4	180	\N	\N
+230	32	Math	ALGB101-6A	Algebra 1	6	174	\N	\N
+191	32	Science	PHYS101-1A	Physics 101	1	180	\N	\N
+229	32	Math	CALC101-1A	Calculus 101	1	174	\N	\N
+193	32	Science	PHYS101-2A	Physics 101	2	180	\N	\N
+192	32	Math	CALC101-3A	Calculus 101	3	174	\N	\N
+194	24	Science	CHEM101-6A	Chemistry 101	6	180	\N	\N
 \.
 
 
@@ -185,7 +218,8 @@ COPY academic_class (classid, capacity, department, identifier, name, period, te
 --
 
 COPY admin (adminid, first_name, hire_date, last_name, title, user_id) FROM stdin;
-172	Admin	2016-01-01	Alpha	Principal	171
+378	Felicity	2015-01-01	Scott	Principal	377
+172	Admin	2016-01-01	Alpha	Counselor	171
 \.
 
 
@@ -193,7 +227,9 @@ COPY admin (adminid, first_name, hire_date, last_name, title, user_id) FROM stdi
 -- Data for Name: assignment; Type: TABLE DATA; Schema: public; Owner: rush
 --
 
-COPY assignment (assignmentid, assignmentidnumber, assignment_name, date, poss_points, academic_class_classid) FROM stdin;
+COPY assignment (assignmentid, assignmentidnumber, assignment_name, date, note) FROM stdin;
+368	HW1	Intro to Physics	2016-09-06	\N
+373	HW1	Intro to Calculus	2016-09-06	Lame.
 \.
 
 
@@ -201,7 +237,18 @@ COPY assignment (assignmentid, assignmentidnumber, assignment_name, date, poss_p
 -- Data for Name: grade; Type: TABLE DATA; Schema: public; Owner: rush
 --
 
-COPY grade (gradeid, earned_points, assignment_assignmentid, student_studentid) FROM stdin;
+COPY grade (gradeid, date_created, date_modified, earned_points, poss_points, academic_class_classid, assignment_assignmentid, student_studentid) FROM stdin;
+363	2016-10-12	\N	\N	0	191	\N	188
+364	2016-10-12	\N	\N	0	191	\N	190
+365	2016-10-12	\N	\N	0	194	\N	190
+366	2016-10-12	\N	\N	0	192	\N	188
+367	2016-10-12	\N	\N	0	192	\N	190
+369	2016-10-12	\N	\N	10	191	368	188
+371	2016-10-12	\N	\N	10	191	368	\N
+370	2016-10-12	\N	10	10	191	368	190
+376	2016-10-12	\N	\N	10	192	373	\N
+375	2016-10-12	\N	10	10	192	373	190
+374	2016-10-12	\N	\N	10	192	373	188
 \.
 
 
@@ -209,7 +256,24 @@ COPY grade (gradeid, earned_points, assignment_assignmentid, student_studentid) 
 -- Name: hibernate_sequence; Type: SEQUENCE SET; Schema: public; Owner: rush
 --
 
-SELECT pg_catalog.setval('hibernate_sequence', 192, true);
+SELECT pg_catalog.setval('hibernate_sequence', 383, true);
+
+
+--
+-- Data for Name: photo; Type: TABLE DATA; Schema: public; Owner: rush
+--
+
+COPY photo (photoid, data, file_name) FROM stdin;
+\.
+
+
+--
+-- Data for Name: school; Type: TABLE DATA; Schema: public; Owner: rush
+--
+
+COPY school (schoolid, address, city, district, email, phone, school_name, state, zip_code, photo_photoid, photo) FROM stdin;
+0	981 S. Emerson Steet	Cary	Fake County Public Schools	superioroffice@fakeschools.org	(919)867-5309	Superior High School	NC	27519	\N	\N
+\.
 
 
 --
@@ -219,17 +283,7 @@ SELECT pg_catalog.setval('hibernate_sequence', 192, true);
 COPY student (studentid, first_name, grade_level, last_name, student_number, user_id) FROM stdin;
 188	George	12	Walters	GW123456	187
 190	Student	12	Alpha	SA123456	189
-\.
-
-
---
--- Data for Name: students_classes; Type: TABLE DATA; Schema: public; Owner: rush
---
-
-COPY students_classes (classid, studentid) FROM stdin;
-191	188
-192	188
-192	190
+380	Billy	5	Madison	BM123456	379
 \.
 
 
@@ -240,6 +294,7 @@ COPY students_classes (classid, studentid) FROM stdin;
 COPY teacher (teacherid, department, first_name, hire_date, last_name, user_id) FROM stdin;
 180	Science	Andrew	2012-07-15	Nagel	179
 174	Math	Teacher	2016-01-01	Alpha	173
+382	Technology	Jimmy	2014-06-27	Bush	381
 \.
 
 
@@ -248,11 +303,14 @@ COPY teacher (teacherid, department, first_name, hire_date, last_name, user_id) 
 --
 
 COPY users (id, disabled, email, last_login, password, role) FROM stdin;
-171	f	admin@fakeschools.org	2016-10-05	sha1:64000:18:fp2QIpv4a97d1OdENf3LZtW+Rfmzbfjo:KwFGyleqxHzu8VeYxckr7D+I	1
-179	f	anagel@fakeschools.org	\N	sha1:64000:18:eyxRgCZYAu+Svb8MN8K1+GlKX7n/Xynr:6wQKb82APEO9loyrNtseeKGV	2
-187	f	gw123456@fakeschools.org	\N	sha1:64000:18:fGRTENnyCEoNPbegVCqyqhlDXlBuLgY4:e50JaWyfA/SSvjf2/hOGwE3c	3
 189	f	student@fakeschools.org	\N	sha1:64000:18:5/ADOrXvsISztG0eC2LE7DKuz0iSI5VA:TB2Gq0mDvvf/TcPLzymWCU9h	3
-173	f	teacher@fakeschools.org	\N	sha1:64000:18:xJNJXsHVXWIafsfmyPodezuUcfOYql34:oc+BIGqPl6xvmFYH/LdCvD0i	2
+179	f	anagel@fakeschools.org	2016-10-12	sha1:64000:18:uzpMcF/wt3Ps5ofgezhj1+2vVmrYRRZN:CeywgbepwQUxM3LypOqjfUvB	2
+377	f	fscott@fakeschools.org	2016-10-12	sha1:64000:18:sUbFXMJ6bzmXCTXv0jVbV8m3HXIUvuDP:BBnwLSu8wqpk/4R+cyudS0Dk	1
+379	f	bm123456@fakeschools.org	\N	sha1:64000:18:/NU/SMe5W2TbDXa1lH5EdUimLkcodzZd:BkcPpxi6Umr372nPudF5Us11	3
+381	f	jbush@fakeschools.org	\N	sha1:64000:18:lWTJSr8hXrUQ8FaeCxNdHKLPySQ6wiRg:V14eCu5QKdgL6pPSxt60a+dC	2
+171	f	admin@fakeschools.org	2016-10-13	sha1:64000:18:O2OvxioADWUbMi62wFc0+f4BIofjRxwb:x56RGybyV0K5TvXF/eTTVnN3	1
+173	f	teacher@fakeschools.org	2016-10-13	sha1:64000:18:xJNJXsHVXWIafsfmyPodezuUcfOYql34:oc+BIGqPl6xvmFYH/LdCvD0i	2
+187	f	gw123456@fakeschools.org	2016-10-13	sha1:64000:18:fJwJuwKKNKeoygZoN1HdCfJb8Ei/WZ8i:+cKqFWN3r7kWWo6qgbCWeWwU	3
 \.
 
 
@@ -289,6 +347,22 @@ ALTER TABLE ONLY grade
 
 
 --
+-- Name: photo_pkey; Type: CONSTRAINT; Schema: public; Owner: rush
+--
+
+ALTER TABLE ONLY photo
+    ADD CONSTRAINT photo_pkey PRIMARY KEY (photoid);
+
+
+--
+-- Name: school_pkey; Type: CONSTRAINT; Schema: public; Owner: rush
+--
+
+ALTER TABLE ONLY school
+    ADD CONSTRAINT school_pkey PRIMARY KEY (schoolid);
+
+
+--
 -- Name: student_pkey; Type: CONSTRAINT; Schema: public; Owner: rush
 --
 
@@ -318,14 +392,6 @@ ALTER TABLE ONLY users
 
 ALTER TABLE ONLY users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
-
-
---
--- Name: fk17o9g50f734hj8tfjwyw3q4hj; Type: FK CONSTRAINT; Schema: public; Owner: rush
---
-
-ALTER TABLE ONLY assignment
-    ADD CONSTRAINT fk17o9g50f734hj8tfjwyw3q4hj FOREIGN KEY (academic_class_classid) REFERENCES academic_class(classid);
 
 
 --
@@ -361,11 +427,11 @@ ALTER TABLE ONLY teacher
 
 
 --
--- Name: fkctouokaom6a8whrnrn0n547q1; Type: FK CONSTRAINT; Schema: public; Owner: rush
+-- Name: fkfx1s5ej7gvw9vagtf44joisqi; Type: FK CONSTRAINT; Schema: public; Owner: rush
 --
 
-ALTER TABLE ONLY students_classes
-    ADD CONSTRAINT fkctouokaom6a8whrnrn0n547q1 FOREIGN KEY (classid) REFERENCES academic_class(classid);
+ALTER TABLE ONLY grade
+    ADD CONSTRAINT fkfx1s5ej7gvw9vagtf44joisqi FOREIGN KEY (academic_class_classid) REFERENCES academic_class(classid);
 
 
 --
@@ -377,19 +443,19 @@ ALTER TABLE ONLY student
 
 
 --
+-- Name: fknmb2otq7t3ok3pm89vnhtixg3; Type: FK CONSTRAINT; Schema: public; Owner: rush
+--
+
+ALTER TABLE ONLY school
+    ADD CONSTRAINT fknmb2otq7t3ok3pm89vnhtixg3 FOREIGN KEY (photo_photoid) REFERENCES photo(photoid);
+
+
+--
 -- Name: fkq7pdkck9je126wpd9ijw3uwml; Type: FK CONSTRAINT; Schema: public; Owner: rush
 --
 
 ALTER TABLE ONLY admin
     ADD CONSTRAINT fkq7pdkck9je126wpd9ijw3uwml FOREIGN KEY (user_id) REFERENCES users(id);
-
-
---
--- Name: fkrw9vm8pt4uhcbl461jjhxo67j; Type: FK CONSTRAINT; Schema: public; Owner: rush
---
-
-ALTER TABLE ONLY students_classes
-    ADD CONSTRAINT fkrw9vm8pt4uhcbl461jjhxo67j FOREIGN KEY (studentid) REFERENCES student(studentid);
 
 
 --
