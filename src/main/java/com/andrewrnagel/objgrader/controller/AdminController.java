@@ -152,7 +152,6 @@ public class AdminController {
         if(bindingResult.hasErrors()){
             model.addAttribute("bindingResult", bindingResult);
             model.addAttribute("academicClass", academicClass);
-            model.addAttribute("studentList", mainService.getAllStudents());
             return "adminManageClass";
         }
         mainService.saveClass(academicClass);
