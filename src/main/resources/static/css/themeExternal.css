@@ -1,6 +1,6 @@
 header {
     height: 64px;
-    margin: 0 auto;
+    margin: 0px auto;
     border: 1px black solid;
     background: url("../images/bricktile.jpg") repeat;
 }
@@ -15,4 +15,10 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+banner div, .nav-links, li a:hover, .current, a:link, a:visited, a:hover, a:active {
+    color: #560023;
+}
+a {
+    text-decoration: none;
 }

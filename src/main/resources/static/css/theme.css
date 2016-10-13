@@ -2,8 +2,7 @@
 banner div {
     height: 20px;
     text-align: center;
-    color: #560023;
-    background: rgba(133, 133, 133, 0.95);
+    background: rgba(120, 120, 120, 0.50);
     border: 1px black solid;
     margin: 0px;
     display: flex;
@@ -46,9 +45,11 @@ banner div {
     padding: 10px;
     text-decoration: none;
 }
-.nav-links li a:hover, .current {
+.nav-links li a:hover {
     background-color: #b6b6b6;
-    color: #560023;
+}
+.nav-links .current {
+    background-color: #9b9b9b;
 }
 /*Body settings*/
 article {

@@ -1,4 +1,3 @@
-/*Title Header*/
 header {
     height: 64px;
     margin: 0px auto;
@@ -17,4 +16,9 @@ header {
     justify-content: center;
     align-items: center;
 }
-/*Unique items to Admin screens*/
+banner div, .nav-links, li a:hover, .current, a:link, a:visited, a:hover, a:active {
+    color: #560023;
+}
+a {
+    text-decoration: none;
+}
