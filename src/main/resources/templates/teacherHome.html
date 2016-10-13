@@ -21,7 +21,7 @@
         <ul th:object="${teacher}">
             <li class="current"><a th:href="@{/teacherHome}" href="../templates/teacherHome.html">Home</a></li>
             <li class="option"><a th:href="@{teacherMyAttendance}" href="../templates/teacherAttendance.html">Attendance</a></li>
-            <li class="option"><a th:href="@{teacherMyGradeBook}" href="../templates/teacherGradeBook.html">Grade Book</a></li>
+            <li class="option"><a th:href="@{teacherGradeBook}" href="../templates/teacherGradeBook.html">Grade Book</a></li>
             <li class="logout"><a th:href="@{/logout}" href="../templates/login.html">Logout</a></li>
         </ul>
     </nav>
@@ -64,7 +64,7 @@
                                 <span class="teacherHomeGrade" th:text="${academicClass.classAverage + '%'}">60.8% D</span>
                             </td>
                             <td>
-                                <span class=""><a class="homeHyperlinkGrade" th:href="@{/teacherGradeBook?(teacherLastName=*{lastName}, teacherFirstName=*{firstName}, teacherID=*{teacherID}, aPeriod=${academicClass.period}, sPeriod=${academicClass.period})}" href="../templates/teacherGradeBook.html">Gradebook</a></span>
+                                <span class=""><a class="homeHyperlinkGrade" th:href="@{/teacherGradeBook?(period=${academicClass.period})}" href="../templates/teacherGradeBook.html">Gradebook</a></span>
                             </td>
                         </tr>
                     </table>

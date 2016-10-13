@@ -4,6 +4,8 @@ import com.andrewrnagel.objgrader.entity.*;
 import com.andrewrnagel.objgrader.misc.PasswordStorage;
 import com.andrewrnagel.objgrader.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.SortDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -83,23 +85,9 @@ public class TeacherController {
         model.addAttribute("studentList", mainService.getAllStudents());
         return "teacherAttendance";
     }
-    @RequestMapping(value = "/teacherMyGradeBook")
-    public String teacherGradeBookPagePersonalized(Model model, HttpSession session) {
-        if (session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
-            return "redirect:/logout";
-        }
-        Teacher teacher = (Teacher) session.getAttribute("teacher");
-        model.addAttribute("teacher", teacher);
-        String teacherLastName = teacher.getLastName();
-        model.addAttribute("teacherLastName", teacherLastName);
-        String teacherFirstName = teacher.getFirstName();
-        model.addAttribute("teacherFirstName", teacherFirstName);
-        Integer teacherID = teacher.getTeacherID();
-        model.addAttribute("teacherID", teacherID);
-        return "redirect:/teacherGradeBook?teacherLastName=" + teacherLastName + "&teacherFirstName=" + teacherFirstName + "&teacherID=" + teacherID;
-    }
+
     @RequestMapping(value = "/teacherGradeBook", method = RequestMethod.GET)
-    public String teacherGradeBookPage(Model model, HttpSession session,
+    public String teacherGradeBookPage(Model model, HttpSession session,@SortDefault("name") Pageable pageable,
                                        @RequestParam(defaultValue = "") Integer period,
                                        @RequestParam(defaultValue = "") String name,
                                        @RequestParam(defaultValue = "") String identifier,
