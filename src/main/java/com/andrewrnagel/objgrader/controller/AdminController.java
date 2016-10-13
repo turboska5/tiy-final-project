@@ -62,21 +62,29 @@ public class AdminController {
         model.addAttribute("date", mainService.getDate());
         model.addAttribute("day", mainService.getTimeOfDay());
         model.addAttribute("userName", session.getAttribute("userName"));
-//        if(bindingResult.hasErrors()){
-//            model.addAttribute("bindingResult", bindingResult);
-//            model.addAttribute("school", school);
-//            return "adminManageInfo";
-//        }
+        School thisSchool = mainService.getSchool();
+        //TODO: error if exceeds 1MB
+        if(bindingResult.hasErrors()){
+            model.addAttribute("bindingResult", bindingResult);
+            model.addAttribute("school", school);
+            return "adminManageInfo";
+        }
         if(!photoFile.isEmpty()) {
             try {
-                //TODO: logic if photo exists to avoid duplication
-                Photo tempPhoto = new Photo();
+                Photo tempPhoto;
+                if(!thisSchool.getPhoto().getPhotoID().equals(0)) {
+                    tempPhoto = thisSchool.getPhoto();
+                } else {
+                    tempPhoto = new Photo();
+                }
                 tempPhoto.setContentType(photoFile.getContentType());
                 tempPhoto.setData(photoFile.getBytes());
                 school.setPhoto(tempPhoto);
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        } else {
+            school.setPhoto(thisSchool.getPhoto());
         }
         mainService.updateSchool(school);
         return "redirect:/adminHome";
