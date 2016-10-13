@@ -42,7 +42,7 @@ public class AdminController {
         }
         model.addAttribute("date", mainService.getDate());
         model.addAttribute("userName", session.getAttribute("userName"));
-        model.addAttribute("thisSchool", mainService.getSchool());
+        model.addAttribute("school", mainService.getSchool());
         return "adminManageInfo";
     }
     @RequestMapping(value = "/adminManageInfo", method = RequestMethod.POST)
@@ -54,7 +54,7 @@ public class AdminController {
         model.addAttribute("userName", session.getAttribute("userName"));
         if(bindingResult.hasErrors()){
             model.addAttribute("bindingResult", bindingResult);
-            model.addAttribute("thisSchool", school);
+            model.addAttribute("school", school);
             model.addAttribute("date", mainService.getDate());
             model.addAttribute("userName", session.getAttribute("userName"));
             return "adminManageInfo";
