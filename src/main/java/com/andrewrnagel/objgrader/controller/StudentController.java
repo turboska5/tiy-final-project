@@ -26,6 +26,7 @@ public class StudentController {
         }
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("date", mainService.getDate());
+        model.addAttribute("thisSchool", mainService.getSchool());
         return "studentHome";
     }
 

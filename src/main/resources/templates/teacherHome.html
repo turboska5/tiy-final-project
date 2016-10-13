@@ -32,15 +32,15 @@
             <div>
                 <img id="SchoolPic" th:src="@{/images/schoolext.jpg}" src="../static/images/schoolext.jpg" alt=""/>
             </div>
-            <div class="SchoolStats">
-                <ul >
-                    <h1 class="SchoolName">Excelsior High School</h1>
-                    <li><span class="LabelText">District: </span><span>Fake County Public Schools</span></li>
-                    <li><span class="LabelText">Principal: </span><span>Mrs. Felicity Scott</span></li>
-                    <li><span class="LabelText">School Address: </span><span>1234 Elm Street</span></li>
-                    <li><span class="LabelText">City/State/Zip: </span><span>Raleigh, NC 27610</span></li>
-                    <li><span class="LabelText">School Email: </span><span>excelsioroffice@fakeschools.org</span></li>
-                    <li><span class="LabelText">School Phone: </span><span>(919)123-4567</span></li>
+            <div class="SchoolStats" th:object="${thisSchool}">
+                <ul>
+                    <h1 class="SchoolName"><span th:text="*{schoolName}">Excelsior High School</span></h1>
+                    <hr class="nameDivider"/>
+                    <li><span class="LabelText">District: </span><span th:text="*{district}">Fake County Public Schools</span></li>
+                    <li><span class="LabelText">School Address: </span><span th:text="*{address}">1234 Elm Street</span></li>
+                    <li><span class="LabelText">City/State/Zip: </span><span th:text="*{city + ', ' + state + ' ' + zipCode}">Raleigh, NC 27610</span></li>
+                    <li><span class="LabelText">School Email: </span><span th:text="*{email}">excelsioroffice@fakeschools.org</span></li>
+                    <li><span class="LabelText">School Phone: </span><span th:text="*{phone}">(919)123-4567</span></li>
                 </ul>
             </div>
         </article>

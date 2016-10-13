@@ -72,6 +72,9 @@ article ul li {
     font-size: xx-large;
     margin: 0px;
 }
+.nameDivider {
+    clear: both;
+}
 .LabelText {
     float: left;
     width: 120px;
