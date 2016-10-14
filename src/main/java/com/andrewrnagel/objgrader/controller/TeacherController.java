@@ -152,7 +152,7 @@ public class TeacherController {
             return "redirect:/logout";
         }
         mainService.gradePost(grade);
-        return "redirect:/teacherMyGradeBook";
+        return "redirect:/teacherGradeBook";
     }
     @RequestMapping(value = "/teacherManageAssign", method = RequestMethod.GET)
     public String teacherGradeBookAssignForm(Model model, HttpSession session,
@@ -200,6 +200,6 @@ public class TeacherController {
             return "teacherManageAssign";
         }
         mainService.saveAssignment(grade);
-        return "redirect:/teacherMyGradeBook";
+        return "redirect:/teacherGradeBook";
     }
 }

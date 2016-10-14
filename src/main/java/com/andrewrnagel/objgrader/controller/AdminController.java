@@ -349,22 +349,4 @@ public class AdminController {
         mainService.saveStudent(student);
         return "redirect:/adminUsers";
     }
-    @GetMapping("/school/image")
-    @ResponseBody
-    public ResponseEntity serveFile() throws URISyntaxException {
-        System.out.println("*****************");
-        School school = mainService.getSchool();
-        //TODO: photo caching (param?)
-        if(school.getPhoto().getContentType() != null){
-            return ResponseEntity
-                    .ok()
-                    .header(HttpHeaders.CONTENT_TYPE, school.getPhoto().getContentType())
-                    .body(school.getPhoto().getData());
-        } else {
-            return ResponseEntity
-                    .status(301)
-                    .location(new URI("/images/schoolext.jpg"))
-                    .build();
-        }
-    }
 }
