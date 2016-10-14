@@ -1,5 +1,6 @@
 package com.andrewrnagel.objgrader.service;
 
+import com.andrewrnagel.objgrader.bean.SearchTeacherClasses;
 import com.andrewrnagel.objgrader.entity.*;
 import com.andrewrnagel.objgrader.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -309,5 +310,10 @@ public class MainService {
         }
         Page<Grade> results = this.gradeRepo.searchForStudentAssignments(period, aName, aPointsParsed, studentID, pageable);
         return results;
+    }
+
+    //Teacher page ajax content
+    public Page<AcademicClass> listClasses(SearchTeacherClasses search, Pageable pageable) {
+        return classRepo.search(search.getPeriod(), search.getNameForSearch(), search.getIdentifierForSearch(), pageable);
     }
 }

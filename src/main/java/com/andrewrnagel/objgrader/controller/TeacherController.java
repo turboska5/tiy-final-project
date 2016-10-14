@@ -1,9 +1,11 @@
 package com.andrewrnagel.objgrader.controller;
 
+import com.andrewrnagel.objgrader.bean.SearchTeacherClasses;
 import com.andrewrnagel.objgrader.entity.*;
 import com.andrewrnagel.objgrader.misc.PasswordStorage;
 import com.andrewrnagel.objgrader.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.SortDefault;
@@ -90,11 +92,10 @@ public class TeacherController {
         return "teacherAttendance";
     }
     @RequestMapping(value = "/teacherGradeBook", method = RequestMethod.GET)
-    public String teacherGradeBookPage(Model model, HttpSession session, @PageableDefault(size = 10) Pageable pageable,
-//                                       @SortDefault("name") Pageable pageable,
-                                       @RequestParam(defaultValue = "") Integer period,
-                                       @RequestParam(defaultValue = "") String name,
-                                       @RequestParam(defaultValue = "") String identifier,
+    public String teacherGradeBookPage(SearchTeacherClasses search, Model model, HttpSession session, @PageableDefault(size = 10) Pageable pageable,
+//                                       @RequestParam(defaultValue = "") Integer period,
+//                                       @RequestParam(defaultValue = "") String name,
+//                                       @RequestParam(defaultValue = "") String identifier,
                                        @RequestParam(defaultValue = "") Integer aPeriod,
                                        @RequestParam(defaultValue = "") String aName,
                                        @RequestParam(defaultValue = "") String aID,
@@ -116,16 +117,21 @@ public class TeacherController {
         model.addAttribute("teacher", teacher);
         model.addAttribute("pageable", pageable);
         //class search
-        model.addAttribute("period", period);
-        model.addAttribute("name", name);
-        model.addAttribute("identifier", identifier);
-        model.addAttribute("classList", mainService.searchClasses(period, "%" + name + "%", "%" + identifier + "%", "%" + teacher.getDepartment() + "%", "%" + teacher.getLastName() + "%", "%" + teacher.getFirstName() + "%", teacher.getTeacherID(), pageable));
+//        model.addAttribute("period", period);
+//        model.addAttribute("name", name);
+//        model.addAttribute("identifier", identifier);
+//        model.addAttribute("classList", mainService.searchClasses(period, "%" + name + "%", "%" + identifier + "%", "%" + teacher.getDepartment() + "%", "%" + teacher.getLastName() + "%", "%" + teacher.getFirstName() + "%", teacher.getTeacherID(), pageable));
+        //experimental
+        Page<AcademicClass> classList = mainService.listClasses(search, pageable);
+        model.addAttribute("classList", classList);
+        model.addAttribute("pageable", pageable);
+
         //assignment search
         model.addAttribute("aPeriod", aPeriod);
-        if (!(period == null)){
-            model.addAttribute("aPeriod", period);
-            aPeriod = period;
-        }
+//        if (!(period == null)){
+//            model.addAttribute("aPeriod", period);
+//            aPeriod = period;
+//        }
         model.addAttribute("aName", aName);
         model.addAttribute("aID", aID);
         model.addAttribute("aDate", aDate);
@@ -133,10 +139,10 @@ public class TeacherController {
         model.addAttribute("assignmentList", mainService.getTeacherAssignments(aPeriod, "%" + aName + "%", "%" + aID + "%", aDate, aPoints, teacher.getTeacherID(), pageable));
         //student search
         model.addAttribute("sPeriod", sPeriod);
-        if (!(period == null)){
-            model.addAttribute("sPeriod", period);
-            sPeriod = period;
-        }
+//        if (!(period == null)){
+//            model.addAttribute("sPeriod", period);
+//            sPeriod = period;
+//        }
         model.addAttribute("sLastName", sLastName);
         model.addAttribute("sFirstName", sFirstName);
         model.addAttribute("sAName", sAName);

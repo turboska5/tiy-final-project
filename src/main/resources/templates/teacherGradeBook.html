@@ -35,10 +35,10 @@
             <!--class manager search engine-->
             <article class="SearchParams">
                 <div id="ClassSearchParams">
-                    <form th:action="teacherGradeBook">
-                        <input name="period" class="InputField" placeholder="Period" th:value="${period}"/>
-                        <input name="name" class="InputField" type="text" placeholder="Class Name" th:value="${name}"/>
-                        <input name="identifier" class="InputField" placeholder="Class ID#" th:value="${identifier}"/>
+                    <form th:action="@{/teacherGradeBook}" th:object="${search}" method="get">
+                        <input name="period" class="InputField" type="text" placeholder="Period" th:value="*{period}"/>
+                        <input name="name" class="InputField" type="text" placeholder="Class Name" th:value="*{name}"/>
+                        <input name="identifier" class="InputField" type="text" placeholder="Class ID#" th:value="*{identifier}"/>
                         <button class="SearchButton">Search</button>
                     </form>
                 </div>
@@ -76,11 +76,13 @@
                     <div class="pagination">
                         <span th:text="${pageable.offset + 1} + ' - ' + ${pageable.offset + classList.numberOfElements} + ' of ' + ${classList.totalElements}">1 - 10 of 54</span>
                         <a href="teacherGradeBook.html"
-                           th:href="@{/teacherGradeBook(page=${pageable.previousOrFirst().pageNumber}, period=${period}, name=${name}, identifier=${identifier})}">
+                            th:href="@{/(page=${pageable.previousOrFirst().pageNumber}, name=${search.period}, typeId=${search.name}, id=${search.identifier})}">
+                            <!--th:href="@{/teacherGradeBook(page=${pageable.previousOrFirst().pageNumber}, period=${period}, name=${name}, identifier=${identifier})}">-->
                             <button disabled="disabled"
                                     th:disabled="${classList.isFirst()}">Back</button></a>
                         <a href="teacherGradeBook.html"
-                           th:href="@{/teacherGradeBook(page=${pageable.next().pageNumber}, period=${period}, name=${name}, identifier=${identifier})}">
+                            th:href="@{/(page=${pageable.next().pageNumber}, name=${search.period}, typeId=${search.name}, id=${search.identifier})}">
+                            <!--th:href="@{/teacherGradeBook(page=${pageable.next().pageNumber}, period=${period}, name=${name}, identifier=${identifier})}">-->
                             <button th:disabled="${classList.isLast()}">Next</button></a>
                     </div>
                 </div>
