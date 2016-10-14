@@ -1,6 +1,8 @@
 package com.andrewrnagel.objgrader.controller;
 
+import com.andrewrnagel.objgrader.bean.SearchTeacherAssign;
 import com.andrewrnagel.objgrader.bean.SearchTeacherClasses;
+import com.andrewrnagel.objgrader.bean.SearchTeacherStudents;
 import com.andrewrnagel.objgrader.entity.*;
 import com.andrewrnagel.objgrader.misc.PasswordStorage;
 import com.andrewrnagel.objgrader.service.MainService;
@@ -92,20 +94,9 @@ public class TeacherController {
         return "teacherAttendance";
     }
     @RequestMapping(value = "/teacherGradeBook", method = RequestMethod.GET)
-    public String teacherGradeBookPage(SearchTeacherClasses search, Model model, HttpSession session, @PageableDefault(size = 10) Pageable pageable,
-//                                       @RequestParam(defaultValue = "") Integer period,
-//                                       @RequestParam(defaultValue = "") String name,
-//                                       @RequestParam(defaultValue = "") String identifier,
-                                       @RequestParam(defaultValue = "") Integer aPeriod,
-                                       @RequestParam(defaultValue = "") String aName,
-                                       @RequestParam(defaultValue = "") String aID,
-                                       @RequestParam(defaultValue = "") String aDate,
-                                       @RequestParam(defaultValue = "") String aPoints,
-                                       @RequestParam(defaultValue = "") Integer sPeriod,
-                                       @RequestParam(defaultValue = "") String sLastName,
-                                       @RequestParam(defaultValue = "") String sFirstName,
-                                       @RequestParam(defaultValue = "") String sAName,
-                                       @RequestParam(defaultValue = "") String sAID) throws SQLException {
+    public String teacherGradeBookPage(SearchTeacherClasses searchTeacherClasses, SearchTeacherAssign searchTeacherAssign,
+                                       SearchTeacherStudents searchTeacherStudents, Model model, HttpSession session,
+                                       @PageableDefault(size = 3) Pageable pageable) throws SQLException {
         if (session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
             return "redirect:/logout";
         }
@@ -116,38 +107,24 @@ public class TeacherController {
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("teacher", teacher);
         model.addAttribute("pageable", pageable);
-        //class search
-//        model.addAttribute("period", period);
-//        model.addAttribute("name", name);
-//        model.addAttribute("identifier", identifier);
-//        model.addAttribute("classList", mainService.searchClasses(period, "%" + name + "%", "%" + identifier + "%", "%" + teacher.getDepartment() + "%", "%" + teacher.getLastName() + "%", "%" + teacher.getFirstName() + "%", teacher.getTeacherID(), pageable));
-        //experimental
-        Page<AcademicClass> classList = mainService.listClasses(search, pageable);
+        //Class search
+        Page<AcademicClass> classList = mainService.listClasses(searchTeacherClasses, teacher.getTeacherID(), pageable);
         model.addAttribute("classList", classList);
-        model.addAttribute("pageable", pageable);
-
         //assignment search
-        model.addAttribute("aPeriod", aPeriod);
+        //TODO: assignment/student sync with period in class search
 //        if (!(period == null)){
 //            model.addAttribute("aPeriod", period);
 //            aPeriod = period;
 //        }
-        model.addAttribute("aName", aName);
-        model.addAttribute("aID", aID);
-        model.addAttribute("aDate", aDate);
-        model.addAttribute("aPoints", aPoints);
-        model.addAttribute("assignmentList", mainService.getTeacherAssignments(aPeriod, "%" + aName + "%", "%" + aID + "%", aDate, aPoints, teacher.getTeacherID(), pageable));
+        Page<Grade> assignmentList = mainService.listAssignments(searchTeacherAssign, teacher.getTeacherID(), pageable);
+        model.addAttribute("assignmentList", assignmentList);
         //student search
-        model.addAttribute("sPeriod", sPeriod);
 //        if (!(period == null)){
 //            model.addAttribute("sPeriod", period);
 //            sPeriod = period;
 //        }
-        model.addAttribute("sLastName", sLastName);
-        model.addAttribute("sFirstName", sFirstName);
-        model.addAttribute("sAName", sAName);
-        model.addAttribute("sAID", sAID);
-        model.addAttribute("studentList", mainService.getTeacherStudents(sPeriod, "%" + sLastName + "%", "%" + sFirstName + "%", "%" + sAName + "%", "%" + sAID + "%", teacher.getTeacherID(), pageable));
+        Page<Grade> studentList = mainService.listStudents(searchTeacherStudents, teacher.getTeacherID(), pageable);
+        model.addAttribute("studentList", studentList);
         return "teacherGradeBook";
     }
     @RequestMapping(value = "/teacherManageAssign", method = RequestMethod.GET)

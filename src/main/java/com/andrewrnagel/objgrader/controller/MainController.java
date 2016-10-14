@@ -3,6 +3,7 @@ package com.andrewrnagel.objgrader.controller;
 import com.andrewrnagel.objgrader.bean.SearchTeacherClasses;
 import com.andrewrnagel.objgrader.entity.AcademicClass;
 import com.andrewrnagel.objgrader.entity.School;
+import com.andrewrnagel.objgrader.entity.Teacher;
 import com.andrewrnagel.objgrader.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -50,10 +51,10 @@ public class MainController {
             mainService.gradePost(gradeID, earnedPoints);
         }
     }
-    @RequestMapping(path = "/teacherClassRetrieve")
-    public Page<AcademicClass> listClasses(SearchTeacherClasses search,
-                                           @PageableDefault(size = 10, sort = "period") Pageable pageable){
-        // get the classes matching this search
-        return mainService.listClasses(search, pageable);
-    }
+//    @RequestMapping(path = "/teacherClassRetrieve")
+//    public Page<AcademicClass> listClasses(Teacher teacher, SearchTeacherClasses search,
+//                                           @PageableDefault(size = 10, sort = "period") Pageable pageable){
+//        // get the classes matching this search
+//        return mainService.listClasses(search, teacher.getTeacherID(), pageable);
+//    }
 }

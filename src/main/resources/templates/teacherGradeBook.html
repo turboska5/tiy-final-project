@@ -35,7 +35,7 @@
             <!--class manager search engine-->
             <article class="SearchParams">
                 <div id="ClassSearchParams">
-                    <form th:action="@{/teacherGradeBook}" th:object="${search}" method="get">
+                    <form th:action="@{/teacherGradeBook}" th:object="${searchTeacherClasses}" method="get">
                         <input name="period" class="InputField" type="text" placeholder="Period" th:value="*{period}"/>
                         <input name="name" class="InputField" type="text" placeholder="Class Name" th:value="*{name}"/>
                         <input name="identifier" class="InputField" type="text" placeholder="Class ID#" th:value="*{identifier}"/>
@@ -76,12 +76,12 @@
                     <div class="pagination">
                         <span th:text="${pageable.offset + 1} + ' - ' + ${pageable.offset + classList.numberOfElements} + ' of ' + ${classList.totalElements}">1 - 10 of 54</span>
                         <a href="teacherGradeBook.html"
-                            th:href="@{/(page=${pageable.previousOrFirst().pageNumber}, name=${search.period}, typeId=${search.name}, id=${search.identifier})}">
+                            th:href="@{/teacherGradeBook(page=${pageable.previousOrFirst().pageNumber}, name=${searchTeacherClasses.period}, typeId=${searchTeacherClasses.name}, id=${searchTeacherClasses.identifier})}">
                             <!--th:href="@{/teacherGradeBook(page=${pageable.previousOrFirst().pageNumber}, period=${period}, name=${name}, identifier=${identifier})}">-->
                             <button disabled="disabled"
                                     th:disabled="${classList.isFirst()}">Back</button></a>
                         <a href="teacherGradeBook.html"
-                            th:href="@{/(page=${pageable.next().pageNumber}, name=${search.period}, typeId=${search.name}, id=${search.identifier})}">
+                            th:href="@{/teacherGradeBook(page=${pageable.next().pageNumber}, name=${searchTeacherClasses.period}, typeId=${searchTeacherClasses.name}, id=${searchTeacherClasses.identifier})}">
                             <!--th:href="@{/teacherGradeBook(page=${pageable.next().pageNumber}, period=${period}, name=${name}, identifier=${identifier})}">-->
                             <button th:disabled="${classList.isLast()}">Next</button></a>
                     </div>
@@ -96,12 +96,12 @@
             <!--assignment manager search engine-->
             <article class="SearchParams">
                 <div id="AssigmentSearchParams">
-                    <form th:action="teacherGradeBook">
-                        <input name="aPeriod" class="InputField" placeholder="Period" th:value="${aPeriod}" value=""/>
-                        <input name="aName" class="InputField" type="text" placeholder="Name" th:value="${aName}"/>
-                        <input name="aID" class="InputField" placeholder="ID#" th:value="${aID}"/>
-                        <input name="aDate" class="InputField" placeholder="Date" th:value="${aDate}"/>
-                        <input name="aPoints" class="InputField" placeholder="Points" th:value="${aPoints}"/>
+                    <form th:action="@{/teacherGradeBook}" th:object="${searchTeacherAssign}" method="get">
+                        <input name="aPeriod" class="InputField" placeholder="Period" th:value="*{aPeriod}" value=""/>
+                        <input name="aName" class="InputField" type="text" placeholder="Name" th:value="*{aName}"/>
+                        <input name="aID" class="InputField" placeholder="ID#" th:value="*{aID}"/>
+                        <input name="aDate" class="InputField" placeholder="Date" th:value="*{aDate}"/>
+                        <input name="aPoints" class="InputField" placeholder="Points" th:value="*{aPoints}"/>
                         <button class="SearchButton">Search</button>
                     </form>
                 </div>
@@ -139,11 +139,11 @@
                     <div class="pagination">
                         <span th:text="${pageable.offset + 1} + ' - ' + ${pageable.offset + assignmentList.numberOfElements} + ' of ' + ${assignmentList.totalElements}">1 - 10 of 54</span>
                         <a href="teacherGradeBook.html"
-                           th:href="@{/teacherGradeBook(page=${pageable.previousOrFirst().pageNumber}, aPeriod=${aPeriod}, aName=${aName}, aID=${aID}, aDate=${aDate}, aPoints=${aPoints})}">
+                           th:href="@{/teacherGradeBook(page=${pageable.previousOrFirst().pageNumber}, aPeriod=${searchTeacherAssign.aPeriod}, aName=${searchTeacherAssign.aName}, aID=${searchTeacherAssign.aID}, aDate=${searchTeacherAssign.aDate}, aPoints=${searchTeacherAssign.aPoints})}">
                             <button disabled="disabled"
                                     th:disabled="${assignmentList.isFirst()}">Back</button></a>
                         <a href="teacherGradeBook.html"
-                           th:href="@{/teacherGradeBook(page=${pageable.next().pageNumber}, aPeriod=${aPeriod}, aName=${aName}, aID=${aID}, aDate=${aDate}, aPoints=${aPoints})}">
+                           th:href="@{/teacherGradeBook(page=${pageable.next().pageNumber}, aPeriod=${searchTeacherAssign.aPeriod}, aName=${searchTeacherAssign.aName}, aID=${searchTeacherAssign.aID}, aDate=${searchTeacherAssign.aDate}, aPoints=${searchTeacherAssign.aPoints})}">
                             <button th:disabled="${assignmentList.isLast()}">Next</button></a>
                     </div>
                 </div>
@@ -157,12 +157,12 @@
             <legend>Students</legend>
             <article class="SearchParams">
                 <div id="StudentSearchParams">
-                    <form th:action="teacherGradeBook">
-                        <input name="sPeriod" class="InputField" type="text" placeholder="Period" th:value="${sPeriod}" value=""/>
-                        <input name="sLastName" class="InputField" type="text" placeholder="Last Name" th:value="${sLastName}"/>
-                        <input name="sFirstName" class="InputField" type="text" placeholder="First Name" th:value="${sFirstName}"/>
-                        <input name="sAName" class="InputField" type="text" placeholder="Name" value="" th:value="${sAName}"/>
-                        <input name="sAID" class="InputField" type="text" placeholder="ID#" th:value="${sAID}"/>
+                    <form th:action="@{/teacherGradeBook}" th:object="${searchTeacherStudents}" method="get">
+                        <input name="sPeriod" class="InputField" type="text" placeholder="Period" th:value="*{sPeriod}" value=""/>
+                        <input name="sLastName" class="InputField" type="text" placeholder="Last Name" th:value="*{sLastName}"/>
+                        <input name="sFirstName" class="InputField" type="text" placeholder="First Name" th:value="*{sFirstName}"/>
+                        <input name="sAName" class="InputField" type="text" placeholder="Name" value="" th:value="*{sAName}"/>
+                        <input name="sAID" class="InputField" type="text" placeholder="ID#" th:value="*{sAID}"/>
                         <button class="SearchButton">Search</button>
                     </form>
                 </div>
@@ -202,11 +202,11 @@
                         <div class="pagination">
                             <span th:text="${pageable.offset + 1} + ' - ' + ${pageable.offset + studentList.numberOfElements} + ' of ' + ${studentList.totalElements}">1 - 10 of 54</span>
                             <a href="teacherGradeBook.html"
-                               th:href="@{/teacherGradeBook(page=${pageable.previousOrFirst().pageNumber}, sPeriod=${sPeriod}, sLastName=${sLastName}, sFirstName=${sFirstName}, sAName=${sAName}, sAID=${sAID}, assignmentList=${assignmentList})}">
+                               th:href="@{/teacherGradeBook(page=${pageable.previousOrFirst().pageNumber}, sPeriod=${searchTeacherStudents.sPeriod}, sLastName=${searchTeacherStudents.sLastName}, sFirstName=${searchTeacherStudents.sFirstName}, sAName=${searchTeacherStudents.sAName}, sAID=${searchTeacherStudents.sAID}, assignmentList=${assignmentList})}">
                                 <button disabled="disabled"
                                         th:disabled="${studentList.isFirst()}">Back</button></a>
                             <a href="teacherGradeBook.html"
-                               th:href="@{/teacherGradeBook(page=${pageable.next().pageNumber}, sPeriod=${sPeriod}, sLastName=${sLastName}, sFirstName=${sFirstName}, sAName=${sAName}, sAID=${sAID}, assignmentList=${assignmentList})}">
+                               th:href="@{/teacherGradeBook(page=${pageable.next().pageNumber}, sPeriod=${searchTeacherStudents.sPeriod}, sLastName=${searchTeacherStudents.sLastName}, sFirstName=${searchTeacherStudents.sFirstName}, sAName=${searchTeacherStudents.sAName}, sAID=${searchTeacherStudents.sAID}, assignmentList=${assignmentList})}">
                                 <button th:disabled="${studentList.isLast()}">Next</button></a>
                         </div>
                     </div>
