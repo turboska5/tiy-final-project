@@ -263,4 +263,13 @@ public class MainService {
             return "0.00";
         }
     }
+
+    public List<Grade> getStudentAssignments(Integer period, String aName, String aPoints, Integer studentID) {
+        Integer aPointsParsed = null;
+        if(!aPoints.equals("")) {
+            aPointsParsed = Integer.parseInt(aPoints);
+        }
+        List<Grade> results = this.gradeRepo.searchForStudentAssignments(period, aName, aPointsParsed, studentID);
+        return results;
+    }
 }

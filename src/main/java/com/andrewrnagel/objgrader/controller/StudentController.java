@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +43,10 @@ public class StudentController {
     }
 
     @RequestMapping(value = "/studentGradeView", method = RequestMethod.GET)
-    public String studentGradeView(Model model, HttpSession session) {
+    public String studentGradeView(Model model, HttpSession session,
+                                   @RequestParam(defaultValue = "") Integer period,
+                                   @RequestParam(defaultValue = "") String aName,
+                                   @RequestParam(defaultValue = "") String aPoints) {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(3)) {
             return "redirect:/logout";
         }
@@ -49,7 +54,7 @@ public class StudentController {
         model.addAttribute("day", mainService.getTimeOfDay());
         model.addAttribute("userName", session.getAttribute("userName"));
         Student student = (Student)session.getAttribute("student");
-        model.addAttribute("studentList", mainService.getStudentGrades(student.getStudentID()));
+        model.addAttribute("studentList", mainService.getStudentAssignments(period, '%' + aName + '%', aPoints, student.getStudentID()));
         return "studentGradeView";
     }
 }
