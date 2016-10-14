@@ -5,6 +5,7 @@ import com.andrewrnagel.objgrader.misc.PasswordStorage;
 import com.andrewrnagel.objgrader.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.SortDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -88,13 +89,12 @@ public class TeacherController {
         model.addAttribute("studentList", mainService.getAllStudents());
         return "teacherAttendance";
     }
-
     @RequestMapping(value = "/teacherGradeBook", method = RequestMethod.GET)
-    public String teacherGradeBookPage(Model model, HttpSession session,@SortDefault("name") Pageable pageable,
+    public String teacherGradeBookPage(Model model, HttpSession session, @PageableDefault(size = 10) Pageable pageable,
+//                                       @SortDefault("name") Pageable pageable,
                                        @RequestParam(defaultValue = "") Integer period,
                                        @RequestParam(defaultValue = "") String name,
                                        @RequestParam(defaultValue = "") String identifier,
-                                       @RequestParam(defaultValue = "") String department,
                                        @RequestParam(defaultValue = "") Integer aPeriod,
                                        @RequestParam(defaultValue = "") String aName,
                                        @RequestParam(defaultValue = "") String aID,
@@ -118,7 +118,7 @@ public class TeacherController {
         model.addAttribute("period", period);
         model.addAttribute("name", name);
         model.addAttribute("identifier", identifier);
-        model.addAttribute("classList", mainService.searchClasses(period, "%" + name + "%", "%" + identifier + "%", "%" + department + "%", "%" + teacher.getLastName() + "%", "%" + teacher.getFirstName() + "%", teacher.getTeacherID()));
+        model.addAttribute("classList", mainService.searchClasses(period, "%" + name + "%", "%" + identifier + "%", "%" + teacher.getDepartment() + "%", "%" + teacher.getLastName() + "%", "%" + teacher.getFirstName() + "%", teacher.getTeacherID()));
         //assignment search
         model.addAttribute("aPeriod", aPeriod);
         if (!(period == null)){
