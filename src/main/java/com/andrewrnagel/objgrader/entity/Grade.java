@@ -30,11 +30,11 @@ public class Grade {
     @ManyToOne
     private Student student;
 
-    private Integer earnedPoints;
+    private Double earnedPoints;
 
     @NotNull
     @Min(0)
-    private Integer possPoints;
+    private Double possPoints;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dateCreated = LocalDate.now();
@@ -48,11 +48,11 @@ public class Grade {
     public Grade() {
     }
 
-    public Grade(Integer possPoints) {
+    public Grade(Double possPoints) {
         this.possPoints = possPoints;
     }
 
-    public Grade(Integer earnedPoints, Integer possPoints) {
+    public Grade(Double earnedPoints, Double possPoints) {
         this.earnedPoints = earnedPoints;
         this.possPoints = possPoints;
     }
@@ -73,7 +73,7 @@ public class Grade {
         this.student = student;
     }
 
-    public Grade(AcademicClass academicClass, Assignment assignment, Student student, Integer earnedPoints, Integer possPoints, String dateCreated, String dateModified) {
+    public Grade(AcademicClass academicClass, Assignment assignment, Student student, Double earnedPoints, Double possPoints, String dateCreated, String dateModified) {
         this.academicClass = academicClass;
         this.assignment = assignment;
         this.student = student;
@@ -92,11 +92,11 @@ public class Grade {
         this.gradeID = gradeID;
     }
 
-    public Integer getEarnedPoints() {
+    public Double getEarnedPoints() {
         return earnedPoints;
     }
 
-    public void setEarnedPoints(Integer earnedPoints) {
+    public void setEarnedPoints(Double earnedPoints) {
         this.earnedPoints = earnedPoints;
     }
 
@@ -124,11 +124,11 @@ public class Grade {
         this.student = student;
     }
 
-    public Integer getPossPoints() {
+    public Double getPossPoints() {
         return possPoints;
     }
 
-    public void setPossPoints(Integer possPoints) {
+    public void setPossPoints(Double possPoints) {
         this.possPoints = possPoints;
     }
 

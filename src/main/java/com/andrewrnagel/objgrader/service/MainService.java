@@ -128,7 +128,7 @@ public class MainService {
         grade.setAcademicClass(academicClass);
         Student student = this.studentRepository.findOne(studentID);
         grade.setStudent(student);
-        grade.setPossPoints(0); //to allow for validation of assignment (not null constraint)
+        grade.setPossPoints(0.0); //to allow for validation of assignment (not null constraint)
         this.gradeRepo.save(grade);
         //create assignments for student based on class added to
         List <Grade> classAssignments = this.gradeRepo.getClassAssignments(academicClassID);
@@ -253,12 +253,12 @@ public class MainService {
 
     public void gradePost(String gradeID, String earnedPoints){
         Integer gradeIDParsed = null;
-        Integer earnedPointsParsed = null;
+        Double earnedPointsParsed = null;
         if(!gradeID.equals("")) {
             gradeIDParsed = Integer.parseInt(gradeID);
         }
         if(!earnedPoints.equals("")) {
-            earnedPointsParsed = Integer.parseInt(earnedPoints);
+            earnedPointsParsed = Double.parseDouble(earnedPoints);
         }
         Grade grader = this.gradeRepo.findOne(gradeIDParsed);
         grader.setEarnedPoints(earnedPointsParsed);
@@ -289,9 +289,8 @@ public class MainService {
     public String getStudentGradeAverage(Integer studentID, Integer classID) {
         Double earnedPoints = this.gradeRepo.findStudentEarnedPoints(studentID, classID);
         Double possPoints = this.gradeRepo.findStudentPossiblePoints(studentID, classID);
-
         if (!possPoints.equals(0.0)){
-            Double results = (earnedPoints / possPoints) * 100.0;
+            Double results = ((earnedPoints / possPoints)*100.0);
             if(results == 0.0) {
                 return "0.00";
             } else {

@@ -165,7 +165,7 @@ public class TeacherController {
             model.addAttribute("grade", grade);
             model.addAttribute("assignment", assignment);
         } else {
-            Grade grade = new Grade(0);
+            Grade grade = new Grade(0.0);
             Assignment assignment = new Assignment("", "");
             model.addAttribute("grade", grade);
             model.addAttribute("assignment", assignment);
