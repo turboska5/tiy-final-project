@@ -276,3 +276,7 @@ table tr:nth-child(2n+1) {
 .StudentForm {
     width: 100%;
 }
+
+.pagination{
+    text-align: center;
+}

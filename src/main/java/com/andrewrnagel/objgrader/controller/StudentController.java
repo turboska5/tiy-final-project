@@ -45,7 +45,7 @@ public class StudentController {
     }
 
     @RequestMapping(value = "/studentGradeView", method = RequestMethod.GET)
-    public String studentGradeView(Model model, HttpSession session, @PageableDefault(size = 2) Pageable pageable,
+    public String studentGradeView(Model model, HttpSession session, @PageableDefault(size = 10) Pageable pageable,
                                    @RequestParam(defaultValue = "") Integer period,
                                    @RequestParam(defaultValue = "") String aName,
                                    @RequestParam(defaultValue = "") String aPoints) {
