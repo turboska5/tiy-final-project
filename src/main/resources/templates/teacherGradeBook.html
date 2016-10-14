@@ -76,12 +76,12 @@
                     <div class="pagination">
                         <span th:text="${pageable.offset + 1} + ' - ' + ${pageable.offset + classList.numberOfElements} + ' of ' + ${classList.totalElements}">1 - 10 of 54</span>
                         <a href="teacherGradeBook.html"
-                           th:href="@{/teacherGradeBook(page=${pageable.previousOrFirst().pageNumber}, period=${period}, aName=${aName}, aPoints=${aPoints})}">
+                           th:href="@{/teacherGradeBook(page=${pageable.previousOrFirst().pageNumber}, period=${period}, name=${name}, identifier=${identifier})}">
                             <button disabled="disabled"
-                                    th:disabled="${studentList.isFirst()}">Back</button></a>
+                                    th:disabled="${classList.isFirst()}">Back</button></a>
                         <a href="teacherGradeBook.html"
-                           th:href="@{/teacherGradeBook(page=${pageable.next().pageNumber}, period=${period}, aName=${aName}, aPoints=${aPoints})}">
-                            <button th:disabled="${studentList.isLast()}">Next</button></a>
+                           th:href="@{/teacherGradeBook(page=${pageable.next().pageNumber}, period=${period}, name=${name}, identifier=${identifier})}">
+                            <button th:disabled="${classList.isLast()}">Next</button></a>
                     </div>
                 </div>
             </div>
@@ -137,11 +137,11 @@
                     <div class="pagination">
                         <span th:text="${pageable.offset + 1} + ' - ' + ${pageable.offset + assignmentList.numberOfElements} + ' of ' + ${assignmentList.totalElements}">1 - 10 of 54</span>
                         <a href="teacherGradeBook.html"
-                           th:href="@{/teacherGradeBook(page=${pageable.previousOrFirst().pageNumber}, period=${period}, aName=${aName}, aPoints=${aPoints})}">
+                           th:href="@{/teacherGradeBook(page=${pageable.previousOrFirst().pageNumber}, aPeriod=${aPeriod}, aName=${aName}, aID=${aID}, aDate=${aDate}, aPoints=${aPoints})}">
                             <button disabled="disabled"
                                     th:disabled="${assignmentList.isFirst()}">Back</button></a>
                         <a href="teacherGradeBook.html"
-                           th:href="@{/teacherGradeBook(page=${pageable.next().pageNumber}, period=${period}, aName=${aName}, aPoints=${aPoints})}">
+                           th:href="@{/teacherGradeBook(page=${pageable.next().pageNumber}, aPeriod=${aPeriod}, aName=${aName}, aID=${aID}, aDate=${aDate}, aPoints=${aPoints})}">
                             <button th:disabled="${assignmentList.isLast()}">Next</button></a>
                     </div>
                 </div>
@@ -200,11 +200,11 @@
                         <div class="pagination">
                             <span th:text="${pageable.offset + 1} + ' - ' + ${pageable.offset + studentList.numberOfElements} + ' of ' + ${studentList.totalElements}">1 - 10 of 54</span>
                             <a href="teacherGradeBook.html"
-                               th:href="@{/teacherGradeBook(page=${pageable.previousOrFirst().pageNumber}, period=${period}, aName=${aName}, aPoints=${aPoints})}">
+                               th:href="@{/teacherGradeBook(page=${pageable.previousOrFirst().pageNumber}, sPeriod=${sPeriod}, sLastName=${sLastName}, sFirstName=${sFirstName}, sAName=${sAName}, sAID=${sAID}, assignmentList=${assignmentList})}">
                                 <button disabled="disabled"
                                         th:disabled="${studentList.isFirst()}">Back</button></a>
                             <a href="teacherGradeBook.html"
-                               th:href="@{/teacherGradeBook(page=${pageable.next().pageNumber}, period=${period}, aName=${aName}, aPoints=${aPoints})}">
+                               th:href="@{/teacherGradeBook(page=${pageable.next().pageNumber}, sPeriod=${sPeriod}, sLastName=${sLastName}, sFirstName=${sFirstName}, sAName=${sAName}, sAID=${sAID}, assignmentList=${assignmentList})}">
                                 <button th:disabled="${studentList.isLast()}">Next</button></a>
                         </div>
                     </div>
