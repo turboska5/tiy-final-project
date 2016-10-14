@@ -31,14 +31,20 @@ public class LoginController {
     @RequestMapping(value = "/")
     public String home(HttpSession session, Model model){
         if(session.getAttribute("userId") == null){
-            return "redirect:/login";
         } else {
             // get the user
             Integer userId = (Integer) session.getAttribute("userId");
             User user = userRepository.getOne(userId);
             model.addAttribute("user", user);
-            return "redirect:/adminHome";
+            if(session.getAttribute("userRole").equals(1)) {
+                return "redirect:/adminHome";
+            } else if(session.getAttribute("userRole").equals(2)) {
+                return "redirect:/teacherHome";
+            } else if(session.getAttribute("userRole").equals(3)) {
+                return "redirect:/studentHome";
+            }
         }
+        return "redirect:/login";
     }
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginForm() throws PasswordStorage.CannotPerformOperationException {

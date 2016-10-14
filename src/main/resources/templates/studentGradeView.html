@@ -63,19 +63,17 @@
                             </table>
                         </div>
                     </div>
+                <br/>
                 <div class="pagination">
                     <span th:text="${pageable.offset + 1} + ' - ' + ${pageable.offset + studentList.numberOfElements} + ' of ' + ${studentList.totalElements}">1 - 10 of 54</span>
                     <a href="studentGradeView.html"
                        th:href="@{/studentGradeView(page=${pageable.previousOrFirst().pageNumber}, period=${period}, aName=${aName}, aPoints=${aPoints})}">
                         <button disabled="disabled"
                                 th:disabled="${studentList.isFirst()}">Back</button></a>
-
                     <a href="studentGradeView.html"
                        th:href="@{/studentGradeView(page=${pageable.next().pageNumber}, period=${period}, aName=${aName}, aPoints=${aPoints})}">
                         <button th:disabled="${studentList.isLast()}">Next</button></a>
                 </div>
-
-                <br/>
                 </fieldset>
         </article>
     </section>

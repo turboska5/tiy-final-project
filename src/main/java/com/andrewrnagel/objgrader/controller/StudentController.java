@@ -43,7 +43,6 @@ public class StudentController {
         model.addAttribute("classList", classes);
         return "studentHome";
     }
-
     @RequestMapping(value = "/studentGradeView", method = RequestMethod.GET)
     public String studentGradeView(Model model, HttpSession session, @PageableDefault(size = 10) Pageable pageable,
                                    @RequestParam(defaultValue = "") Integer period,
