@@ -2,6 +2,8 @@ package com.andrewrnagel.objgrader.repository;
 
 import com.andrewrnagel.objgrader.entity.Grade;
 import com.andrewrnagel.objgrader.entity.Student;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -53,4 +55,8 @@ public interface GradeRepo extends JpaRepository<Grade, Integer> {
 
     @Query(value = "SELECT g FROM Grade g WHERE (?1 IS NULL OR g.academicClass.period = ?1) AND (?2 = '' OR upper(g.assignment.assignmentName) LIKE upper(?2)) AND (?3 IS NULL OR g.possPoints = ?3) AND g.student.studentID IS ?4")
     List<Grade> searchForStudentAssignments(Integer period, String aName, Integer aPointsParsed, Integer studentID);
+
+    @Query(value = "SELECT g FROM Grade g WHERE (?1 IS NULL OR g.academicClass.period = ?1) AND (?2 = '' OR upper(g.assignment.assignmentName) LIKE upper(?2)) AND (?3 IS NULL OR g.possPoints = ?3) AND g.student.studentID IS ?4")
+    Page<Grade> searchForStudentAssignments(Integer period, String aName, Integer aPointsParsed, Integer studentID, Pageable pageable);
+
 }
