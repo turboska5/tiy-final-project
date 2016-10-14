@@ -254,7 +254,11 @@ public class MainService {
         if (!possPoints.equals(0.0)){
             Double results = (earnedPoints / possPoints) * 100.0;
             DecimalFormat numberFormat = new DecimalFormat("#.00");
-            return numberFormat.format(results);
+            if(results == 0.0) {
+                return "0.00";
+            } else {
+                return numberFormat.format(results);
+            }
         }else {
             return "0.00";
         }
