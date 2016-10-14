@@ -76,7 +76,10 @@ Button.minusicon {
 Button.addnewuser {
     background: url("../images/add_user.png") no-repeat;
 }
-Button.classicicon, Button.deleteicon, Button.editicon, Button.addicon, Button.minusicon, Button.addnewuser {
+Button.noteicon {
+    background: url("../images/stickynote.png") no-repeat;
+}
+Button.classicicon, Button.deleteicon, Button.editicon, Button.addicon, Button.minusicon, Button.addnewuser, Button.noteicon {
     background-size: 100%;
     border-radius: 50%;
     width: 20px;
@@ -86,7 +89,7 @@ Button.classicicon, Button.deleteicon, Button.editicon, Button.addicon, Button.m
     border: none;
     outline: none;
 }
-Button.classicicon:active, Button.deleteicon:active, Button.editicon:active, Button.addicon:active, Button.minusicon:active, Button.addnewuser:active {
+Button.classicicon:active, Button.deleteicon:active, Button.editicon:active, Button.addicon:active, Button.minusicon:active, Button.addnewuser:active, Button.noteicon:active {
     background-color: white;
     transform: translateY(1px);
 }

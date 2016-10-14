@@ -226,6 +226,20 @@ public class MainService {
         this.gradeRepo.save(grader);
     }
 
+    public void gradePost(String gradeID, String earnedPoints){
+        Integer gradeIDParsed = null;
+        Integer earnedPointsParsed = null;
+        if(!gradeID.equals("")) {
+            gradeIDParsed = Integer.parseInt(gradeID);
+        }
+        if(!earnedPoints.equals("")) {
+            earnedPointsParsed = Integer.parseInt(earnedPoints);
+        }
+        Grade grader = this.gradeRepo.findOne(gradeIDParsed);
+        grader.setEarnedPoints(earnedPointsParsed);
+        this.gradeRepo.save(grader);
+    }
+
     public School getSchool() {
         return this.schoolRepo.findOne(0);
     }

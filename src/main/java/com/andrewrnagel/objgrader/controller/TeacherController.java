@@ -143,14 +143,6 @@ public class TeacherController {
         model.addAttribute("studentList", mainService.getTeacherStudents(sPeriod, "%" + sLastName + "%", "%" + sFirstName + "%", "%" + sAName + "%", "%" + sAID + "%", teacher.getTeacherID()));
         return "teacherGradeBook";
     }
-    @RequestMapping(value = "/teacherGradePost", method = RequestMethod.POST)
-    public String teacherGradeBookGradeFormPost(@Valid Grade grade, BindingResult bindingResult, Model model, HttpSession session) throws SQLException, PasswordStorage.CannotPerformOperationException {
-        if (session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
-            return "redirect:/logout";
-        }
-        mainService.gradePost(grade);
-        return "redirect:/teacherGradeBook";
-    }
     @RequestMapping(value = "/teacherManageAssign", method = RequestMethod.GET)
     public String teacherGradeBookAssignForm(Model model, HttpSession session,
                                              @RequestParam(defaultValue = "0") Integer gradeID) {

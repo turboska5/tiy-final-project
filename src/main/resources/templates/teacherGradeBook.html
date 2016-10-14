@@ -6,6 +6,8 @@
     <link th:href="@{css/theme.css}" href="../static/css/theme.css" rel="stylesheet" type="text/css"/>
     <link th:href="@{css/themeTeacher.css}" href="../static/css/themeTeacher.css" rel="stylesheet" type="text/css"/>
     <link th:href="@{images/icon.png}" href="../static/images/icon.png" rel="icon"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script th:src="@{scripts/blur.js}" src="../static/scripts/blur.js"></script>
     <header>
         <div class="HeaderText">
             <h1>Objective Grader</h1>
@@ -159,7 +161,10 @@
                             </tr>
                             <tr th:each="grade : ${studentList}">
                                 <form th:action="teacherGradePost" method="post">
-                                <td><button>Save</button></td>
+                                <input type="hidden" class="gradeID" name="gradeID" th:value="${grade.gradeID}"/>
+                                <td>
+                                    <a><button class="noteicon"></button></a>
+                                </td>
                                 <td th:text="${grade.academicClass.period}">1</td>
                                 <td th:text="${grade.student.lastName}">SMITH</td>
                                 <td th:text="${grade.student.firstName}">MATTHEW</td>
@@ -167,13 +172,11 @@
                                 <td th:text="${grade.assignment.date}">09/25/2016</td>
                                 <td><input class="GradeInput" type="number" min="0" value="100" name="earnedPoints" th:value="${grade.earnedPoints}"/></td>
                                 <td th:text="${grade.possPoints}">100</td>
-                                <input type="hidden" name="gradeID" th:value="${grade.gradeID}"/>
                                 </form>
                             </tr>
                         </table>
                     </div>
                 </div>
-
         </fieldset>
     </section>
 </body>

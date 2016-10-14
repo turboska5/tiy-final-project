@@ -1,15 +1,20 @@
 package com.andrewrnagel.objgrader.controller;
 
+import com.andrewrnagel.objgrader.entity.Grade;
 import com.andrewrnagel.objgrader.entity.School;
+import com.andrewrnagel.objgrader.misc.PasswordStorage;
 import com.andrewrnagel.objgrader.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.sql.SQLException;
 
 /**
  * Created by Andrew Nagel on 10/14/16 at 8:24 AM EST.
@@ -37,5 +42,12 @@ public class MainController {
                     .build();
         }
     }
-
+    @RequestMapping(value = "/teacherGradePost", method = RequestMethod.POST)
+    public void teacherGradeBookGradeFormPost(@RequestParam(defaultValue = "") String gradeID,
+                                              @RequestParam(defaultValue = "") String earnedPoints,
+                                              HttpSession session) throws SQLException {
+        if (!(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2))) {
+            mainService.gradePost(gradeID, earnedPoints);
+        }
+    }
 }
