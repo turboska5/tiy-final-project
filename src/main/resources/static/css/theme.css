@@ -1,4 +1,4 @@
-/*First banner: date/greeting*/
+/*First banner: date+greeting*/
 banner div {
     height: 20px;
     text-align: center;
@@ -9,10 +9,11 @@ banner div {
     align-items: center;
 }
 .date {
+    font-size: large;
     font-weight: bold;
     margin: auto;
     width: 50%;
-    padding: 1px;
+    padding: 0px;
 }
 .greeting {
     position: absolute;
@@ -30,7 +31,7 @@ banner div {
     overflow: hidden;
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
-    background-color: #737373;
+    background-color: #868686;
     align-items: center;
     border: 1px black solid;
 }
@@ -49,21 +50,94 @@ banner div {
     background-color: #b6b6b6;
 }
 .nav-links .current {
-    background-color: #9b9b9b;
+    background-color: rgba(186, 186, 186, 0.73);
 }
+/*First column of tables with buttons present*/
+.buttonArea {
+    display: flex;
+    align-items: center;
+}
+/*First column of table button formatting*/
+Button.classicicon {
+    background: url("../images/classicGB.png") no-repeat;
+}
+Button.deleteicon {
+    background: url("../images/delete.png") no-repeat;
+}
+Button.editicon {
+    background: url("../images/edit_pencil.png") no-repeat;
+}
+Button.addicon {
+    background: url("../images/plus.png") no-repeat;
+}
+Button.minusicon {
+    background: url("../images/minus.png") no-repeat;
+}
+Button.addnewuser {
+    background: url("../images/add_user.png") no-repeat;
+}
+Button.classicicon, Button.deleteicon, Button.editicon, Button.addicon, Button.minusicon, Button.addnewuser {
+    background-size: 100%;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    margin: 0px;
+    padding: 0px;
+    border: none;
+    outline: none;
+}
+Button.classicicon:active, Button.deleteicon:active, Button.editicon:active, Button.addicon:active, Button.minusicon:active, Button.addnewuser:active {
+    background-color: white;
+    transform: translateY(1px);
+}
+/*Error highlighting of bad fields*/
+ul.error{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+ul.error li{
+    color: darkred;
+    margin: 0.25em 0;
+    padding: 0.25em 0;
+    font-size: small;
+}
+input.error, select.error, textarea.error{
+    border: 1px red solid;
+    /*-webkit-box-shadow: 0 0 15px 0 rgba(255,0,0,0.5);*/
+    /*-moz-box-shadow: 0 0 15px 0 rgba(255,0,0,0.5);*/
+    /*box-shadow: 0 0 15px 0 rgba(255,0,0,0.5);*/
+}
+/*Search Menu Input fields across all levels*/
+.InputField {
+    width: 80px;
+}
+/*Manage Screen Input fields (Admin/Teacher)*/
+.formInput {
+    width: 200px;
+}
+/*Manage Screen Save buttons (Admin/Teacher)*/
+.formSave {
+    clear: both;
+    width: 80px;
+    margin: 0px 125px;
+}
+
+/*TODO*/
+
 /*Body settings*/
 article {
     padding: 10px;
 }
 #SchoolPic {
-    height: 175px;
-    width: 175px;
+    height: 200px;
+    width: 200px;
     max-width: 100%;
     max-height: 100%;
     padding: 10px;
     border: thin solid black;
     float: left;
-    overflow: auto;
+    overflow: hidden;
 }
 article ul li {
     display: block;
@@ -116,9 +190,6 @@ form {
     padding: 0px;
     text-align: left;
 }
-.InputField {
-    width: 10%;
-}
 #AddClassButton, #AddAdminButton, #AddTeacherButton, #AddStudentButton, #AddAssignButton {
     float: right;
 }
@@ -127,51 +198,6 @@ form {
 }
 .SearchResults {
     margin: 10px 0px 0px;
-}
-Button.editicon {
-    background: url("../images/edit_pencil.png") no-repeat;
-    background-size: 100%;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    margin: 0;
-    padding: 0;
-    border: none;
-    outline: none;
-}
-Button.editicon:active {
-    background-color: white;
-    transform: translateY(1px);
-}
-Button.addicon {
-    background: url("../images/plus.png") no-repeat;
-    background-size: 100%;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    margin: 0;
-    padding: 0;
-    border: none;
-    outline: none;
-}
-Button.addicon:active {
-    background-color: white;
-    transform: translateY(1px);
-}
-Button.addnewuser {
-    background: url("../images/add_user.png") no-repeat;
-    background-size: 100%;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    margin: 0;
-    padding: 0;
-    border: none;
-    outline: none;
-}
-Button.addnewuser:active {
-    background-color: white;
-    transform: translateY(1px);
 }
 table {
     font-family: Arial, sans-serif;
@@ -199,7 +225,8 @@ table tr th:first-child, table tr td:first-child{
 table tr:nth-child(2n) {
     color: #560023;
     background: rgba(133, 133, 133, 0.95);
-}table tr:nth-child(2n+1) {
+}
+table tr:nth-child(2n+1) {
     color: white;
     background-color: #737373;
 }
@@ -235,6 +262,17 @@ table tr:nth-child(2n) {
 .icon {
     max-width: 20px;
 }
-.GradeInput {
-    width: 35px;
+.ManageForm {
+    border-width: 0;
+    padding: 1px 8px 10px;
+    margin: 0 auto;
+    font-size: large;
+}
+.ManageForm label {
+    float: left;
+    width: 120px;
+    font-size: medium;
+}
+.StudentForm {
+    width: 100%;
 }

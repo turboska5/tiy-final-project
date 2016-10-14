@@ -4,7 +4,6 @@
     <meta charset="UTF-8"/>
     <title>Objective Grader: Login</title>
     <link th:href="@{css/theme.css}" href="../static/css/theme.css" rel="stylesheet" type="text/css"/>
-    <link th:href="@{css/forms.css}" href="../static/css/forms.css" rel="stylesheet" type="text/css"/>
     <link th:href="@{css/themeTeacher.css}" href="../static/css/themeTeacher.css" rel="stylesheet" type="text/css"/>
     <link th:href="@{images/icon.png}" href="../static/images/icon.png" rel="icon"/>
     <header>
@@ -20,10 +19,10 @@
     </banner>
     <nav class="nav-links">
         <ul th:object="${teacher}">
-            <li class="option"><a th:href="@{/teacherHome}" href="../templates/teacherHome.html">Home</a></li>
-            <li class="option"><a th:href="@{teacherMyAttendance}" href="../templates/teacherAttendance.html">Attendance</a></li>
+            <li><a th:href="@{/teacherHome}" href="../templates/teacherHome.html">Home</a></li>
+            <li><a th:href="@{teacherMyAttendance}" href="../templates/teacherAttendance.html">Attendance</a></li>
             <li class="current"><a th:href="@{teacherGradeBook}" href="../templates/teacherGradeBook.html">Grade Book</a></li>
-            <li class="logout"><a th:href="@{/logout}" href="../templates/login.html">Logout</a></li>
+            <li><a th:href="@{/logout}" href="../templates/login.html">Logout</a></li>
         </ul>
     </nav>
 </head>
@@ -39,35 +38,34 @@
                     <input type="hidden" id="assignmentID" name="assignmentID" th:field="*{assignment.assignmentID}"/>
                     <label>Class</label>
                     <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('academicClass')}"></li></ul>
-                    <select name="academicClass" th:field="*{academicClass}" th:errorclass="error">
+                    <select name="academicClass" class="formInput" th:field="*{academicClass}" th:errorclass="error">
                         <option th:value="-1" value="" selected="true">Class</option>
                         <option th:each="academicClass : ${teacherClasses}" th:value="${academicClass.getClassID()}" value="" th:text="${'Period ' + academicClass.getPeriod()+ ': ' + academicClass.getName()}"></option>
                     </select>
                     <br/><label>Assignment Name</label>
                     <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('assignment.assignmentName')}"></li></ul>
-                    <input name="assignmentName" type="text" class="FormInput" placeholder="Assignment Name" th:field="*{assignment.assignmentName}" th:errorclass="error"/>
+                    <input name="assignmentName" class="formInput" type="text" placeholder="Assignment Name" th:field="*{assignment.assignmentName}" th:errorclass="error"/>
                     <br/>
                     <label>Assignment ID</label>
                     <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('assignment.assignmentIDNumber')}"></li></ul>
-                    <input name="assignmentIDNumber" type="text" class="FormInput" placeholder="Assignment ID" th:field="*{assignment.assignmentIDNumber}" th:errorclass="error"/>
+                    <input name="assignmentIDNumber" class="formInput" type="text" placeholder="Assignment ID" th:field="*{assignment.assignmentIDNumber}" th:errorclass="error"/>
                     <br/>
                     <label>Date</label>
                     <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('assignment.date')}"></li></ul>
-                    <input name="assignmentDate" type="date" class="FormInputDate" th:field="*{assignment.date}" th:errorclass="error"/>
+                    <input name="assignmentDate" class="formInput" type="date" th:field="*{assignment.date}" th:errorclass="error"/>
                     <br/>
                     <label>Possible Points</label>
                     <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('possPoints')}"></li></ul>
-                    <input name="possPoints" type="number" min="0" class="FormInputPoints" placeholder="Possible Points" th:field="*{possPoints}" th:errorclass="error"/>
+                    <input name="possPoints" class="formInput" type="number" min="0" placeholder="Possible Points" value="0" th:field="*{possPoints}" th:errorclass="error"/>
                     <br/>
-
-                    <!--TODO: Do not factor-->
+                    <!--TODO: DO NOT FACTOR ENABLE/IMPLEMENT-->
                     <label>Do Not Factor</label>
                     <input type="checkbox" disabled="true"/>
                     <br/>
                     <label>Notes</label>
                     <textarea name="note" class="AddAssignmentNoteText" th:field="*{assignment.note}"></textarea>
                     <br/>
-                    <button>Save</button>
+                    <button class="formSave">Save</button>
                 </form>
             </fieldset>
         </article>

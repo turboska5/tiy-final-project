@@ -4,7 +4,6 @@
     <meta charset="UTF-8"/>
     <title>Objective Grader: Login</title>
     <link th:href="@{css/theme.css}" href="../static/css/theme.css" rel="stylesheet" type="text/css"/>
-    <link th:href="@{css/forms.css}" href="../static/css/forms.css" rel="stylesheet" type="text/css"/>
     <link th:href="@{css/themeAdmin.css}" href="../static/css/themeAdmin.css" rel="stylesheet" type="text/css"/>
     <link th:href="@{images/icon.png}" href="../static/images/icon.png" rel="icon"/>
     <header>
@@ -20,10 +19,10 @@
     </banner>
     <nav class="nav-links">
         <ul>
-            <li class="option"><a th:href="@{/adminHome}" href="../templates/adminHome.html">Home</a></li>
-            <li class="option"><a th:href="@{/adminClasses}" href="../templates/adminClasses.html">Manage Classes</a></li>
+            <li><a th:href="@{/adminHome}" href="../templates/adminHome.html">Home</a></li>
+            <li><a th:href="@{/adminClasses}" href="../templates/adminClasses.html">Manage Classes</a></li>
             <li class="current"><a th:href="@{/adminUsers}" href="../templates/adminUsers.html">Manage Users</a></li>
-            <li class="logout"><a th:href="@{/logout}" href="../templates/login.html">Logout</a></li>
+            <li><a th:href="@{/logout}" href="../templates/login.html">Logout</a></li>
         </ul>
     </nav>
 </head>
@@ -61,7 +60,10 @@
                         <th>Disabled</th>
                     </tr>
                     <tr th:each="admin : ${adminList}" th:object="${admin}">
-                        <td><a th:href="@{/adminManageAdmin?(adminID=${admin.getAdminID()})}" href="../templates/adminManageAdmin.html"><button class="editicon"></button></a></td>
+                        <td class="buttonArea">
+                            <a th:href="@{/adminManageAdmin?(adminID=${admin.getAdminID()})}" href="../templates/adminManageAdmin.html"><button class="editicon"></button></a>
+                            <a><button class="deleteicon"></button></a>
+                        </td>
                         <td th:text="*{lastName}">ROOSEVELT</td>
                         <td th:text="*{firstName}">THEODORE</td>
                         <td th:text="*{user.email}">troosevelt@gmail.com</td>
@@ -109,7 +111,10 @@
                         <th>Disabled</th>
                     </tr>
                     <tr th:each="teacher : ${teacherList}" th:object="${teacher}">
-                        <td><a th:href="@{/adminManageTeacher?(teacherID=${teacher.getTeacherID()})}" href="../templates/adminManageTeacher.html"><button class="editicon"></button></a></td>
+                        <td class="buttonArea">
+                            <a th:href="@{/adminManageTeacher?(teacherID=${teacher.getTeacherID()})}" href="../templates/adminManageTeacher.html"><button class="editicon"></button></a>
+                            <a><button class="deleteicon"></button></a>
+                        </td>
                         <td th:text="*{lastName}">BUSH</td>
                         <td th:text="*{firstName}">JAMES</td>
                         <td th:text="*{user.email}">jebush@gmail.com</td>
@@ -157,7 +162,10 @@
                         <th>Disabled</th>
                     </tr>
                     <tr th:each="student : ${studentList}" th:object="${student}">
-                        <td><a th:href="@{/adminManageStudent?(studentID=${student.getStudentID()})}" href="../templates/adminManageStudent.html"><button class="editicon"></button></a></td>
+                        <td class="buttonArea">
+                            <a th:href="@{/adminManageStudent?(studentID=${student.getStudentID()})}" href="../templates/adminManageStudent.html"><button class="editicon"></button></a>
+                            <a><button class="deleteicon"></button></a>
+                        </td>
                         <td th:text="*{lastName}">SMITH</td>
                         <td th:text="*{firstName}">MATTHEW</td>
                         <td th:text="*{user.email}">msmith01@fakeschools.org</td>
