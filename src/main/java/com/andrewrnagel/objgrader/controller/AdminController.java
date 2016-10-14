@@ -178,7 +178,20 @@ public class AdminController {
         return "redirect:/adminManageClass?classID=" + classID;
     }
     @RequestMapping(value = "/adminUsers", method = RequestMethod.GET)
-    public String adminUserPage(Model model, HttpSession session) {
+    public String adminUserPage(Model model, HttpSession session,
+                                @RequestParam(defaultValue = "") String lastName,
+                                @RequestParam(defaultValue = "") String firstName,
+                                @RequestParam(defaultValue = "") String email,
+                                @RequestParam(defaultValue = "") String title,
+                                @RequestParam(defaultValue = "") String tLastName,
+                                @RequestParam(defaultValue = "") String tFirstName,
+                                @RequestParam(defaultValue = "") String tEmail,
+                                @RequestParam(defaultValue = "") String department,
+                                @RequestParam(defaultValue = "") String sLastName,
+                                @RequestParam(defaultValue = "") String sFirstName,
+                                @RequestParam(defaultValue = "") String sEmail,
+                                @RequestParam(defaultValue = "") String sID,
+                                @RequestParam(defaultValue = "") String grade) {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
             return "redirect:/logout";
         }
@@ -186,7 +199,7 @@ public class AdminController {
         model.addAttribute("day", mainService.getTimeOfDay());
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("adminList", mainService.getAllAdmins());
-        model.addAttribute("teacherList", mainService.getAllTeachers());
+        model.addAttribute("teacherList", mainService.searchAllTeachers("%" + tLastName + "%", "%" + tFirstName + "%", "%" + tEmail + "%", "%" + department + "%"));
         model.addAttribute("studentList", mainService.getAllStudents());
         return "adminUsers";
     }
