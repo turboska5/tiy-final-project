@@ -72,6 +72,17 @@
                             <td th:text="${academicClass.classAverage + '%'}">92.4</td>
                         </tr>
                     </table>
+                    <br/>
+                    <div class="pagination">
+                        <span th:text="${pageable.offset + 1} + ' - ' + ${pageable.offset + classList.numberOfElements} + ' of ' + ${classList.totalElements}">1 - 10 of 54</span>
+                        <a href="teacherGradeBook.html"
+                           th:href="@{/teacherGradeBook(page=${pageable.previousOrFirst().pageNumber}, period=${period}, aName=${aName}, aPoints=${aPoints})}">
+                            <button disabled="disabled"
+                                    th:disabled="${studentList.isFirst()}">Back</button></a>
+                        <a href="teacherGradeBook.html"
+                           th:href="@{/teacherGradeBook(page=${pageable.next().pageNumber}, period=${period}, aName=${aName}, aPoints=${aPoints})}">
+                            <button th:disabled="${studentList.isLast()}">Next</button></a>
+                    </div>
                 </div>
             </div>
         </fieldset>
@@ -122,6 +133,17 @@
                             <td th:text="${grade.assignment.average + '%'}">95.2%</td>
                         </tr>
                     </table>
+                    <br/>
+                    <div class="pagination">
+                        <span th:text="${pageable.offset + 1} + ' - ' + ${pageable.offset + assignmentList.numberOfElements} + ' of ' + ${assignmentList.totalElements}">1 - 10 of 54</span>
+                        <a href="teacherGradeBook.html"
+                           th:href="@{/teacherGradeBook(page=${pageable.previousOrFirst().pageNumber}, period=${period}, aName=${aName}, aPoints=${aPoints})}">
+                            <button disabled="disabled"
+                                    th:disabled="${assignmentList.isFirst()}">Back</button></a>
+                        <a href="teacherGradeBook.html"
+                           th:href="@{/teacherGradeBook(page=${pageable.next().pageNumber}, period=${period}, aName=${aName}, aPoints=${aPoints})}">
+                            <button th:disabled="${assignmentList.isLast()}">Next</button></a>
+                    </div>
                 </div>
             </div>
         </fieldset>
@@ -174,6 +196,17 @@
                                 </form>
                             </tr>
                         </table>
+                        <br/>
+                        <div class="pagination">
+                            <span th:text="${pageable.offset + 1} + ' - ' + ${pageable.offset + studentList.numberOfElements} + ' of ' + ${studentList.totalElements}">1 - 10 of 54</span>
+                            <a href="teacherGradeBook.html"
+                               th:href="@{/teacherGradeBook(page=${pageable.previousOrFirst().pageNumber}, period=${period}, aName=${aName}, aPoints=${aPoints})}">
+                                <button disabled="disabled"
+                                        th:disabled="${studentList.isFirst()}">Back</button></a>
+                            <a href="teacherGradeBook.html"
+                               th:href="@{/teacherGradeBook(page=${pageable.next().pageNumber}, period=${period}, aName=${aName}, aPoints=${aPoints})}">
+                                <button th:disabled="${studentList.isLast()}">Next</button></a>
+                        </div>
                     </div>
                 </div>
         </fieldset>
