@@ -5,6 +5,7 @@ import com.andrewrnagel.objgrader.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -40,7 +41,24 @@ public class MainService {
     @Autowired
     private SchoolRepo schoolRepo;
 
-    //methods
+    //Banner methods
+    public String getDate() {
+        return this.date;
+    }
+
+    public String getTimeOfDay() {
+        if(theTime.getHour() >= 6 && theTime.getHour() < 12) {
+            return "morning";
+        } else if(theTime.getHour() >= 12 && theTime.getHour() < 18) {
+            return "afternoon";
+        } else if((theTime.getHour() >= 18 && theTime.getHour() < 24) ||
+                (theTime.getHour() >= 0 && theTime.getHour() < 6)) {
+            return "evening";
+        }
+        return "day";
+    }
+
+    //Admin methods
     public void saveClass(AcademicClass academicClass) {
         this.classRepo.save(academicClass);
     }
@@ -97,10 +115,6 @@ public class MainService {
         return this.adminRepository.findOne(adminID);
     }
 
-    public List<Grade> getClassGrades(Integer classID) {
-        return this.gradeRepo.findByAcademicClassClassID(classID);
-    }
-
     public List<Student> getStudentRoster(Integer classID) {
         return this.gradeRepo.getStudentRoster(classID);
     }
@@ -129,6 +143,11 @@ public class MainService {
 
     public void dropStudentFromClass(Integer classID, Integer studentID) {
         this.gradeRepo.removeStudentFromClass(classID, studentID);
+    }
+
+    //Teacher Methods
+    public List<Grade> getClassGrades(Integer classID) {
+        return this.gradeRepo.findByAcademicClassClassID(classID);
     }
 
     public void saveAssignment(Grade grade) {
@@ -207,33 +226,37 @@ public class MainService {
         this.gradeRepo.save(grader);
     }
 
-    public String getDate() {
-        return this.date;
-    }
-
-    public String getTimeOfDay() {
-        if(theTime.getHour() >= 6 && theTime.getHour() < 12) {
-            return "morning";
-        } else if(theTime.getHour() >= 12 && theTime.getHour() < 18) {
-            return "afternoon";
-        } else if((theTime.getHour() >= 18 && theTime.getHour() < 24) ||
-                (theTime.getHour() >= 0 && theTime.getHour() < 6)) {
-            return "evening";
-        }
-        return "day";
-    }
-
     public School getSchool() {
         return this.schoolRepo.findOne(0);
     }
 
+    public void updateSchool(School school) {
+        this.schoolRepo.save(school);
+    }
+
+    //Student Stuff
     public List<Grade> getStudentGrades(Integer studentID) {
         List<Grade> results = this.gradeRepo.findByStudentStudentID(studentID);
         Collections.sort(results, (Grade a1, Grade a2) -> a1.getAcademicClass().getPeriod() - a2.getAcademicClass().getPeriod());
         return results;
     }
 
-    public void updateSchool(School school) {
-        this.schoolRepo.save(school);
+    public List<Grade> getStudentClasses(Integer studentID) {
+        List<Grade> results = this.gradeRepo.findStudentClasses(studentID);
+        Collections.sort(results, (Grade a1, Grade a2) -> a1.getAcademicClass().getPeriod() - a2.getAcademicClass().getPeriod());
+        return results;
+    }
+
+    public String getStudentGradeAverage(Integer studentID, Integer classID) {
+        Double earnedPoints = this.gradeRepo.findStudentEarnedPoints(studentID, classID);
+        Double possPoints = this.gradeRepo.findStudentPossiblePoints(studentID, classID);
+
+        if (!possPoints.equals(0.0)){
+            Double results = (earnedPoints / possPoints) * 100.0;
+            DecimalFormat numberFormat = new DecimalFormat("#.00");
+            return numberFormat.format(results);
+        }else {
+            return "0.00";
+        }
     }
 }

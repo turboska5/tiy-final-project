@@ -42,6 +42,9 @@ public class Grade {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dateModified;
 
+    @Transient
+    private String studentClassAverage;
+
     public Grade() {
     }
 
@@ -143,5 +146,13 @@ public class Grade {
 
     public void setDateModified(LocalDate dateModified) {
         this.dateModified = dateModified;
+    }
+
+    public String getStudentClassAverage() {
+        return studentClassAverage;
+    }
+
+    public void setStudentClassAverage(String studentClassAverage) {
+        this.studentClassAverage = studentClassAverage;
     }
 }

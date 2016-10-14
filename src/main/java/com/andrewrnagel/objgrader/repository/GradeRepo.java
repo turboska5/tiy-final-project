@@ -41,4 +41,14 @@ public interface GradeRepo extends JpaRepository<Grade, Integer> {
 
     @Query(value = "SELECT g FROM Grade g WHERE (g.student.studentID = ?1) AND g.assignment IS NOT NULL")
     List<Grade> findByStudentStudentID(Integer studentID);
+
+    @Query(value = "SELECT DISTINCT g FROM Grade g WHERE (g.student.studentID = ?1) AND g.assignment IS NULL")
+    List<Grade> findStudentClasses(Integer studentID);
+
+    @Query(value = "SELECT COALESCE(SUM(g.earnedPoints), 0) FROM Grade AS g WHERE g.student.studentID = ?1 AND g.academicClass.classID = ?2 AND g.earnedPoints IS NOT NULL")
+    Double findStudentEarnedPoints(Integer studentID, Integer classID);
+
+    @Query(value = "SELECT COALESCE(SUM(g.possPoints), 0) FROM Grade AS g WHERE g.student.studentID = ?1 AND g.academicClass.classID = ?2")
+    Double findStudentPossiblePoints(Integer studentID, Integer classID);
+
 }

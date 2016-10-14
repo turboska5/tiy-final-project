@@ -31,7 +31,7 @@
             <div>
                 <img id="SchoolPic" th:src="@{/school/image}" src="../static/images/schoolext.jpg" alt=""/>
             </div>
-            <div class="SchoolStats" th:object="${thisSchool}">
+            <div class="SchoolStats" th:object="${school}">
                 <ul>
                     <h1 class="SchoolName"><span th:text="*{schoolName}">Excelsior High School</span></h1>
                     <hr class="nameDivider"/>
@@ -49,8 +49,20 @@
         <article>
             <fieldset>
                 <legend>My Classes</legend>
-                    <table id="AttendanceTable">
-                    </table>
+                <table id="AttendanceTable">
+                    <tr th:each="grade : ${classList}">
+                        <td class="icon"></td>
+                        <td th:text="${'Period ' + grade.academicClass.period}">Period 1</td>
+                        <td th:text="${grade.academicClass.name}">13 Students</td>
+                        <td class="spacer"><span></span></td>
+                        <td>
+                            <span class=""><a class="homeHyperlinkAttendance" th:href="@{/studentGradeView?(period=${grade.academicClass.period})}" href="../templates/studentGradeView.html">Attendance</a></span>
+                        </td>
+                        <td>
+                            <span class="teacherHomeGrade" th:text="${grade.studentClassAverage + '%'}">60.8% D</span>
+                        </td>
+                    </tr>
+                </table>
             </fieldset>
         </article>
     </section>
