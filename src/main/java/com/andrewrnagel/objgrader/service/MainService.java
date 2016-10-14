@@ -192,6 +192,11 @@ public class MainService {
         return results;
     }
 
+    public Page<AcademicClass> searchClasses(Integer period, String name , String identifer, String department, String teacherLastName, String teacherFirstName, Integer teacherID, Pageable pageable) {
+        Page<AcademicClass> results = this.classRepo.searchClasses(period, name, identifer, department, teacherLastName, teacherFirstName, teacherID, pageable);
+        return results;
+    }
+
     //all of one teacher's assignments (search)
     public List<Grade> getTeacherAssignments(Integer aPeriod, String aName, String aID, String aDate, String aPoints, Integer teacherID) {
         LocalDate aDateConverted = null;
