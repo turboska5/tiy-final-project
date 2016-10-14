@@ -212,8 +212,26 @@ public class MainService {
         return results;
     }
 
+    public List<Grade> getTeacherAssignments(Integer aPeriod, String aName, String aID, String aDate, String aPoints, Integer teacherID, Pageable pageable) {
+        LocalDate aDateConverted = null;
+        Integer aPointsParsed = null;
+        if(!aDate.equals("")) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            aDateConverted = LocalDate.parse(aDate, formatter);
+        }
+        if(!aPoints.equals("")) {
+            aPointsParsed = Integer.parseInt(aPoints);
+        }
+        List<Grade> results = this.gradeRepo.searchForTeacherAssignments(aPeriod, aName, aID, aDateConverted, aPointsParsed, teacherID, pageable);
+        return results;
+    }
+
     public List<Grade> getTeacherStudents(Integer sPeriod, String sLastName, String sFirstName, String sAName, String sAID, Integer teacherID) {
         return this.gradeRepo.searchForTeacherStudents(sPeriod, sLastName, sFirstName, sAName, sAID, teacherID);
+    }
+
+    public List<Grade> getTeacherStudents(Integer sPeriod, String sLastName, String sFirstName, String sAName, String sAID, Integer teacherID, Pageable pageable) {
+        return this.gradeRepo.searchForTeacherStudents(sPeriod, sLastName, sFirstName, sAName, sAID, teacherID, pageable);
     }
 
     public List<Grade> getTeacherStudents(Integer sPeriod, String sLastName, String sFirstName, String sID, Integer gradeLevel) {
