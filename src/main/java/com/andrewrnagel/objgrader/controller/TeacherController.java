@@ -119,7 +119,7 @@ public class TeacherController {
         model.addAttribute("period", period);
         model.addAttribute("name", name);
         model.addAttribute("identifier", identifier);
-        model.addAttribute("classList", mainService.searchClasses(period, "%" + name + "%", "%" + identifier + "%", "%" + teacher.getDepartment() + "%", "%" + teacher.getLastName() + "%", "%" + teacher.getFirstName() + "%", teacher.getTeacherID()));
+        model.addAttribute("classList", mainService.searchClasses(period, "%" + name + "%", "%" + identifier + "%", "%" + teacher.getDepartment() + "%", "%" + teacher.getLastName() + "%", "%" + teacher.getFirstName() + "%", teacher.getTeacherID(), pageable));
         //assignment search
         model.addAttribute("aPeriod", aPeriod);
         if (!(period == null)){
