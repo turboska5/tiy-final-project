@@ -119,7 +119,7 @@ public class TeacherController {
         model.addAttribute("period", period);
         model.addAttribute("name", name);
         model.addAttribute("identifier", identifier);
-        model.addAttribute("classList", mainService.searchClasses(period, "%" + name + "%", "%" + identifier + "%", "%" + teacher.getDepartment() + "%", "%" + teacher.getLastName() + "%", "%" + teacher.getFirstName() + "%", teacher.getTeacherID()));
+        model.addAttribute("classList", mainService.searchClasses(period, "%" + name + "%", "%" + identifier + "%", "%" + teacher.getDepartment() + "%", "%" + teacher.getLastName() + "%", "%" + teacher.getFirstName() + "%", teacher.getTeacherID(), pageable));
         //assignment search
         model.addAttribute("aPeriod", aPeriod);
         if (!(period == null)){
@@ -130,7 +130,7 @@ public class TeacherController {
         model.addAttribute("aID", aID);
         model.addAttribute("aDate", aDate);
         model.addAttribute("aPoints", aPoints);
-        model.addAttribute("assignmentList", mainService.getTeacherAssignments(aPeriod, "%" + aName + "%", "%" + aID + "%", aDate, aPoints, teacher.getTeacherID()));
+        model.addAttribute("assignmentList", mainService.getTeacherAssignments(aPeriod, "%" + aName + "%", "%" + aID + "%", aDate, aPoints, teacher.getTeacherID(), pageable));
         //student search
         model.addAttribute("sPeriod", sPeriod);
         if (!(period == null)){
@@ -141,7 +141,7 @@ public class TeacherController {
         model.addAttribute("sFirstName", sFirstName);
         model.addAttribute("sAName", sAName);
         model.addAttribute("sAID", sAID);
-        model.addAttribute("studentList", mainService.getTeacherStudents(sPeriod, "%" + sLastName + "%", "%" + sFirstName + "%", "%" + sAName + "%", "%" + sAID + "%", teacher.getTeacherID()));
+        model.addAttribute("studentList", mainService.getTeacherStudents(sPeriod, "%" + sLastName + "%", "%" + sFirstName + "%", "%" + sAName + "%", "%" + sAID + "%", teacher.getTeacherID(), pageable));
         return "teacherGradeBook";
     }
     @RequestMapping(value = "/teacherManageAssign", method = RequestMethod.GET)
