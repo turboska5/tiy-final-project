@@ -212,7 +212,7 @@ public class MainService {
         return results;
     }
 
-    public List<Grade> getTeacherAssignments(Integer aPeriod, String aName, String aID, String aDate, String aPoints, Integer teacherID, Pageable pageable) {
+    public Page<Grade> getTeacherAssignments(Integer aPeriod, String aName, String aID, String aDate, String aPoints, Integer teacherID, Pageable pageable) {
         LocalDate aDateConverted = null;
         Integer aPointsParsed = null;
         if(!aDate.equals("")) {
@@ -222,7 +222,7 @@ public class MainService {
         if(!aPoints.equals("")) {
             aPointsParsed = Integer.parseInt(aPoints);
         }
-        List<Grade> results = this.gradeRepo.searchForTeacherAssignments(aPeriod, aName, aID, aDateConverted, aPointsParsed, teacherID, pageable);
+        Page<Grade> results = this.gradeRepo.searchForTeacherAssignments(aPeriod, aName, aID, aDateConverted, aPointsParsed, teacherID, pageable);
         return results;
     }
 
@@ -230,7 +230,7 @@ public class MainService {
         return this.gradeRepo.searchForTeacherStudents(sPeriod, sLastName, sFirstName, sAName, sAID, teacherID);
     }
 
-    public List<Grade> getTeacherStudents(Integer sPeriod, String sLastName, String sFirstName, String sAName, String sAID, Integer teacherID, Pageable pageable) {
+    public Page<Grade> getTeacherStudents(Integer sPeriod, String sLastName, String sFirstName, String sAName, String sAID, Integer teacherID, Pageable pageable) {
         return this.gradeRepo.searchForTeacherStudents(sPeriod, sLastName, sFirstName, sAName, sAID, teacherID, pageable);
     }
 

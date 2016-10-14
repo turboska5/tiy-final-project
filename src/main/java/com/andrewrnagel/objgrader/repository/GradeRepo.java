@@ -33,13 +33,13 @@ public interface GradeRepo extends JpaRepository<Grade, Integer> {
     List<Grade> searchForTeacherAssignments(Integer aPeriod, String aName, String aID, LocalDate aDate, Integer aPoints, Integer teacherID);
 
     @Query(value = "SELECT g FROM Grade g WHERE (?1 IS NULL OR g.academicClass.period = ?1) AND (?2 = '' OR upper(g.assignment.assignmentName) LIKE upper(?2)) AND (?3 = '' OR upper(g.assignment.assignmentIDNumber) LIKE upper(?3)) AND (?4 IS NULL OR g.assignment.date = ?4) AND (?5 IS NULL OR g.possPoints = ?5) AND g.student.studentID IS NULL AND g.academicClass.teacher.teacherID IS ?6")
-    List<Grade> searchForTeacherAssignments(Integer aPeriod, String aName, String aID, LocalDate aDate, Integer aPoints, Integer teacherID, Pageable pageable);
+    Page<Grade> searchForTeacherAssignments(Integer aPeriod, String aName, String aID, LocalDate aDate, Integer aPoints, Integer teacherID, Pageable pageable);
 
     @Query(value = "SELECT g FROM Grade g WHERE (?1 IS NULL OR g.academicClass.period = ?1) AND (?2 = '' OR upper(g.student.lastName) LIKE upper(?2)) AND (?3 = '' OR upper(g.student.firstName) LIKE upper(?3)) AND (?4 = '' OR upper(g.assignment.assignmentName) LIKE upper(?4)) AND (?5 = '' OR upper(g.assignment.assignmentIDNumber) LIKE upper(?5)) AND g.academicClass.teacher.teacherID IS ?6")
     List<Grade> searchForTeacherStudents(Integer sPeriod, String sLastName, String sFirstName, String sAName, String sAID, Integer teacherID);
 
     @Query(value = "SELECT g FROM Grade g WHERE (?1 IS NULL OR g.academicClass.period = ?1) AND (?2 = '' OR upper(g.student.lastName) LIKE upper(?2)) AND (?3 = '' OR upper(g.student.firstName) LIKE upper(?3)) AND (?4 = '' OR upper(g.assignment.assignmentName) LIKE upper(?4)) AND (?5 = '' OR upper(g.assignment.assignmentIDNumber) LIKE upper(?5)) AND g.academicClass.teacher.teacherID IS ?6")
-    List<Grade> searchForTeacherStudents(Integer sPeriod, String sLastName, String sFirstName, String sAName, String sAID, Integer teacherID, Pageable pageable);
+    Page<Grade> searchForTeacherStudents(Integer sPeriod, String sLastName, String sFirstName, String sAName, String sAID, Integer teacherID, Pageable pageable);
 
     @Query(value = "SELECT g FROM Grade g WHERE (?1 IS NULL OR g.academicClass.period = ?1) AND (?2 = '' OR upper(g.student.lastName) LIKE upper(?2)) AND (?3 = '' OR upper(g.student.firstName) LIKE upper(?3)) AND (?4 = '') AND (?5 = '')")
     List<Grade> searchForTeacherStudents(Integer sPeriod, String sLastName, String sFirstName, String sID, Integer gradeLevel);
