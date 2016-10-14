@@ -56,7 +56,7 @@
                         <td th:text="${grade.academicClass.name}">13 Students</td>
                         <td class="spacer"><span></span></td>
                         <td>
-                            <span class=""><a class="homeHyperlinkAttendance" th:href="@{/studentGradeView?(period=${grade.academicClass.period})}" href="../templates/studentGradeView.html">Attendance</a></span>
+                            <span class=""><a class="homeHyperlinkAttendance" th:href="@{/studentGradeView?(period=${grade.academicClass.period})}" href="../templates/studentGradeView.html">Grade View</a></span>
                         </td>
                         <td>
                             <span class="teacherHomeGrade" th:text="${grade.studentClassAverage + '%'}">60.8% D</span>
