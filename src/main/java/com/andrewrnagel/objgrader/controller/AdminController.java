@@ -63,7 +63,7 @@ public class AdminController {
         model.addAttribute("day", mainService.getTimeOfDay());
         model.addAttribute("userName", session.getAttribute("userName"));
         School thisSchool = mainService.getSchool();
-        //TODO: error if exceeds 1MB
+        //TODO: error if exceeds 10MB
         if(bindingResult.hasErrors()){
             model.addAttribute("bindingResult", bindingResult);
             model.addAttribute("school", school);
