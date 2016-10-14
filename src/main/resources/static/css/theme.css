@@ -254,7 +254,7 @@ table tr:nth-child(2n+1) {
 .homeHyperlinkGrade {
     float: left;
 }
-.teacherHomeGrade {
+.homeGrade {
     float: right;
 }
 #SaveAttendance {
