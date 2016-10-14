@@ -4,6 +4,8 @@ import com.andrewrnagel.objgrader.entity.Grade;
 import com.andrewrnagel.objgrader.entity.Student;
 import com.andrewrnagel.objgrader.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,7 +45,7 @@ public class StudentController {
     }
 
     @RequestMapping(value = "/studentGradeView", method = RequestMethod.GET)
-    public String studentGradeView(Model model, HttpSession session,
+    public String studentGradeView(Model model, HttpSession session, @PageableDefault(size = 2) Pageable pageable,
                                    @RequestParam(defaultValue = "") Integer period,
                                    @RequestParam(defaultValue = "") String aName,
                                    @RequestParam(defaultValue = "") String aPoints) {
@@ -54,7 +56,11 @@ public class StudentController {
         model.addAttribute("day", mainService.getTimeOfDay());
         model.addAttribute("userName", session.getAttribute("userName"));
         Student student = (Student)session.getAttribute("student");
-        model.addAttribute("studentList", mainService.getStudentAssignments(period, '%' + aName + '%', aPoints, student.getStudentID()));
+        model.addAttribute("period", period);
+        model.addAttribute("aName", aName);
+        model.addAttribute("aPoints", aPoints);
+        model.addAttribute("pageable", pageable);
+        model.addAttribute("studentList", mainService.getStudentAssignments(period, '%' + aName + '%', aPoints, student.getStudentID(), pageable));
         return "studentGradeView";
     }
 }

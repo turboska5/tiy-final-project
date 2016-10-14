@@ -3,6 +3,8 @@ package com.andrewrnagel.objgrader.service;
 import com.andrewrnagel.objgrader.entity.*;
 import com.andrewrnagel.objgrader.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
@@ -264,12 +266,12 @@ public class MainService {
         }
     }
 
-    public List<Grade> getStudentAssignments(Integer period, String aName, String aPoints, Integer studentID) {
+    public Page<Grade> getStudentAssignments(Integer period, String aName, String aPoints, Integer studentID, Pageable pageable) {
         Integer aPointsParsed = null;
         if(!aPoints.equals("")) {
             aPointsParsed = Integer.parseInt(aPoints);
         }
-        List<Grade> results = this.gradeRepo.searchForStudentAssignments(period, aName, aPointsParsed, studentID);
+        Page<Grade> results = this.gradeRepo.searchForStudentAssignments(period, aName, aPointsParsed, studentID, pageable);
         return results;
     }
 }
