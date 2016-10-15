@@ -96,7 +96,7 @@ public class TeacherController {
     @RequestMapping(value = "/teacherGradeBook", method = RequestMethod.GET)
     public String teacherGradeBookPage(SearchTeacherClasses searchTeacherClasses, SearchTeacherAssign searchTeacherAssign,
                                        SearchTeacherStudents searchTeacherStudents, Model model, HttpSession session,
-                                       @PageableDefault(size = 3) Pageable pageable) throws SQLException {
+                                       @PageableDefault(size = 2) Pageable pageable) throws SQLException {
         if (session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
             return "redirect:/logout";
         }
@@ -107,6 +107,7 @@ public class TeacherController {
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("teacher", teacher);
         model.addAttribute("pageable", pageable);
+        //TODO user main controller to refresh rather than these lines
         //Class search
         Page<AcademicClass> classList = mainService.listClasses(searchTeacherClasses, teacher.getTeacherID(), pageable);
         model.addAttribute("classList", classList);

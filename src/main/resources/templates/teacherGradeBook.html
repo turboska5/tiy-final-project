@@ -76,13 +76,11 @@
                     <div class="pagination">
                         <span th:text="${pageable.offset + 1} + ' - ' + ${pageable.offset + classList.numberOfElements} + ' of ' + ${classList.totalElements}">1 - 10 of 54</span>
                         <a href="teacherGradeBook.html"
-                            th:href="@{/teacherGradeBook(page=${pageable.previousOrFirst().pageNumber}, name=${searchTeacherClasses.period}, typeId=${searchTeacherClasses.name}, id=${searchTeacherClasses.identifier})}">
-                            <!--th:href="@{/teacherGradeBook(page=${pageable.previousOrFirst().pageNumber}, period=${period}, name=${name}, identifier=${identifier})}">-->
+                            th:href="@{/teacherClassRetrieve(page=${pageable.previousOrFirst().pageNumber}, name=${searchTeacherClasses.period}, typeId=${searchTeacherClasses.name}, id=${searchTeacherClasses.identifier})}">
                             <button disabled="disabled"
                                     th:disabled="${classList.isFirst()}">Back</button></a>
                         <a href="teacherGradeBook.html"
-                            th:href="@{/teacherGradeBook(page=${pageable.next().pageNumber}, name=${searchTeacherClasses.period}, typeId=${searchTeacherClasses.name}, id=${searchTeacherClasses.identifier})}">
-                            <!--th:href="@{/teacherGradeBook(page=${pageable.next().pageNumber}, period=${period}, name=${name}, identifier=${identifier})}">-->
+                            th:href="@{/teacherClassRetrieve(page=${pageable.next().pageNumber}, name=${searchTeacherClasses.period}, typeId=${searchTeacherClasses.name}, id=${searchTeacherClasses.identifier})}">
                             <button th:disabled="${classList.isLast()}">Next</button></a>
                     </div>
                 </div>

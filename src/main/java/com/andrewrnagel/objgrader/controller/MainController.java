@@ -51,10 +51,4 @@ public class MainController {
             mainService.gradePost(gradeID, earnedPoints);
         }
     }
-//    @RequestMapping(path = "/teacherClassRetrieve")
-//    public Page<AcademicClass> listClasses(Teacher teacher, SearchTeacherClasses search,
-//                                           @PageableDefault(size = 10, sort = "period") Pageable pageable){
-//        // get the classes matching this search
-//        return mainService.listClasses(search, teacher.getTeacherID(), pageable);
-//    }
 }
