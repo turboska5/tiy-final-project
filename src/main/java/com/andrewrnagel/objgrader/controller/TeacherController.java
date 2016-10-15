@@ -111,18 +111,15 @@ public class TeacherController {
         Page<AcademicClass> classList = mainService.listClasses(searchTeacherClasses, teacher.getTeacherID(), pageable);
         model.addAttribute("classList", classList);
         //assignment search
-        //TODO: assignment/student sync with period in class search
-//        if (!(period == null)){
-//            model.addAttribute("aPeriod", period);
-//            aPeriod = period;
-//        }
+        if (!(searchTeacherClasses == null)){
+            searchTeacherAssign.setaPeriod(searchTeacherClasses.getPeriod());
+        }
         Page<Grade> assignmentList = mainService.listAssignments(searchTeacherAssign, teacher.getTeacherID(), pageable);
         model.addAttribute("assignmentList", assignmentList);
         //student search
-//        if (!(period == null)){
-//            model.addAttribute("sPeriod", period);
-//            sPeriod = period;
-//        }
+        if (!(searchTeacherClasses == null)){
+            searchTeacherStudents.setsPeriod(searchTeacherClasses.getPeriod());
+        }
         Page<Grade> studentList = mainService.listStudents(searchTeacherStudents, teacher.getTeacherID(), pageable);
         model.addAttribute("studentList", studentList);
         return "teacherGradeBook";
