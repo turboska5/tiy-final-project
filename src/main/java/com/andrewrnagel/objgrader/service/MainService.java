@@ -319,14 +319,8 @@ public class MainService {
         return classRepo.search(search.getPeriod(), search.getNameForSearch(), search.getIdentifierForSearch(), teacherID, pageable);
     }
 
-    //TODO
     public Page<Grade> listAssignments(SearchTeacherAssign search, Integer teacherID, Pageable pageable) {
-        LocalDate aDateConverted = null;
-        if(!search.getaDate().equals(null) || !search.getaDate().equals("")) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            aDateConverted = LocalDate.parse(search.getaDate(), formatter);
-        }
-        return gradeRepo.searchAssignments(search.getaPeriod(), search.getaNameForSearch(), search.getaIDForSearch(), aDateConverted, search.getaPointsForSearch(), teacherID, pageable);
+        return gradeRepo.searchAssignments(search.getaPeriod(), search.getaNameForSearch(), search.getaIDForSearch(), search.getaDateForSearch(), search.getaPoints(), teacherID, pageable);
     }
 
     public Page<Grade> listStudents(SearchTeacherStudents search, Integer teacherID, Pageable pageable) {

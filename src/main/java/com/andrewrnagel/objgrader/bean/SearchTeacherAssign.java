@@ -1,5 +1,8 @@
 package com.andrewrnagel.objgrader.bean;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 /**
  * Created by Andrew on 10/14/16.
  */
@@ -10,12 +13,12 @@ public class SearchTeacherAssign {
     private String aName = null;
     private String aID = null;
     private String aDate = null;
-    private String aPoints = null;
+    private Integer aPoints = null;
 
     public SearchTeacherAssign() {
     }
 
-    public SearchTeacherAssign(Integer aPeriod, String aName, String aID, String aDate, String aPoints) {
+    public SearchTeacherAssign(Integer aPeriod, String aName, String aID, String aDate, Integer aPoints) {
         this.aPeriod = aPeriod;
         this.aName = aName;
         this.aID = aID;
@@ -60,8 +63,13 @@ public class SearchTeacherAssign {
         return aDate;
     }
 
-    public String getaDateForSearch(){
-        return aDate == null || aDate.equals("") ? "" : "%" + aDate + "%";
+    public LocalDate getaDateForSearch(){
+        LocalDate aDateConverted = null;
+        if(!(this.aDate == null) && !(this.aDate.equals(""))) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            aDateConverted = LocalDate.parse(this.getaDate(), formatter);
+        }
+        return aDateConverted;
     }
 
     public void setaDate(String aDate) {
@@ -69,15 +77,11 @@ public class SearchTeacherAssign {
         this.aName = (aName == null || aName.equals("") ? null : aName);
     }
 
-    public String getaPoints() {
+    public Integer getaPoints() {
         return aPoints;
     }
 
-    public String getaPointsForSearch(){
-        return aPoints == null || aPoints.equals("") ? "" : "%" + aPoints + "%";
-    }
-
-    public void setaPoints(String aPoints) {
+    public void setaPoints(Integer aPoints) {
         this.aPoints = aPoints;
     }
 }
