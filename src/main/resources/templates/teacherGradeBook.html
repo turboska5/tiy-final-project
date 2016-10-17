@@ -36,7 +36,7 @@
             <!--class manager search engine-->
             <article class="SearchParams">
                 <div id="ClassSearchParams">
-                    <form th:action="@{/teacherGradeBook}" th:object="${searchTeacherClasses}" method="get">
+                    <form class="searchForm" method="get">
                         <input name="period" id="period" class="InputField" type="text" placeholder="Period" th:value="*{period}"/>
                         <input name="name" id="name" class="InputField" type="text" placeholder="Class Name" th:value="*{name}"/>
                         <input name="identifier" id="identifier" class="InputField" type="text" placeholder="Class ID#" th:value="*{identifier}"/>
