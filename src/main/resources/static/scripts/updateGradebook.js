@@ -59,9 +59,9 @@ function listClasses(page) {
             lastPage = Math.ceil(total / data.size) - 1;
             descriptionClass.text(start + " - " + end + " of " + total);
 
-            // var classes = $("#classes");
-            // classes.empty();
-            // classes.add(data)
+            var teacherClasses = $("#teacherClasses");
+            teacherClasses.empty();
+            teacherClasses.add(data)
 
 
             // // iterate over the widgets from the ajax response
