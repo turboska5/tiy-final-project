@@ -1,5 +1,6 @@
 package com.andrewrnagel.objgrader.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Formula;
 import org.hibernate.validator.constraints.NotBlank;
 import javax.persistence.*;
@@ -35,6 +36,7 @@ public class AcademicClass {
     @NotNull
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "teacherID")
+    @JsonIgnore
     @Valid
     private Teacher teacher;
 

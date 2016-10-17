@@ -55,7 +55,8 @@ public class MainController {
             mainService.gradePost(gradeID, earnedPoints);
         }
     }
-    @RequestMapping(value = "/teacherClassUpdate")
+    @GetMapping("/teacherClassUpdate")
+    @ResponseBody
     public Page<AcademicClass> teacherGradeBookPageClassUpdate(SearchTeacherClasses searchTeacherClasses,
                                                                @PageableDefault(size = 2, sort = "period") Pageable pageable,
                                                                HttpSession session) throws SQLException {
@@ -65,7 +66,8 @@ public class MainController {
         }
         return null;
     }
-    @RequestMapping(value = "/teacherAssignUpdate")
+    @GetMapping(value = "/teacherAssignUpdate")
+    @ResponseBody
     public Page<Grade> teacherGradeBookPageAssignUpdate(SearchTeacherAssign searchTeacherAssign,
                                                         @PageableDefault(size = 2, sort = "aName") Pageable pageable,
                                                         HttpSession session) throws SQLException {
@@ -75,7 +77,8 @@ public class MainController {
         }
         return null;
     }
-    @RequestMapping(value = "/teacherStudentUpdate")
+    @GetMapping(value = "/teacherStudentUpdate")
+    @ResponseBody
     public Page<Grade> teacherGradeBookPageStudentUpdate(SearchTeacherStudents searchTeacherStudents,
                                                          @PageableDefault(size = 2, sort = "sLastName") Pageable pageable,
                                                          HttpSession session) throws SQLException {

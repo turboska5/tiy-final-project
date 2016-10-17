@@ -44,6 +44,10 @@ $(function () {
 });
 
 function listClasses(page) {
+    // $.ajax({ url: '../templates/test.html', dataType: 'html', success: function(response) { $('#ClassResults').html(response); } });
+
+
+
     //from input fields
     var classPeriod = $("#period").val();
     var className = $("#name").val();
@@ -80,8 +84,3 @@ function listClasses(page) {
         });
     });
 }
-
-// $.get( "ajax/test.html", function( data ) {
-//     $( ".result" ).html( data );
-//     alert( "Load was performed." );
-// });
