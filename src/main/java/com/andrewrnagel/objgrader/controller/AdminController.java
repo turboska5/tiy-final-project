@@ -198,8 +198,7 @@ public class AdminController {
         model.addAttribute("date", mainService.getDate());
         model.addAttribute("day", mainService.getTimeOfDay());
         model.addAttribute("userName", session.getAttribute("userName"));
-        model.addAttribute("adminList", mainService.getAllAdmins());
-//        model.addAttribute("adminList", mainService.searchAllAdmins("%" + lastName + "%", "%" + firstName + "%", "%" + email + "%", "%" + title + "%"));
+        model.addAttribute("adminList", mainService.searchAllAdmins("%" + lastName + "%", "%" + firstName + "%", "%" + email + "%", "%" + title + "%"));
         model.addAttribute("teacherList", mainService.searchAllTeachers("%" + tLastName + "%", "%" + tFirstName + "%", "%" + tEmail + "%", "%" + department + "%"));
         model.addAttribute("studentList", mainService.getAllStudents());
 //        model.addAttribute("studentList", mainService.searchAllStudents("%" + sLastName + "%", "%" + sFirstName + "%", "%" + sEmail + "%", "%" + sID + "%", "%" + grade + "%"));

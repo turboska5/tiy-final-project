@@ -85,9 +85,9 @@ public class MainService {
         return this.adminRepository.findAll();
     }
 
-//    public List<Admin> searchAllAdmins(String lastName, String firstName, String email, String title) {
-//        return this.adminRepository.searchForAdmins(lastName, firstName, email, title);
-//    }
+    public List<Admin> searchAllAdmins(String lastName, String firstName, String email, String title) {
+        return this.adminRepository.searchForAdmins(lastName, firstName, email, title);
+    }
 
     public List<Teacher> getAllTeachers() {
         return this.teacherRepository.findAll();
