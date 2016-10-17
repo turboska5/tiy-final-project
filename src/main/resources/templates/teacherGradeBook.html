@@ -36,7 +36,7 @@
             <!--class manager search engine-->
             <article class="SearchParams">
                 <div id="ClassSearchParams">
-                    <form class="searchForm" method="get">
+                    <form class="searchForm" method="get" th:object="${searchTeacherClasses}">
                         <input name="period" id="period" class="InputField" type="text" placeholder="Period" th:value="*{period}"/>
                         <input name="name" id="name" class="InputField" type="text" placeholder="Class Name" th:value="*{name}"/>
                         <input name="identifier" id="identifier" class="InputField" type="text" placeholder="Class ID#" th:value="*{identifier}"/>
@@ -69,7 +69,7 @@
             <!--assignment manager search engine-->
             <article class="SearchParams">
                 <div id="AssigmentSearchParams">
-                    <form class="searchForm" method="get">
+                    <form class="searchForm" method="get" th:object="${searchTeacherAssign}">
                         <input name="aPeriod" id="aPeriod" class="InputField" placeholder="Period" th:value="*{aPeriod}" value=""/>
                         <input name="aName" id="aName" class="InputField" type="text" placeholder="Name" th:value="*{aName}"/>
                         <input name="aID" id="aID" class="InputField" placeholder="ID#" th:value="*{aID}"/>
@@ -106,7 +106,7 @@
             <legend>Students</legend>
             <article class="SearchParams">
                 <div id="StudentSearchParams">
-                    <form class="searchForm" method="get">
+                    <form class="searchForm" method="get" th:object="${searchTeacherStudents}">
                         <input name="sPeriod" id="sPeriod" class="InputField" type="text" placeholder="Period" th:value="*{sPeriod}" value=""/>
                         <input name="sLastName" id="sLastName" class="InputField" type="text" placeholder="Last Name" th:value="*{sLastName}"/>
                         <input name="sFirstName" id="sFirstName" class="InputField" type="text" placeholder="First Name" th:value="*{sFirstName}"/>

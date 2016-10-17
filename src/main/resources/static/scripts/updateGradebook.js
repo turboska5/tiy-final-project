@@ -1,26 +1,35 @@
 $(function() {
-    //preload data
-    classSearch("/classTable");
-    assignSearch("/assignTable");
-    studentSearch("/studentTable");
+    //preload tables
+    classSearch("/classTable?period=" + $("#period").val());
+    assignSearch("/assignTable?aPeriod=" + $("#period").val());
+    studentSearch("/studentTable?sPeriod=" + $("#period").val());
 
     //button functions
+    //search
     $("#classSearch").click(function(){
         var query = "/classTable?period=" + $("#period").val() + "&name=" + $("#name").val() + "&identifier=" + $("#identifier").val();
         classSearch(query);
-        return false; // this prevents the form from being submitted when the button is clicked.
-    });
-    $("#classReset").click(function(){
-        $("#period").val("");
-        $("#name").val("");
-        $("#identifier").val("");
-        classSearch("/classTable");
         return false; // this prevents the form from being submitted when the button is clicked.
     });
     $("#assignSearch").click(function(){
         var query = "/assignTable?aPeriod=" + $("#aPeriod").val() + "&aName=" + $("#aName").val() + "&aID=" + $("#aID").val()
             + "&aDate=" + $("#aDate").val() + "&aPoints=" + $("#aPoints").val();
         assignSearch(query);
+        return false; // this prevents the form from being submitted when the button is clicked.
+    });
+    $("#studentSearch").click(function(){
+        var query = "/studentTable?sPeriod=" + $("#sPeriod").val() + "&sLastName=" + $("#sLastName").val() + "&sFirstName=" + $("#sFirstName").val()
+            + "&sAName=" + $("#sAName").val() + "&sAID=" + $("#sAID").val();
+        studentSearch(query);
+        return false; // this prevents the form from being submitted when the button is clicked.
+    });
+
+    //reset
+    $("#classReset").click(function(){
+        $("#period").val("");
+        $("#name").val("");
+        $("#identifier").val("");
+        classSearch("/classTable");
         return false; // this prevents the form from being submitted when the button is clicked.
     });
     $("#assignReset").click(function(){
@@ -30,12 +39,6 @@ $(function() {
         $("#aDate").val("");
         $("#aPoints").val("");
         assignSearch("/assignTable");
-        return false; // this prevents the form from being submitted when the button is clicked.
-    });
-    $("#studentSearch").click(function(){
-        var query = "/studentTable?sPeriod=" + $("#sPeriod").val() + "&sLastName=" + $("#sLastName").val() + "&sFirstName=" + $("#sFirstName").val()
-            + "&sAName=" + $("#sAName").val() + "&sAID=" + $("#sAID").val();
-        studentSearch(query);
         return false; // this prevents the form from being submitted when the button is clicked.
     });
     $("#studentReset").click(function(){
