@@ -47,61 +47,16 @@
                 <br/>
             </article>
             <!--class manager results-->
-            <div class="SearchResults">
-                <div id="ClassResults">
-                    <table class="ResultsTable">
-                        <tr>
-                            <th class="icon"></th>
-                            <th>Period</th>
-                            <th>Class Name</th>
-                            <th>Class ID#</th>
-                            <th>Department</th>
-                            <th>Teacher</th>
-                            <th>Assignments</th>
-                            <th>Average</th>
-                        </tr>
-                        <!--<tr th:each="academicClass : ${classList}">-->
-                            <!--<td class="buttonArea">-->
-                                <!--<a><button class="editicon"></button></a>-->
-                                <!--<a><button class="classicicon"></button></a>-->
-                            <!--</td>-->
-                            <!--<td th:text="${academicClass.period}">1</td>-->
-                            <!--<td th:text="${academicClass.name}">PHYSICS 101</td>-->
-                            <!--<td th:text="${academicClass.identifier}">SCIPHY101A</td>-->
-                            <!--<td th:text="${academicClass.department}">Science</td>-->
-                            <!--<td th:text="${academicClass.teacher.lastName + ', ' + academicClass.teacher.firstName}">MR. NAGEL</td>-->
-                            <!--<td th:text="${academicClass.assignmentNumber}">13</td>-->
-                            <!--<td th:text="${academicClass.classAverage + '%'}">92.4</td>-->
-                        <!--</tr>-->
-                    <!--</table>-->
-
-                        <!--main part for displaying the classes-->
-                        <tr id="teacherClasses"></tr>
-
-                        <!--hidden template for the classes above-->
-                        <tr class="teacherClass" id="template" hidden="true" th:object="${academicClass}">
-                            <td class="buttonArea">
-                                <a><button class="editicon"></button></a>
-                                <a><button class="classicicon"></button></a>
-                            </td>
-                            <td class="period">1</td>
-                            <td class="name">PHYSICS 101</td>
-                            <td class="identifier">SCIPHY101A</td>
-                            <td class="department">Science</td>
-                            <td class="teacherName">MR. NAGEL</td>
-                            <td class="assignmentNumber">13</td>
-                            <td class="classAverage">92.4</td>
-                        </tr>
-                    </table>
-                    <br/>
-                    <div class="pagination">
-                        <span id="descriptionClass"></span>
-                        <a href="#">
-                            <button id="back">Back</button></a>
-                        <a href="#">
-                            <button id="next">Next</button></a>
-                    </div>
-                </div>
+            <!--Content from classesTable-->
+            <div id="ClassOutput">
+                This is sample content.
+            </div>
+            <br/>
+            <div>
+                <a href="#">
+                    <button id="back">Back</button></a>
+                <a href="#">
+                    <button id="next">Next</button></a>
             </div>
         </fieldset>
         <div class="divider">

@@ -166,4 +166,14 @@ public class TeacherController {
         mainService.saveAssignment(grade);
         return "redirect:/teacherGradeBook";
     }
+
+
+
+    @RequestMapping(value = "/classTable")
+    public String populateClassDate(SearchTeacherClasses searchTeacherClasses, @PageableDefault(size = 2, sort = "period") Pageable pageable,
+                                    Model model, HttpSession session) {
+        Teacher teacher = (Teacher)session.getAttribute("teacher");
+        model.addAttribute("classList", mainService.listClasses(searchTeacherClasses, teacher.getTeacherID(), pageable));
+        return "teacherGradeBook/classesTable";
+    }
 }
