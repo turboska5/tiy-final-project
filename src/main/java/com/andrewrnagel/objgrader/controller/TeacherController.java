@@ -110,7 +110,7 @@ public class TeacherController {
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("teacher", teacher);
         model.addAttribute("pageable", pageable);
-        //TODO user main controller to refresh rather than these lines
+        //TODO user three sub-controllers to refresh rather than these lines
         //Class search
         Page<AcademicClass> classList = mainService.listClasses(searchTeacherClasses, teacher.getTeacherID(), pageable);
         model.addAttribute("classList", classList);
