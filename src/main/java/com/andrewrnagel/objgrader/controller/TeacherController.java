@@ -118,44 +118,6 @@ public class TeacherController {
         }
         return "teacherGradeBook";
     }
-    //TODO: controller 1/3
-    @RequestMapping(value = "teacherClassUpdate", method = RequestMethod.GET)
-    public Page<AcademicClass> teacherGradeBookPageClassUpdate(SearchTeacherClasses searchTeacherClasses, Model model,
-                                                               @RequestParam(defaultValue = "") Integer period,
-                                                               @RequestParam(defaultValue = "") String name,
-                                                               @RequestParam(defaultValue = "") String identifier,
-                                                               @PageableDefault(size = 2) Pageable pageable,
-                                                               HttpSession session) throws SQLException {
-        Teacher teacher = (Teacher)session.getAttribute("teacher");
-        Page<AcademicClass> classList = mainService.listClasses(searchTeacherClasses, teacher.getTeacherID(), pageable);
-        return classList;
-    }
-    //TODO: controller 2/3
-    @RequestMapping(value = "teacherAssignUpdate", method = RequestMethod.GET)
-    public Page<Grade> teacherGradeBookPageAssignUpdate(SearchTeacherAssign searchTeacherAssign, Model model,
-                                                        @RequestParam(defaultValue = "") Integer aPeriod,
-                                                        @RequestParam(defaultValue = "") String aName,
-                                                        @RequestParam(defaultValue = "") String aID,
-                                                        @RequestParam(defaultValue = "") String aDate,
-                                                        @RequestParam(defaultValue = "") String aPoints,
-                                                        HttpSession session, @PageableDefault(size = 2) Pageable pageable) throws SQLException {
-        Teacher teacher = (Teacher)session.getAttribute("teacher");
-        Page<Grade> assignmentList = mainService.listAssignments(searchTeacherAssign, teacher.getTeacherID(), pageable);
-        return assignmentList;
-    }
-    //TODO: controller 3/3
-    @RequestMapping(value = "teacherStudentUpdate", method = RequestMethod.GET)
-    public Page<Grade> teacherGradeBookPageStudentUpdate(SearchTeacherStudents searchTeacherStudents, Model model,
-                                                         @RequestParam(defaultValue = "") Integer sPeriod,
-                                                         @RequestParam(defaultValue = "") String sLastName,
-                                                         @RequestParam(defaultValue = "") String sFirstName,
-                                                         @RequestParam(defaultValue = "") String sAName,
-                                                         @RequestParam(defaultValue = "") String sAID,
-                                                         HttpSession session, @PageableDefault(size = 2) Pageable pageable) throws SQLException {
-        Teacher teacher = (Teacher)session.getAttribute("teacher");
-        Page<Grade> studentList = mainService.listStudents(searchTeacherStudents, teacher.getTeacherID(), pageable);
-        return studentList;
-    }
     @RequestMapping(value = "/teacherManageAssign", method = RequestMethod.GET)
     public String teacherGradeBookAssignForm(Model model, HttpSession session,
                                              @RequestParam(defaultValue = "0") Integer gradeID) {

@@ -1,7 +1,10 @@
 package com.andrewrnagel.objgrader.controller;
 
+import com.andrewrnagel.objgrader.bean.SearchTeacherAssign;
 import com.andrewrnagel.objgrader.bean.SearchTeacherClasses;
+import com.andrewrnagel.objgrader.bean.SearchTeacherStudents;
 import com.andrewrnagel.objgrader.entity.AcademicClass;
+import com.andrewrnagel.objgrader.entity.Grade;
 import com.andrewrnagel.objgrader.entity.School;
 import com.andrewrnagel.objgrader.entity.Teacher;
 import com.andrewrnagel.objgrader.service.MainService;
@@ -11,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import java.net.URI;
@@ -50,5 +54,39 @@ public class MainController {
         if (!(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2))) {
             mainService.gradePost(gradeID, earnedPoints);
         }
+    }
+
+
+
+    //TODO: Gradebook Controllers
+    @RequestMapping(value = "/teacherClassUpdate")
+    public Page<AcademicClass> teacherGradeBookPageClassUpdate(SearchTeacherClasses searchTeacherClasses,
+                                                               @PageableDefault(size = 2) Pageable pageable,
+                                                               HttpSession session) throws SQLException {
+        if (!(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2))) {
+            Teacher teacher = (Teacher) session.getAttribute("teacher");
+            return mainService.listClasses(searchTeacherClasses, teacher.getTeacherID(), pageable);
+        }
+        return null;
+    }
+    @RequestMapping(value = "/teacherAssignUpdate")
+    public Page<Grade> teacherGradeBookPageAssignUpdate(SearchTeacherAssign searchTeacherAssign,
+                                                        @PageableDefault(size = 2) Pageable pageable,
+                                                        HttpSession session) throws SQLException {
+        if (!(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2))) {
+            Teacher teacher = (Teacher) session.getAttribute("teacher");
+            return mainService.listAssignments(searchTeacherAssign, teacher.getTeacherID(), pageable);
+        }
+        return null;
+    }
+    @RequestMapping(value = "/teacherStudentUpdate")
+    public Page<Grade> teacherGradeBookPageStudentUpdate(SearchTeacherStudents searchTeacherStudents,
+                                                         @PageableDefault(size = 2) Pageable pageable,
+                                                         HttpSession session) throws SQLException {
+        if (!(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2))) {
+            Teacher teacher = (Teacher) session.getAttribute("teacher");
+            return mainService.listStudents(searchTeacherStudents, teacher.getTeacherID(), pageable);
+        }
+        return null;
     }
 }
