@@ -85,24 +85,24 @@ public class MainService {
         return this.adminRepository.findAll();
     }
 
-    public List<Admin> searchAllAdmins() {
-        return this.adminRepository.findAll();
-    }
-
-    public List<Teacher> searchAllTeachers(String lastName, String firstName, String email, String department) {
-        return this.teacherRepository.searchForTeacherAssignments(lastName, firstName, email, department);
+    public List<Admin> searchAllAdmins(String lastName, String firstName, String email, String title) {
+        return this.adminRepository.searchForAdmins(lastName, firstName, email, title);
     }
 
     public List<Teacher> getAllTeachers() {
         return this.teacherRepository.findAll();
     }
 
+    public List<Teacher> searchAllTeachers(String lastName, String firstName, String email, String department) {
+        return this.teacherRepository.searchForTeachers(lastName, firstName, email, department);
+    }
+
     public List<Student> getAllStudents() {
         return this.studentRepository.findAll();
     }
 
-    public List<Student> searchAllStudents() {
-        return this.studentRepository.findAll();
+    public List<Student> searchAllStudents(String lastName, String firstName, String email, String studentID, String grade) {
+        return this.studentRepository.searchForStudents(lastName, firstName, email, studentID, grade);
     }
 
     public User getUserByID(Integer id) {
