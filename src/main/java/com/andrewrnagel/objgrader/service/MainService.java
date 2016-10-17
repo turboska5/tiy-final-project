@@ -102,7 +102,11 @@ public class MainService {
     }
 
     public List<Student> searchAllStudents(String lastName, String firstName, String email, String studentID, String grade) {
-        return this.studentRepository.searchForStudents(lastName, firstName, email, studentID, grade);
+        Integer aGradeParsed = null;
+        if(!grade.equals("")) {
+            aGradeParsed = Integer.parseInt(grade);
+        }
+        return this.studentRepository.searchForStudents(lastName, firstName, email, studentID, aGradeParsed);
     }
 
     public User getUserByID(Integer id) {
