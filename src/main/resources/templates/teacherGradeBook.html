@@ -83,47 +83,17 @@
                 <br/>
             </article>
             <!--assignment manager results-->
-            <div class="SearchResults">
-                <div id="AssignmentResults">
-                    <table class="ResultsTable">
-                        <tr>
-                            <th class="icon"></th>
-                            <th>Period</th>
-                            <th>Name</th>
-                            <th>ID#</th>
-                            <th>Date</th>
-                            <th>Pts Possible</th>
-                            <th>Submitted</th>
-                            <th>Class Avg</th>
-                        </tr>
-
-                        <!--main part for displaying the assignments-->
-                        <tr id="teacherAssignments"></tr>
-
-                        <!--hidden template for the classes above-->
-                        <tr class="teacherAssign" id="assignTemplate" hidden="true">
-                            <!--This is todo on how to make a template for the link-->
-                            <!--<td><a th:href="@{/teacherManageAssign(gradeID=${grade.gradeID}, assignmentID=${grade.assignment.assignmentID})}" href="../templates/teacherManageAssign.html"><button class="editicon"></button></a></td>-->
-                            <td class="assignLink"><a href="../templates/teacherManageAssign.html"><button class="editicon"></button></a></td>
-                            <td class="assignPeriod">1</td>
-                            <td class="assignmentName">Orientation Assignment</td>
-                            <td class="assignmentIDNumber">HW1</td>
-                            <td class="assignmentDate">09/25/2016</td>
-                            <td class="assignPossPoints">100</td>
-                            <td class="submissionRate">72.3%</td>
-                            <td class="assignAverage">95.2%</td>
-                        </tr>
-                    </table>
-                    <br/>
-                    <div class="pagination">
-                        <span id="descriptionAssign"></span>
-                        <a href="#">
-                            <button id="assignBack">Back</button></a>
-                        <a href="#">
-                            <button id="assignNext">Next</button></a>
-                    </div>
-                </div>
+            <div class="assignmentOutput">
+               This is sample content
             </div>
+
+            <div class="pagination">
+            <span id="descriptionAssign"></span>
+            <a href="#">
+                <button id="assignBack">Back</button></a>
+            <a href="#">
+                <button id="assignNext">Next</button></a>
+        </div>
         </fieldset>
         <div class="divider">
             <hr/>
@@ -146,64 +116,16 @@
                 <br/>
             </article>
             <!--class manager results-->
-                <div class="SearchResults">
-                    <div id="StudentResults">
-                        <table class="ResultsTable">
-                            <tr>
-                                <th class="icon"></th>
-                                <th>Period</th>
-                                <th>Last Name</th>
-                                <th>First Name</th>
-                                <th>Assignment</th>
-                                <th>Date</th>
-                                <th>Pts Earned</th>
-                                <th>Pts Possible</th>
-                            </tr>
-                            <!--<tr th:each="grade : ${studentList}">-->
-                                <!--<form>-->
-                                <!--<td>-->
-                                    <!--<a><button class="noteicon"></button></a>-->
-                                <!--</td>-->
-                                <!--<td th:text="${grade.academicClass.period}">1</td>-->
-                                <!--<td th:text="${grade.student.lastName}">SMITH</td>-->
-                                <!--<td th:text="${grade.student.firstName}">MATTHEW</td>-->
-                                <!--<td th:text="${grade.assignment.assignmentName}">Orientation Assignment</td>-->
-                                <!--<td th:text="${grade.assignment.date}">09/25/2016</td>-->
-                                <!--<td><input class="GradeInput" type="number" th:attr="data-gradeID=${grade.gradeID}" min="0" value="100" name="earnedPoints" th:value="${grade.earnedPoints}"/></td>-->
-                                <!--<td th:text="${grade.possPoints}">100</td>-->
-                                <!--</form>-->
-                            <!--</tr>-->
+                <div class="studentOutput">
+                      this is sample content
+                </div>
 
-                            <!--main part for displaying the assignments-->
-                            <tr id="studentAssignments"></tr>
-
-                            <!--hidden template for the classes above-->
-                            <tr class="teacherStudent" id="studentTemplate" hidden="true">
-                                <form>
-                                    <td>
-                                        <a><button class="noteicon"></button></a>
-                                    </td>
-                                    <td class="studentPeriod">1</td>
-                                    <td class="studentLastName">SMITH</td>
-                                    <td class="studentFirstName">MATTHEW</td>
-                                    <td class="studentAssignmentName">Orientation Assignment</td>
-                                    <td class="studentDate">09/25/2016</td>
-                                    <!--todo-->
-                                    <!--<td><input class="GradeInput" type="number" th:attr="data-gradeID=${grade.gradeID}" min="0" value="100" name="earnedPoints" th:value="${grade.earnedPoints}"/></td>-->
-                                    <td><input class="GradeInput" type="number" min="0" value="100" name="earnedPoints"/></td>
-                                    <td class="studentPossPoints">100</td>
-                                </form>
-                            </tr>
-                        </table>
-                        <br/>
-                        <div class="pagination">
-                            <span id="descriptionStudent"></span>
-                            <a href="#">
-                                <button id="studentBack">Back</button></a>
-                            <a href="#">
-                                <button id="studentNext">Next</button></a>
-                        </div>
-                    </div>
+                <div class="pagination">
+                <span id="descriptionStudent"></span>
+                <a href="#">
+                    <button id="studentBack">Back</button></a>
+                <a href="#">
+                    <button id="studentNext">Next</button></a>
                 </div>
         </fieldset>
     </section>
