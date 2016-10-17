@@ -55,13 +55,9 @@ public class MainController {
             mainService.gradePost(gradeID, earnedPoints);
         }
     }
-
-
-
-    //TODO: Gradebook Controllers
     @RequestMapping(value = "/teacherClassUpdate")
     public Page<AcademicClass> teacherGradeBookPageClassUpdate(SearchTeacherClasses searchTeacherClasses,
-                                                               @PageableDefault(size = 2) Pageable pageable,
+                                                               @PageableDefault(size = 2, sort = "period") Pageable pageable,
                                                                HttpSession session) throws SQLException {
         if (!(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2))) {
             Teacher teacher = (Teacher) session.getAttribute("teacher");
@@ -71,7 +67,7 @@ public class MainController {
     }
     @RequestMapping(value = "/teacherAssignUpdate")
     public Page<Grade> teacherGradeBookPageAssignUpdate(SearchTeacherAssign searchTeacherAssign,
-                                                        @PageableDefault(size = 2) Pageable pageable,
+                                                        @PageableDefault(size = 2, sort = "aName") Pageable pageable,
                                                         HttpSession session) throws SQLException {
         if (!(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2))) {
             Teacher teacher = (Teacher) session.getAttribute("teacher");
@@ -81,7 +77,7 @@ public class MainController {
     }
     @RequestMapping(value = "/teacherStudentUpdate")
     public Page<Grade> teacherGradeBookPageStudentUpdate(SearchTeacherStudents searchTeacherStudents,
-                                                         @PageableDefault(size = 2) Pageable pageable,
+                                                         @PageableDefault(size = 2, sort = "sLastName") Pageable pageable,
                                                          HttpSession session) throws SQLException {
         if (!(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2))) {
             Teacher teacher = (Teacher) session.getAttribute("teacher");
