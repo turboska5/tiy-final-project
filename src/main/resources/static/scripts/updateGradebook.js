@@ -13,7 +13,7 @@ $(function () {
     listClasses(currentPage, "", "", "");
 
     //search button
-    $("#search").click(function(){
+    $("#searchClasses").click(function(){
         listClasses(0);
         return false; // this prevents the form from being submitted when the button is clicked.
     });
