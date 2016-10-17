@@ -19,13 +19,13 @@ $(function () {
     });
 
     // //reset button
-    // $("#reset").click(function(){
-    //     $("#name").val("");
-    //     $("#typeId").val("");
-    //     $("#id").val("");
-    //     listClasses(0);
-    //     return false; // this prevents the form from being submitted when the button is clicked.
-    // });
+    $("#resetClasses").click(function(){
+        $("#name").val("");
+        $("#typeId").val("");
+        $("#id").val("");
+        listClasses(0);
+        return false; // this prevents the form from being submitted when the button is clicked.
+    });
 
     //pagination functionality
     $("#back").click(function(){

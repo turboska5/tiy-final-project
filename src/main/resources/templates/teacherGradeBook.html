@@ -41,6 +41,7 @@
                         <input name="name" id="name" class="InputField" type="text" placeholder="Class Name" th:value="*{name}"/>
                         <input name="identifier" id="identifier" class="InputField" type="text" placeholder="Class ID#" th:value="*{identifier}"/>
                         <button id="searchClasses" class="SearchButton">Search</button>
+                        <button id="resetClasses" class="ResetButton">Reset</button>
                     </form>
                 </div>
                 <br/>
@@ -118,6 +119,7 @@
                         <input name="aDate" id="aDate" class="InputField" placeholder="Date" th:value="*{aDate}"/>
                         <input name="aPoints" id="aPoints" class="InputField" placeholder="Points" th:value="*{aPoints}"/>
                         <button class="SearchButton">Search</button>
+                        <button id="resetAssignments" class="ResetButton">Reset</button>
                     </form>
                 </div>
                 <div>
@@ -183,6 +185,7 @@
                         <input name="sAName" id="sAName" class="InputField" type="text" placeholder="Name" value="" th:value="*{sAName}"/>
                         <input name="sAID" id="sAID" class="InputField" type="text" placeholder="ID#" th:value="*{sAID}"/>
                         <button class="SearchButton">Search</button>
+                        <button id="resetStudents" class="ResetButton">Reset</button>
                     </form>
                 </div>
                 <br/>
@@ -193,7 +196,6 @@
                         <table class="ResultsTable">
                             <tr>
                                 <th class="icon"></th>
-                                <!--<th></th>-->
                                 <th>Period</th>
                                 <th>Last Name</th>
                                 <th>First Name</th>
