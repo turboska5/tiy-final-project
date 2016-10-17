@@ -27,13 +27,14 @@ $(function () {
     //     return false; // this prevents the form from being submitted when the button is clicked.
     // });
 
-    //populate pagination
+    //pagination functionality
     $("#back").click(function(){
         if(currentPage > 0){
             listClasses(currentPage - 1);
         }
         return false;
     });
+    //pagination functionality
     $("#next").click(function(){
         if(currentPage < lastPage){
             listClasses(currentPage + 1);
@@ -43,68 +44,44 @@ $(function () {
 });
 
 function listClasses(page) {
+    //from input fields
     var classPeriod = $("#period").val();
     var className = $("#name").val();
     var classIdentifier = $("#identifier").val();
     currentPage = page;
 
-    $.get(
-        "/teacherClassUpdate?page=" + page + "&period=" + classPeriod + "&name=" + className + "&identifier=" + classIdentifier,
-        function (data) {
-            // setup the paginator display
-            var descriptionClass = $("#descriptionClass");
-            var start = data.number * data.size + 1;
-            var end = start + data.size;
-            var total = data.totalElements;
-            lastPage = Math.ceil(total / data.size) - 1;
-            descriptionClass.text(start + " - " + end + " of " + total);
+    $.get("/teacherClassUpdate?page=" + page + "&period=" + classPeriod + "&name=" + className + "&identifier=" + classIdentifier, function (data) {
+        //paginator display
+        var descriptionClass = $("#descriptionClass");
+        var start = data.number * data.size + 1;
+        var end = start + data.size;
+        var total = data.totalElements;
+        lastPage = Math.ceil(total / data.size) - 1;
+        descriptionClass.text(start + " - " + end + " of " + total);
 
-            var teacherClasses = $("#teacherClasses");
-            teacherClasses.empty();
-            teacherClasses.add(data)
+        //container for class results
+        var teacherClasses = $("#teacherClasses");
+        teacherClasses.empty();
 
+        // iterate over the classes from the ajax response
+        data.content.forEach(function(teacherClass){
+            var template = $("#template").clone();
+            template.removeAttr("id");
 
-            // // iterate over the widgets from the ajax response
-            // data.content.forEach(function( widget ){
-            //     var template = $("#template").clone();
-            //     template.removeAttr("id");
-            //
-            //     // set the image
-            //     var img = template.find("img");
-            //     img.attr("src", "/widget/image?id=" + widget.id);
-            //
-            //     // set the name
-            //     var widgetName = template.find(".widgetName");
-            //     if(loggedIn){
-            //         // user is logged in, make the widget name a link
-            //         widgetName.append("<a href='/editWidget?id=" + widget.id + "'>" + widget.name + "</a>")
-            //     } else {
-            //         // user is not logged in, just make the widget name be text
-            //         widgetName.append(widget.name);
-            //     }
-            //
-            //     // set the types
-            //     var types = $(".types");
-            //     types.empty();
-            //
-            //     widget.types.forEach(function( type ){
-            //         types.append("<li>" + type.type + "</li>");
-            //     });
-            //
-            //     // set the width, height, etc
-            //     template.find(".width").text(widget.width);
-            //     template.find(".height").text(widget.height);
-            //     template.find(".length").text(widget.length);
-            //     template.find(".weight").text(widget.weight);
-            //
-            //     // setup the notes
-            //     var a = template.find(".notesLink a");
-            //     a.attr("href", "/widgetNotes/?id=" + widget.id);
-            //
-            //     a.text(widget.notes.length + " notes..");
-            //
-            //
-            //     widgets.append(template);
-            // });
+            // set the attributes
+            template.find(".period").text(teacherClass.period);
+            template.find(".name").text(teacherClass.name);
+            template.find(".identifier").text(teacherClass.identifier);
+            template.find(".department").text(teacherClass.department);
+            template.find(".teacherName").text(teacherClass.teacherLastName + ", " + teacherClass.teacherFirstName);
+            template.find(".assignmentNumber").text(teacherClass.assignmentNumber);
+            template.find(".classAverage").text(teacherClass.classAverage);
+            teacherClass.append(template);
+        });
     });
 }
+
+// $.get( "ajax/test.html", function( data ) {
+//     $( ".result" ).html( data );
+//     alert( "Load was performed." );
+// });
