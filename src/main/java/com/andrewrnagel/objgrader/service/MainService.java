@@ -85,9 +85,9 @@ public class MainService {
         return this.adminRepository.findAll();
     }
 
-    public List<Admin> searchAllAdmins(String lastName, String firstName, String email, String title) {
-        return this.adminRepository.searchForAdmins(lastName, firstName, email, title);
-    }
+//    public List<Admin> searchAllAdmins(String lastName, String firstName, String email, String title) {
+//        return this.adminRepository.searchForAdmins(lastName, firstName, email, title);
+//    }
 
     public List<Teacher> getAllTeachers() {
         return this.teacherRepository.findAll();
@@ -101,9 +101,9 @@ public class MainService {
         return this.studentRepository.findAll();
     }
 
-    public List<Student> searchAllStudents(String lastName, String firstName, String email, String studentID, String grade) {
-        return this.studentRepository.searchForStudents(lastName, firstName, email, studentID, grade);
-    }
+//    public List<Student> searchAllStudents(String lastName, String firstName, String email, String studentID, String grade) {
+//        return this.studentRepository.searchForStudents(lastName, firstName, email, studentID, grade);
+//    }
 
     public User getUserByID(Integer id) {
         return userRepository.getById(id);
