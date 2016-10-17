@@ -40,8 +40,8 @@
                         <input name="period" id="period" class="InputField" type="text" placeholder="Period" th:value="*{period}"/>
                         <input name="name" id="name" class="InputField" type="text" placeholder="Class Name" th:value="*{name}"/>
                         <input name="identifier" id="identifier" class="InputField" type="text" placeholder="Class ID#" th:value="*{identifier}"/>
-                        <button id="searchClasses" class="SearchButton">Search</button>
-                        <button id="resetClasses" class="ResetButton">Reset</button>
+                        <button id="classSearch" class="SearchButton">Search</button>
+                        <button id="classReset" class="ResetButton">Reset</button>
                     </form>
                 </div>
                 <br/>
@@ -69,14 +69,14 @@
             <!--assignment manager search engine-->
             <article class="SearchParams">
                 <div id="AssigmentSearchParams">
-                    <form th:action="@{/teacherGradeBook}" th:object="${searchTeacherAssign}" method="get">
+                    <form class="searchForm" method="get">
                         <input name="aPeriod" id="aPeriod" class="InputField" placeholder="Period" th:value="*{aPeriod}" value=""/>
                         <input name="aName" id="aName" class="InputField" type="text" placeholder="Name" th:value="*{aName}"/>
                         <input name="aID" id="aID" class="InputField" placeholder="ID#" th:value="*{aID}"/>
                         <input name="aDate" id="aDate" class="InputField" placeholder="Date" th:value="*{aDate}"/>
                         <input name="aPoints" id="aPoints" class="InputField" placeholder="Points" th:value="*{aPoints}"/>
-                        <button class="SearchButton">Search</button>
-                        <button id="resetAssignments" class="ResetButton">Reset</button>
+                        <button id="assignSearch" class="SearchButton">Search</button>
+                        <button id="assignReset" class="ResetButton">Reset</button>
                     </form>
                 </div>
                 <div>
@@ -106,14 +106,14 @@
             <legend>Students</legend>
             <article class="SearchParams">
                 <div id="StudentSearchParams">
-                    <form th:action="@{/teacherGradeBook}" th:object="${searchTeacherStudents}" method="get">
+                    <form class="searchForm" method="get">
                         <input name="sPeriod" id="sPeriod" class="InputField" type="text" placeholder="Period" th:value="*{sPeriod}" value=""/>
                         <input name="sLastName" id="sLastName" class="InputField" type="text" placeholder="Last Name" th:value="*{sLastName}"/>
                         <input name="sFirstName" id="sFirstName" class="InputField" type="text" placeholder="First Name" th:value="*{sFirstName}"/>
                         <input name="sAName" id="sAName" class="InputField" type="text" placeholder="Name" value="" th:value="*{sAName}"/>
                         <input name="sAID" id="sAID" class="InputField" type="text" placeholder="ID#" th:value="*{sAID}"/>
-                        <button class="SearchButton">Search</button>
-                        <button id="resetStudents" class="ResetButton">Reset</button>
+                        <button id="studentSearch" class="SearchButton">Search</button>
+                        <button id="studentReset" class="ResetButton">Reset</button>
                     </form>
                 </div>
                 <br/>
