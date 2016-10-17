@@ -40,7 +40,6 @@ $(function () {
         }
         return false;
     });
-
 });
 
 function listClasses(page) {
@@ -53,16 +52,16 @@ function listClasses(page) {
         "/teacherClassUpdate?page=" + page + "&period=" + classPeriod + "&name=" + className + "&identifier=" + classIdentifier,
         function (data) {
             // setup the paginator display
-            // var descriptionClass = $("#descriptionClass");
-            // var start = data.number * data.size + 1;
-            // var end = start + data.size;
-            // var total = data.totalElements;
-            // lastPage = Math.ceil(total / data.size) - 1;
-            // descriptionClass.text(start + " - " + end + " of " + total);
+            var descriptionClass = $("#descriptionClass");
+            var start = data.number * data.size + 1;
+            var end = start + data.size;
+            var total = data.totalElements;
+            lastPage = Math.ceil(total / data.size) - 1;
+            descriptionClass.text(start + " - " + end + " of " + total);
 
             // var classes = $("#classes");
             // classes.empty();
-            classes.add(data)
+            // classes.add(data)
 
 
             // // iterate over the widgets from the ajax response
