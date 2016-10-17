@@ -55,37 +55,4 @@ public class MainController {
             mainService.gradePost(gradeID, earnedPoints);
         }
     }
-    @GetMapping("/teacherClassUpdate")
-    @ResponseBody
-    public Page<AcademicClass> teacherGradeBookPageClassUpdate(SearchTeacherClasses searchTeacherClasses,
-                                                               @PageableDefault(size = 2, sort = "period") Pageable pageable,
-                                                               HttpSession session) throws SQLException {
-        if (!(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2))) {
-            Teacher teacher = (Teacher) session.getAttribute("teacher");
-            return mainService.listClasses(searchTeacherClasses, teacher.getTeacherID(), pageable);
-        }
-        return null;
-    }
-    @GetMapping(value = "/teacherAssignUpdate")
-    @ResponseBody
-    public Page<Grade> teacherGradeBookPageAssignUpdate(SearchTeacherAssign searchTeacherAssign,
-                                                        @PageableDefault(size = 2, sort = "aName") Pageable pageable,
-                                                        HttpSession session) throws SQLException {
-        if (!(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2))) {
-            Teacher teacher = (Teacher) session.getAttribute("teacher");
-            return mainService.listAssignments(searchTeacherAssign, teacher.getTeacherID(), pageable);
-        }
-        return null;
-    }
-    @GetMapping(value = "/teacherStudentUpdate")
-    @ResponseBody
-    public Page<Grade> teacherGradeBookPageStudentUpdate(SearchTeacherStudents searchTeacherStudents,
-                                                         @PageableDefault(size = 2, sort = "sLastName") Pageable pageable,
-                                                         HttpSession session) throws SQLException {
-        if (!(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2))) {
-            Teacher teacher = (Teacher) session.getAttribute("teacher");
-            return mainService.listStudents(searchTeacherStudents, teacher.getTeacherID(), pageable);
-        }
-        return null;
-    }
 }

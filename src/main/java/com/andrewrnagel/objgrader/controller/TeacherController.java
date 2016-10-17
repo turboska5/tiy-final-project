@@ -118,6 +118,27 @@ public class TeacherController {
         }
         return "teacherGradeBook";
     }
+    @RequestMapping(value = "/classTable")
+    public String populateClassData(SearchTeacherClasses searchTeacherClasses, @PageableDefault(size = 2, sort = "period") Pageable pageable,
+                                    Model model, HttpSession session) {
+        Teacher teacher = (Teacher)session.getAttribute("teacher");
+        model.addAttribute("classList", mainService.listClasses(searchTeacherClasses, teacher.getTeacherID(), pageable));
+        return "teacherGradeBook/classesTable";
+    }
+    @RequestMapping(value = "/assignTable")
+    public String populateAssignData(SearchTeacherAssign searchTeacherAssign, @PageableDefault(size = 2, sort = "period") Pageable pageable,
+                                     Model model, HttpSession session) {
+        Teacher teacher = (Teacher)session.getAttribute("teacher");
+        model.addAttribute("assignmentList", mainService.listAssignments(searchTeacherAssign, teacher.getTeacherID(), pageable));
+        return "teacherGradeBook/assignmentTable";
+    }
+    @RequestMapping(value = "/studentTable")
+    public String populateStudentData(SearchTeacherStudents searchTeacherStudents, @PageableDefault(size = 2, sort = "period") Pageable pageable,
+                                      Model model, HttpSession session) {
+        Teacher teacher = (Teacher)session.getAttribute("teacher");
+        model.addAttribute("studentList", mainService.listStudents(searchTeacherStudents, teacher.getTeacherID(), pageable));
+        return "teacherGradeBook/studentTable";
+    }
     @RequestMapping(value = "/teacherManageAssign", method = RequestMethod.GET)
     public String teacherGradeBookAssignForm(Model model, HttpSession session,
                                              @RequestParam(defaultValue = "0") Integer gradeID) {
@@ -165,15 +186,5 @@ public class TeacherController {
         }
         mainService.saveAssignment(grade);
         return "redirect:/teacherGradeBook";
-    }
-
-
-
-    @RequestMapping(value = "/classTable")
-    public String populateClassDate(SearchTeacherClasses searchTeacherClasses, @PageableDefault(size = 2, sort = "period") Pageable pageable,
-                                    Model model, HttpSession session) {
-        Teacher teacher = (Teacher)session.getAttribute("teacher");
-        model.addAttribute("classList", mainService.listClasses(searchTeacherClasses, teacher.getTeacherID(), pageable));
-        return "teacherGradeBook/classesTable";
     }
 }
