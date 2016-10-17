@@ -11,17 +11,14 @@
             <th>Average</th>
         </tr>
         <tr th:each="academicClass : ${classList}">
-        <td class="buttonArea">
-        <a><button class="editicon"></button></a>
-        <a><button class="classicicon"></button></a>
-        </td>
-        <td th:text="${academicClass.period}">1</td>
-        <td th:text="${academicClass.name}">PHYSICS 101</td>
-        <td th:text="${academicClass.identifier}">SCIPHY101A</td>
-        <td th:text="${academicClass.department}">Science</td>
-        <td th:text="${academicClass.teacher.lastName + ', ' + academicClass.teacher.firstName}">MR. NAGEL</td>
-        <td th:text="${academicClass.assignmentNumber}">13</td>
-        <td th:text="${academicClass.classAverage + '%'}">92.4</td>
+            <td class="buttonArea"><a><button class="editicon"></button></a><a><button class="classicicon"></button></a></td>
+            <td th:text="${academicClass.period}">1</td>
+            <td th:text="${academicClass.name}">PHYSICS 101</td>
+            <td th:text="${academicClass.identifier}">SCIPHY101A</td>
+            <td th:text="${academicClass.department}">Science</td>
+            <td th:text="${academicClass.teacher.lastName + ', ' + academicClass.teacher.firstName}">MR. NAGEL</td>
+            <td th:text="${academicClass.assignmentNumber}">13</td>
+            <td th:text="${academicClass.classAverage + '%'}">92.4</td>
         </tr>
     </table>
 </div>

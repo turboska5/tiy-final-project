@@ -1,4 +1,4 @@
-<div xmlns:th="http://thymeleaf.org" id="ClassResults">
+<div xmlns:th="http://thymeleaf.org" id="StudentResults">
     <table class="ResultsTable">
         <tr>
             <th class="icon"></th>
@@ -12,9 +12,7 @@
         </tr>
         <tr th:each="grade : ${studentList}">
             <form>
-                <td>
-                    <a><button class="noteicon"></button></a>
-                </td>
+                <td><a><button class="noteicon"></button></a></td>
                 <td th:text="${grade.academicClass.period}">1</td>
                 <td th:text="${grade.student.lastName}">SMITH</td>
                 <td th:text="${grade.student.firstName}">MATTHEW</td>

@@ -1,14 +1,14 @@
 $(function() {
     $.get("/classTable", function(data) {
-        $("#ClassOutput").empty();
-        $("#ClassOutput").append(data);
+        $("#classOutput").empty();
+        $("#classOutput").append(data);
     })
     $.get("/assignTable", function(data) {
-        $("#ClassOutput").empty();
-        $("#ClassOutput").append(data);
+        $("#assignmentOutput").empty();
+        $("#assignmentOutput").append(data);
     })
     $.get("/studentTable", function(data) {
-        $("#ClassOutput").empty();
-        $("#ClassOutput").append(data);
+        $("#studentOutput").empty();
+        $("#studentOutput").append(data);
     })
 })

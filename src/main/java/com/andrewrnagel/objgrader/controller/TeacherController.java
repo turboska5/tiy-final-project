@@ -121,20 +121,29 @@ public class TeacherController {
     @RequestMapping(value = "/classTable")
     public String populateClassData(SearchTeacherClasses searchTeacherClasses, @PageableDefault(size = 2, sort = "period") Pageable pageable,
                                     Model model, HttpSession session) {
+        if (session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
+            return "redirect:/logout";
+        }
         Teacher teacher = (Teacher)session.getAttribute("teacher");
         model.addAttribute("classList", mainService.listClasses(searchTeacherClasses, teacher.getTeacherID(), pageable));
         return "teacherGradeBook/classesTable";
     }
     @RequestMapping(value = "/assignTable")
-    public String populateAssignData(SearchTeacherAssign searchTeacherAssign, @PageableDefault(size = 2, sort = "period") Pageable pageable,
+    public String populateAssignData(SearchTeacherAssign searchTeacherAssign, @PageableDefault(size = 2, sort = "academicClass.period") Pageable pageable,
                                      Model model, HttpSession session) {
+        if (session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
+            return "redirect:/logout";
+        }
         Teacher teacher = (Teacher)session.getAttribute("teacher");
         model.addAttribute("assignmentList", mainService.listAssignments(searchTeacherAssign, teacher.getTeacherID(), pageable));
         return "teacherGradeBook/assignmentTable";
     }
     @RequestMapping(value = "/studentTable")
-    public String populateStudentData(SearchTeacherStudents searchTeacherStudents, @PageableDefault(size = 2, sort = "period") Pageable pageable,
+    public String populateStudentData(SearchTeacherStudents searchTeacherStudents, @PageableDefault(size = 2, sort = "academicClass.period") Pageable pageable,
                                       Model model, HttpSession session) {
+        if (session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
+            return "redirect:/logout";
+        }
         Teacher teacher = (Teacher)session.getAttribute("teacher");
         model.addAttribute("studentList", mainService.listStudents(searchTeacherStudents, teacher.getTeacherID(), pageable));
         return "teacherGradeBook/studentTable";
