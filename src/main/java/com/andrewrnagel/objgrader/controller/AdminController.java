@@ -190,9 +190,6 @@ public class AdminController {
         model.addAttribute("date", mainService.getDate());
         model.addAttribute("day", mainService.getTimeOfDay());
         model.addAttribute("userName", session.getAttribute("userName"));
-        model.addAttribute("adminList", mainService.getAllAdmins());
-        model.addAttribute("teacherList", mainService.getAllTeachers());
-        model.addAttribute("studentList", mainService.getAllStudents());
         return "adminUsers";
     }
     @RequestMapping(value = "/adminUserTable")

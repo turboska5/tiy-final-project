@@ -3,6 +3,7 @@ package com.andrewrnagel.objgrader.bean;
 /**
  * Created by Jimmy and Andrew on 10/18/16.
  */
+
 public class SearchUsersStudent {
     private String sLastName = null;
     private String sFirstName = null;
@@ -24,6 +25,7 @@ public class SearchUsersStudent {
     public String getsLastName() {
         return sLastName;
     }
+
     public String getsLastNameForSearch(){
         return sLastName == null || sLastName.equals("") ? "" : "%" + sLastName + "%";
     }
@@ -35,6 +37,7 @@ public class SearchUsersStudent {
     public String getsFirstName() {
         return sFirstName;
     }
+
     public String getsFirstNameForSearch(){
         return sFirstName == null || sFirstName.equals("") ? "" : "%" + sFirstName + "%";
     }
@@ -46,6 +49,7 @@ public class SearchUsersStudent {
     public String getsEmail() {
         return sEmail;
     }
+
     public String getsEmailForSearch(){
         return sEmail == null || sEmail.equals("") ? "" : "%" + sEmail + "%";
     }
@@ -57,6 +61,7 @@ public class SearchUsersStudent {
     public String getsID() {
         return sID;
     }
+
     public String getsIDForSearch(){
         return sID == null || sID.equals("") ? "" : "%" + sID + "%";
     }
