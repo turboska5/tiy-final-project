@@ -3,7 +3,7 @@
  */
 
 //global pagination support
-var adminPerPage = 5, teacherPerPage = 5, studentsPerPage = 5;
+var adminPerPage = 2, teacherPerPage = 2, studentsPerPage = 2;
 var currentPage = 0, lastPage = 0;
 var currentTPage = 0, lastTPage = 0;
 var currentSPage = 0, lastSPage = 0;

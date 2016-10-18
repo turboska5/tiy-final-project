@@ -22,7 +22,7 @@ banner div, .nav-links, li a:hover, .current, a:link, a:visited, a:hover, a:acti
 a {
     text-decoration: none;
 }
-/*!*Admin Only: Pagination of User fields*!*/
-/*#description, #descriptionAssign, #descriptionStudent {*/
-    /*font-size: small;*/
-/*}*/
+/*Admin Only: Pagination of User fields*/
+#descriptionAdmin, #descriptionTeacher, #descriptionStudent {
+    font-size: small;
+}

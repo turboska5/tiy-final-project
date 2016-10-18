@@ -338,4 +338,29 @@ public class MainService {
     public Page<Grade> listStudents(SearchTeacherStudents search, Integer teacherID, Pageable pageable) {
         return gradeRepo.searchStudents(search.getsPeriod(), search.getsLastNameForSearch(), search.getsFirstNameForSearch(), search.getsANameForSearch(), search.getsAIDForSearch(), teacherID, pageable);
     }
+
+    //Admin page ajax content
+    public Integer listAllAdmins(SearchUsersAdmin searchUsersAdmin) {
+        return this.adminRepository.findAllWithoutPages(searchUsersAdmin).size();
+    }
+
+    public Page<Admin> listAdmins(SearchUsersAdmin searchUsersAdmin, Pageable pageable) {
+        return this.adminRepository.findAllWithPages(searchUsersAdmin, pageable);
+    }
+
+    public Integer listAllTeachers(SearchUsersTeacher searchUsersTeacher) {
+        return this.teacherRepository.finaAllWithoutPages(searchUsersTeacher).size();
+    }
+
+    public Page<Teacher> listTeachers(SearchUsersTeacher searchUsersTeacher, Pageable pageable) {
+        return this.teacherRepository.finaAllWithPages(searchUsersTeacher, pageable);
+    }
+
+    public Integer listAllStudents(SearchUsersStudent searchUsersStudent) {
+        return this.studentRepository.finaAllWithoutPages(searchUsersStudent).size();
+    }
+
+    public Page<Student> listStudents(SearchUsersStudent searchUsersStudent, Pageable pageable) {
+        return this.studentRepository.finaAllWithPages(searchUsersStudent, pageable);
+    }
 }

@@ -4,6 +4,8 @@ import com.andrewrnagel.objgrader.entity.*;
 import com.andrewrnagel.objgrader.misc.PasswordStorage;
 import com.andrewrnagel.objgrader.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -189,6 +191,39 @@ public class AdminController {
         model.addAttribute("teacherList", mainService.getAllTeachers());
         model.addAttribute("studentList", mainService.getAllStudents());
         return "adminUsers";
+    }
+    @RequestMapping(value = "/adminTable")
+    public String populateClassData(SearchUsersAdmin searchUsersAdmin, @PageableDefault(size = 2, sort = "lastName") Pageable pageable,
+                                    @RequestParam(defaultValue = "0") Integer page,
+                                    Model model, HttpSession session) {
+        if (session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
+            return "redirect:/logout";
+        }
+        model.addAttribute("adminListSize", mainService.listAllAdmins(searchUsersAdmin));
+        model.addAttribute("adminList", mainService.listAdmins(searchUsersAdmin, pageable));
+        return "adminUsers/adminUser";
+    }
+    @RequestMapping(value = "/teacherTable")
+    public String populateClassData(SearchUsersTeacher searchUsersTeacher, @PageableDefault(size = 2, sort = "lastName") Pageable pageable,
+                                    @RequestParam(defaultValue = "0") Integer tPage,
+                                    Model model, HttpSession session) {
+        if (session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
+            return "redirect:/logout";
+        }
+        model.addAttribute("teacherListSize", mainService.listAllTeachers(searchUsersTeacher));
+        model.addAttribute("teacherList", mainService.listTeachers(searchUsersTeacher, pageable));
+        return "adminUsers/teacherUser";
+    }
+    @RequestMapping(value = "/studentTable")
+    public String populateClassData(SearchUsersStudent searchUsersStudent, @PageableDefault(size = 2, sort = "lastName") Pageable pageable,
+                                    @RequestParam(defaultValue = "0") Integer sPage,
+                                    Model model, HttpSession session) {
+        if (session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
+            return "redirect:/logout";
+        }
+        model.addAttribute("studentListSize", mainService.listAllStudents(searchUsersStudent));
+        model.addAttribute("studentList", mainService.listStudents(searchUsersStudent, pageable));
+        return "adminUsers/studentUser";
     }
     @RequestMapping(value = "/adminManageAdmin", method = RequestMethod.GET)
     public String adminUserAdminForm(Model model, HttpSession session,  @RequestParam(defaultValue = "0") Integer adminID) {
