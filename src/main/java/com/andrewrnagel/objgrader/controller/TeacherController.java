@@ -120,6 +120,7 @@ public class TeacherController {
     }
     @RequestMapping(value = "/classTable")
     public String populateClassData(SearchTeacherClasses searchTeacherClasses, @PageableDefault(size = 2, sort = "period") Pageable pageable,
+                                    @RequestParam(defaultValue = "0") Integer page,
                                     Model model, HttpSession session) {
         if (session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
             return "redirect:/logout";
@@ -130,6 +131,7 @@ public class TeacherController {
     }
     @RequestMapping(value = "/assignTable")
     public String populateAssignData(SearchTeacherAssign searchTeacherAssign, @PageableDefault(size = 2, sort = "academicClass.period") Pageable pageable,
+                                     @RequestParam(defaultValue = "0") Integer aPage,
                                      Model model, HttpSession session) {
         if (session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
             return "redirect:/logout";
@@ -140,6 +142,7 @@ public class TeacherController {
     }
     @RequestMapping(value = "/studentTable")
     public String populateStudentData(SearchTeacherStudents searchTeacherStudents, @PageableDefault(size = 2, sort = "academicClass.period") Pageable pageable,
+                                      @RequestParam(defaultValue = "0") Integer sPagec,
                                       Model model, HttpSession session) {
         if (session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
             return "redirect:/logout";
