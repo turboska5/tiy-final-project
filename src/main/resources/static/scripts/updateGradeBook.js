@@ -67,6 +67,7 @@ $(function() {
         return false; // this prevents the form from being submitted when the button is clicked.
     });
 
+    //next
     $("#next").click(function(){
         if (currentPage < lastPage) {
             page = (currentPage + 1);
@@ -94,6 +95,7 @@ $(function() {
         return false; // this prevents the form from being submitted when the button is clicked.
     });
 
+    //back
     $("#back").click(function(){
         if (currentPage > 0) {
             page = (currentPage- 1);
@@ -120,13 +122,23 @@ $(function() {
         }
         return false; // this prevents the form from being submitted when the button is clicked.
     });
+
     //supporting functions
     function classSearch(classQuery) {
+        //retrieve results
         $.get(classQuery, function(data) {
             $("#classOutput").empty();
             $("#classOutput").append(data);
             lastPage = Math.ceil(total/data.size) - 1;
         })
+
+        //populate pagination based on results
+        // var start = data.number * data.size  + 1;
+        // var end = start + data.size;
+        // var total = data.totalElements;
+        // lastPage = Math.ceil(total/data.size) - 1;
+        $("#description").text("1" + " - " + "2" + " of " + "3");
+
     }
     function assignSearch(assignQuery) {
         $.get(assignQuery, function(data) {
@@ -134,6 +146,9 @@ $(function() {
             $("#assignmentOutput").append(data);
             lastAPage = Math.ceil(total/data.size) - 1;
         })
+
+        //populate pagination based on results
+        $("#descriptionAssign").text("1" + " - " + "2" + " of " + "3");
     }
     function studentSearch(studentQuery) {
         $.get(studentQuery, function(data) {
@@ -141,5 +156,8 @@ $(function() {
             $("#studentOutput").append(data);
             lastSPage = Math.ceil(total/data.size) - 1;
         })
+
+        //populate pagination based on results
+        $("#descriptionStudent").text("1" + " - " + "2" + " of " + "3");
     }
 });

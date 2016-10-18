@@ -33,3 +33,7 @@ a {
     height: 3.5em;
     resize: vertical;
 }
+/*Teacher Only: Pagination of Gradebook fields*/
+#description, #descriptionAssign, #descriptionStudent {
+    font-size: small;
+}
