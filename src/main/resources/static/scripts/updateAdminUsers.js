@@ -10,34 +10,27 @@ var currentSPage = 0, lastSPage = 0;
 
 $(function() {
     onLoad();
-    //button management
-    adminButtonToggle();
-    teacherButtonToggle();
-    studentButtonToggle();
 
     //button functions
     //search button
     $("#adminSearch").click(function(){
         currentPage = 0;
         adminButtonToggle();
-        var query = "/adminUserTable?page=" + currentPage + "&lastName=" + $("#lastName").val() + "&firstName=" + $("#firstName").val() + "&email=" + $("#email").val()
-            + "&title=" + $("#title").val();
+        var query = "/adminUserTable?page=" + currentPage + "&lastName=" + $("#lastName").val() + "&firstName=" + $("#firstName").val() + "&email=" + $("#email").val() + "&title=" + $("#title").val();
         adminSearch(query);
         return false; // this prevents the form from being submitted when the button is clicked.
     });
     $("#teacherSearch").click(function(){
         currentTPage = 0;
         teacherButtonToggle();
-        var query = "/teacherUserTable?page=" + currentTPage + "&tLastName=" + $("#tLastName").val() + "&tFirstName=" + $("#tFirstName").val() + "&tEmail=" + $("#tEmail").val()
-            + "&department=" + $("#department").val();
+        var query = "/teacherUserTable?page=" + currentTPage + "&tLastName=" + $("#tLastName").val() + "&tFirstName=" + $("#tFirstName").val() + "&tEmail=" + $("#tEmail").val() + "&department=" + $("#department").val();
         teacherSearch(query);
         return false; // this prevents the form from being submitted when the button is clicked.
     });
     $("#studentSearch").click(function(){
         currentSPage = 0;
         studentButtonToggle();
-        var query = "/studentUserTable?page=" + currentSPage + "&sLastName=" + $("#sLastName").val() + "&sFirstName=" + $("#sFirstName").val() + "&sEmail=" + $("#sEmail").val()
-            + "&sID=" + $("#sID").val() + "&grade=" + $("#grade").val();
+        var query = "/studentUserTable?page=" + currentSPage + "&sLastName=" + $("#sLastName").val() + "&sFirstName=" + $("#sFirstName").val() + "&sEmail=" + $("#sEmail").val() + "&sID=" + $("#sID").val() + "&grade=" + $("#grade").val();
         studentSearch(query);
         return false; // this prevents the form from being submitted when the button is clicked.
     });
@@ -77,8 +70,7 @@ $(function() {
     $("#adminNext").click(function(){
         if (currentPage < lastPage) {
             currentPage++;
-            var query = "/adminUserTable?page=" + currentPage + "&lastName=" + $("#lastName").val() + "&firstName=" + $("#firstName").val() + "&email=" + $("#email").val()
-                + "&title=" + $("#title").val();
+            var query = "/adminUserTable?page=" + currentPage + "&lastName=" + $("#lastName").val() + "&firstName=" + $("#firstName").val() + "&email=" + $("#email").val() + "&title=" + $("#title").val();
             adminSearch(query);
             adminButtonToggle();
         }
@@ -87,8 +79,7 @@ $(function() {
     $("#teacherNext").click(function(){
         if (currentTPage < lastTPage) {
             currentTPage++;
-            var query = "/teacherUserTable?page=" + currentTPage + "&tLastName=" + $("#tLastName").val() + "&tFirstName=" + $("#tFirstName").val() + "&tEmail=" + $("#tEmail").val()
-                + "&department=" + $("#department").val();
+            var query = "/teacherUserTable?page=" + currentTPage + "&tLastName=" + $("#tLastName").val() + "&tFirstName=" + $("#tFirstName").val() + "&tEmail=" + $("#tEmail").val() + "&department=" + $("#department").val();
             teacherSearch(query);
             teacherButtonToggle();
         }
@@ -97,8 +88,7 @@ $(function() {
     $("#studentNext").click(function(){
         if (currentSPage < lastSPage) {
             currentSPage++;
-            var query = "/studentUserTable?page=" + currentSPage + "&sLastName=" + $("#sLastName").val() + "&sFirstName=" + $("#sFirstName").val() + "&sEmail=" + $("#sEmail").val()
-                + "&sID=" + $("#sID").val() + "&grade=" + $("#grade").val();
+            var query = "/studentUserTable?page=" + currentSPage + "&sLastName=" + $("#sLastName").val() + "&sFirstName=" + $("#sFirstName").val() + "&sEmail=" + $("#sEmail").val() + "&sID=" + $("#sID").val() + "&grade=" + $("#grade").val();
             studentSearch(query);
             studentButtonToggle();
         }
@@ -108,8 +98,7 @@ $(function() {
     $("#back").click(function(){
         if (currentPage > 0) {
             currentPage--;
-            var query = "/adminUserTable?page=" + currentPage + "&lastName=" + $("#lastName").val() + "&firstName=" + $("#firstName").val() + "&email=" + $("#email").val()
-                + "&title=" + $("#title").val();
+            var query = "/adminUserTable?page=" + currentPage + "&lastName=" + $("#lastName").val() + "&firstName=" + $("#firstName").val() + "&email=" + $("#email").val() + "&title=" + $("#title").val();
             adminSearch(query);
             adminButtonToggle();
         }
@@ -118,8 +107,7 @@ $(function() {
     $("#teacherBack").click(function(){
         if (currentTPage > 0) {
             currentTPage--;
-            var query = "/teacherUserTable?page=" + currentTPage + "&tLastName=" + $("#tLastName").val() + "&tFirstName=" + $("#tFirstName").val() + "&tEmail=" + $("#tEmail").val()
-                + "&department=" + $("#department").val();
+            var query = "/teacherUserTable?page=" + currentTPage + "&tLastName=" + $("#tLastName").val() + "&tFirstName=" + $("#tFirstName").val() + "&tEmail=" + $("#tEmail").val() + "&department=" + $("#department").val();
             teacherSearch(query);
             teacherButtonToggle();
         }
@@ -128,8 +116,7 @@ $(function() {
     $("#studentBack").click(function(){
         if (currentSPage > 0) {
             currentSPage--;
-            var query = "/studentUserTable?page=" + currentSPage + "&sLastName=" + $("#sLastName").val() + "&sFirstName=" + $("#sFirstName").val() + "&sEmail=" + $("#sEmail").val()
-                + "&sID=" + $("#sID").val() + "&grade=" + $("#grade").val();
+            var query = "/studentUserTable?page=" + currentSPage + "&sLastName=" + $("#sLastName").val() + "&sFirstName=" + $("#sFirstName").val() + "&sEmail=" + $("#sEmail").val() + "&sID=" + $("#sID").val() + "&grade=" + $("#grade").val();
             studentSearch(query);
             studentButtonToggle();
         }

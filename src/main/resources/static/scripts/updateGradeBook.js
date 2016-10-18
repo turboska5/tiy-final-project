@@ -11,6 +11,7 @@ var currentSPage = 0, lastSPage = 0;
 $(function() {
     onLoad();
 
+    //button functions
     //search button
     $("#classSearch").click(function(){
         currentPage = 0;
@@ -22,16 +23,14 @@ $(function() {
     $("#assignSearch").click(function(){
         currentAPage = 0;
         assignButtonToggle();
-        var query = "/assignTable?page=" + currentAPage + "&aPeriod=" + $("#aPeriod").val() + "&aName=" + $("#aName").val() + "&aID=" + $("#aID").val()
-            + "&aDate=" + $("#aDate").val() + "&aPoints=" + $("#aPoints").val();
+        var query = "/assignTable?page=" + currentAPage + "&aPeriod=" + $("#aPeriod").val() + "&aName=" + $("#aName").val() + "&aID=" + $("#aID").val() + "&aDate=" + $("#aDate").val() + "&aPoints=" + $("#aPoints").val();
         assignSearch(query);
         return false; // this prevents the form from being submitted when the button is clicked.
     });
     $("#studentSearch").click(function(){
         currentSPage = 0;
         studentButtonToggle();
-        var query = "/studentTable?page=" + currentSPage + "&sPeriod=" + $("#sPeriod").val() + "&sLastName=" + $("#sLastName").val() + "&sFirstName=" + $("#sFirstName").val()
-            + "&sAName=" + $("#sAName").val() + "&sAID=" + $("#sAID").val();
+        var query = "/studentTable?page=" + currentSPage + "&sPeriod=" + $("#sPeriod").val() + "&sLastName=" + $("#sLastName").val() + "&sFirstName=" + $("#sFirstName").val() + "&sAName=" + $("#sAName").val() + "&sAID=" + $("#sAID").val();
         studentSearch(query);
         return false; // this prevents the form from being submitted when the button is clicked.
     });
@@ -80,8 +79,7 @@ $(function() {
     $("#assignNext").click(function(){
         if (currentAPage < lastAPage) {
             currentAPage++;
-            var query = "/assignTable?page=" + currentAPage + "&aPeriod=" + $("#aPeriod").val() + "&aName=" + $("#aName").val() + "&aID=" + $("#aID").val()
-                + "&aDate=" + $("#aDate").val() + "&aPoints=" + $("#aPoints").val();
+            var query = "/assignTable?page=" + currentAPage + "&aPeriod=" + $("#aPeriod").val() + "&aName=" + $("#aName").val() + "&aID=" + $("#aID").val() + "&aDate=" + $("#aDate").val() + "&aPoints=" + $("#aPoints").val();
             assignSearch(query);
             assignButtonToggle();
         }
@@ -90,8 +88,7 @@ $(function() {
     $("#studentNext").click(function(){
         if (currentSPage < lastSPage) {
             currentSPage++;
-            var query = "/studentTable?page=" + currentSPage + "&sPeriod=" + $("#sPeriod").val() + "&sLastName=" + $("#sLastName").val() + "&sFirstName=" + $("#sFirstName").val()
-                + "&sAName=" + $("#sAName").val() + "&sAID=" + $("#sAID").val();
+            var query = "/studentTable?page=" + currentSPage + "&sPeriod=" + $("#sPeriod").val() + "&sLastName=" + $("#sLastName").val() + "&sFirstName=" + $("#sFirstName").val() + "&sAName=" + $("#sAName").val() + "&sAID=" + $("#sAID").val();
             studentSearch(query);
             studentButtonToggle();
         }
@@ -110,8 +107,7 @@ $(function() {
     $("#assignBack").click(function(){
         if (currentAPage > 0) {
             currentAPage--;
-            var query = "/assignTable?page=" + currentAPage + "&aPeriod=" + $("#aPeriod").val() + "&aName=" + $("#aName").val() + "&aID=" + $("#aID").val()
-                + "&aDate=" + $("#aDate").val() + "&aPoints=" + $("#aPoints").val();
+            var query = "/assignTable?page=" + currentAPage + "&aPeriod=" + $("#aPeriod").val() + "&aName=" + $("#aName").val() + "&aID=" + $("#aID").val() + "&aDate=" + $("#aDate").val() + "&aPoints=" + $("#aPoints").val();
             assignSearch(query);
             assignButtonToggle();
         }
@@ -120,8 +116,7 @@ $(function() {
     $("#studentBack").click(function(){
         if (currentSPage > 0) {
             currentSPage--;
-            var query = "/studentTable?page=" + currentSPage + "&sPeriod=" + $("#sPeriod").val() + "&sLastName=" + $("#sLastName").val() + "&sFirstName=" + $("#sFirstName").val()
-                + "&sAName=" + $("#sAName").val() + "&sAID=" + $("#sAID").val();
+            var query = "/studentTable?page=" + currentSPage + "&sPeriod=" + $("#sPeriod").val() + "&sLastName=" + $("#sLastName").val() + "&sFirstName=" + $("#sFirstName").val() + "&sAName=" + $("#sAName").val() + "&sAID=" + $("#sAID").val();
             studentSearch(query);
             studentButtonToggle();
         }
