@@ -144,7 +144,7 @@ public class TeacherController {
     }
     @RequestMapping(value = "/studentTable")
     public String populateStudentData(SearchTeacherStudents searchTeacherStudents, @PageableDefault(size = 5, sort = "academicClass.period") Pageable pageable,
-                                      @RequestParam(defaultValue = "0") Integer sPagec,
+                                      @RequestParam(defaultValue = "0") Integer sPage,
                                       Model model, HttpSession session) {
         if (session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
             return "redirect:/logout";

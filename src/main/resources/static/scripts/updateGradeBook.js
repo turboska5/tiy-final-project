@@ -4,23 +4,21 @@ var currentAPage = 0, lastAPage = 0;
 var currentSPage = 0, lastSPage = 0;
 
 $(function() {
-    //on load
+    //on load variables
     var page = 0;
     var aPage = 0;
     var sPage = 0;
-
-    //preload tables
-    classSearch("/classTable?period=" + $("#period").val());
-    assignSearch("/assignTable?aPeriod=" + $("#period").val());
-    studentSearch("/studentTable?sPeriod=" + $("#period").val());
     //disable back button
     $("#back").prop("disabled", true);
     $("#assignBack").prop("disabled", true);
     $("#studentBack").prop("disabled", true);
-
+    //preload tables to display
+    classSearch("/classTable?period=" + $("#period").val());
+    assignSearch("/assignTable?aPeriod=" + $("#period").val());
+    studentSearch("/studentTable?sPeriod=" + $("#period").val());
 
     //button functions
-    //search
+    //search button
     $("#classSearch").click(function(){
         currentPage = page;
         var query = "/classTable?page=" + page + "&period=" + $("#period").val() + "&name=" + $("#name").val() + "&identifier=" + $("#identifier").val();
@@ -44,8 +42,7 @@ $(function() {
         $("#studentBack").prop("disabled", true);
         return false; // this prevents the form from being submitted when the button is clicked.
     });
-
-    //reset
+    //reset button
     $("#classReset").click(function(){
         $("#period").val("");
         $("#name").val("");
@@ -74,13 +71,9 @@ $(function() {
         $("#studentBack").prop("disabled", true);
         return false; // this prevents the form from being submitted when the button is clicked.
     });
-
-    //next
+    //next button
     $("#next").click(function(){
-        alert("sdfgg");
-
         if (currentPage < lastPage) {
-            alert("dogg");
             page = (currentPage + 1);
             var query = "/classTable?page=" + page + "&period=" + $("#period").val() + "&name=" + $("#name").val() + "&identifier=" + $("#identifier").val();
             classSearch(query);
@@ -108,8 +101,7 @@ $(function() {
         }
         return false; // this prevents the form from being submitted when the button is clicked.
     });
-
-    //back
+    //back button
     $("#back").click(function(){
         if (currentPage > 0) {
             page = (currentPage - 1);
@@ -147,9 +139,9 @@ $(function() {
     function classSearch(classQuery) {
         //retrieve results
         $.get(classQuery, function(data) {
+            //clear existing data and refresh with new
             $("#classOutput").empty();
             $("#classOutput").append(data);
-
             //populate pagination based on results
             var totalCount = $("#classListSize").val();
             var onPageCount = $(data).find('.displayedClass').length;
@@ -158,13 +150,12 @@ $(function() {
             // var end = start + data.size;
             $("#description").text("1" + " - " + "2" + " of " + totalCount);
         });
-
     }
     function assignSearch(assignQuery) {
         $.get(assignQuery, function(data) {
+            //clear existing data and refresh with new
             $("#assignmentOutput").empty();
             $("#assignmentOutput").append(data);
-
             //populate pagination based on results
             var totalCount = $("#assignListSize").val();
             var onPageCount = $(data).find('.displayedAssignment').length;
@@ -176,9 +167,9 @@ $(function() {
     }
     function studentSearch(studentQuery) {
         $.get(studentQuery, function(data) {
+            //clear existing data and refresh with new
             $("#studentOutput").empty();
             $("#studentOutput").append(data);
-
             //populate pagination based on results
             var totalCount = $("#studentListSize").val();
             var onPageCount = $(data).find('.displayedStudent').length;
