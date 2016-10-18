@@ -315,12 +315,24 @@ public class MainService {
     }
 
     //Teacher page ajax content
+    public Integer listAllClasses(SearchTeacherClasses search, Integer teacherID) {
+        return classRepo.search(search.getPeriod(), search.getNameForSearch(), search.getIdentifierForSearch(), teacherID).size();
+    }
+
     public Page<AcademicClass> listClasses(SearchTeacherClasses search, Integer teacherID, Pageable pageable) {
         return classRepo.search(search.getPeriod(), search.getNameForSearch(), search.getIdentifierForSearch(), teacherID, pageable);
     }
 
+    public Integer listAllAssignments(SearchTeacherAssign search, Integer teacherID) {
+        return gradeRepo.searchAssignments(search.getaPeriod(), search.getaNameForSearch(), search.getaIDForSearch(), search.getaDateForSearch(), search.getaPoints(), teacherID).size();
+    }
+
     public Page<Grade> listAssignments(SearchTeacherAssign search, Integer teacherID, Pageable pageable) {
         return gradeRepo.searchAssignments(search.getaPeriod(), search.getaNameForSearch(), search.getaIDForSearch(), search.getaDateForSearch(), search.getaPoints(), teacherID, pageable);
+    }
+
+    public Integer listAllStudents(SearchTeacherStudents search, Integer teacherID) {
+        return gradeRepo.searchStudents(search.getsPeriod(), search.getsLastNameForSearch(), search.getsFirstNameForSearch(), search.getsANameForSearch(), search.getsAIDForSearch(), teacherID).size();
     }
 
     public Page<Grade> listStudents(SearchTeacherStudents search, Integer teacherID, Pageable pageable) {

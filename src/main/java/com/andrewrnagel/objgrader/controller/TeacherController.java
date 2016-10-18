@@ -126,6 +126,7 @@ public class TeacherController {
             return "redirect:/logout";
         }
         Teacher teacher = (Teacher)session.getAttribute("teacher");
+        model.addAttribute("classListSize", mainService.listAllClasses(searchTeacherClasses, teacher.getTeacherID()));
         model.addAttribute("classList", mainService.listClasses(searchTeacherClasses, teacher.getTeacherID(), pageable));
         return "teacherGradeBook/classesTable";
     }
@@ -137,17 +138,19 @@ public class TeacherController {
             return "redirect:/logout";
         }
         Teacher teacher = (Teacher)session.getAttribute("teacher");
+        model.addAttribute("assignListSize", mainService.listAllAssignments(searchTeacherAssign, teacher.getTeacherID()));
         model.addAttribute("assignmentList", mainService.listAssignments(searchTeacherAssign, teacher.getTeacherID(), pageable));
         return "teacherGradeBook/assignmentTable";
     }
     @RequestMapping(value = "/studentTable")
-    public String populateStudentData(SearchTeacherStudents searchTeacherStudents, @PageableDefault(size = 2, sort = "academicClass.period") Pageable pageable,
+    public String populateStudentData(SearchTeacherStudents searchTeacherStudents, @PageableDefault(size = 5, sort = "academicClass.period") Pageable pageable,
                                       @RequestParam(defaultValue = "0") Integer sPagec,
                                       Model model, HttpSession session) {
         if (session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
             return "redirect:/logout";
         }
         Teacher teacher = (Teacher)session.getAttribute("teacher");
+        model.addAttribute("studentListSize", mainService.listAllStudents(searchTeacherStudents, teacher.getTeacherID()));
         model.addAttribute("studentList", mainService.listStudents(searchTeacherStudents, teacher.getTeacherID(), pageable));
         return "teacherGradeBook/studentTable";
     }
