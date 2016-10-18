@@ -67,6 +67,7 @@ $(function() {
         return false; // this prevents the form from being submitted when the button is clicked.
     });
 
+    //next
     $("#next").click(function(){
         currentPage = page;
         var query = "/classTable?page=" + page + "&period=" + $("#period").val() + "&name=" + $("#name").val() + "&identifier=" + $("#identifier").val();
@@ -88,6 +89,7 @@ $(function() {
         return false; // this prevents the form from being submitted when the button is clicked.
     });
 
+    //back
     $("#back").click(function(){
         currentPage = page;
         var query = "/classTable?page=" + page + "&period=" + $("#period").val() + "&name=" + $("#name").val() + "&identifier=" + $("#identifier").val();
@@ -108,23 +110,39 @@ $(function() {
         studentSearch(query);
         return false; // this prevents the form from being submitted when the button is clicked.
     });
+
     //supporting functions
     function classSearch(classQuery) {
+        //retrieve results
         $.get(classQuery, function(data) {
             $("#classOutput").empty();
             $("#classOutput").append(data);
         })
+
+        //populate pagination based on results
+        // var start = data.number * data.size  + 1;
+        // var end = start + data.size;
+        // var total = data.totalElements;
+        // lastPage = Math.ceil(total/data.size) - 1;
+        $("#description").text("1" + " - " + "2" + " of " + "3");
+
     }
     function assignSearch(assignQuery) {
         $.get(assignQuery, function(data) {
             $("#assignmentOutput").empty();
             $("#assignmentOutput").append(data);
         })
+
+        //populate pagination based on results
+        $("#descriptionAssign").text("1" + " - " + "2" + " of " + "3");
     }
     function studentSearch(studentQuery) {
         $.get(studentQuery, function(data) {
             $("#studentOutput").empty();
             $("#studentOutput").append(data);
         })
+
+        //populate pagination based on results
+        $("#descriptionStudent").text("1" + " - " + "2" + " of " + "3");
     }
 });
