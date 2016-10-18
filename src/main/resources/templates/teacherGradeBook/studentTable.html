@@ -14,7 +14,7 @@
             <th>Pts Earned</th>
             <th>Pts Possible</th>
         </tr>
-        <tr th:each="grade : ${studentList}">
+        <tr th:each="grade : ${studentList}" class="displayedStudent">
             <form>
                 <td><a><button class="noteicon"></button></a></td>
                 <td th:text="${grade.academicClass.period}">1</td>
