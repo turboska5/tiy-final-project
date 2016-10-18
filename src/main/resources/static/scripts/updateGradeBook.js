@@ -69,7 +69,10 @@ $(function() {
 
     //next
     $("#next").click(function(){
+        alert("sdfgg");
+
         if (currentPage < lastPage) {
+            alert("dogg");
             page = (currentPage + 1);
             var query = "/classTable?page=" + page + "&period=" + $("#period").val() + "&name=" + $("#name").val() + "&identifier=" + $("#identifier").val();
             classSearch(query);
