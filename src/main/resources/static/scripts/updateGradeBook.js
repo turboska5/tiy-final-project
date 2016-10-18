@@ -5,17 +5,8 @@ var currentAPage = 0, lastAPage = 0;
 var currentSPage = 0, lastSPage = 0;
 
 $(function() {
-    //button management
-    classButtonToggle();
-    assignButtonToggle();
-    studentButtonToggle();
+    onLoad();
 
-    //preload tables to display
-    classSearch("/classTable?period=" + $("#period").val());
-    assignSearch("/assignTable?aPeriod=" + $("#period").val());
-    studentSearch("/studentTable?sPeriod=" + $("#period").val());
-
-    //button functions
     //search button
     $("#classSearch").click(function(){
         currentPage = 0;
@@ -134,6 +125,15 @@ $(function() {
     });
 
     //supporting functions
+    //preload tables and enable appropriate buttons
+    function onLoad() {
+        classSearch("/classTable?period=" + $("#period").val());
+        classButtonToggle();
+        assignSearch("/assignTable?aPeriod=" + $("#period").val());
+        assignButtonToggle();
+        studentSearch("/studentTable?sPeriod=" + $("#period").val());
+        studentButtonToggle();
+    };
     function classSearch(classQuery) {
         //retrieve results
         $.get(classQuery, function(data) {
@@ -184,12 +184,19 @@ $(function() {
         //disable back button/next button behavior
         if(currentPage == 0) {
             $("#back").prop("disabled", true);
-            $("#next").prop("disabled", false);
+            if(lastPage == 0) {
+                $("#next").prop("disabled", true);
+            } else {
+                $("#next").prop("disabled", false);
+            }
         } else if (currentPage < lastPage) {
             $("#back").prop("disabled", false);
             $("#next").prop("disabled", false);
         } else if (currentPage == lastPage) {
             $("#back").prop("disabled", false);
+            $("#next").prop("disabled", true);
+        } else if (lastPage == 0) {
+            $("#back").prop("disabled", true);
             $("#next").prop("disabled", true);
         }
     }
@@ -197,12 +204,19 @@ $(function() {
         //disable back button/next button behavior
         if(currentAPage == 0) {
             $("#assignBack").prop("disabled", true);
-            $("#assignNext").prop("disabled", false);
+            if(lastAPage == 0) {
+                $("#assignNext").prop("disabled", true);
+            } else {
+                $("#assignNext").prop("disabled", false);
+            }
         } else if (currentAPage < lastAPage) {
             $("#assignBack").prop("disabled", false);
             $("#assignNext").prop("disabled", false);
         } else if (currentAPage == lastAPage) {
             $("#assignBack").prop("disabled", false);
+            $("#assignNext").prop("disabled", true);
+        } else if (lastAPage == 0) {
+            $("#assignBack").prop("disabled", true);
             $("#assignNext").prop("disabled", true);
         }
     }
@@ -210,7 +224,11 @@ $(function() {
         //disable back button/next button behavior
         if(currentSPage == 0) {
             $("#studentBack").prop("disabled", true);
-            $("#studentNext").prop("disabled", false);
+            if(lastSPage == 0) {
+                $("#studentNext").prop("disabled", true);
+            } else {
+                $("#studentNext").prop("disabled", false);
+            }
         } else if (currentSPage < lastSPage) {
             $("#studentBack").prop("disabled", false);
             $("#studentNext").prop("disabled", false);

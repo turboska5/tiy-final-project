@@ -195,8 +195,8 @@ public class AdminController {
         model.addAttribute("studentList", mainService.getAllStudents());
         return "adminUsers";
     }
-    @RequestMapping(value = "/adminTable")
-    public String populateClassData(SearchUsersAdmin searchUsersAdmin, @PageableDefault(size = 2, sort = "lastName") Pageable pageable,
+    @RequestMapping(value = "/adminUserTable")
+    public String populateAdminUserTable(SearchUsersAdmin searchUsersAdmin, @PageableDefault(size = 2, sort = "lastName") Pageable pageable,
                                     @RequestParam(defaultValue = "0") Integer page,
                                     Model model, HttpSession session) {
         if (session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
@@ -206,8 +206,8 @@ public class AdminController {
         model.addAttribute("adminList", mainService.listAdmins(searchUsersAdmin, pageable));
         return "adminUsers/adminUser";
     }
-    @RequestMapping(value = "/teacherTable")
-    public String populateClassData(SearchUsersTeacher searchUsersTeacher, @PageableDefault(size = 2, sort = "lastName") Pageable pageable,
+    @RequestMapping(value = "/teacherUserTable")
+    public String populateTeacherUserTable(SearchUsersTeacher searchUsersTeacher, @PageableDefault(size = 2, sort = "lastName") Pageable pageable,
                                     @RequestParam(defaultValue = "0") Integer tPage,
                                     Model model, HttpSession session) {
         if (session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
@@ -217,8 +217,8 @@ public class AdminController {
         model.addAttribute("teacherList", mainService.listTeachers(searchUsersTeacher, pageable));
         return "adminUsers/teacherUser";
     }
-    @RequestMapping(value = "/studentTable")
-    public String populateClassData(SearchUsersStudent searchUsersStudent, @PageableDefault(size = 2, sort = "lastName") Pageable pageable,
+    @RequestMapping(value = "/studentUserTable")
+    public String populateStudentUserTable(SearchUsersStudent searchUsersStudent, @PageableDefault(size = 2, sort = "lastName") Pageable pageable,
                                     @RequestParam(defaultValue = "0") Integer sPage,
                                     Model model, HttpSession session) {
         if (session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
