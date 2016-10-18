@@ -1,5 +1,6 @@
 <div xmlns:th="http://thymeleaf.org" id="AdminResults">
     <table class="ResultsTable">
+        <input id="adminListSize" th:value="${adminListSize}" hidden="true"/>
         <tr>
             <th class="icon"></th>
             <th>Last Name</th>
@@ -10,7 +11,7 @@
             <th>Last Login</th>
             <th>Disabled</th>
         </tr>
-        <tr th:each="admin : ${adminList}" th:object="${admin}">
+        <tr th:each="admin : ${adminList}" th:object="${admin}" class="displayedAdmin">
             <td class="buttonArea">
                 <a th:href="@{/adminManageAdmin?(adminID=${admin.getAdminID()})}" href="../templates/adminManageAdmin.html"><button class="editicon"></button></a>
                 <a><button class="deleteicon"></button></a>

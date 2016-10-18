@@ -107,7 +107,8 @@ $(function() {
     $("#back").click(function(){
         if (currentPage > 0) {
             currentPage--;
-            var query = "/adminUserTable?page=" + currentPage + "&period=" + $("#period").val() + "&name=" + $("#name").val() + "&identifier=" + $("#identifier").val();
+            var query = "/adminUserTable?page=" + currentPage + "&lastName=" + $("#lastName").val() + "&firstName=" + $("#firstName").val() + "&email=" + $("#email").val()
+                + "&title=" + $("#title").val();
             adminSearch(query);
             adminButtonToggle();
         }
@@ -116,8 +117,8 @@ $(function() {
     $("#teacherBack").click(function(){
         if (currentTPage > 0) {
             currentTPage--;
-            var query = "/teacherUserTable?page=" + currentTPage + "&aPeriod=" + $("#aPeriod").val() + "&aName=" + $("#aName").val() + "&aID=" + $("#aID").val()
-                + "&aDate=" + $("#aDate").val() + "&aPoints=" + $("#aPoints").val();
+            var query = "/teacherUserTable?page=" + currentTPage + "&tLastName=" + $("#tLastName").val() + "&tFirstName=" + $("#tFirstName").val() + "&tEmail=" + $("#tEmail").val()
+                + "&department=" + $("#department").val();
             teacherSearch(query);
             teacherButtonToggle();
         }
@@ -126,8 +127,8 @@ $(function() {
     $("#studentBack").click(function(){
         if (currentSPage > 0) {
             currentSPage--;
-            var query = "/studentUserTable?page=" + currentSPage + "&sPeriod=" + $("#sPeriod").val() + "&sLastName=" + $("#sLastName").val() + "&sFirstName=" + $("#sFirstName").val()
-                + "&sAName=" + $("#sAName").val() + "&sAID=" + $("#sAID").val();
+            var query = "/studentUserTable?page=" + currentSPage + "&sLastName=" + $("#sLastName").val() + "&sFirstName=" + $("#sFirstName").val() + "&sEmail=" + $("#sEmail").val()
+                + "&sID=" + $("#sID").val() + "&grade=" + $("#grade").val();
             studentSearch(query);
             studentButtonToggle();
         }
@@ -142,9 +143,9 @@ $(function() {
             $("#adminUserOutput").empty();
             $("#adminUserOutput").append(data);
             //populate pagination based on results
-            var totalCount = $("#classListSize").val();
+            var totalCount = $("#adminListSize").val();
             var totalPages = Math.ceil(totalCount/adminPerPage);
-            var onPageCount = $(data).find('.displayedClass').length;
+            var onPageCount = $(data).find('.displayedAdmin').length;
             lastPage = totalPages - 1;
             var start = currentPage * adminPerPage  + 1;
             var end = start + onPageCount - 1;
@@ -157,9 +158,9 @@ $(function() {
             $("#teacherUserOutput").empty();
             $("#teacherUserOutput").append(data);
             //populate pagination based on results
-            var totalCount = $("#assignListSize").val();
+            var totalCount = $("#teacherListSize").val();
             var totalPages = Math.ceil(totalCount/teacherPerPage);
-            var onPageCount = $(data).find('.displayedAssignment').length;
+            var onPageCount = $(data).find('.displayedTeacher').length;
             lastTPage = totalPages - 1;
             var start = currentTPage * teacherPerPage + 1;
             var end = start + onPageCount - 1;
