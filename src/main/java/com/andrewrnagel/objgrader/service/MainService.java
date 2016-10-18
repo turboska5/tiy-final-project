@@ -339,7 +339,7 @@ public class MainService {
 
     //Admin page ajax content
     public Integer listAllAdmins(SearchUsersAdmin searchUsersAdmin) {
-        return this.adminRepository.findAllWithoutPages(searchUsersAdmin.getLastNameForSearch(), searchUsersAdmin.getFirstNameForSearch(), searchUsersAdmin.getEmailForSearch(), searchUsersAdmin.getTitleForSearch()).size();
+        return this.adminRepository.findAllWithoutPages(searchUsersAdmin.getLastNameForSearch(), searchUsersAdmin.getFirstNameForSearch(), searchUsersAdmin.getEmailForSearch(), searchUsersAdmin.getTitleForSearch());
     }
 
     public Page<Admin> listAdmins(SearchUsersAdmin searchUsersAdmin, Pageable pageable) {
@@ -347,7 +347,7 @@ public class MainService {
     }
 
     public Integer listAllTeachers(SearchUsersTeacher searchUsersTeacher) {
-        return this.teacherRepository.findAllWithoutPages(searchUsersTeacher.gettLastNameForSearch(), searchUsersTeacher.gettFirstNameForSearch(), searchUsersTeacher.gettEmailForSearch(), searchUsersTeacher.getDepartmentForSearch()).size();
+        return this.teacherRepository.findAllWithoutPages(searchUsersTeacher.gettLastNameForSearch(), searchUsersTeacher.gettFirstNameForSearch(), searchUsersTeacher.gettEmailForSearch(), searchUsersTeacher.getDepartmentForSearch());
     }
 
     public Page<Teacher> listTeachers(SearchUsersTeacher searchUsersTeacher, Pageable pageable) {
@@ -355,7 +355,7 @@ public class MainService {
     }
 
     public Integer listAllStudents(SearchUsersStudent searchUsersStudent) {
-        return this.studentRepository.findAllWithoutPages(searchUsersStudent.getsLastNameForSearch(), searchUsersStudent.getsFirstNameForSearch(), searchUsersStudent.getsEmail(), searchUsersStudent.getsIDForSearch(), searchUsersStudent.getGrade()).size();
+        return this.studentRepository.findAllWithoutPages(searchUsersStudent.getsLastNameForSearch(), searchUsersStudent.getsFirstNameForSearch(), searchUsersStudent.getsEmail(), searchUsersStudent.getsIDForSearch(), searchUsersStudent.getGrade());
     }
 
     public Page<Student> listStudents(SearchUsersStudent searchUsersStudent, Pageable pageable) {
