@@ -9,6 +9,7 @@ var currentTPage = 0, lastTPage = 0;
 var currentSPage = 0, lastSPage = 0;
 
 $(function() {
+    onLoad();
     //button management
     adminButtonToggle();
     teacherButtonToggle();
@@ -182,6 +183,18 @@ $(function() {
             $("#descriptionStudent").text(start + " - " + end + " of " + totalCount);
         });
     }
+
+    //supporting functions
+    //preload tables and enable appropriate buttons
+    function onLoad() {
+        adminSearch("/adminUserTable");
+        adminButtonToggle();
+        teacherSearch("/teacherUserTable");
+        teacherButtonToggle();
+        studentSearch("/studentUserTable");
+        studentButtonToggle();
+    };
+
     function adminButtonToggle() {
         //disable back button/next button behavior
         if(currentPage == 0) {
