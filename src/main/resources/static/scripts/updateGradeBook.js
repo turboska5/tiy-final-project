@@ -1,5 +1,5 @@
 //global pagination support
-var classesPerPage = 2, assignPerPage = 2, studentsPerPage = 5;
+var classesPerPage = 5, assignPerPage = 5, studentsPerPage = 5;
 var currentPage = 0, lastPage = 0;
 var currentAPage = 0, lastAPage = 0;
 var currentSPage = 0, lastSPage = 0;
@@ -145,9 +145,9 @@ $(function() {
             var totalPages = Math.ceil(totalCount/classesPerPage);
             var onPageCount = $(data).find('.displayedClass').length;
             lastPage = totalPages - 1;
-            // var start = data.number * data.size  + 1;
-            // var end = start + data.size;
-            $("#description").text("1" + " - " + "2" + " of " + totalCount);
+            var start = currentPage * classesPerPage  + 1;
+            var end = start + onPageCount - 1;
+            $("#description").text(start + " - " + end + " of " + totalCount);
         });
     }
     function assignSearch(assignQuery) {
@@ -160,9 +160,9 @@ $(function() {
             var totalPages = Math.ceil(totalCount/assignPerPage);
             var onPageCount = $(data).find('.displayedAssignment').length;
             lastAPage = totalPages - 1;
-            // var start = data.number * data.size  + 1;
-            // var end = start + data.size;
-            $("#descriptionAssign").text("1" + " - " + "2" + " of " + totalCount);
+            var start = currentAPage * assignPerPage + 1;
+            var end = start + onPageCount - 1;
+            $("#descriptionAssign").text(start + " - " + end + " of " + totalCount);
         });
     }
     function studentSearch(studentQuery) {
@@ -175,9 +175,9 @@ $(function() {
             var totalPages = Math.ceil(totalCount/studentsPerPage);
             var onPageCount = $(data).find('.displayedStudent').length;
             lastSPage = totalPages - 1;
-            // var start = data.number * data.size  + 1;
-            // var end = start + data.size;
-            $("#descriptionStudent").text("1" + " - " + "2" + " of " + totalCount);
+            var start = currentSPage * studentsPerPage + 1;
+            var end = start + onPageCount - 1;
+            $("#descriptionStudent").text(start + " - " + end + " of " + totalCount);
         });
     }
     function classButtonToggle() {

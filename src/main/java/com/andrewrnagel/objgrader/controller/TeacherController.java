@@ -119,7 +119,7 @@ public class TeacherController {
         return "teacherGradeBook";
     }
     @RequestMapping(value = "/classTable")
-    public String populateClassData(SearchTeacherClasses searchTeacherClasses, @PageableDefault(size = 2, sort = "period") Pageable pageable,
+    public String populateClassData(SearchTeacherClasses searchTeacherClasses, @PageableDefault(size = 5, sort = "period") Pageable pageable,
                                     @RequestParam(defaultValue = "0") Integer page,
                                     Model model, HttpSession session) {
         if (session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
@@ -131,7 +131,7 @@ public class TeacherController {
         return "teacherGradeBook/classesTable";
     }
     @RequestMapping(value = "/assignTable")
-    public String populateAssignData(SearchTeacherAssign searchTeacherAssign, @PageableDefault(size = 2, sort = "academicClass.period") Pageable pageable,
+    public String populateAssignData(SearchTeacherAssign searchTeacherAssign, @PageableDefault(size = 5, sort = "academicClass.period") Pageable pageable,
                                      @RequestParam(defaultValue = "0") Integer aPage,
                                      Model model, HttpSession session) {
         if (session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
