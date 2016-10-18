@@ -8,12 +8,12 @@ public class SearchUsersStudent {
     private String sFirstName = null;
     private String sEmail = null;
     private String sID = null;
-    private String grade = null;
+    private Integer grade = null;
 
     public SearchUsersStudent() {
     }
 
-    public SearchUsersStudent(String sLastName, String sFirstName, String sEmail, String sID, String grade) {
+    public SearchUsersStudent(String sLastName, String sFirstName, String sEmail, String sID, Integer grade) {
         this.sLastName = sLastName;
         this.sFirstName = sFirstName;
         this.sEmail = sEmail;
@@ -65,14 +65,11 @@ public class SearchUsersStudent {
         this.sID = sID;
     }
 
-    public String getGrade() {
+    public Integer getGrade() {
         return grade;
     }
-    public String getGradeForSearch(){
-        return grade == null || grade.equals("") ? "" : "%" + grade + "%";
-    }
 
-    public void setGrade(String grade) {
+    public void setGrade(Integer grade) {
         this.grade = grade;
     }
 }
