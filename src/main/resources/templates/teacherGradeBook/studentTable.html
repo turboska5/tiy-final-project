@@ -1,4 +1,8 @@
-<div xmlns:th="http://thymeleaf.org" id="StudentResults">
+<head xmlns:th="http://thymeleaf.org">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script th:src="@{scripts/blur.js}" src="../static/scripts/blur.js"></script>
+</head>
+<div xmlns:th="http://thymeleaf.org" id="StudentResults" class="results">
     <table class="ResultsTable">
         <tr>
             <th class="icon"></th>
@@ -23,5 +27,4 @@
             </form>
         </tr>
     </table>
-
 </div>

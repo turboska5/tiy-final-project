@@ -1,4 +1,17 @@
+//global pagination support
+var currentPage = 0;
+var lastPage = 0;
+var currentAPage = 0;
+var lastAPage = 0;
+var currentSPage = 0;
+var lastSPage = 0;
+
 $(function() {
+    //on load
+    var page = 0;
+    var aPage = 0;
+    var sPage = 0;
+
     //preload tables
     classSearch("/classTable?period=" + $("#period").val());
     assignSearch("/assignTable?aPeriod=" + $("#period").val());
@@ -7,17 +20,20 @@ $(function() {
     //button functions
     //search
     $("#classSearch").click(function(){
+        currentPage = page;
         var query = "/classTable?page=" + page + "&period=" + $("#period").val() + "&name=" + $("#name").val() + "&identifier=" + $("#identifier").val();
         classSearch(query);
         return false; // this prevents the form from being submitted when the button is clicked.
     });
     $("#assignSearch").click(function(){
+        currentAPage = aPage;
         var query = "/assignTable?aPage=" + aPage + "&aPeriod=" + $("#aPeriod").val() + "&aName=" + $("#aName").val() + "&aID=" + $("#aID").val()
             + "&aDate=" + $("#aDate").val() + "&aPoints=" + $("#aPoints").val();
         assignSearch(query);
         return false; // this prevents the form from being submitted when the button is clicked.
     });
     $("#studentSearch").click(function(){
+        currentSPage = sPage;
         var query = "/studentTable?sPage=" + sPage + "sPeriod=" + $("#sPeriod").val() + "&sLastName=" + $("#sLastName").val() + "&sFirstName=" + $("#sFirstName").val()
             + "&sAName=" + $("#sAName").val() + "&sAID=" + $("#sAID").val();
         studentSearch(query);
@@ -70,4 +86,4 @@ $(function() {
             $("#studentOutput").append(data);
         })
     }
-})
+});
