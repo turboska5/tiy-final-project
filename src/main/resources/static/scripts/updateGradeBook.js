@@ -1,4 +1,5 @@
 //global pagination support
+var classesPerPage = 2, assignPerPage = 2, studentsPerPage = 5;
 var currentPage = 0, lastPage = 0;
 var currentAPage = 0, lastAPage = 0;
 var currentSPage = 0, lastSPage = 0;
@@ -141,8 +142,9 @@ $(function() {
             $("#classOutput").append(data);
             //populate pagination based on results
             var totalCount = $("#classListSize").val();
+            var totalPages = Math.ceil(totalCount/classesPerPage);
             var onPageCount = $(data).find('.displayedClass').length;
-            lastPage = Math.ceil(totalCount/2) - 1;
+            lastPage = totalPages - 1;
             // var start = data.number * data.size  + 1;
             // var end = start + data.size;
             $("#description").text("1" + " - " + "2" + " of " + totalCount);
@@ -155,8 +157,9 @@ $(function() {
             $("#assignmentOutput").append(data);
             //populate pagination based on results
             var totalCount = $("#assignListSize").val();
+            var totalPages = Math.ceil(totalCount/assignPerPage);
             var onPageCount = $(data).find('.displayedAssignment').length;
-            lastAPage = Math.ceil(totalCount/2) - 1;
+            lastAPage = totalPages - 1;
             // var start = data.number * data.size  + 1;
             // var end = start + data.size;
             $("#descriptionAssign").text("1" + " - " + "2" + " of " + totalCount);
@@ -169,8 +172,9 @@ $(function() {
             $("#studentOutput").append(data);
             //populate pagination based on results
             var totalCount = $("#studentListSize").val();
+            var totalPages = Math.ceil(totalCount/studentsPerPage);
             var onPageCount = $(data).find('.displayedStudent').length;
-            lastSPage = Math.ceil(totalCount/5) - 1;
+            lastSPage = totalPages - 1;
             // var start = data.number * data.size  + 1;
             // var end = start + data.size;
             $("#descriptionStudent").text("1" + " - " + "2" + " of " + totalCount);
