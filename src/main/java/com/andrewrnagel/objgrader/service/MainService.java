@@ -1,8 +1,6 @@
 package com.andrewrnagel.objgrader.service;
 
-import com.andrewrnagel.objgrader.bean.SearchTeacherAssign;
-import com.andrewrnagel.objgrader.bean.SearchTeacherClasses;
-import com.andrewrnagel.objgrader.bean.SearchTeacherStudents;
+import com.andrewrnagel.objgrader.bean.*;
 import com.andrewrnagel.objgrader.entity.*;
 import com.andrewrnagel.objgrader.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -341,26 +339,26 @@ public class MainService {
 
     //Admin page ajax content
     public Integer listAllAdmins(SearchUsersAdmin searchUsersAdmin) {
-        return this.adminRepository.findAllWithoutPages(searchUsersAdmin).size();
+        return this.adminRepository.findAllWithoutPages(searchUsersAdmin.getLastNameForSearch(), searchUsersAdmin.getFirstNameForSearch(), searchUsersAdmin.getEmailForSearch(), searchUsersAdmin.getTitleForSearch()).size();
     }
 
     public Page<Admin> listAdmins(SearchUsersAdmin searchUsersAdmin, Pageable pageable) {
-        return this.adminRepository.findAllWithPages(searchUsersAdmin, pageable);
+        return this.adminRepository.findAllWithPages(searchUsersAdmin.getLastNameForSearch(), searchUsersAdmin.getFirstNameForSearch(), searchUsersAdmin.getEmailForSearch(), searchUsersAdmin.getTitleForSearch(), pageable);
     }
 
     public Integer listAllTeachers(SearchUsersTeacher searchUsersTeacher) {
-        return this.teacherRepository.finaAllWithoutPages(searchUsersTeacher).size();
+        return this.teacherRepository.findAllWithoutPages(searchUsersTeacher.gettLastNameForSearch(), searchUsersTeacher.gettFirstNameForSearch(), searchUsersTeacher.gettEmailForSearch(), searchUsersTeacher.getDepartmentForSearch()).size();
     }
 
     public Page<Teacher> listTeachers(SearchUsersTeacher searchUsersTeacher, Pageable pageable) {
-        return this.teacherRepository.finaAllWithPages(searchUsersTeacher, pageable);
+        return this.teacherRepository.findAllWithPages(searchUsersTeacher.gettLastNameForSearch(), searchUsersTeacher.gettFirstNameForSearch(), searchUsersTeacher.gettEmailForSearch(), searchUsersTeacher.getDepartmentForSearch(), pageable);
     }
 
     public Integer listAllStudents(SearchUsersStudent searchUsersStudent) {
-        return this.studentRepository.finaAllWithoutPages(searchUsersStudent).size();
+        return this.studentRepository.findAllWithoutPages(searchUsersStudent.getsLastNameForSearch(), searchUsersStudent.getsFirstNameForSearch(), searchUsersStudent.getsEmail(), searchUsersStudent.getsIDForSearch(), searchUsersStudent.getGrade()).size();
     }
 
     public Page<Student> listStudents(SearchUsersStudent searchUsersStudent, Pageable pageable) {
-        return this.studentRepository.finaAllWithPages(searchUsersStudent, pageable);
+        return this.studentRepository.findAllWithPages(searchUsersStudent.getsLastNameForSearch(), searchUsersStudent.getsFirstNameForSearch(), searchUsersStudent.getsEmail(), searchUsersStudent.getsIDForSearch(), searchUsersStudent.getGrade(), pageable);
     }
 }

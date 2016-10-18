@@ -1,5 +1,8 @@
 package com.andrewrnagel.objgrader.controller;
 
+import com.andrewrnagel.objgrader.bean.SearchUsersAdmin;
+import com.andrewrnagel.objgrader.bean.SearchUsersStudent;
+import com.andrewrnagel.objgrader.bean.SearchUsersTeacher;
 import com.andrewrnagel.objgrader.entity.*;
 import com.andrewrnagel.objgrader.misc.PasswordStorage;
 import com.andrewrnagel.objgrader.service.MainService;
