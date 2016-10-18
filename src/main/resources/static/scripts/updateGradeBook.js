@@ -1,3 +1,7 @@
+/**
+ * Created by Jimmy And Andrew on 10/17/16.
+ */
+
 //global pagination support
 var classesPerPage = 5, assignPerPage = 5, studentsPerPage = 5;
 var currentPage = 0, lastPage = 0;

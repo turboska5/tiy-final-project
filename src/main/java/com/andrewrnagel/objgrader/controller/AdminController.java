@@ -193,7 +193,7 @@ public class AdminController {
         return "adminUsers";
     }
     @RequestMapping(value = "/adminUserTable")
-    public String populateAdminUserTable(SearchUsersAdmin searchUsersAdmin, @PageableDefault(size = 2, sort = "lastName") Pageable pageable,
+    public String populateAdminUserTable(SearchUsersAdmin searchUsersAdmin, @PageableDefault(size = 5, sort = "lastName") Pageable pageable,
                                     @RequestParam(defaultValue = "0") Integer page,
                                     Model model, HttpSession session) {
         if (session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
@@ -204,7 +204,7 @@ public class AdminController {
         return "adminUsers/adminUser";
     }
     @RequestMapping(value = "/teacherUserTable")
-    public String populateTeacherUserTable(SearchUsersTeacher searchUsersTeacher, @PageableDefault(size = 2, sort = "lastName") Pageable pageable,
+    public String populateTeacherUserTable(SearchUsersTeacher searchUsersTeacher, @PageableDefault(size = 5, sort = "lastName") Pageable pageable,
                                     @RequestParam(defaultValue = "0") Integer tPage,
                                     Model model, HttpSession session) {
         if (session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
@@ -215,7 +215,7 @@ public class AdminController {
         return "adminUsers/teacherUser";
     }
     @RequestMapping(value = "/studentUserTable")
-    public String populateStudentUserTable(SearchUsersStudent searchUsersStudent, @PageableDefault(size = 2, sort = "lastName") Pageable pageable,
+    public String populateStudentUserTable(SearchUsersStudent searchUsersStudent, @PageableDefault(size = 5, sort = "lastName") Pageable pageable,
                                     @RequestParam(defaultValue = "0") Integer sPage,
                                     Model model, HttpSession session) {
         if (session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
