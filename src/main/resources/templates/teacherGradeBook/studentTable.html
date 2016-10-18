@@ -1,0 +1,31 @@
+<head xmlns:th="http://thymeleaf.org">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script th:src="@{scripts/blur.js}" src="../static/scripts/blur.js"></script>
+</head>
+<div xmlns:th="http://thymeleaf.org" id="StudentResults" class="results">
+    <table class="ResultsTable">
+        <input id="studentListSize" th:value="${studentListSize}" hidden="true"/>
+        <tr>
+            <th class="icon"></th>
+            <th>Period</th>
+            <th>Last Name</th>
+            <th>First Name</th>
+            <th>Assignment</th>
+            <th>Date</th>
+            <th>Pts Earned</th>
+            <th>Pts Possible</th>
+        </tr>
+        <tr th:each="grade : ${studentList}" class="displayedStudent">
+            <form>
+                <td><a><button class="noteicon"></button></a></td>
+                <td th:text="${grade.academicClass.period}">1</td>
+                <td th:text="${grade.student.lastName}">SMITH</td>
+                <td th:text="${grade.student.firstName}">MATTHEW</td>
+                <td th:text="${grade.assignment.assignmentName}">Orientation Assignment</td>
+                <td th:text="${grade.assignment.date}">09/25/2016</td>
+                <td><input class="GradeInput" type="number" th:attr="data-gradeID=${grade.gradeID}" min="0" value="100" name="earnedPoints" th:value="${grade.earnedPoints}"/></td>
+                <td th:text="${grade.possPoints}">100</td>
+            </form>
+        </tr>
+    </table>
+</div>

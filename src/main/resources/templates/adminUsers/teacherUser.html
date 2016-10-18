@@ -1,0 +1,28 @@
+<div xmlns:th="http://thymeleaf.org" id="TeacherResults">
+    <table class="ResultsTable">
+        <input id="teacherListSize" th:value="${teacherListSize}" hidden="true"/>
+        <tr>
+            <th class="icon"></th>
+            <th>Last Name</th>
+            <th>First Name</th>
+            <th>Email Address</th>
+            <th>Department</th>
+            <th>Tenure</th>
+            <th>Last Login</th>
+            <th>Disabled</th>
+        </tr>
+        <tr th:each="teacher : ${teacherList}" th:object="${teacher}" class="displayedTeacher">
+            <td class="buttonArea">
+                <a th:href="@{/adminManageTeacher?(teacherID=${teacher.getTeacherID()})}" href="../templates/adminManageTeacher.html"><button class="editicon"></button></a>
+                <a><button class="deleteicon"></button></a>
+            </td>
+            <td th:text="*{lastName}">BUSH</td>
+            <td th:text="*{firstName}">JAMES</td>
+            <td th:text="*{user.email}">jebush@gmail.com</td>
+            <td th:text="*{department}">PHYSED</td>
+            <td th:text="*{tenure}">43</td>
+            <td th:text="*{user.lastLogin}">09/29/16</td>
+            <td th:text="*{user.isDisabled()}">NO</td>
+        </tr>
+    </table>
+</div>

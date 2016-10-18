@@ -1,12 +1,8 @@
 package com.andrewrnagel.objgrader.controller;
 
-import com.andrewrnagel.objgrader.entity.AcademicClass;
 import com.andrewrnagel.objgrader.entity.School;
 import com.andrewrnagel.objgrader.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -49,10 +45,4 @@ public class MainController {
             mainService.gradePost(gradeID, earnedPoints);
         }
     }
-//    @RequestMapping(path = "/teacherClassRetrieve")
-//    public Page<AcademicClass> listClasses(Search search, @PageableDefault(size = 5, sort = "period") Pageable pageable){
-//
-//        // get the widgets matching this search
-//        return mainService.listClasses(search, pageable);
-//    }
 }

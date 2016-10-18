@@ -1,12 +1,14 @@
 package com.andrewrnagel.objgrader.controller;
 
+import com.andrewrnagel.objgrader.bean.SearchTeacherAssign;
+import com.andrewrnagel.objgrader.bean.SearchTeacherClasses;
+import com.andrewrnagel.objgrader.bean.SearchTeacherStudents;
 import com.andrewrnagel.objgrader.entity.*;
 import com.andrewrnagel.objgrader.misc.PasswordStorage;
 import com.andrewrnagel.objgrader.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.data.web.SortDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -56,6 +58,7 @@ public class TeacherController {
         model.addAttribute("teacherID", teacherID);
         return "redirect:/teacherAttendance?teacherLastName=" + teacherLastName + "&teacherFirstName=" + teacherFirstName + "&teacherID=" + teacherID;
     }
+    //TODO: Attendance overhaul
     @RequestMapping(value = "/teacherAttendance", method = RequestMethod.GET)
     public String teacherAttendancePage(Model model, HttpSession session,
                                         @RequestParam(defaultValue = "") Integer period,
@@ -90,21 +93,8 @@ public class TeacherController {
         return "teacherAttendance";
     }
     @RequestMapping(value = "/teacherGradeBook", method = RequestMethod.GET)
-    public String teacherGradeBookPage(Model model, HttpSession session, @PageableDefault(size = 10) Pageable pageable,
-//                                       @SortDefault("name") Pageable pageable,
-                                       @RequestParam(defaultValue = "") Integer period,
-                                       @RequestParam(defaultValue = "") String name,
-                                       @RequestParam(defaultValue = "") String identifier,
-                                       @RequestParam(defaultValue = "") Integer aPeriod,
-                                       @RequestParam(defaultValue = "") String aName,
-                                       @RequestParam(defaultValue = "") String aID,
-                                       @RequestParam(defaultValue = "") String aDate,
-                                       @RequestParam(defaultValue = "") String aPoints,
-                                       @RequestParam(defaultValue = "") Integer sPeriod,
-                                       @RequestParam(defaultValue = "") String sLastName,
-                                       @RequestParam(defaultValue = "") String sFirstName,
-                                       @RequestParam(defaultValue = "") String sAName,
-                                       @RequestParam(defaultValue = "") String sAID) throws SQLException {
+    public String teacherGradeBookPage(SearchTeacherClasses searchTeacherClasses, SearchTeacherAssign searchTeacherAssign,
+                                       SearchTeacherStudents searchTeacherStudents, Model model, HttpSession session) throws SQLException {
         if (session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
             return "redirect:/logout";
         }
@@ -114,35 +104,51 @@ public class TeacherController {
         model.addAttribute("day", mainService.getTimeOfDay());
         model.addAttribute("userName", session.getAttribute("userName"));
         model.addAttribute("teacher", teacher);
-        model.addAttribute("pageable", pageable);
-        //class search
-        model.addAttribute("period", period);
-        model.addAttribute("name", name);
-        model.addAttribute("identifier", identifier);
-        model.addAttribute("classList", mainService.searchClasses(period, "%" + name + "%", "%" + identifier + "%", "%" + teacher.getDepartment() + "%", "%" + teacher.getLastName() + "%", "%" + teacher.getFirstName() + "%", teacher.getTeacherID(), pageable));
         //assignment search
-        model.addAttribute("aPeriod", aPeriod);
-        if (!(period == null)){
-            model.addAttribute("aPeriod", period);
-            aPeriod = period;
+        if (!(searchTeacherClasses == null)){
+            searchTeacherAssign.setaPeriod(searchTeacherClasses.getPeriod());
         }
-        model.addAttribute("aName", aName);
-        model.addAttribute("aID", aID);
-        model.addAttribute("aDate", aDate);
-        model.addAttribute("aPoints", aPoints);
-        model.addAttribute("assignmentList", mainService.getTeacherAssignments(aPeriod, "%" + aName + "%", "%" + aID + "%", aDate, aPoints, teacher.getTeacherID(), pageable));
         //student search
-        model.addAttribute("sPeriod", sPeriod);
-        if (!(period == null)){
-            model.addAttribute("sPeriod", period);
-            sPeriod = period;
+        if (!(searchTeacherClasses == null)){
+            searchTeacherStudents.setsPeriod(searchTeacherClasses.getPeriod());
         }
-        model.addAttribute("sLastName", sLastName);
-        model.addAttribute("sFirstName", sFirstName);
-        model.addAttribute("sAName", sAName);
-        model.addAttribute("sAID", sAID);
-        model.addAttribute("studentList", mainService.getTeacherStudents(sPeriod, "%" + sLastName + "%", "%" + sFirstName + "%", "%" + sAName + "%", "%" + sAID + "%", teacher.getTeacherID(), pageable));
         return "teacherGradeBook";
+    }
+    @RequestMapping(value = "/classTable")
+    public String populateClassData(SearchTeacherClasses searchTeacherClasses, @PageableDefault(size = 5, sort = "period") Pageable pageable,
+                                    @RequestParam(defaultValue = "0") Integer page,
+                                    Model model, HttpSession session) {
+        if (session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
+            return "redirect:/logout";
+        }
+        Teacher teacher = (Teacher)session.getAttribute("teacher");
+        model.addAttribute("classListSize", mainService.listAllClasses(searchTeacherClasses, teacher.getTeacherID()));
+        model.addAttribute("classList", mainService.listClasses(searchTeacherClasses, teacher.getTeacherID(), pageable));
+        return "teacherGradeBook/classesTable";
+    }
+    @RequestMapping(value = "/assignTable")
+    public String populateAssignData(SearchTeacherAssign searchTeacherAssign, @PageableDefault(size = 5, sort = "academicClass.period") Pageable pageable,
+                                     @RequestParam(defaultValue = "0") Integer aPage,
+                                     Model model, HttpSession session) {
+        if (session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
+            return "redirect:/logout";
+        }
+        Teacher teacher = (Teacher)session.getAttribute("teacher");
+        model.addAttribute("assignListSize", mainService.listAllAssignments(searchTeacherAssign, teacher.getTeacherID()));
+        model.addAttribute("assignmentList", mainService.listAssignments(searchTeacherAssign, teacher.getTeacherID(), pageable));
+        return "teacherGradeBook/assignmentTable";
+    }
+    @RequestMapping(value = "/studentTable")
+    public String populateStudentData(SearchTeacherStudents searchTeacherStudents, @PageableDefault(size = 5, sort = "academicClass.period") Pageable pageable,
+                                      @RequestParam(defaultValue = "0") Integer sPage,
+                                      Model model, HttpSession session) {
+        if (session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
+            return "redirect:/logout";
+        }
+        Teacher teacher = (Teacher)session.getAttribute("teacher");
+        model.addAttribute("studentListSize", mainService.listAllStudents(searchTeacherStudents, teacher.getTeacherID()));
+        model.addAttribute("studentList", mainService.listStudents(searchTeacherStudents, teacher.getTeacherID(), pageable));
+        return "teacherGradeBook/studentTable";
     }
     @RequestMapping(value = "/teacherManageAssign", method = RequestMethod.GET)
     public String teacherGradeBookAssignForm(Model model, HttpSession session,

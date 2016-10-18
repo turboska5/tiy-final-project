@@ -6,6 +6,8 @@
     <link th:href="@{css/theme.css}" href="../static/css/theme.css" rel="stylesheet" type="text/css"/>
     <link th:href="@{css/themeAdmin.css}" href="../static/css/themeAdmin.css" rel="stylesheet" type="text/css"/>
     <link th:href="@{images/icon.png}" href="../static/images/icon.png" rel="icon"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script th:src="@{scripts/updateAdminUsers.js}" src="../static/scripts/updateAdminUsers.js"></script>
     <header>
         <div class="HeaderText">
             <h1>Objective Grader</h1>
@@ -27,155 +29,107 @@
     </nav>
 </head>
 <body>
-<section>
-    <fieldset class="SearchField">
-        <legend>Admins</legend>
-        <!--admin manager search engine-->
-        <article class="SearchParams">
-            <div id="AdminSearchParams">
-                <form>
-                    <input name="lastName" class="InputField" type="text" placeholder="Last Name" th:value="${lastName}"/>
-                    <input name="firstName" class="InputField" placeholder="First Name" th:value="${firstName}"/>
-                    <input name="email" class="InputField" placeholder="Email Address" th:value="${email}"/>
-                    <input name="title" class="InputField" placeholder="Title" th:value="${title}"/>
-                    <button class="SearchButton">Search</button>
-                </form>
-                <a th:href="@{/adminManageAdmin}" href="../templates/adminManageAdmin.html"><button id="AddAdminButton" class="addnewuser"></button></a>
-            </div>
+    <section>
+        <fieldset class="SearchField">
+            <legend>Admins</legend>
+            <!--admin manager search engine-->
+            <article class="SearchParams">
+                <div id="AdminSearchParams">
+                    <form>
+                        <input id="lastName" name="lastName" class="InputField" type="text" placeholder="Last Name" th:value="${lastName}"/>
+                        <input id="firstName" name="firstName" class="InputField" placeholder="First Name" th:value="${firstName}"/>
+                        <input id="email" name="email" class="InputField" placeholder="Email Address" th:value="${email}"/>
+                        <input id="title" name="title" class="InputField" placeholder="Title" th:value="${title}"/>
+                        <button id="adminSearch" class="SearchButton">Search</button>
+                        <button id="adminReset" class="ResetButton">Reset</button>
+                    </form>
+                    <a th:href="@{/adminManageAdmin}" href="../templates/adminManageAdmin.html"><button id="AddAdminButton" class="addnewuser"></button></a>
+                </div>
+                <br/>
+            </article>
+            <!--admin manager results-->
             <br/>
-        </article>
-        <!--admin manager results-->
-        <div class="SearchResults">
-            <div id="AdminResults">
-                <table class="ResultsTable">
-                    <tr>
-                        <th class="icon"></th>
-                        <th>Last Name</th>
-                        <th>First Name</th>
-                        <th>Email Address</th>
-                        <th>Title</th>
-                        <th>Tenure</th>
-                        <th>Last Login</th>
-                        <th>Disabled</th>
-                    </tr>
-                    <tr th:each="admin : ${adminList}" th:object="${admin}">
-                        <td class="buttonArea">
-                            <a th:href="@{/adminManageAdmin?(adminID=${admin.getAdminID()})}" href="../templates/adminManageAdmin.html"><button class="editicon"></button></a>
-                            <a><button class="deleteicon"></button></a>
-                        </td>
-                        <td th:text="*{lastName}">ROOSEVELT</td>
-                        <td th:text="*{firstName}">THEODORE</td>
-                        <td th:text="*{user.email}">troosevelt@gmail.com</td>
-                        <td th:text="*{title}">A. PRINCIPAL</td>
-                        <td th:text="*{tenure}">12</td>
-                        <td th:text="*{user.lastLogin}">09/29/16</td>
-                        <td th:text="*{user.isDisabled()}">NO</td>
-                    </tr>
-                </table>
+            <div id="adminUserOutput">
+                This is sample content.
             </div>
+            <div>
+                <div class="pagination">
+                    <span id="descriptionAdmin"></span>
+                        <br/>
+                        <a href="#"><button id="adminBack">Back</button></a>
+                        <a href="#"><button id="adminNext">Next</button></a>
+                </div>
+            </div>
+        </fieldset>
+        <div class="divider">
+            <hr/>
         </div>
-    </fieldset>
-    <div class="divider">
-        <hr/>
-    </div>
-    <fieldset class="SearchField">
-        <legend>Teachers</legend>
-        <!--teacher manager search engine-->
-        <article class="SearchParams">
-            <div id="TeacherSearchParams">
-                <form>
-                    <input name="tLastName" class="InputField" type="text" placeholder="Last Name" th:value="${tLastName}"/>
-                    <input name="tFirstName" class="InputField" placeholder="First Name" th:value="${tFirstName}"/>
-                    <input name="tEmail" class="InputField" placeholder="Email Address" th:value="${tEmail}"/>
-                    <input name="department" class="InputField" placeholder="Department" th:value="${department}"/>
-                    <button class="SearchButton">Search</button>
-                </form>
-                <a th:href="@{/adminManageTeacher}" href="../templates/adminManageTeacher.html"><button id="AddTeacherButton" class="addnewuser"></button></a>
-            </div>
+        <fieldset class="SearchField">
+            <legend>Teachers</legend>
+            <!--teacher manager search engine-->
+            <article class="SearchParams">
+                <div id="TeacherSearchParams">
+                    <form>
+                        <input id="tLastName" name="tLastName" class="InputField" type="text" placeholder="Last Name" th:value="${tLastName}"/>
+                        <input id="tFirstName" name="tFirstName" class="InputField" placeholder="First Name" th:value="${tFirstName}"/>
+                        <input id="tEmail" name="tEmail" class="InputField" placeholder="Email Address" th:value="${tEmail}"/>
+                        <input id="department" name="department" class="InputField" placeholder="Department" th:value="${department}"/>
+                        <button id="teacherSearch" class="SearchButton">Search</button>
+                        <button id="teacherReset" class="ResetButton">Reset</button>
+                    </form>
+                    <a th:href="@{/adminManageTeacher}" href="../templates/adminManageTeacher.html"><button id="AddTeacherButton" class="addnewuser"></button></a>
+                </div>
+                <br/>
+            </article>
+            <!--teacher manager results-->
             <br/>
-        </article>
-        <!--teacher manager results-->
-        <div class="SearchResults">
-            <div id="TeacherResults">
-                <table class="ResultsTable">
-                    <tr>
-                        <th class="icon"></th>
-                        <th>Last Name</th>
-                        <th>First Name</th>
-                        <th>Email Address</th>
-                        <th>Department</th>
-                        <th>Tenure</th>
-                        <th>Last Login</th>
-                        <th>Disabled</th>
-                    </tr>
-                    <tr th:each="teacher : ${teacherList}" th:object="${teacher}">
-                        <td class="buttonArea">
-                            <a th:href="@{/adminManageTeacher?(teacherID=${teacher.getTeacherID()})}" href="../templates/adminManageTeacher.html"><button class="editicon"></button></a>
-                            <a><button class="deleteicon"></button></a>
-                        </td>
-                        <td th:text="*{lastName}">BUSH</td>
-                        <td th:text="*{firstName}">JAMES</td>
-                        <td th:text="*{user.email}">jebush@gmail.com</td>
-                        <td th:text="*{department}">PHYSED</td>
-                        <td th:text="*{tenure}">43</td>
-                        <td th:text="*{user.lastLogin}">09/29/16</td>
-                        <td th:text="*{user.isDisabled()}">NO</td>
-                    </tr>
-                </table>
+            <div id="teacherUserOutput">
+                This is sample content.
             </div>
+            <div>
+                <div class="pagination">
+                    <span id="descriptionTeacher"></span>
+                    <br/>
+                    <a href="#"><button id="teacherBack">Back</button></a>
+                    <a href="#"><button id="teacherNext">Next</button></a>
+                </div>
+            </div>
+        </fieldset>
+        <div class="divider">
+            <hr/>
         </div>
-    </fieldset>
-    <div class="divider">
-        <hr/>
-    </div>
-    <!--student manager search engine-->
-    <fieldset class="SearchField">
-        <legend>Students</legend>
-        <article class="SearchParams">
-            <div id="StudentSearchParams">
-                <form>
-                    <input name="sLastName" class="InputField" type="text" placeholder="Last Name" th:value="${sLastName}"/>
-                    <input name="sFirstName" class="InputField" type="text" placeholder="First Name" th:value="${sFirstName}"/>
-                    <input name="sEmail" class="InputField" type="text" placeholder="Email Address" th:value="${sEmail}"/>
-                    <input name="sID" class="InputField" type="text" placeholder="Student ID#" th:value="${sID}"/>
-                    <input name="grade" class="InputField" type="text" placeholder="Grade" th:value="${grade}"/>
-                    <button class="SearchButton">Search</button>
-                </form>
-                <a th:href="@{/adminManageStudent}" href="../templates/adminManageStudent.html"><button id="AddStudentButton" class="addnewuser"></button></a>
-            </div>
+        <!--student manager search engine-->
+        <fieldset class="SearchField">
+            <legend>Students</legend>
+            <article class="SearchParams">
+                <div id="StudentSearchParams">
+                    <form>
+                        <input id="sLastName" name="sLastName" class="InputField" type="text" placeholder="Last Name" th:value="${sLastName}"/>
+                        <input id="sFirstName" name="sFirstName" class="InputField" type="text" placeholder="First Name" th:value="${sFirstName}"/>
+                        <input id="sEmail" name="sEmail" class="InputField" type="text" placeholder="Email Address" th:value="${sEmail}"/>
+                        <input id="sID" name="sID" class="InputField" type="text" placeholder="Student ID#" th:value="${sID}"/>
+                        <input id="grade" name="grade" class="InputField" type="text" placeholder="Grade" th:value="${grade}"/>
+                        <button id="studentSearch" class="SearchButton">Search</button>
+                        <button id="studentReset" class="ResetButton">Reset</button>
+                    </form>
+                    <a th:href="@{/adminManageStudent}" href="../templates/adminManageStudent.html"><button id="AddStudentButton" class="addnewuser"></button></a>
+                </div>
+                <br/>
+            </article>
+            <!--student manager results-->
             <br/>
-        </article>
-        <!--student manager results-->
-        <div class="SearchResults">
-            <div id="StudentResults">
-                <table class="ResultsTable">
-                    <tr>
-                        <th class="icon"></th>
-                        <th>Last Name</th>
-                        <th>First Name</th>
-                        <th>Email Address</th>
-                        <th>Student ID#</th>
-                        <th>Grade</th>
-                        <th>Last Login</th>
-                        <th>Disabled</th>
-                    </tr>
-                    <tr th:each="student : ${studentList}" th:object="${student}">
-                        <td class="buttonArea">
-                            <a th:href="@{/adminManageStudent?(studentID=${student.getStudentID()})}" href="../templates/adminManageStudent.html"><button class="editicon"></button></a>
-                            <a><button class="deleteicon"></button></a>
-                        </td>
-                        <td th:text="*{lastName}">SMITH</td>
-                        <td th:text="*{firstName}">MATTHEW</td>
-                        <td th:text="*{user.email}">msmith01@fakeschools.org</td>
-                        <td th:text="*{studentNumber}">9824621</td>
-                        <td th:text="*{gradeLevel}">12</td>
-                        <td th:text="*{user.lastLogin}">N/A</td>
-                        <td th:text="*{user.isDisabled()}">NO</td>
-                    </tr>
-                </table>
+            <div id="studentUserOutput">
+                This is sample content.
             </div>
-        </div>
-    </fieldset>
-</section>
+            <div>
+                <div class="pagination">
+                    <span id="descriptionStudent"></span>
+                    <br/>
+                    <a href="#"><button id="studentBack">Back</button></a>
+                    <a href="#"><button id="studentNext">Next</button></a>
+                </div>
+            </div>
+        </fieldset>
+    </section>
 </body>
 </html>

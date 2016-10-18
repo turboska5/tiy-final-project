@@ -20,4 +20,10 @@ public interface ClassRepo extends JpaRepository<AcademicClass, Integer> {
     Page<AcademicClass> searchClasses(Integer period, String name, String identifier, String department, String teacherLastName, String teacherFirstName, Integer teacherID, Pageable pageable);
 
     List<AcademicClass> getByTeacherTeacherID(Integer teacherID);
+
+    @Query(value = "SELECT c FROM AcademicClass c WHERE (?1 IS NULL OR c.period = ?1) AND (?2 = '' OR upper(c.name) LIKE upper(?2)) AND (?3 = '' OR upper(c.identifier) LIKE upper(?3)) AND (?4 IS NULL OR c.teacher.teacherID = ?4)")
+    List<AcademicClass> search(Integer period, String nameForSearch, String identifierForSearch, Integer teacherID);
+
+    @Query(value = "SELECT c FROM AcademicClass c WHERE (?1 IS NULL OR c.period = ?1) AND (?2 = '' OR upper(c.name) LIKE upper(?2)) AND (?3 = '' OR upper(c.identifier) LIKE upper(?3)) AND (?4 IS NULL OR c.teacher.teacherID = ?4)")
+    Page<AcademicClass> search(Integer period, String nameForSearch, String identifierForSearch, Integer teacherID, Pageable pageable);
 }

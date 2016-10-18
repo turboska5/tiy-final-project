@@ -1,5 +1,6 @@
 package com.andrewrnagel.objgrader.service;
 
+import com.andrewrnagel.objgrader.bean.*;
 import com.andrewrnagel.objgrader.entity.*;
 import com.andrewrnagel.objgrader.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,29 +86,29 @@ public class MainService {
         return this.adminRepository.findAll();
     }
 
-    public List<Admin> searchAllAdmins(String lastName, String firstName, String email, String title) {
-        return this.adminRepository.searchForAdmins(lastName, firstName, email, title);
-    }
+//    public List<Admin> searchAllAdmins(String lastName, String firstName, String email, String title) {
+//        return this.adminRepository.searchForAdmins(lastName, firstName, email, title);
+//    }
 
     public List<Teacher> getAllTeachers() {
         return this.teacherRepository.findAll();
     }
 
-    public List<Teacher> searchAllTeachers(String lastName, String firstName, String email, String department) {
-        return this.teacherRepository.searchForTeachers(lastName, firstName, email, department);
-    }
+//    public List<Teacher> searchAllTeachers(String lastName, String firstName, String email, String department) {
+//        return this.teacherRepository.searchForTeachers(lastName, firstName, email, department);
+//    }
 
     public List<Student> getAllStudents() {
         return this.studentRepository.findAll();
     }
 
-    public List<Student> searchAllStudents(String lastName, String firstName, String email, String studentID, String grade) {
-        Integer aGradeParsed = null;
-        if(!grade.equals("")) {
-            aGradeParsed = Integer.parseInt(grade);
-        }
-        return this.studentRepository.searchForStudents(lastName, firstName, email, studentID, aGradeParsed);
-    }
+//    public List<Student> searchAllStudents(String lastName, String firstName, String email, String studentID, String grade) {
+//        Integer aGradeParsed = null;
+//        if(!grade.equals("")) {
+//            aGradeParsed = Integer.parseInt(grade);
+//        }
+//        return this.studentRepository.searchForStudents(lastName, firstName, email, studentID, aGradeParsed);
+//    }
 
     public User getUserByID(Integer id) {
         return userRepository.getById(id);
@@ -325,5 +326,55 @@ public class MainService {
         }
         Page<Grade> results = this.gradeRepo.searchForStudentAssignments(period, aName, aPointsParsed, studentID, pageable);
         return results;
+    }
+
+    //Teacher page ajax content
+    public Integer listAllClasses(SearchTeacherClasses search, Integer teacherID) {
+        return classRepo.search(search.getPeriod(), search.getNameForSearch(), search.getIdentifierForSearch(), teacherID).size();
+    }
+
+    public Page<AcademicClass> listClasses(SearchTeacherClasses search, Integer teacherID, Pageable pageable) {
+        return classRepo.search(search.getPeriod(), search.getNameForSearch(), search.getIdentifierForSearch(), teacherID, pageable);
+    }
+
+    public Integer listAllAssignments(SearchTeacherAssign search, Integer teacherID) {
+        return gradeRepo.searchAssignments(search.getaPeriod(), search.getaNameForSearch(), search.getaIDForSearch(), search.getaDateForSearch(), search.getaPoints(), teacherID).size();
+    }
+
+    public Page<Grade> listAssignments(SearchTeacherAssign search, Integer teacherID, Pageable pageable) {
+        return gradeRepo.searchAssignments(search.getaPeriod(), search.getaNameForSearch(), search.getaIDForSearch(), search.getaDateForSearch(), search.getaPoints(), teacherID, pageable);
+    }
+
+    public Integer listAllStudents(SearchTeacherStudents search, Integer teacherID) {
+        return gradeRepo.searchStudents(search.getsPeriod(), search.getsLastNameForSearch(), search.getsFirstNameForSearch(), search.getsANameForSearch(), search.getsAIDForSearch(), teacherID).size();
+    }
+
+    public Page<Grade> listStudents(SearchTeacherStudents search, Integer teacherID, Pageable pageable) {
+        return gradeRepo.searchStudents(search.getsPeriod(), search.getsLastNameForSearch(), search.getsFirstNameForSearch(), search.getsANameForSearch(), search.getsAIDForSearch(), teacherID, pageable);
+    }
+
+    //Admin page ajax content
+    public Integer listAllAdmins(SearchUsersAdmin searchUsersAdmin) {
+        return this.adminRepository.findAllWithoutPages(searchUsersAdmin.getLastNameForSearch(), searchUsersAdmin.getFirstNameForSearch(), searchUsersAdmin.getEmailForSearch(), searchUsersAdmin.getTitleForSearch());
+    }
+
+    public Page<Admin> listAdmins(SearchUsersAdmin searchUsersAdmin, Pageable pageable) {
+        return this.adminRepository.findAllWithPages(searchUsersAdmin.getLastNameForSearch(), searchUsersAdmin.getFirstNameForSearch(), searchUsersAdmin.getEmailForSearch(), searchUsersAdmin.getTitleForSearch(), pageable);
+    }
+
+    public Integer listAllTeachers(SearchUsersTeacher searchUsersTeacher) {
+        return this.teacherRepository.findAllWithoutPages(searchUsersTeacher.gettLastNameForSearch(), searchUsersTeacher.gettFirstNameForSearch(), searchUsersTeacher.gettEmailForSearch(), searchUsersTeacher.getDepartmentForSearch());
+    }
+
+    public Page<Teacher> listTeachers(SearchUsersTeacher searchUsersTeacher, Pageable pageable) {
+        return this.teacherRepository.findAllWithPages(searchUsersTeacher.gettLastNameForSearch(), searchUsersTeacher.gettFirstNameForSearch(), searchUsersTeacher.gettEmailForSearch(), searchUsersTeacher.getDepartmentForSearch(), pageable);
+    }
+
+    public Integer listAllStudents(SearchUsersStudent searchUsersStudent) {
+        return this.studentRepository.findAllWithoutPages(searchUsersStudent.getsLastNameForSearch(), searchUsersStudent.getsFirstNameForSearch(), searchUsersStudent.getsEmail(), searchUsersStudent.getsIDForSearch(), searchUsersStudent.getGrade());
+    }
+
+    public Page<Student> listStudents(SearchUsersStudent searchUsersStudent, Pageable pageable) {
+        return this.studentRepository.findAllWithPages(searchUsersStudent.getsLastNameForSearch(), searchUsersStudent.getsFirstNameForSearch(), searchUsersStudent.getsEmail(), searchUsersStudent.getsIDForSearch(), searchUsersStudent.getGrade(), pageable);
     }
 }
