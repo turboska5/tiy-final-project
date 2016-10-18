@@ -133,7 +133,7 @@ $(function() {
             //populate pagination based on results
             // var start = data.number * data.size  + 1;
             // var end = start + data.size;
-            var total = $(data).find('tr').length;
+            var total = $(data).find('.displayedClass').length;
             // lastPage = Math.ceil(total/data.size) - 1;
             $("#description").text("1" + " - " + "2" + " of " + total);
         });
@@ -143,11 +143,12 @@ $(function() {
         $.get(assignQuery, function(data) {
             $("#assignmentOutput").empty();
             $("#assignmentOutput").append(data);
+            console.log(data);
 
             //populate pagination based on results
             // var start = data.number * data.size  + 1;
             // var end = start + data.size;
-            var total = $(data).find('tr').length;
+            var total = $(data).find('.displayedAssignment').length;
             // lastPage = Math.ceil(total/data.size) - 1;
             $("#descriptionAssign").text("1" + " - " + "2" + " of " + total);
         });
@@ -160,7 +161,7 @@ $(function() {
             //populate pagination based on results
             // var start = data.number * data.size  + 1;
             // var end = start + data.size;
-            var total = $(data).find('tr').length;
+            var total = $(data).find('.displayedStudent').length;
             // lastPage = Math.ceil(total/data.size) - 1;
             $("#descriptionStudent").text("1" + " - " + "2" + " of " + total);
         });
