@@ -1,0 +1,27 @@
+<div xmlns:th="http://thymeleaf.org" id="AdminResults">
+    <table class="ResultsTable">
+        <tr>
+            <th class="icon"></th>
+            <th>Last Name</th>
+            <th>First Name</th>
+            <th>Email Address</th>
+            <th>Title</th>
+            <th>Tenure</th>
+            <th>Last Login</th>
+            <th>Disabled</th>
+        </tr>
+        <tr th:each="admin : ${adminList}" th:object="${admin}">
+            <td class="buttonArea">
+                <a th:href="@{/adminManageAdmin?(adminID=${admin.getAdminID()})}" href="../templates/adminManageAdmin.html"><button class="editicon"></button></a>
+                <a><button class="deleteicon"></button></a>
+            </td>
+            <td th:text="*{lastName}">ROOSEVELT</td>
+            <td th:text="*{firstName}">THEODORE</td>
+            <td th:text="*{user.email}">troosevelt@gmail.com</td>
+            <td th:text="*{title}">A. PRINCIPAL</td>
+            <td th:text="*{tenure}">12</td>
+            <td th:text="*{user.lastLogin}">09/29/16</td>
+            <td th:text="*{user.isDisabled()}">NO</td>
+        </tr>
+    </table>
+</div>
