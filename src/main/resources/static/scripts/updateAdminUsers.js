@@ -3,167 +3,221 @@
  */
 
 //global pagination support
-var currentPage = 1, lastPage = 1;
-var currentAPage = 1, lastAPage = 1;
-var currentSPage = 1, lastSPage = 1;
+var adminPerPage = 5, teacherPerPage = 5, studentsPerPage = 5;
+var currentPage = 0, lastPage = 0;
+var currentTPage = 0, lastTPage = 0;
+var currentSPage = 0, lastSPage = 0;
 
 $(function() {
-    //on load
-    var page = 1;
-    var aPage = 1;
-    var sPage = 1;
+    //button management
+    adminButtonToggle();
+    teacherButtonToggle();
+    studentButtonToggle();
 
     //button functions
-    //search
+    //search button
     $("#adminSearch").click(function(){
-        currentPage = page;
-        var query = "/classTable?page=" + (page - 1) + "&period=" + $("#period").val() + "&name=" + $("#name").val() + "&identifier=" + $("#identifier").val();
+        currentPage = 0;
+        adminButtonToggle();
+        var query = "/adminUserTable?page=" + currentPage + "&lastName=" + $("#lastName").val() + "&firstName=" + $("#firstName").val() + "&email=" + $("#email").val()
+            + "&title=" + $("#title").val();
         adminSearch(query);
         return false; // this prevents the form from being submitted when the button is clicked.
     });
     $("#teacherSearch").click(function(){
-        currentAPage = aPage;
-        var query = "/assignTable?aPage=" + (aPage - 1) + "&aPeriod=" + $("#aPeriod").val() + "&aName=" + $("#aName").val() + "&aID=" + $("#aID").val()
-            + "&aDate=" + $("#aDate").val() + "&aPoints=" + $("#aPoints").val();
+        currentTPage = 0;
+        teacherButtonToggle();
+        var query = "/teacherUserTable?page=" + currentTPage + "&tLastName=" + $("#tLastName").val() + "&tFirstName=" + $("#tFirstName").val() + "&tEmail=" + $("#tEmail").val()
+            + "&department=" + $("#department").val();
         teacherSearch(query);
         return false; // this prevents the form from being submitted when the button is clicked.
     });
     $("#studentSearch").click(function(){
-        currentSPage = sPage;
-        var query = "/studentTable?sPage=" + (sPage - 1) + "sPeriod=" + $("#sPeriod").val() + "&sLastName=" + $("#sLastName").val() + "&sFirstName=" + $("#sFirstName").val()
-            + "&sAName=" + $("#sAName").val() + "&sAID=" + $("#sAID").val();
+        currentSPage = 0;
+        studentButtonToggle();
+        var query = "/studentUserTable?page=" + currentSPage + "&sLastName=" + $("#sLastName").val() + "&sFirstName=" + $("#sFirstName").val() + "&sEmail=" + $("#sEmail").val()
+            + "&sID=" + $("#sID").val() + "&grade=" + $("#grade").val();
         studentSearch(query);
         return false; // this prevents the form from being submitted when the button is clicked.
     });
-
-    //reset
+    //reset button
     $("#adminReset").click(function(){
-        $("#period").val("");
-        $("#name").val("");
-        $("#identifier").val("");
-        classSearch("/classTable");
+        $("#lastName").val("");
+        $("#firstName").val("");
+        $("#email").val("");
+        $("#title").val("");
+        adminSearch("/adminUserTable");
+        currentPage = 0;
+        adminButtonToggle();
         return false; // this prevents the form from being submitted when the button is clicked.
     });
     $("#teacherReset").click(function(){
-        $("#aPeriod").val("");
-        $("#aName").val("");
-        $("#aID").val("");
-        $("#aDate").val("");
-        $("#aPoints").val("");
-        assignSearch("/assignTable");
+        $("#tLastName").val("");
+        $("#tFirstName").val("");
+        $("#tEmail").val("");
+        $("#department").val("");
+        teacherSearch("/teacherUserTable");
+        currentTPage = 0;
+        teacherButtonToggle();
         return false; // this prevents the form from being submitted when the button is clicked.
     });
     $("#studentReset").click(function(){
-        $("#sPeriod").val("");
         $("#sLastName").val("");
         $("#sFirstName").val("");
-        $("#sAName").val("");
-        $("#sAID").val("");
-        studentSearch("/studentTable");
+        $("#sEmail").val("");
+        $("#sID").val("");
+        $("#grade").val("");
+        studentSearch("/studentUserTable");
+        currentSPage = 0;
+        studentButtonToggle();
         return false; // this prevents the form from being submitted when the button is clicked.
     });
-
-    //next
-    $("#next").click(function(){
+    //next button
+    $("#adminNext").click(function(){
         if (currentPage < lastPage) {
-            page = (currentPage + 1);
-            var query = "/classTable?page=" + page + "&period=" + $("#period").val() + "&name=" + $("#name").val() + "&identifier=" + $("#identifier").val();
+            currentPage++;
+            var query = "/adminUserTable?page=" + currentPage + "&lastName=" + $("#lastName").val() + "&firstName=" + $("#firstName").val() + "&email=" + $("#email").val()
+                + "&title=" + $("#title").val();
             adminSearch(query);
+            adminButtonToggle();
         }
         return false; // this prevents the form from being submitted when the button is clicked.
     });
     $("#teacherNext").click(function(){
-        if (currentAPage < lastAPage) {
-            aPage = (currentAPage + 1);
-            var query = "/assignTable?aPage=" + aPage + "&aPeriod=" + $("#aPeriod").val() + "&aName=" + $("#aName").val() + "&aID=" + $("#aID").val()
-                + "&aDate=" + $("#aDate").val() + "&aPoints=" + $("#aPoints").val();
+        if (currentTPage < lastTPage) {
+            currentTPage++;
+            var query = "/teacherUserTable?page=" + currentTPage + "&tLastName=" + $("#tLastName").val() + "&tFirstName=" + $("#tFirstName").val() + "&tEmail=" + $("#tEmail").val()
+                + "&department=" + $("#department").val();
             teacherSearch(query);
+            teacherButtonToggle();
         }
         return false; // this prevents the form from being submitted when the button is clicked.
     });
     $("#studentNext").click(function(){
         if (currentSPage < lastSPage) {
-            sPage = (currentSPage + 1);
-            var query = "/studentTable?sPage=" + sPage + "sPeriod=" + $("#sPeriod").val() + "&sLastName=" + $("#sLastName").val() + "&sFirstName=" + $("#sFirstName").val()
-                + "&sAName=" + $("#sAName").val() + "&sAID=" + $("#sAID").val();
+            currentSPage++;
+            var query = "/studentUserTable?page=" + currentSPage + "&sLastName=" + $("#sLastName").val() + "&sFirstName=" + $("#sFirstName").val() + "&sEmail=" + $("#sEmail").val()
+                + "&sID=" + $("#sID").val() + "&grade=" + $("#grade").val();
             studentSearch(query);
+            studentButtonToggle();
         }
         return false; // this prevents the form from being submitted when the button is clicked.
     });
-
-    //back
+    //back button
     $("#back").click(function(){
-        if (currentPage > 1) {
-            page = (currentPage - 1);
-            var query = "/classTable?page=" + page + "&period=" + $("#period").val() + "&name=" + $("#name").val() + "&identifier=" + $("#identifier").val();
+        if (currentPage > 0) {
+            currentPage--;
+            var query = "/adminUserTable?page=" + currentPage + "&period=" + $("#period").val() + "&name=" + $("#name").val() + "&identifier=" + $("#identifier").val();
             adminSearch(query);
+            adminButtonToggle();
         }
         return false; // this prevents the form from being submitted when the button is clicked.
     });
     $("#teacherBack").click(function(){
-        if (currentAPage > 1) {
-            aPage = (currentAPage - 1);
-            var query = "/assignTable?aPage=" + aPage + "&aPeriod=" + $("#aPeriod").val() + "&aName=" + $("#aName").val() + "&aID=" + $("#aID").val()
+        if (currentTPage > 0) {
+            currentTPage--;
+            var query = "/teacherUserTable?page=" + currentTPage + "&aPeriod=" + $("#aPeriod").val() + "&aName=" + $("#aName").val() + "&aID=" + $("#aID").val()
                 + "&aDate=" + $("#aDate").val() + "&aPoints=" + $("#aPoints").val();
             teacherSearch(query);
+            teacherButtonToggle();
         }
         return false; // this prevents the form from being submitted when the button is clicked.
     });
     $("#studentBack").click(function(){
-        if (currentSPage > 1) {
-            sPage = (currentSPage - 1);
-            var query = "/studentTable?sPage=" + sPage + "sPeriod=" + $("#sPeriod").val() + "&sLastName=" + $("#sLastName").val() + "&sFirstName=" + $("#sFirstName").val()
+        if (currentSPage > 0) {
+            currentSPage--;
+            var query = "/studentUserTable?page=" + currentSPage + "&sPeriod=" + $("#sPeriod").val() + "&sLastName=" + $("#sLastName").val() + "&sFirstName=" + $("#sFirstName").val()
                 + "&sAName=" + $("#sAName").val() + "&sAID=" + $("#sAID").val();
             studentSearch(query);
+            studentButtonToggle();
         }
         return false; // this prevents the form from being submitted when the button is clicked.
     });
 
     //supporting functions
-    function adminSearch(classQuery) {
+    function adminSearch(adminQuery) {
         //retrieve results
-        $.get(classQuery, function(data) {
+        $.get(adminQuery, function(data) {
+            //clear existing data and refresh with new
             $("#adminUserOutput").empty();
             $("#adminUserOutput").append(data);
-
             //populate pagination based on results
-            //elements at a time: $(data).find('.displayedClass').length
-            //what page am I on: currentPage
-            //last page is: lastPage
-
-            // var start = data.number * data.size  + 1;
-            // var end = start + data.size;
-            var total = $(data).find('.displayedClass').length;
-            // lastPage = Math.ceil(total/data.size) - 1;
-            $("#description").text("1" + " - " + "2" + " of " + total);
+            var totalCount = $("#classListSize").val();
+            var totalPages = Math.ceil(totalCount/adminPerPage);
+            var onPageCount = $(data).find('.displayedClass').length;
+            lastPage = totalPages - 1;
+            var start = currentPage * adminPerPage  + 1;
+            var end = start + onPageCount - 1;
+            $("#descriptionAdmin").text(start + " - " + end + " of " + totalCount);
         });
-
     }
-    function teacherSearch(assignQuery) {
-        $.get(assignQuery, function(data) {
+    function teacherSearch(teacherQuery) {
+        $.get(teacherQuery, function(data) {
+            //clear existing data and refresh with new
             $("#teacherUserOutput").empty();
             $("#teacherUserOutput").append(data);
-            console.log(data);
-
             //populate pagination based on results
-            // var start = data.number * data.size  + 1;
-            // var end = start + data.size;
-            var total = $(data).find('.displayedAssignment').length;
-            // lastPage = Math.ceil(total/data.size) - 1;
-            $("#descriptionAssign").text("1" + " - " + "2" + " of " + total);
+            var totalCount = $("#assignListSize").val();
+            var totalPages = Math.ceil(totalCount/teacherPerPage);
+            var onPageCount = $(data).find('.displayedAssignment').length;
+            lastTPage = totalPages - 1;
+            var start = currentTPage * teacherPerPage + 1;
+            var end = start + onPageCount - 1;
+            $("#descriptionTeacher").text(start + " - " + end + " of " + totalCount);
         });
     }
     function studentSearch(studentQuery) {
         $.get(studentQuery, function(data) {
+            //clear existing data and refresh with new
             $("#studentUserOutput").empty();
             $("#studentUserOutput").append(data);
-
             //populate pagination based on results
-            // var start = data.number * data.size  + 1;
-            // var end = start + data.size;
-            var total = $(data).find('.displayedStudent').length;
-            // lastPage = Math.ceil(total/data.size) - 1;
-            $("#descriptionStudent").text("1" + " - " + "2" + " of " + total);
+            var totalCount = $("#studentListSize").val();
+            var totalPages = Math.ceil(totalCount/studentsPerPage);
+            var onPageCount = $(data).find('.displayedStudent').length;
+            lastSPage = totalPages - 1;
+            var start = currentSPage * studentsPerPage + 1;
+            var end = start + onPageCount - 1;
+            $("#descriptionStudent").text(start + " - " + end + " of " + totalCount);
         });
+    }
+    function adminButtonToggle() {
+        //disable back button/next button behavior
+        if(currentPage == 0) {
+            $("#adminBack").prop("disabled", true);
+            $("#adminNext").prop("disabled", false);
+        } else if (currentPage < lastPage) {
+            $("#adminBack").prop("disabled", false);
+            $("#adminNext").prop("disabled", false);
+        } else if (currentPage == lastPage) {
+            $("#adminBack").prop("disabled", false);
+            $("#adminNext").prop("disabled", true);
+        }
+    }
+    function teacherButtonToggle() {
+        //disable back button/next button behavior
+        if(currentTPage == 0) {
+            $("#teacherBack").prop("disabled", true);
+            $("#teacherNext").prop("disabled", false);
+        } else if (currentTPage < lastTPage) {
+            $("#teacherBack").prop("disabled", false);
+            $("#teacherNext").prop("disabled", false);
+        } else if (currentTPage == lastTPage) {
+            $("#teacherBack").prop("disabled", false);
+            $("#teacherNext").prop("disabled", true);
+        }
+    }
+    function studentButtonToggle() {
+        //disable back button/next button behavior
+        if(currentSPage == 0) {
+            $("#studentBack").prop("disabled", true);
+            $("#studentNext").prop("disabled", false);
+        } else if (currentSPage < lastSPage) {
+            $("#studentBack").prop("disabled", false);
+            $("#studentNext").prop("disabled", false);
+        } else if (currentSPage == lastSPage) {
+            $("#studentBack").prop("disabled", false);
+            $("#studentNext").prop("disabled", true);
+        }
     }
 });
