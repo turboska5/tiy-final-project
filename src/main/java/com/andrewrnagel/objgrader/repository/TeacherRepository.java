@@ -16,6 +16,6 @@ public interface TeacherRepository extends JpaRepository<Teacher, Integer> {
     @Query(value = "SELECT COUNT(t.teacherID) FROM Teacher AS t WHERE (?1 = '' OR upper(t.lastName) LIKE upper(?1)) AND (?2 = '' OR upper(t.firstName) LIKE upper(?2)) AND (?3 = '' OR upper(t.user.email) LIKE upper(?3)) AND (?4 = '' OR upper(t.department) LIKE upper(?4))")
     Integer findAllWithoutPages(String lastName, String firstName, String email, String department);
 
-    @Query(value = "SELECT t FROM Teacher t WHERE (?1 = '' OR upper(t.lastName) LIKE upper(?1)) AND (?2 = '' OR upper(t.firstName) LIKE upper(?2)) AND (?3 = '' OR upper(t.user.email) LIKE upper(?3)) AND (?4 = '' OR upper(t.department) LIKE upper(?4)) ORDER BY t.lastName ASC")
+    @Query(value = "SELECT t FROM Teacher t WHERE (?1 = '' OR upper(t.lastName) LIKE upper(?1)) AND (?2 = '' OR upper(t.firstName) LIKE upper(?2)) AND (?3 = '' OR upper(t.user.email) LIKE upper(?3)) AND (?4 = '' OR upper(t.department) LIKE upper(?4)) ORDER BY t.lastName, t.department ASC")
     Page<Teacher> findAllWithPages(String lastName, String firstName, String email, String department, Pageable pageable);
 }
