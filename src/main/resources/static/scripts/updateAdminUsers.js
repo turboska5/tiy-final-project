@@ -178,7 +178,7 @@ $(function() {
         adminButtonToggle();
         teacherSearch("/teacherUserTable");
         teacherButtonToggle();
-        studentSearch("/studentUserTable");
+        studentSearch("/studentUserTable?page=" + currentSPage + "&sLastName=" + $("#sLastName").val() + "&sFirstName=" + $("#sFirstName").val() + "&sEmail=" + $("#sEmail").val() + "&sID=" + $("#sID").val() + "&grade=" + $("#grade").val());
         studentButtonToggle();
     };
 
