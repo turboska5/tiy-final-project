@@ -298,10 +298,15 @@ public class MainService {
     public void deleteClass(Integer classID) {
         //if there are students in class do not delete
         if(getStudentRoster(classID).size() != 0) {
-            //else do nothing
+            //do nothing
         } else {
             //delete grade record then delete class record
-            this.gradeRepo.deleteClass(classID);
+            if(this.gradeRepo.findByAcademicClassClassID(classID).size() != 0) {
+                //class has students, delete rows in grade table
+                this.gradeRepo.deleteClass(classID);
+            } else {
+                //do nothing (class made with no students)
+            }
             this.classRepo.delete(classID);
         }
     }
