@@ -41,11 +41,6 @@ public class Teacher {
     @Valid
     private User user = new User();
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "teacherID")
-    @OrderBy("period")
-    List<AcademicClass> teacherClasses = new ArrayList<>();
-
     public Teacher() {
     }
 
@@ -109,14 +104,6 @@ public class Teacher {
 
     public void setDepartment(String department) {
         this.department = department;
-    }
-
-    public List<AcademicClass> getTeacherClasses() {
-        return teacherClasses;
-    }
-
-    public void setTeacherClasses(List<AcademicClass> teacherClasses) {
-        this.teacherClasses = teacherClasses;
     }
 
     public String getTenure() {

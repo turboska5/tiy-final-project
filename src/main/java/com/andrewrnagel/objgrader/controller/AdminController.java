@@ -324,8 +324,6 @@ public class AdminController {
         if(teacher.getTeacherID() > 0) {
             //bring over correct userID
             User user = mainService.getTeacher(teacher.getTeacherID()).getUser();
-            //update attributes on user object if changed (email/pass/disabled)
-            teacher.setTeacherClasses(mainService.getTeacher(teacher.getTeacherID()).getTeacherClasses());
             if(!(teacher.getUser().getEmail().equals(user.getEmail()))){
                 user.setEmail(teacher.getUser().getEmail());
             }
