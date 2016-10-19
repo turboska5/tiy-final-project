@@ -58,12 +58,16 @@
                         <ul class="error" th:hidden="true"><li th:each="err : ${#fields.errors('department')}"></li></ul>
                         <select name="department" class="formInput" th:field="*{department}" th:errorclass="error">
                             <option value="" selected="true">Department</option>
-                            <option value="Agriculture" >Agriculture</option>
-                            <option value="Math" >Math</option>
-                            <option value="Physical Education" >Physical Education</option>
-                            <option value="Science" >Science</option>
-                            <option value="Social Studies" >Social Studies</option>
-                            <option value="Technology" >Technology</option>
+                            <option value="Agriculture">Agriculture</option>
+                            <option value="Art">Art</option>
+                            <option value="English">English</option>
+                            <option value="Foreign Language">Foreign Language</option>
+                            <option value="Math">Math</option>
+                            <option value="Music">Music</option>
+                            <option value="Physical Education">Physical Education</option>
+                            <option value="Science">Science</option>
+                            <option value="Social Studies">Social Studies</option>
+                            <option value="Technology">Technology</option>
                         </select>
                         <br/>
                         <label>Disabled</label>
