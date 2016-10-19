@@ -300,10 +300,14 @@ public class MainService {
         if(getStudentRoster(classID).size() != 0) {
             //do nothing
         } else {
-            //delete grade record then delete class record
+            //delete grade record then delete class record (assignments issued)
             if(this.gradeRepo.findByAcademicClassClassID(classID).size() != 0) {
-                //class has students, delete rows in grade table
+                //class has assignments, delete rows in grade table
+                List<Grade> tiedAssign = this.gradeRepo.getClassAssignments(classID);
                 this.gradeRepo.deleteClass(classID);
+                for(Grade tiedEntries : tiedAssign) {
+                    this.assignmentRepo.delete(tiedEntries.getAssignment().getAssignmentID());
+                }
             } else {
                 //do nothing (class made with no students)
             }
