@@ -289,9 +289,20 @@ public class MainService {
         if(this.gradeRepo.checkForDeletion(assignmentID) != 0) {
             //else do nothing
         } else {
-            //delete grade record then delete assignmnet record
+            //delete grade record then delete assignment record
             this.gradeRepo.deleteAssignment(assignmentID);
             this.assignmentRepo.delete(assignmentID);
+        }
+    }
+
+    public void deleteClass(Integer classID) {
+        //if there are students in class do not delete
+        if(getStudentRoster(classID).size() != 0) {
+            //else do nothing
+        } else {
+            //delete grade record then delete class record
+            this.gradeRepo.deleteClass(classID);
+            this.classRepo.delete(classID);
         }
     }
 }
