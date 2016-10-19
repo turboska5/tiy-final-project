@@ -34,9 +34,7 @@ public class AcademicClass {
     private Integer period;
 
     @NotNull
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "teacherID")
-    @JsonIgnore
+    @OneToOne
     @Valid
     private Teacher teacher;
 
