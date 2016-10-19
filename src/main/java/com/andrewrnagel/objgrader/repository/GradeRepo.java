@@ -84,4 +84,9 @@ public interface GradeRepo extends JpaRepository<Grade, Integer> {
     @Transactional
     @Query(value = "DELETE FROM Grade g WHERE (g.assignment.assignmentID = ?1)")
     void deleteAssignment(Integer assignmentID);
+
+    @Modifying
+    @Transactional
+    @Query(value = "DELETE FROM Grade g WHERE (g.academicClass.classID = ?1)")
+    void deleteClass(Integer classID);
 }
