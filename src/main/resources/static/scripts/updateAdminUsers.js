@@ -61,7 +61,7 @@ $(function() {
         $("#sEmail").val("");
         $("#sID").val("");
         $("#grade").val("");
-        studentSearch("/studentUserTable?page=" + currentSPage + "&sLastName=" + $("#sLastName").val() + "&sFirstName=" + $("#sFirstName").val() + "&sEmail=" + $("#sEmail").val() + "&sID=" + $("#sID").val() + "&grade=" + $("#grade").val());
+        studentSearch("/studentUserTable");
         currentSPage = 0;
         studentButtonToggle();
         return false; // this prevents the form from being submitted when the button is clicked.
@@ -178,7 +178,7 @@ $(function() {
         adminButtonToggle();
         teacherSearch("/teacherUserTable");
         teacherButtonToggle();
-        studentSearch("/studentUserTable?page=" + currentSPage + "&sLastName=" + $("#sLastName").val() + "&sFirstName=" + $("#sFirstName").val() + "&sEmail=" + $("#sEmail").val() + "&sID=" + $("#sID").val() + "&grade=" + $("#grade").val());
+        studentSearch("/studentUserTable");
         studentButtonToggle();
     };
 

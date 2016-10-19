@@ -196,7 +196,7 @@ public class AdminController {
                                 @RequestParam(defaultValue = "") String sFirstName,
                                 @RequestParam(defaultValue = "") String sEmail,
                                 @RequestParam(defaultValue = "") String sID,
-                                @RequestParam(defaultValue = "") String grade) {
+                                @RequestParam(defaultValue = "0") Integer grade) {
         if(session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(1)) {
             return "redirect:/logout";
         }
