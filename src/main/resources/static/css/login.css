@@ -17,6 +17,7 @@ h2 {
 }
 body {
     font-family: sans-serif;
+    background: rgba(120, 120, 120, 0.25);
 }
 .LabelText {
     float: left;

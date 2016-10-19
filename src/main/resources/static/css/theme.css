@@ -285,3 +285,7 @@ table tr:nth-child(2n+1) {
 .pagination{
     text-align: center;
 }
+body {
+    background: rgba(120, 120, 120, 0.25);
+    /*background: url("../images/BKG_tiled.jpeg") repeat;*/
+}
