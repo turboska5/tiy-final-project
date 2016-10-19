@@ -371,10 +371,10 @@ public class MainService {
     }
 
     public Integer listAllStudents(SearchUsersStudent searchUsersStudent) {
-        return this.studentRepository.findAllWithoutPages(searchUsersStudent.getsLastNameForSearch(), searchUsersStudent.getsFirstNameForSearch(), searchUsersStudent.getsEmail(), searchUsersStudent.getsIDForSearch(), searchUsersStudent.getGrade());
+        return this.studentRepository.findAllWithoutPages(searchUsersStudent.getsLastNameForSearch(), searchUsersStudent.getsFirstNameForSearch(), searchUsersStudent.getsEmailForSearch(), searchUsersStudent.getsIDForSearch(), searchUsersStudent.getGrade());
     }
 
     public Page<Student> listStudents(SearchUsersStudent searchUsersStudent, Pageable pageable) {
-        return this.studentRepository.findAllWithPages(searchUsersStudent.getsLastNameForSearch(), searchUsersStudent.getsFirstNameForSearch(), searchUsersStudent.getsEmail(), searchUsersStudent.getsIDForSearch(), searchUsersStudent.getGrade(), pageable);
+        return this.studentRepository.findAllWithPages(searchUsersStudent.getsLastNameForSearch(), searchUsersStudent.getsFirstNameForSearch(), searchUsersStudent.getsEmailForSearch(), searchUsersStudent.getsIDForSearch(), searchUsersStudent.getGrade(), pageable);
     }
 }

@@ -11,7 +11,7 @@ var currentSPage = 0, lastSPage = 0;
 $(function() {
     adminSearch("/adminUserTable");
     teacherSearch("/teacherUserTable");
-    studentSearch("/studentUserTable?page=" + currentSPage + "&sLastName=" + $("#sLastName").val() + "&sFirstName=" + $("#sFirstName").val() + "&sEmail=" + $("#sEmail").val() + "&sID=" + $("#sID").val() + "&grade=" + $("#grade").val());
+    studentSearch("/studentUserTable");
 
     //button functions
     //search button
@@ -59,7 +59,7 @@ $(function() {
         $("#sEmail").val("");
         $("#sID").val("");
         $("#grade").val("");
-        studentSearch("/studentUserTable?page=" + currentSPage + "&sLastName=" + $("#sLastName").val() + "&sFirstName=" + $("#sFirstName").val() + "&sEmail=" + $("#sEmail").val() + "&sID=" + $("#sID").val() + "&grade=" + $("#grade").val());
+        studentSearch("/studentUserTable");
         return false; // this prevents the form from being submitted when the button is clicked.
     });
     //next button
