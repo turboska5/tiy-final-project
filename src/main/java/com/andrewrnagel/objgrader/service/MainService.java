@@ -78,44 +78,12 @@ public class MainService {
         this.studentRepository.save(student);
     }
 
-    public List<AcademicClass> getAllClasses() {
-        return this.classRepo.findAll();
-    }
-
-    public List<Admin> getAllAdmins() {
-        return this.adminRepository.findAll();
-    }
-
-//    public List<Admin> searchAllAdmins(String lastName, String firstName, String email, String title) {
-//        return this.adminRepository.searchForAdmins(lastName, firstName, email, title);
-//    }
-
     public List<Teacher> getAllTeachers() {
-        return this.teacherRepository.findAll();
+        return this.teacherRepository.getValidTeachers();
     }
-
-//    public List<Teacher> searchAllTeachers(String lastName, String firstName, String email, String department) {
-//        return this.teacherRepository.searchForTeachers(lastName, firstName, email, department);
-//    }
 
     public List<Student> getAllStudents() {
-        return this.studentRepository.findAll();
-    }
-
-//    public List<Student> searchAllStudents(String lastName, String firstName, String email, String studentID, String grade) {
-//        Integer aGradeParsed = null;
-//        if(!grade.equals("")) {
-//            aGradeParsed = Integer.parseInt(grade);
-//        }
-//        return this.studentRepository.searchForStudents(lastName, firstName, email, studentID, aGradeParsed);
-//    }
-
-    public User getUserByID(Integer id) {
-        return userRepository.getById(id);
-    }
-
-    public User getUserByEmail(String email) {
-        return userRepository.getByEmail(email);
+        return this.studentRepository.getValidStudents();
     }
 
     public AcademicClass getAcademicClass(Integer classID) {
@@ -165,10 +133,6 @@ public class MainService {
     }
 
     //Teacher Methods
-    public List<Grade> getClassGrades(Integer classID) {
-        return this.gradeRepo.findByAcademicClassClassID(classID);
-    }
-
     public void saveAssignment(Grade grade) {
         if(grade.getGradeID().equals(0)) {
             //new assignment: save base assignment as grade
@@ -209,63 +173,11 @@ public class MainService {
         return results;
     }
 
-    public Page<AcademicClass> searchClasses(Integer period, String name , String identifer, String department, String teacherLastName, String teacherFirstName, Integer teacherID, Pageable pageable) {
-        Page<AcademicClass> results = this.classRepo.searchClasses(period, name, identifer, department, teacherLastName, teacherFirstName, teacherID, pageable);
-        return results;
-    }
-
-    //all of one teacher's assignments (search)
-    public List<Grade> getTeacherAssignments(Integer aPeriod, String aName, String aID, String aDate, String aPoints, Integer teacherID) {
-        LocalDate aDateConverted = null;
-        Integer aPointsParsed = null;
-        if(!aDate.equals("")) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            aDateConverted = LocalDate.parse(aDate, formatter);
-        }
-        if(!aPoints.equals("")) {
-            aPointsParsed = Integer.parseInt(aPoints);
-        }
-        List<Grade> results = this.gradeRepo.searchForTeacherAssignments(aPeriod, aName, aID, aDateConverted, aPointsParsed, teacherID);
-        return results;
-    }
-
-    public Page<Grade> getTeacherAssignments(Integer aPeriod, String aName, String aID, String aDate, String aPoints, Integer teacherID, Pageable pageable) {
-        LocalDate aDateConverted = null;
-        Integer aPointsParsed = null;
-        if(!aDate.equals("")) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            aDateConverted = LocalDate.parse(aDate, formatter);
-        }
-        if(!aPoints.equals("")) {
-            aPointsParsed = Integer.parseInt(aPoints);
-        }
-        Page<Grade> results = this.gradeRepo.searchForTeacherAssignments(aPeriod, aName, aID, aDateConverted, aPointsParsed, teacherID, pageable);
-        return results;
-    }
-
-    public List<Grade> getTeacherStudents(Integer sPeriod, String sLastName, String sFirstName, String sAName, String sAID, Integer teacherID) {
-        return this.gradeRepo.searchForTeacherStudents(sPeriod, sLastName, sFirstName, sAName, sAID, teacherID);
-    }
-
-    public Page<Grade> getTeacherStudents(Integer sPeriod, String sLastName, String sFirstName, String sAName, String sAID, Integer teacherID, Pageable pageable) {
-        return this.gradeRepo.searchForTeacherStudents(sPeriod, sLastName, sFirstName, sAName, sAID, teacherID, pageable);
-    }
-
-    public List<Grade> getTeacherStudents(Integer sPeriod, String sLastName, String sFirstName, String sID, Integer gradeLevel) {
-        return this.gradeRepo.searchForTeacherStudents(sPeriod, sLastName, sFirstName, sID, gradeLevel);
-    }
-
     //search criteria and organize by period
     public List<AcademicClass> searchForTeacherClasses(Integer teacherID) {
         List<AcademicClass> results = this.classRepo.getByTeacherTeacherID(teacherID);
         Collections.sort(results, (AcademicClass a1, AcademicClass a2) -> a1.getPeriod() - a2.getPeriod());
         return results;
-    }
-
-    public void gradePost(Grade grade){
-        Grade grader = this.gradeRepo.findOne(grade.getGradeID());
-        grader.setEarnedPoints(grade.getEarnedPoints());
-        this.gradeRepo.save(grader);
     }
 
     public void gradePost(String gradeID, String earnedPoints){
@@ -291,12 +203,6 @@ public class MainService {
     }
 
     //Student Stuff
-    public List<Grade> getStudentGrades(Integer studentID) {
-        List<Grade> results = this.gradeRepo.findByStudentStudentID(studentID);
-        Collections.sort(results, (Grade a1, Grade a2) -> a1.getAcademicClass().getPeriod() - a2.getAcademicClass().getPeriod());
-        return results;
-    }
-
     public List<Grade> getStudentClasses(Integer studentID) {
         List<Grade> results = this.gradeRepo.findStudentClasses(studentID);
         Collections.sort(results, (Grade a1, Grade a2) -> a1.getAcademicClass().getPeriod() - a2.getAcademicClass().getPeriod());
