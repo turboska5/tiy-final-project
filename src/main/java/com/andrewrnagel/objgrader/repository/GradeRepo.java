@@ -76,4 +76,12 @@ public interface GradeRepo extends JpaRepository<Grade, Integer> {
 
     @Query(value = "SELECT g FROM Grade g WHERE (?1 IS NULL OR g.academicClass.period = ?1) AND (?2 = '' OR upper(g.student.lastName) LIKE upper(?2)) AND (?3 = '' OR upper(g.student.firstName) LIKE upper(?3)) AND (?4 = '' OR upper(g.assignment.assignmentName) LIKE upper(?4)) AND (?5 = '' OR upper(g.assignment.assignmentIDNumber) LIKE upper(?5)) AND g.academicClass.teacher.teacherID IS ?6 ORDER BY g.academicClass.period, g.student.lastName, g.assignment.date ASC")
     Page<Grade> searchStudents(Integer sPeriod, String sLastName, String sFirstName, String sAName, String sAID, Integer teacherID, Pageable pageable);
+
+    @Query(value = "SELECT COUNT(g) FROM Grade g WHERE (?1 IS g.assignment.assignmentID) AND g.earnedPoints IS NOT NULL")
+    int checkForDeletion(Integer assignmentID);
+
+    @Modifying
+    @Transactional
+    @Query(value = "DELETE FROM Grade g WHERE (g.assignment.assignmentID = ?1)")
+    void deleteAssignment(Integer assignmentID);
 }

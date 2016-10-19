@@ -150,6 +150,14 @@ public class TeacherController {
         model.addAttribute("studentList", mainService.listStudents(searchTeacherStudents, teacher.getTeacherID(), pageable));
         return "teacherGradeBook/studentTable";
     }
+    @RequestMapping(value = "/teacherDeleteAssign", method = RequestMethod.GET)
+    public String teacherGradeBookDeleteAssign(HttpSession session, @RequestParam(defaultValue = "0") Integer assignmentID) {
+        if (session.getAttribute("userId") == null || !(session.getAttribute("userRole")).equals(2)) {
+            return "redirect:/logout";
+        }
+        mainService.deleteAssignment(assignmentID);
+        return "redirect:/teacherGradeBook";
+    }
     @RequestMapping(value = "/teacherManageAssign", method = RequestMethod.GET)
     public String teacherGradeBookAssignForm(Model model, HttpSession session,
                                              @RequestParam(defaultValue = "0") Integer gradeID) {

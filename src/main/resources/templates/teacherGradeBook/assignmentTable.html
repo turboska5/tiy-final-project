@@ -14,7 +14,7 @@
         <tr th:each="grade : ${assignmentList}" class="displayedAssignment">
             <td class="buttonArea">
                 <a th:href="@{/teacherManageAssign(gradeID=${grade.gradeID}, assignmentID=${grade.assignment.assignmentID})}" href="../templates/teacherManageAssign.html"><button class="editicon"></button></a>
-                <a><button class="deleteicon"></button></a>
+                <a th:href="@{/teacherDeleteAssign(assignmentID=${grade.assignment.assignmentID})}" href="../templates/teacherManageAssign.html"><button class="deleteicon"></button></a>
             </td>
             <td th:text="${grade.academicClass.period}">1</td>
             <td th:text="${grade.assignment.assignmentName}">Orientation Assignment</td>

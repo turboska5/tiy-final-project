@@ -283,4 +283,15 @@ public class MainService {
     public Page<Student> listStudents(SearchUsersStudent searchUsersStudent, Pageable pageable) {
         return this.studentRepository.findAllWithPages(searchUsersStudent.getsLastNameForSearch(), searchUsersStudent.getsFirstNameForSearch(), searchUsersStudent.getsEmailForSearch(), searchUsersStudent.getsIDForSearch(), searchUsersStudent.getGrade(), pageable);
     }
+
+    public void deleteAssignment(Integer assignmentID) {
+        //if grade table has no records with earned points
+        if(this.gradeRepo.checkForDeletion(assignmentID) != 0) {
+            //else do nothing
+        } else {
+            //delete grade record then delete assignmnet record
+            this.gradeRepo.deleteAssignment(assignmentID);
+            this.assignmentRepo.delete(assignmentID);
+        }
+    }
 }
