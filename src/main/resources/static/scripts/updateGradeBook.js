@@ -9,29 +9,30 @@ var currentAPage = 0, lastAPage = 0;
 var currentSPage = 0, lastSPage = 0;
 
 $(function() {
+    //disable all buttons, run null searches
     onLoad();
 
     //button functions
     //search button
     $("#classSearch").click(function(){
         currentPage = 0;
-        classButtonToggle();
         var query = "/classTable?page=" + currentPage + "&period=" + $("#period").val() + "&name=" + $("#name").val() + "&identifier=" + $("#identifier").val();
         classSearch(query);
+        classButtonToggle();
         return false; // this prevents the form from being submitted when the button is clicked.
     });
     $("#assignSearch").click(function(){
         currentAPage = 0;
-        assignButtonToggle();
         var query = "/assignTable?page=" + currentAPage + "&aPeriod=" + $("#aPeriod").val() + "&aName=" + $("#aName").val() + "&aID=" + $("#aID").val() + "&aDate=" + $("#aDate").val() + "&aPoints=" + $("#aPoints").val();
         assignSearch(query);
+        assignButtonToggle();
         return false; // this prevents the form from being submitted when the button is clicked.
     });
     $("#studentSearch").click(function(){
         currentSPage = 0;
-        studentButtonToggle();
         var query = "/studentTable?page=" + currentSPage + "&sPeriod=" + $("#sPeriod").val() + "&sLastName=" + $("#sLastName").val() + "&sFirstName=" + $("#sFirstName").val() + "&sAName=" + $("#sAName").val() + "&sAID=" + $("#sAID").val();
         studentSearch(query);
+        studentButtonToggle();
         return false; // this prevents the form from being submitted when the button is clicked.
     });
     //reset button
@@ -122,118 +123,133 @@ $(function() {
         }
         return false; // this prevents the form from being submitted when the button is clicked.
     });
+});
 
-    //supporting functions
-    //preload tables and enable appropriate buttons
-    function onLoad() {
-        classSearch("/classTable?period=" + $("#period").val());
-        classButtonToggle();
-        assignSearch("/assignTable?aPeriod=" + $("#period").val());
-        assignButtonToggle();
-        studentSearch("/studentTable?sPeriod=" + $("#period").val());
-        studentButtonToggle();
-    };
-    function classSearch(classQuery) {
-        //retrieve results
-        $.get(classQuery, function(data) {
-            //clear existing data and refresh with new
-            $("#classOutput").empty();
-            $("#classOutput").append(data);
-            //populate pagination based on results
-            var totalCount = $("#classListSize").val();
-            var totalPages = Math.ceil(totalCount/classesPerPage);
-            var onPageCount = $(data).find('.displayedClass').length;
-            lastPage = totalPages - 1;
-            var start = currentPage * classesPerPage  + 1;
-            var end = start + onPageCount - 1;
-            $("#description").text(start + " - " + end + " of " + totalCount);
-        });
-    }
-    function assignSearch(assignQuery) {
-        $.get(assignQuery, function(data) {
-            //clear existing data and refresh with new
-            $("#assignmentOutput").empty();
-            $("#assignmentOutput").append(data);
-            //populate pagination based on results
-            var totalCount = $("#assignListSize").val();
-            var totalPages = Math.ceil(totalCount/assignPerPage);
-            var onPageCount = $(data).find('.displayedAssignment').length;
-            lastAPage = totalPages - 1;
-            var start = currentAPage * assignPerPage + 1;
-            var end = start + onPageCount - 1;
-            $("#descriptionAssign").text(start + " - " + end + " of " + totalCount);
-        });
-    }
-    function studentSearch(studentQuery) {
-        $.get(studentQuery, function(data) {
-            //clear existing data and refresh with new
-            $("#studentOutput").empty();
-            $("#studentOutput").append(data);
-            //populate pagination based on results
-            var totalCount = $("#studentListSize").val();
-            var totalPages = Math.ceil(totalCount/studentsPerPage);
-            var onPageCount = $(data).find('.displayedStudent').length;
-            lastSPage = totalPages - 1;
-            var start = currentSPage * studentsPerPage + 1;
-            var end = start + onPageCount - 1;
-            $("#descriptionStudent").text(start + " - " + end + " of " + totalCount);
-        });
-    }
-    function classButtonToggle() {
-        //disable back button/next button behavior
-        if(currentPage == 0) {
-            $("#back").prop("disabled", true);
-            if(lastPage == 0) {
-                $("#next").prop("disabled", true);
-            } else {
-                $("#next").prop("disabled", false);
-            }
-        } else if (currentPage < lastPage) {
-            $("#back").prop("disabled", false);
-            $("#next").prop("disabled", false);
-        } else if (currentPage == lastPage) {
-            $("#back").prop("disabled", false);
-            $("#next").prop("disabled", true);
-        } else if (lastPage == 0) {
-            $("#back").prop("disabled", true);
-            $("#next").prop("disabled", true);
-        }
-    }
-    function assignButtonToggle() {
-        //disable back button/next button behavior
-        if(currentAPage == 0) {
-            $("#assignBack").prop("disabled", true);
-            if(lastAPage == 0) {
-                $("#assignNext").prop("disabled", true);
-            } else {
-                $("#assignNext").prop("disabled", false);
-            }
-        } else if (currentAPage < lastAPage) {
-            $("#assignBack").prop("disabled", false);
-            $("#assignNext").prop("disabled", false);
-        } else if (currentAPage == lastAPage) {
-            $("#assignBack").prop("disabled", false);
-            $("#assignNext").prop("disabled", true);
-        } else if (lastAPage == 0) {
-            $("#assignBack").prop("disabled", true);
-            $("#assignNext").prop("disabled", true);
-        }
-    }
-    function studentButtonToggle() {
-        //disable back button/next button behavior
-        if(currentSPage == 0) {
-            $("#studentBack").prop("disabled", true);
-            if(lastSPage == 0) {
-                $("#studentNext").prop("disabled", true);
-            } else {
-                $("#studentNext").prop("disabled", false);
-            }
-        } else if (currentSPage < lastSPage) {
+//supporting functions
+//preload tables and enable appropriate buttons
+function onLoad() {
+    classSearch("/classTable?period=" + $("#period").val());
+    assignSearch("/assignTable?aPeriod=" + $("#period").val());
+    studentSearch("/studentTable?sPeriod=" + $("#period").val());
+};
+function classSearch(classQuery) {
+    //retrieve results
+    $.get(classQuery, function(data) {
+        //clear existing data and refresh with new
+        $("#classOutput").empty();
+        $("#classOutput").append(data);
+        //populate pagination based on results
+        var totalCount = $("#classListSize").val();
+        var totalPages = Math.ceil(totalCount/classesPerPage);
+        var onPageCount = $(data).find('.displayedClass').length;
+        lastPage = totalPages - 1;
+        var start = currentPage * classesPerPage  + 1;
+        var end = start + onPageCount - 1;
+        $("#description").text(start + " - " + end + " of " + totalCount);
+    });
+}
+function assignSearch(assignQuery) {
+    $.get(assignQuery, function(data) {
+        //clear existing data and refresh with new
+        $("#assignmentOutput").empty();
+        $("#assignmentOutput").append(data);
+        //populate pagination based on results
+        var totalCount = $("#assignListSize").val();
+        var totalPages = Math.ceil(totalCount/assignPerPage);
+        var onPageCount = $(data).find('.displayedAssignment').length;
+        lastAPage = totalPages - 1;
+        var start = currentAPage * assignPerPage + 1;
+        var end = start + onPageCount - 1;
+        $("#descriptionAssign").text(start + " - " + end + " of " + totalCount);
+    });
+}
+function studentSearch(studentQuery) {
+    $.get(studentQuery, function(data) {
+        //clear existing data and refresh with new
+        $("#studentOutput").empty();
+        $("#studentOutput").append(data);
+        //populate pagination based on results
+        var totalCount = $("#studentListSize").val();
+        var totalPages = Math.ceil(totalCount/studentsPerPage);
+        var onPageCount = $(data).find('.displayedStudent').length;
+        lastSPage = totalPages - 1;
+        var start = currentSPage * studentsPerPage + 1;
+        var end = start + onPageCount - 1;
+        $("#descriptionStudent").text(start + " - " + end + " of " + totalCount);
+        //execute button logic here
+        studentButtonToggleBothOff();
+        if (currentSPage > 0 && currentSPage < lastSPage) {
             $("#studentBack").prop("disabled", false);
             $("#studentNext").prop("disabled", false);
-        } else if (currentSPage == lastSPage) {
+        }
+        if (currentSPage == lastSPage) {
             $("#studentBack").prop("disabled", false);
             $("#studentNext").prop("disabled", true);
         }
+        if(currentSPage == 0) {
+            if(lastSPage == 0) {
+                $("#studentBack").prop("disabled", true);
+                $("#studentNext").prop("disabled", true);
+            } else {
+                $("#studentBack").prop("disabled", true);
+                $("#studentNext").prop("disabled", false);
+            }
+        }
+    });
+}
+function classButtonToggleBothOff() {
+    $("#back").prop("disabled", true);
+    $("#next").prop("disabled", true);
+}
+function assignButtonToggleBothOff() {
+    $("#assignBack").prop("disabled", true);
+    $("#assignNext").prop("disabled", true);
+}
+function studentButtonToggleBothOff() {
+    $("#studentBack").prop("disabled", true);
+    $("#studentNext").prop("disabled", true);
+}
+
+
+
+function classButtonToggle() {
+    //disable back button/next button behavior
+    if(currentPage == 0) {
+        $("#back").prop("disabled", true);
+        $("#next").prop("disabled", false);
     }
-});
+    if (currentPage > 0 && currentPage < lastPage) {
+        $("#back").prop("disabled", false);
+        $("#next").prop("disabled", false);
+    }
+    if (currentPage == lastPage) {
+        $("#back").prop("disabled", false);
+        $("#next").prop("disabled", true);
+    }
+    if (lastPage == 0) {
+        $("#back").prop("disabled", true);
+        $("#next").prop("disabled", true);
+    }
+}
+function assignButtonToggle() {
+    //disable back button/next button behavior
+    if(currentAPage == 0) {
+        $("#assignBack").prop("disabled", true);
+        $("#assignNext").prop("disabled", false);
+    }
+    if (currentAPage > 0 && currentAPage < lastAPage) {
+        $("#assignBack").prop("disabled", false);
+        $("#assignNext").prop("disabled", false);
+    }
+    if (currentAPage == lastAPage) {
+        $("#assignBack").prop("disabled", false);
+        $("#assignNext").prop("disabled", true);
+    }
+    if (lastAPage == 0) {
+        $("#assignBack").prop("disabled", true);
+        $("#assignNext").prop("disabled", true);
+    }
+}
+function studentButtonToggle() {
+    //disable back button/next button behavior
+}
