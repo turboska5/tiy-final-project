@@ -153,11 +153,15 @@ public class Assignment {
     public String getAverage() {
         if( studentsWithGrade == null || studentsWithGrade.equals(0) ||
                 sumStudentEarnedPointsWithGrade == null || sumStudentEarnedPointsWithGrade.equals(0)) {
-            return "0.00";
+            if(this.submissionRate == 0) {
+                return "---";
+            } else {
+                return "0.00%";
+            }
         } else {
             Double average = ((sumStudentEarnedPointsWithGrade / (studentsWithGrade*thisPossiblePts))*100.0);
-            DecimalFormat numberFormat = new DecimalFormat("#.00");
-            return numberFormat.format(average);
+            DecimalFormat numberFormat = new DecimalFormat("0.00");
+            return numberFormat.format(average) + "%";
         }
     }
 

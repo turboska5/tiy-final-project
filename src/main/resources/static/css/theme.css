@@ -255,7 +255,9 @@ table tr:nth-child(2n+1) {
     float: left;
 }
 .homeGrade {
-    float: right;
+    /*float: right;*/
+    text-align: center;
+    padding: 0px 0px 0px 50px;
 }
 #SaveAttendance {
     padding: 10px 0px 0px;
