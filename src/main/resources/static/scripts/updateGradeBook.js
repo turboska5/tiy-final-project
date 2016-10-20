@@ -13,12 +13,6 @@ $(function() {
     assignSearch("/assignTable?aPeriod=" + $("#period").val());
     studentSearch("/studentTable?sPeriod=" + $("#period").val());
 
-    $("#studentOutput").on("change", function(){
-        classSearchPress(currentPage);
-        assignSearchPress(currentAPage);
-        // studentSearchPress(currentSPage);
-    });
-
     //button functions
     //search button
     $("#classSearch").click(function(){
