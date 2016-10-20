@@ -8,7 +8,7 @@ $(function() {
         var earnedPoints = $(this).val();
         $.post("/teacherGradePost", {gradeID: gradeID, earnedPoints: earnedPoints});
 
-        classSearchPress(currentPage);
-        assignSearchPress(currentAPage);
+        // classSearchPress(currentPage);
+        // assignSearchPress(currentAPage);
     });
 });
