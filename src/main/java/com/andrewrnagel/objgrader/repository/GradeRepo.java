@@ -62,7 +62,7 @@ public interface GradeRepo extends JpaRepository<Grade, Integer> {
     @Query(value = "SELECT g FROM Grade g WHERE (?1 IS NULL OR g.academicClass.period = ?1) AND (?2 = '' OR upper(g.assignment.assignmentName) LIKE upper(?2)) AND (?3 IS NULL OR g.possPoints = ?3) AND g.student.studentID IS ?4")
     List<Grade> searchForStudentAssignments(Integer period, String aName, Integer aPointsParsed, Integer studentID);
 
-    @Query(value = "SELECT g FROM Grade g WHERE (?1 IS NULL OR g.academicClass.period = ?1) AND (?2 = '' OR upper(g.assignment.assignmentName) LIKE upper(?2)) AND (?3 IS NULL OR g.possPoints = ?3) AND g.student.studentID IS ?4 ORDER BY g.academicClass.period ASC")
+    @Query(value = "SELECT g FROM Grade g WHERE (?1 IS NULL OR g.academicClass.period = ?1) AND (?2 = '' OR upper(g.assignment.assignmentName) LIKE upper(?2)) AND (?3 IS NULL OR g.possPoints = ?3) AND g.student.studentID IS ?4 ORDER BY g.academicClass.period, g.assignment.date ASC")
     Page<Grade> searchForStudentAssignments(Integer period, String aName, Integer aPointsParsed, Integer studentID, Pageable pageable);
 
     @Query(value = "SELECT g FROM Grade g WHERE (?1 IS NULL OR g.academicClass.period = ?1) AND (?2 = '' OR upper(g.assignment.assignmentName) LIKE upper(?2)) AND (?3 = '' OR upper(g.assignment.assignmentIDNumber) LIKE upper(?3)) AND (?4 IS NULL OR g.assignment.date = ?4) AND (?5 IS NULL OR g.possPoints = ?5) AND g.student.studentID IS NULL AND g.academicClass.teacher.teacherID IS ?6")
