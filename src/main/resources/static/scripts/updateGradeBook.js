@@ -17,8 +17,8 @@ $(function() {
     //search button
     $("#classSearch").click(function(){
         currentPage = 0;
-        var query = "/assignTable?page=" + currentAPage + "&aPeriod=" + $("#aPeriod").val() + "&aName=" + $("#aName").val() + "&aID=" + $("#aID").val() + "&aDate=" + $("#aDate").val() + "&aPoints=" + $("#aPoints").val();
-        assignSearch(query);
+        var query = "/classTable?page=" + currentPage + "&period=" + $("#period").val() + "&name=" + $("#name").val() + "&identifier=" + $("#identifier").val();
+        classSearch(query);
         return false; // this prevents the form from being submitted when the button is clicked.
     });
     $("#assignSearch").click(function(){
@@ -202,8 +202,8 @@ function buttonValidator(currentPage, lastPage, buttonIDBack, buttonIDNext) {
     }
 }
 function classSearchPress(currentpage) {
-    var query = "/assignTable?page=" + currentAPage + "&aPeriod=" + $("#aPeriod").val() + "&aName=" + $("#aName").val() + "&aID=" + $("#aID").val() + "&aDate=" + $("#aDate").val() + "&aPoints=" + $("#aPoints").val();
-    assignSearch(query);
+    var query = "/classTable?page=" + currentPage + "&period=" + $("#period").val() + "&name=" + $("#name").val() + "&identifier=" + $("#identifier").val();
+    classSearch(query);
     return false; // this prevents the form from being submitted when the button is clicked.
 }
 function assignSearchPress(currentApage) {
