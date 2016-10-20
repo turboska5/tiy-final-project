@@ -4,8 +4,8 @@
 
 $(function() {
     $(".GradeInput").on("change", function(){
-            var gradeID = $(this).attr("data-gradeID");
-            var earnedPoints = $(this).val();
-            $.post("/teacherGradePost", {gradeID: gradeID, earnedPoints: earnedPoints});
+        var gradeID = $(this).attr("data-gradeID");
+        var earnedPoints = $(this).val();
+        $.post("/teacherGradePost", {gradeID: gradeID, earnedPoints: earnedPoints});
     });
 });

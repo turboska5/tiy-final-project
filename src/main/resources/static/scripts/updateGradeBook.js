@@ -13,25 +13,25 @@ $(function() {
     assignSearch("/assignTable?aPeriod=" + $("#period").val());
     studentSearch("/studentTable?sPeriod=" + $("#period").val());
 
+    $("#studentOutput").on("change", function(){
+        classSearchPress(currentPage);
+        assignSearchPress(currentAPage);
+        // studentSearchPress(currentSPage);
+    });
+
     //button functions
     //search button
     $("#classSearch").click(function(){
         currentPage = 0;
-        var query = "/classTable?page=" + currentPage + "&period=" + $("#period").val() + "&name=" + $("#name").val() + "&identifier=" + $("#identifier").val();
-        classSearch(query);
-        return false; // this prevents the form from being submitted when the button is clicked.
+        classSearchPress(currentPage);
     });
     $("#assignSearch").click(function(){
         currentAPage = 0;
-        var query = "/assignTable?page=" + currentAPage + "&aPeriod=" + $("#aPeriod").val() + "&aName=" + $("#aName").val() + "&aID=" + $("#aID").val() + "&aDate=" + $("#aDate").val() + "&aPoints=" + $("#aPoints").val();
-        assignSearch(query);
-        return false; // this prevents the form from being submitted when the button is clicked.
+        assignSearchPress(currentAPage);
     });
     $("#studentSearch").click(function(){
         currentSPage = 0;
-        var query = "/studentTable?page=" + currentSPage + "&sPeriod=" + $("#sPeriod").val() + "&sLastName=" + $("#sLastName").val() + "&sFirstName=" + $("#sFirstName").val() + "&sAName=" + $("#sAName").val() + "&sAID=" + $("#sAID").val();
-        studentSearch(query);
-        return false; // this prevents the form from being submitted when the button is clicked.
+        studentSearchPress(currentSPage);
     });
     //reset button
     $("#classReset").click(function(){
@@ -200,4 +200,19 @@ function buttonValidator(currentPage, lastPage, buttonIDBack, buttonIDNext) {
             $(buttonIDNext).prop("disabled", false);
         }
     }
+}
+function classSearchPress(currentpage) {
+    var query = "/classTable?page=" + currentPage + "&period=" + $("#period").val() + "&name=" + $("#name").val() + "&identifier=" + $("#identifier").val();
+    classSearch(query);
+    return false; // this prevents the form from being submitted when the button is clicked.
+}
+function assignSearchPress(currentApage) {
+    var query = "/assignTable?page=" + currentAPage + "&aPeriod=" + $("#aPeriod").val() + "&aName=" + $("#aName").val() + "&aID=" + $("#aID").val() + "&aDate=" + $("#aDate").val() + "&aPoints=" + $("#aPoints").val();
+    assignSearch(query);
+    return false; // this prevents the form from being submitted when the button is clicked.
+}
+function studentSearchPress(currentSpage) {
+    var query = "/studentTable?page=" + currentSPage + "&sPeriod=" + $("#sPeriod").val() + "&sLastName=" + $("#sLastName").val() + "&sFirstName=" + $("#sFirstName").val() + "&sAName=" + $("#sAName").val() + "&sAID=" + $("#sAID").val();
+    studentSearch(query);
+    return false; // this prevents the form from being submitted when the button is clicked.
 }
