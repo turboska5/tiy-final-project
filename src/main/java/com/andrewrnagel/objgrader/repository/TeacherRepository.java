@@ -21,6 +21,6 @@ public interface TeacherRepository extends JpaRepository<Teacher, Integer> {
     @Query(value = "SELECT t FROM Teacher t WHERE (?1 = '' OR upper(t.lastName) LIKE upper(?1)) AND (?2 = '' OR upper(t.firstName) LIKE upper(?2)) AND (?3 = '' OR upper(t.user.email) LIKE upper(?3)) AND (?4 = '' OR upper(t.department) LIKE upper(?4)) ORDER BY t.department, t.lastName ASC")
     Page<Teacher> findAllWithPages(String lastName, String firstName, String email, String department, Pageable pageable);
 
-    @Query(value = "SELECT t FROM Teacher t WHERE t.user.disabled = FALSE ORDER BY t.lastName ASC")
+    @Query(value = "SELECT t FROM Teacher t WHERE t.user.disabled = FALSE ORDER BY upper(t.lastName) ASC")
     List<Teacher> getValidTeachers();
 }
